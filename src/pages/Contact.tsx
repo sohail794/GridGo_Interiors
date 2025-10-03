@@ -120,7 +120,7 @@ export default function Contact({ onNavigate }: ContactProps) {
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       className="w-full px-4 py-3 rounded-md border-2 border-silver focus:border-emerald outline-none transition-colors"
-                      placeholder="+918595007476"
+                      placeholder="+91 XXX XXX XXXX"
                     />
                   </div>
                   <div>
