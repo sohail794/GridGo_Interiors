@@ -15,6 +15,14 @@ export default function Chatbot() {
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
   const [leadCaptured, setLeadCaptured] = useState(false);
+  const [isOnline, setIsOnline] = useState(true);
+
+  const currentHour = new Date().getHours();
+  const isBusinessHours = currentHour >= 9 && currentHour < 18;
+
+  useState(() => {
+    setIsOnline(isBusinessHours);
+  });
 
   const quickReplies = [
     'Services offered',
@@ -88,13 +96,21 @@ export default function Chatbot() {
   return (
     <>
       {!isOpen && (
-        <button
-          onClick={() => setIsOpen(true)}
-          className="fixed bottom-24 right-6 z-50 bg-emerald-dark hover:bg-emerald text-white p-4 rounded-full shadow-luxury hover:shadow-luxury-hover transition-all"
-          aria-label="Open chat"
-        >
-          <MessageCircle size={28} />
-        </button>
+        <div className="fixed bottom-6 right-6 z-50">
+          <button
+            onClick={() => setIsOpen(true)}
+            className="relative bg-emerald-dark hover:bg-emerald text-white p-4 rounded-full shadow-luxury hover:shadow-luxury-hover transition-all group"
+            aria-label="Open chat"
+          >
+            <MessageCircle size={28} />
+            <span className={`absolute -top-1 -right-1 w-3 h-3 rounded-full ${
+              isOnline ? 'bg-green-400' : 'bg-gray-400'
+            } border-2 border-white`} />
+          </button>
+          <div className="absolute bottom-full right-0 mb-2 bg-white px-3 py-2 rounded-lg shadow-lg text-xs font-sans whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+            {isOnline ? "We're online — chat with us" : "All agents are busy — leave a message"}
+          </div>
+        </div>
       )}
 
       {isOpen && (
@@ -104,7 +120,12 @@ export default function Chatbot() {
               <MessageCircle size={24} className="mr-2" />
               <div>
                 <h3 className="font-sans font-bold">GridGo Assistant</h3>
-                <p className="text-xs text-silver-light">Online</p>
+                <p className="text-xs flex items-center gap-1">
+                  <span className={`w-2 h-2 rounded-full ${
+                    isOnline ? 'bg-green-300' : 'bg-gray-300'
+                  }`} />
+                  {isOnline ? 'Online' : 'Offline'}
+                </p>
               </div>
             </div>
             <button

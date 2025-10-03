@@ -58,8 +58,9 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
                 <div className="relative overflow-hidden rounded-lg shadow-luxury hover:shadow-luxury-hover transition-all">
                   <img
                     src={project.image}
-                    alt={project.title}
+                    alt={`${project.title} - ${project.category} interior design project in ${project.location}`}
                     className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500"
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                     <div className="text-white">
@@ -110,8 +111,9 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
             <div className="p-6">
               <img
                 src={selectedProject.image}
-                alt={selectedProject.title}
+                alt={`${selectedProject.title} - ${selectedProject.category} interior design project in ${selectedProject.location}`}
                 className="w-full h-96 object-cover rounded-lg mb-6"
+                loading="lazy"
               />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>

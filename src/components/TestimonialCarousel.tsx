@@ -29,8 +29,9 @@ export default function TestimonialCarousel({ testimonials }: TestimonialCarouse
           {currentTestimonial.image && (
             <img
               src={currentTestimonial.image}
-              alt={currentTestimonial.name}
+              alt={`${currentTestimonial.name} - GridGo Interiors Client`}
               className="w-16 h-16 rounded-full object-cover mr-4"
+              loading="lazy"
             />
           )}
           <div>

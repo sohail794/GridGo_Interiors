@@ -32,8 +32,9 @@ export default function Blog({ onNavigate }: BlogProps) {
                 <div className="relative overflow-hidden h-64">
                   <img
                     src={post.image}
-                    alt={post.title}
+                    alt={`${post.title} - ${post.category} article on interior design`}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    loading="lazy"
                   />
                   <div className="absolute top-4 left-4">
                     <span className="bg-emerald text-white px-3 py-1 rounded-full text-sm font-sans font-semibold">

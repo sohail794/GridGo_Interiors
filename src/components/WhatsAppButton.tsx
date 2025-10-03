@@ -10,10 +10,11 @@ export default function WhatsAppButton() {
   return (
     <button
       onClick={handleWhatsAppClick}
-      className="fixed bottom-6 right-6 z-50 bg-emerald hover:bg-emerald-dark text-white p-4 rounded-full shadow-luxury hover:shadow-luxury-hover transition-all animate-pulse-slow"
+      className="fixed bottom-6 right-24 z-40 bg-green-500 hover:bg-green-600 text-white p-3.5 rounded-full shadow-luxury hover:shadow-luxury-hover transition-all"
       aria-label="Contact us on WhatsApp"
+      title="WhatsApp Us"
     >
-      <MessageCircle size={28} />
+      <MessageCircle size={24} />
     </button>
   );
 }

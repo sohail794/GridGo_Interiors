@@ -111,8 +111,9 @@ export default function About({ onNavigate }: AboutProps) {
                 {member.image && (
                   <img
                     src={member.image}
-                    alt={member.name}
+                    alt={`${member.name} - ${member.title} at GridGo Interiors`}
                     className="w-full h-64 object-cover"
+                    loading="lazy"
                   />
                 )}
                 <div className="p-6">

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Menu, X, ChevronDown } from 'lucide-react';
+import logo from '../assets/images/logo/gridgo-logo.svg';
 
 interface HeaderProps {
   currentPage: string;
@@ -26,9 +27,11 @@ export default function Header({ currentPage, onNavigate }: HeaderProps) {
             className="flex items-center cursor-pointer"
             onClick={() => onNavigate('home')}
           >
-            <div className="text-2xl font-serif font-bold text-emerald italic">
-              GridGo <span className="text-silver">Interiors</span>
-            </div>
+            <img
+              src={logo}
+              alt="GridGo Interiors - Luxury Interior Design"
+              className="h-12 w-auto sm:h-14 transition-all hover:opacity-80"
+            />
           </div>
 
           <nav className="hidden md:flex items-center space-x-8">
