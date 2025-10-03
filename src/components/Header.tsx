@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Menu, X, ChevronDown } from 'lucide-react';
-import logo from '../assets/images/logo/gridgo-logo.svg';
+import logo from '../assets/images/logo/GridGo_Original_Logo.png';
 
 interface HeaderProps {
   currentPage: string;
