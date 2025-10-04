@@ -325,17 +325,20 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
       href="mailto:sohailsaifi561@gmail.com"
       className="text-[#b4b4b4] hover:text-[#00ff88] transition-all hover:scale-110 cursor-pointer"
     >
-      <span className="text-sm">Email</span>
-    </a>
-    <a
-      href="https://www.linkedin.com/"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="text-[#b4b4b4] hover:text-[#00ff88] transition-all hover:scale-110 cursor-pointer"
-    >
-      <span className="text-sm">LinkedIn</span>
-    </a>
+                    <span className="text-sm">Email</span>
+            </a>
+            <a
+              href="https://www.linkedin.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#b4b4b4] hover:text-[#00ff88] transition-all hover:scale-110 cursor-pointer"
+            >
+              <span className="text-sm">LinkedIn</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
-</div>
 );
 }
