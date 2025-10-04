@@ -1,3 +1,4 @@
+```tsx
 import { useState } from 'react';
 import { CheckCircle, Award, Clock, Shield, Wrench, Sparkles } from 'lucide-react';
 import HeroSection from '../components/HeroSection';
@@ -310,53 +311,56 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
             </Button3D>
           </div>
 
-<div className="text-center">
-  <p className="text-sm text-[#6b7280] mb-6">or reach us via</p>
-  <div className="flex flex-wrap justify-center gap-4">
-    {/* WhatsApp */}
-    <a
-      href="https://wa.me/918595007476"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="flex items-center gap-4 bg-[#101622] border border-[#00ff88] rounded-2xl px-6 py-4 min-w-[200px] shadow-lg hover:scale-105 hover:border-[#06b6d4] transition-all"
-    >
-      <div className="bg-[#00ff88] rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0">
-        <svg viewBox="0 0 32 32" fill="white" width="24" height="24">
-          <path d="M27.5 16c0 6.351-5.149 11.5-11.5 11.5a11.466 11.466 0 0 1-5.527-1.409l-5.653 1.585 1.705-5.512A11.512 11.512 0 0 1 4.5 16c0-6.351 5.149-11.5 11.5-11.5S27.5 9.649 27.5 16zm-11.5 9.5c2.025 0 3.965-.619 5.626-1.78l.401-.256 3.065.86-.79-3.057.258-.405c1.148-1.798 1.765-3.728 1.765-5.62 0-5.238-4.262-9.5-9.5-9.5s-9.5 4.262-9.5 9.5c0 1.858.597 3.767 1.7 5.557l.245.386-.761 2.463 2.454-.759.384.242A9.477 9.477 0 0 0 16 25.5zm5.259-7.28c-.139-.069-1.125-.555-1.298-.618-.173-.064-.298-.096-.424.097-.125.193-.486.617-.597.748-.112.131-.223.147-.413.05-.194-.096-.823-.308-1.565-.982-.579-.517-.972-1.157-1.087-1.351-.113-.193-.012-.298.085-.393.087-.086.194-.222.29-.333.097-.111.128-.193.192-.322.063-.129.032-.237-.017-.333-.049-.096-.428-1.017-.586-1.393-.154-.366-.311-.315-.427-.322-.109-.005-.235-.007-.36-.007-.125 0-.326.047-.497.247-.172.199-.655.741-.655 1.81 0 1.067.757 2.098.864 2.247.107.149 1.51 2.444 3.657 3.425.51.221.908.355 1.218.454.512.164.978.141 1.347.085.413-.061 1.273-.518 1.452-1.018.18-.501.18-.931.126-1.025-.054-.094-.199-.149-.418-.262z" />
-        </svg>
-      </div>
-      <span className="text-lg font-semibold text-[#00ff88]">WhatsApp</span>
-    </a>
+          <div className="text-center">
+            <p className="text-sm text-[#6b7280] mb-6">or reach us via</p>
+            <div className="flex flex-wrap justify-center gap-4">
+              {/* WhatsApp */}
+              <a
+                href="https://wa.me/918595007476"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-4 bg-[#101622] border border-[#00ff88] rounded-2xl px-6 py-4 min-w-[200px] shadow-lg hover:scale-105 hover:border-[#06b6d4] transition-all"
+              >
+                <div className="bg-[#00ff88] rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0">
+                  <svg viewBox="0 0 32 32" fill="white" width="24" height="24">
+                    <path d="M27.5 16c0 6.351-5.149 11.5-11.5 11.5a11.466 11.466 0 0 1-5.527-1.409l-5.653 1.585 1.705-5.512A11.512 11.512 0 0 1 4.5 16c0-6.351 5.149-11.5 11.5-11.5S27.5 9.649 27.5 16zm-11.5 9.5c2.025 0 3.965-.619 5.626-1.78l.401-.256 3.065.86-.79-3.057.258-.405c1.148-1.798 1.765-3.728 1.765-5.62 0-5.238-4.262-9.5-9.5-9.5s-9.5 4.262-9.5 9.5c0 1.858.597 3.767 1.7 5.557l.245.386-.761 2.463 2.454-.759.384.242A9.477 9.477 0 0 0 16 25.5zm5.259-7.28c-.139-.069-1.125-.555-1.298-.618-.173-.064-.298-.096-.424.097-.125.193-.486.617-.597.748-.112.131-.223.147-.413.05-.194-.096-.823-.308-1.565-.982-.579-.517-.972-1.157-1.087-1.351-.113-.193-.012-.298.085-.393.087-.086.194-.222.29-.333.097-.111.128-.193.192-.322.063-.129.032-.237-.017-.333-.049-.096-.428-1.017-.586-1.393-.154-.366-.311-.315-.427-.322-.109-.005-.235-.007-.36-.007-.125 0-.326.047-.497.247-.172.199-.655.741-.655 1.81 0 1.067.757 2.098.864 2.247.107.149 1.51 2.444 3.657 3.425.51.221.908.355 1.218.454.512.164.978.141 1.347.085.413-.061 1.273-.518 1.452-1.018.18-.501.18-.931.126-1.025-.054-.094-.199-.149-.418-.262z" />
+                  </svg>
+                </div>
+                <span className="text-lg font-semibold text-[#00ff88]">WhatsApp</span>
+              </a>
 
-    {/* Email */}
-    <a
-      href="mailto:sohailsaifi561@gmail.com"
-      className="flex items-center gap-4 bg-[#101622] border border-[#00ff88] rounded-2xl px-6 py-4 min-w-[200px] shadow-lg hover:scale-105 hover:border-[#06b6d4] transition-all"
-    >
-      <div className="bg-[#00ff88] rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0">
-        <svg viewBox="0 0 32 32" fill="white" width="24" height="24">
-          <path d="M4 8C4 6.89543 4.89543 6 6 6H26C27.1046 6 28 6.89543 28 8V24C28 25.1046 27.1046 26 26 26H6C4.89543 26 4 25.1046 4 24V8ZM6 8V8.0024L16 15.5L26 8.0024V8H6ZM26 10.6976L16.9442 18.2787C16.3992 18.7233 15.6008 18.7233 15.0558 18.2787L6 10.6976V24H26V10.6976Z"/>
-        </svg>
-      </div>
-      <span className="text-lg font-semibold text-[#00ff88]">Email</span>
-    </a>
+              {/* Email */}
+              <a
+                href="mailto:sohailsaifi561@gmail.com"
+                className="flex items-center gap-4 bg-[#101622] border border-[#00ff88] rounded-2xl px-6 py-4 min-w-[200px] shadow-lg hover:scale-105 hover:border-[#06b6d4] transition-all"
+              >
+                <div className="bg-[#00ff88] rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0">
+                  <svg viewBox="0 0 32 32" fill="white" width="24" height="24">
+                    <path d="M4 8C4 6.89543 4.89543 6 6 6H26C27.1046 6 28 6.89543 28 8V24C28 25.1046 27.1046 26 26 26H6C4.89543 26 4 25.1046 4 24V8ZM6 8V8.0024L16 15.5L26 8.0024V8H6ZM26 10.6976L16.9442 18.2787C16.3992 18.7233 15.6008 18.7233 15.0558 18.2787L6 10.6976V24H26V10.6976Z"/>
+                  </svg>
+                </div>
+                <span className="text-lg font-semibold text-[#00ff88]">Email</span>
+              </a>
 
-    {/* LinkedIn */}
-    <a
-      href="https://www.linkedin.com/"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="flex items-center gap-4 bg-[#101622] border border-[#00ff88] rounded-2xl px-6 py-4 min-w-[200px] shadow-lg hover:scale-105 hover:border-[#06b6d4] transition-all"
-    >
-      <div className="bg-[#00ff88] rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0">
-        <svg viewBox="0 0 32 32" fill="white" width="24" height="24">
-          <path d="M27 4H5C5 4 4 4 4 5V27C4 27 4 28 5 28H27C27 28 28 27 28 27V5C28 4 27 4 27 4ZM11.334 23.334H8.667V13.334H11.334V23.334ZM10 12.088C9.112 12.088 8.4 11.34 8.4 10.513C8.4 9.687 9.128 8.946 10 8.946C10.872 8.946 11.6 9.7 11.6 10.513C11.6 11.34 10.888 12.088 10 12.088ZM23.334 23.334H20.667V18.667C20.667 17.522 19.778 17.667 19.334 17.667C18.89 17.667 17.667 17.767 17.667 18.667V23.334H15V13.334H17.667V14.192C18.295 13.333 18.92 13.333 19.334 13.333C20.238 13.333 21 13.92 21 15.209V23.334Z" />
-        </svg>
-      </div>
-      <span className="text-lg font-semibold text-[#00ff88]">LinkedIn</span>
-    </a>
-  </div>
-</div>
-</section>
-);
+              {/* LinkedIn */}
+              <a
+                href="https://www.linkedin.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-4 bg-[#101622] border border-[#00ff88] rounded-2xl px-6 py-4 min-w-[200px] shadow-lg hover:scale-105 hover:border-[#06b6d4] transition-all"
+              >
+                <div className="bg-[#00ff88] rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0">
+                  <svg viewBox="0 0 32 32" fill="white" width="24" height="24">
+                    <path d="M27 4H5C5 4 4 4 4 5V27C4 27 4 28 5 28H27C27 28 28 27 28 27V5C28 4 27 4 27 4ZM11.334 23.334H8.667V13.334H11.334V23.334ZM10 12.088C9.112 12.088 8.4 11.34 8.4 10.513C8.4 9.687 9.128 8.946 10 8.946C10.872 8.946 11.6 9.7 11.6 10.513C11.6 11.34 10.888 12.088 10 12.088ZM23.334 23.334H20.667V18.667C20.667 17.522 19.778 17.667 19.334 17.667C18.89 17.667 17.667 17.767 17.667 18.667V23.334H15V13.334H17.667V14.192C18.295 13.333 18.92 13.333 19.334 13.333C20.238 13.333 21 13.92 21 15.209V23.334Z" />
+                  </svg>
+                </div>
+                <span className="text-lg font-semibold text-[#00ff88]">LinkedIn</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
 }
+```
