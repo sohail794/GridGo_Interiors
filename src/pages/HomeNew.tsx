@@ -312,7 +312,7 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
 
           <div className="text-center">
   <p className="text-sm text-[#6b7280] mb-4">or reach us via</p>
-              <div className="text-center">
+                        <div className="text-center">
             <p className="text-sm text-[#6b7280] mb-6">or reach us via</p>
             <div className="flex flex-wrap justify-center gap-4">
               {/* WhatsApp */}
@@ -352,7 +352,7 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
               >
                 <div className="bg-[#00ff88] rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0">
                   <svg viewBox="0 0 32 32" fill="white" width="24" height="24">
-                                        <path d="M27 4H5C5 4 4 4 4 5V27C4 27 4 28 5 28H27C27 28 28 27 28 27V5C28 4 27 4 27 4ZM11.334 23.334H8.667V13.334H11.334V23.334ZM10 12.088C9.112 12.088 8.4 11.34 8.4 10.513C8.4 9.687 9.128 8.946 10 8.946C10.872 8.946 11.6 9.7 11.6 10.513C11.6 11.34 10.888 12.088 10 12.088ZM23.334 23.334H20.667V18.667C20.667 17.522 19.778 17.667 19.334 17.667C18.89 17.667 17.667 17.767 17.667 18.667V23.334H15V13.334H17.667V14.192C18.295 13.333 18.92 13.333 19.334 13.333C20.238 13.333 21 13.92 21 15.209V23.334Z" />
+                    <path d="M27 4H5C5 4 4 4 4 5V27C4 27 4 28 5 28H27C27 28 28 27 28 27V5C28 4 27 4 27 4ZM11.334 23.334H8.667V13.334H11.334V23.334ZM10 12.088C9.112 12.088 8.4 11.34 8.4 10.513C8.4 9.687 9.128 8.946 10 8.946C10.872 8.946 11.6 9.7 11.6 10.513C11.6 11.34 10.888 12.088 10 12.088ZM23.334 23.334H20.667V18.667C20.667 17.522 19.778 17.667 19.334 17.667C18.89 17.667 17.667 17.767 17.667 18.667V23.334H15V13.334H17.667V14.192C18.295 13.333 18.92 13.333 19.334 13.333C20.238 13.333 21 13.92 21 15.209V23.334Z" />
                   </svg>
                 </div>
                 <span className="text-lg font-semibold text-[#00ff88]">LinkedIn</span>
