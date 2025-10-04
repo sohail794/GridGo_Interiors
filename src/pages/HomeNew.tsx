@@ -359,7 +359,6 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
               </a>
             </div>
           </div>        {/* closes text-center wrapper */}
-      </section>      {/* closes section */}
-    </div>            {/* closes outer wrapper */}
+      </section>      {/* closes section */}          
   );                  {/* closes return() */}
 }
