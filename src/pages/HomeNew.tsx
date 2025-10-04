@@ -361,6 +361,5 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
           </div>
         </div>
       </section>
-    </div>
   );
 }
