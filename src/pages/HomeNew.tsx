@@ -358,8 +358,8 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
                 <span className="text-lg font-semibold text-[#00ff88]">LinkedIn</span>
               </a>
             </div>
-          </div>
-        </div>
-      </section>
-  );
+          </div>        {/* closes text-center wrapper */}
+      </section>      {/* closes section */}
+    </div>            {/* closes outer wrapper */}
+  );                  {/* closes return() */}
 }
