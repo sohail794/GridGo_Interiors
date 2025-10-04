@@ -337,3 +337,5 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
     </a>
   </div>
 </div>
+);
+}
