@@ -204,7 +204,7 @@ export default function Contact({ onNavigate }: ContactProps) {
                     <Phone className="text-emerald mr-4 flex-shrink-0 mt-1" size={24} />
                     <div>
                       <p className="font-sans font-semibold text-charcoal">Phone</p>
-                      <p className="font-sans text-charcoal">+91 XXX XXX XXXX</p>
+                      <p className="font-sans text-charcoal">+91 859 500 7476</p>
                     </div>
                   </div>
                   <div className="flex items-start">
