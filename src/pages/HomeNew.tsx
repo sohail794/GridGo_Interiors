@@ -312,43 +312,11 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
 
           <div className="text-center">
             <p className="text-sm text-[#6b7280] mb-4">or reach us via</p>
-            import React from "react";
-import { FaWhatsapp, FaEnvelope, FaLinkedin } from "react-icons/fa";
-
-export default function ContactLinks() {
-  return (
-    <div className="flex flex-col items-center gap-3 py-8">
-      <span className="text-gray-400 text-lg font-medium mb-2">or reach us via</span>
-      <div className="flex gap-8 pb-2">
-        <a
-          href="https://wa.me/918595007476"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex flex-col items-center text-gray-300 hover:text-emerald-400 hover:-translate-y-1 hover:scale-110 transition-all duration-200 group"
-        >
-          <FaWhatsapp className="text-3xl mb-1 group-hover:text-green-400 transition-colors duration-200" />
-          <span className="tracking-wide text-base font-semibold">WhatsApp</span>
-        </a>
-        <a
-          href="mailto:sohailsaifi561@gmail.com"
-          className="flex flex-col items-center text-gray-300 hover:text-emerald-400 hover:-translate-y-1 hover:scale-110 transition-all duration-200 group"
-        >
-          <FaEnvelope className="text-3xl mb-1 group-hover:text-cyan-400 transition-colors duration-200" />
-          <span className="tracking-wide text-base font-semibold">Email</span>
-        </a>
-        <a
-          href="https://www.linkedin.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex flex-col items-center text-gray-300 hover:text-emerald-400 hover:-translate-y-1 hover:scale-110 transition-all duration-200 group"
-        >
-          <FaLinkedin className="text-3xl mb-1 group-hover:text-blue-400 transition-colors duration-200" />
-          <span className="tracking-wide text-base font-semibold">LinkedIn</span>
-        </a>
-      </div>
-    </div>
-  );
-}
+            <div className="flex justify-center gap-6">
+              {['WhatsApp', 'Email', 'LinkedIn'].map((platform) => (
+                <button
+                  key={platform}
+                  className="text-[#b4b4b4] hover:text-[#00ff88] transition-all hover:scale-110"
                 >
                   <span className="text-sm">{platform}</span>
                 </button>
