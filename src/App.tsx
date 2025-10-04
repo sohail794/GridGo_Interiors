@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
-import Header from './components/Header';
+import HeaderNew from './components/HeaderNew';
 import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
 import Chatbot from './components/Chatbot';
-import Home from './pages/Home';
+import LeadModal from './components/LeadModal';
+import HomeNew from './pages/HomeNew';
 import About from './pages/About';
 import Services from './pages/Services';
 import Portfolio from './pages/Portfolio';
@@ -14,6 +15,7 @@ type Page = 'home' | 'about' | 'services' | 'portfolio' | 'blog' | 'contact';
 
 function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
+  const [modalOpen, setModalOpen] = useState(false);
 
   const handleNavigate = (page: string) => {
     setCurrentPage(page as Page);
@@ -25,11 +27,17 @@ function App() {
   }, [currentPage]);
 
   return (
-    <div className="min-h-screen bg-white font-sans">
-      <Header currentPage={currentPage} onNavigate={handleNavigate} />
+    <div className="min-h-screen bg-[#0a0e27]">
+      <HeaderNew
+        currentPage={currentPage}
+        onNavigate={handleNavigate}
+        onOpenModal={() => setModalOpen(true)}
+      />
 
-      <main>
-        {currentPage === 'home' && <Home onNavigate={handleNavigate} />}
+      <main className="pt-20">
+        {currentPage === 'home' && (
+          <HomeNew onNavigate={handleNavigate} onOpenModal={() => setModalOpen(true)} />
+        )}
         {currentPage === 'about' && <About onNavigate={handleNavigate} />}
         {currentPage === 'services' && <Services onNavigate={handleNavigate} />}
         {currentPage === 'portfolio' && <Portfolio onNavigate={handleNavigate} />}
@@ -40,6 +48,7 @@ function App() {
       <Footer onNavigate={handleNavigate} />
       <WhatsAppButton />
       <Chatbot />
+      <LeadModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
     </div>
   );
 }
