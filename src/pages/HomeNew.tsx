@@ -310,7 +310,6 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
             </Button3D>
           </div>
 
-        ```jsx
 <div className="text-center">
   <p className="text-sm text-[#6b7280] mb-6">or reach us via</p>
   <div className="flex flex-wrap justify-center gap-4">
@@ -361,4 +360,3 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
 </section>
 );
 }
-```
