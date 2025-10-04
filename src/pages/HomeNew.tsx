@@ -312,25 +312,11 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
 
           <div className="text-center">
             <p className="text-sm text-[#6b7280] mb-4">or reach us via</p>
-            const links = {
-  WhatsApp: "https://wa.me/918595007476",
-  Email: "mailto:sohailsaifi561@gmail.com",
-  LinkedIn: "https://www.linkedin.com/",
-};
-
-<div className="flex justify-center gap-6">
-  {['WhatsApp', 'Email', 'LinkedIn'].map((platform) => (
-    <a
-      key={platform}
-      href={links[platform]}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="text-[#b4b4b4] hover:text-[#00ff88] transition-all hover:scale-110"
-    >
-      {platform}
-    </a>
-  ))}
-</div>
+            <div className="flex justify-center gap-6">
+              {['WhatsApp', 'Email', 'LinkedIn'].map((platform) => (
+                <button
+                  key={platform}
+                  className="text-[#b4b4b4] hover:text-[#00ff88] transition-all hover:scale-110"
                 >
                   <span className="text-sm">{platform}</span>
                 </button>
