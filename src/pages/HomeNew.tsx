@@ -312,7 +312,8 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
 
           <div className="text-center">
             <p className="text-sm text-[#6b7280] mb-4">or reach us via</p>
-            import { FaWhatsapp, FaEnvelope, FaLinkedin } from "react-icons/fa";
+            import React from "react";
+import { FaWhatsapp, FaEnvelope, FaLinkedin } from "react-icons/fa";
 
 export default function ContactLinks() {
   return (
