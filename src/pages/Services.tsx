@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { ChevronDown, ChevronUp, CheckCircle } from 'lucide-react';
 import { Wrench, Square, Gem, Armchair, Palette, Paintbrush } from 'lucide-react';
 import { services } from '../data/content';
+import GlassCard from '../components/GlassCard';
+import Button3D from '../components/Button3D';
 
 const iconMap = {
   Wrench,
@@ -37,24 +39,62 @@ export default function Services({ onNavigate }: ServicesProps) {
     setFormData({ name: '', email: '', phone: '', service: '', message: '' });
   };
 
+  const processSteps = [
+    {
+      number: '01',
+      title: 'Idea Gathering',
+      description: 'Understanding your vision, requirements, and preferences',
+    },
+    {
+      number: '02',
+      title: 'Concept Development',
+      description: 'Creating detailed designs and material selections',
+    },
+    {
+      number: '03',
+      title: 'Build & Install',
+      description: 'Expert execution with quality materials and craftsmanship',
+    },
+    {
+      number: '04',
+      title: 'Final Reveal',
+      description: 'Handover your transformed space with complete satisfaction',
+    },
+  ];
+
   return (
-    <div className="pt-20">
-      <section className="relative h-80 bg-gradient-to-r from-emerald to-emerald-light">
-        <div className="relative h-full flex items-center justify-center px-4">
-          <h1 className="font-serif italic text-5xl md:text-6xl text-white text-center">
-            Tailored Interior Mastery
+    <div className="min-h-screen">
+      <section className="relative h-[500px] flex items-center justify-center overflow-hidden">
+        <div
+          className="absolute inset-0 z-0"
+          style={{
+            backgroundImage: 'url(https://images.pexels.com/photos/2251247/pexels-photo-2251247.jpeg?auto=compress&cs=tinysrgb&w=1600)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        />
+        <div className="absolute inset-0 z-0 bg-gradient-to-b from-black/70 to-black/50" />
+
+        <div className="relative z-10 max-w-4xl mx-auto px-8 text-center">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+            Tailored Interior
             <br />
-            <span className="text-silver-light">for Every Vision</span>
+            <span className="gradient-text">Mastery</span>
           </h1>
+          <p className="text-xl md:text-2xl text-[#b4b4b4]">
+            Comprehensive solutions for every vision
+          </p>
         </div>
       </section>
 
-      <section className="py-20 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="font-serif text-4xl text-emerald mb-4">Our Services</h2>
-            <p className="font-sans text-lg text-charcoal">
-              Comprehensive interior solutions with end-to-end execution
+      <section className="py-24 bg-[#0a0e27]">
+        <div className="max-w-5xl mx-auto px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              Our <span className="gradient-text">Services</span>
+            </h2>
+            <p className="text-xl text-[#b4b4b4]">
+              End-to-end interior solutions with expert execution
             </p>
           </div>
 
@@ -64,179 +104,174 @@ export default function Services({ onNavigate }: ServicesProps) {
               const isExpanded = expandedService === service.id;
 
               return (
-                <div
+                <GlassCard
                   key={service.id}
-                  className="bg-white border-2 border-silver-light rounded-lg overflow-hidden shadow-luxury hover:shadow-luxury-hover transition-all"
+                  hover={false}
+                  className={`transition-all duration-300 ${
+                    isExpanded ? 'border-[#00ff88]/50' : ''
+                  }`}
                 >
                   <button
                     onClick={() => toggleService(service.id)}
-                    className="w-full flex items-center justify-between p-6 text-left"
+                    className="w-full flex items-center justify-between text-left"
                   >
                     <div className="flex items-center flex-1">
-                      <Icon className="text-emerald mr-4 flex-shrink-0" size={32} />
+                      <div className="w-16 h-16 rounded-xl bg-[#00ff88]/10 flex items-center justify-center mr-4 flex-shrink-0">
+                        <Icon className="text-[#00ff88]" size={32} />
+                      </div>
                       <div>
-                        <h3 className="font-serif text-2xl text-charcoal mb-1">
+                        <h3 className="text-2xl font-bold text-white mb-1">
                           {service.title}
                         </h3>
-                        <p className="font-sans text-silver">{service.description}</p>
+                        <p className="text-[#b4b4b4]">{service.description}</p>
                       </div>
                     </div>
                     {isExpanded ? (
-                      <ChevronUp className="text-emerald ml-4 flex-shrink-0" size={28} />
+                      <ChevronUp className="text-[#00ff88] ml-4 flex-shrink-0" size={28} />
                     ) : (
-                      <ChevronDown className="text-emerald ml-4 flex-shrink-0" size={28} />
+                      <ChevronDown className="text-[#00ff88] ml-4 flex-shrink-0" size={28} />
                     )}
                   </button>
 
                   {isExpanded && (
-                    <div className="px-6 pb-6 border-t-2 border-silver-light pt-6 animate-fade-in">
-                      <p className="font-sans text-charcoal mb-6 leading-relaxed">
+                    <div className="mt-6 pt-6 border-t border-white/10 animate-fade-in">
+                      <p className="text-[#b4b4b4] mb-6 leading-relaxed">
                         {service.details}
                       </p>
-                      <h4 className="font-sans font-bold text-charcoal mb-3">Key Features:</h4>
-                      <ul className="space-y-2">
+                      <h4 className="font-bold text-white mb-4">Key Features:</h4>
+                      <ul className="space-y-3">
                         {service.features.map((feature, index) => (
                           <li key={index} className="flex items-start">
                             <CheckCircle
-                              className="text-emerald mr-2 flex-shrink-0 mt-1"
+                              className="text-[#00ff88] mr-3 flex-shrink-0 mt-1"
                               size={20}
                             />
-                            <span className="font-sans text-charcoal">{feature}</span>
+                            <span className="text-[#b4b4b4]">{feature}</span>
                           </li>
                         ))}
                       </ul>
                     </div>
                   )}
-                </div>
+                </GlassCard>
               );
             })}
           </div>
         </div>
       </section>
 
-      <section className="py-20 bg-silver-light">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="font-serif text-4xl text-emerald mb-12 text-center">Our Process</h2>
+      <section className="py-24 bg-[#141b2d]">
+        <div className="max-w-6xl mx-auto px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              Our <span className="gradient-text">Process</span>
+            </h2>
+            <p className="text-xl text-[#b4b4b4]">A proven approach to perfection</p>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="bg-emerald text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-                1
+            {processSteps.map((step, index) => (
+              <div key={index} className="text-center">
+                <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-[#00ff88] to-[#00b894] rounded-full flex items-center justify-center shadow-3d">
+                  <span className="text-2xl font-bold text-[#0a0e27]">{step.number}</span>
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">{step.title}</h3>
+                <p className="text-sm text-[#b4b4b4]">{step.description}</p>
               </div>
-              <h3 className="font-serif text-xl text-charcoal mb-2">Idea Gathering</h3>
-              <p className="font-sans text-sm text-charcoal">
-                Understanding your vision, requirements, and preferences
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="bg-emerald text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-                2
-              </div>
-              <h3 className="font-serif text-xl text-charcoal mb-2">Concept Development</h3>
-              <p className="font-sans text-sm text-charcoal">
-                Creating detailed designs and material selections
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="bg-emerald text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-                3
-              </div>
-              <h3 className="font-serif text-xl text-charcoal mb-2">Build & Install</h3>
-              <p className="font-sans text-sm text-charcoal">
-                Expert execution with quality materials and craftsmanship
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="bg-emerald text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-                4
-              </div>
-              <h3 className="font-serif text-xl text-charcoal mb-2">Final Reveal</h3>
-              <p className="font-sans text-sm text-charcoal">
-                Handover your transformed space with complete satisfaction
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="py-20 bg-white">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="font-serif text-4xl text-emerald mb-8 text-center">
-            Request a Service Quote
-          </h2>
-          <form onSubmit={handleSubmit} className="bg-silver-light p-8 rounded-lg shadow-luxury">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+      <section className="py-24 bg-[#0a0e27]">
+        <div className="max-w-3xl mx-auto px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              Request a <span className="gradient-text">Service Quote</span>
+            </h2>
+            <p className="text-xl text-[#b4b4b4]">Let's discuss your project requirements</p>
+          </div>
+
+          <GlassCard>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-medium mb-2 text-[#b4b4b4]">
+                    Name *
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-[#00ff88] focus:ring-2 focus:ring-[#00ff88]/20 transition-all outline-none"
+                    placeholder="Your name"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-2 text-[#b4b4b4]">
+                    Email *
+                  </label>
+                  <input
+                    type="email"
+                    required
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-[#00ff88] focus:ring-2 focus:ring-[#00ff88]/20 transition-all outline-none"
+                    placeholder="your@email.com"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-medium mb-2 text-[#b4b4b4]">
+                    Phone
+                  </label>
+                  <input
+                    type="tel"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-[#00ff88] focus:ring-2 focus:ring-[#00ff88]/20 transition-all outline-none"
+                    placeholder="+91 XXXXX XXXXX"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-2 text-[#b4b4b4]">
+                    Service of Interest
+                  </label>
+                  <select
+                    value={formData.service}
+                    onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-[#00ff88] focus:ring-2 focus:ring-[#00ff88]/20 transition-all outline-none"
+                  >
+                    <option value="">Select a service</option>
+                    {services.map((service) => (
+                      <option key={service.id} value={service.title}>
+                        {service.title}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
               <div>
-                <label className="block font-sans font-semibold text-charcoal mb-2">
-                  Name *
+                <label className="block text-sm font-medium mb-2 text-[#b4b4b4]">
+                  Project Details
                 </label>
-                <input
-                  type="text"
-                  required
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-3 rounded-md border-2 border-silver focus:border-emerald outline-none transition-colors"
+                <textarea
+                  rows={4}
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-[#00ff88] focus:ring-2 focus:ring-[#00ff88]/20 transition-all outline-none resize-none"
+                  placeholder="Tell us about your project..."
                 />
               </div>
-              <div>
-                <label className="block font-sans font-semibold text-charcoal mb-2">
-                  Email *
-                </label>
-                <input
-                  type="email"
-                  required
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-4 py-3 rounded-md border-2 border-silver focus:border-emerald outline-none transition-colors"
-                />
-              </div>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-              <div>
-                <label className="block font-sans font-semibold text-charcoal mb-2">Phone</label>
-                <input
-                  type="tel"
-                  value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="w-full px-4 py-3 rounded-md border-2 border-silver focus:border-emerald outline-none transition-colors"
-                />
-              </div>
-              <div>
-                <label className="block font-sans font-semibold text-charcoal mb-2">
-                  Service of Interest
-                </label>
-                <select
-                  value={formData.service}
-                  onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                  className="w-full px-4 py-3 rounded-md border-2 border-silver focus:border-emerald outline-none transition-colors"
-                >
-                  <option value="">Select a service</option>
-                  {services.map((service) => (
-                    <option key={service.id} value={service.title}>
-                      {service.title}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-            <div className="mb-6">
-              <label className="block font-sans font-semibold text-charcoal mb-2">
-                Project Details
-              </label>
-              <textarea
-                rows={4}
-                value={formData.message}
-                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                className="w-full px-4 py-3 rounded-md border-2 border-silver focus:border-emerald outline-none transition-colors resize-none"
-                placeholder="Tell us about your project..."
-              />
-            </div>
-            <button
-              type="submit"
-              className="w-full bg-emerald hover:bg-emerald-dark text-white px-8 py-4 rounded-md font-sans font-bold text-lg transition-colors"
-            >
-              Submit Request
-            </button>
-          </form>
+
+              <Button3D type="submit" className="w-full" size="lg">
+                Submit Request
+              </Button3D>
+            </form>
+          </GlassCard>
         </div>
       </section>
     </div>
