@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ChevronDown, ChevronUp, CheckCircle } from 'lucide-react';
+import { submitContactForm } from '../lib/supabase';
 import { Wrench, Square, Gem, Armchair, Palette, Paintbrush } from 'lucide-react';
 import { services } from '../data/content';
 import GlassCard from '../components/GlassCard';
@@ -27,16 +28,36 @@ export default function Services({ onNavigate }: ServicesProps) {
     service: '',
     message: '',
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState('');
 
   const toggleService = (id: string) => {
     setExpandedService(expandedService === id ? null : id);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Service inquiry:', formData);
-    alert('Thank you! We will contact you soon.');
-    setFormData({ name: '', email: '', phone: '', service: '', message: '' });
+    setIsSubmitting(true);
+    setSubmitError('');
+
+    try {
+      await submitContactForm({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        message: formData.message,
+        service: formData.service,
+        form_type: 'service_quote',
+      });
+      setSubmitSuccess(true);
+      setFormData({ name: '', email: '', phone: '', service: '', message: '' });
+      setTimeout(() => setSubmitSuccess(false), 5000);
+    } catch (error) {
+      setSubmitError('Failed to submit form. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const processSteps = [
@@ -168,7 +189,7 @@ export default function Services({ onNavigate }: ServicesProps) {
             <p className="text-xl text-[#b4b4b4]">A proven approach to perfection</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {processSteps.map((step, index) => (
               <div key={index} className="text-center">
                 <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-[#00ff88] to-[#00b894] rounded-full flex items-center justify-center shadow-3d">
@@ -192,6 +213,20 @@ export default function Services({ onNavigate }: ServicesProps) {
           </div>
 
           <GlassCard>
+            {submitSuccess && (
+              <div className="mb-6 p-4 bg-[#00ff88]/10 border border-[#00ff88]/30 rounded-lg flex items-center gap-3">
+                <CheckCircle className="text-[#00ff88]" size={24} />
+                <div>
+                  <p className="text-white font-semibold">Request submitted successfully!</p>
+                  <p className="text-sm text-[#b4b4b4]">We'll contact you soon to discuss your project.</p>
+                </div>
+              </div>
+            )}
+            {submitError && (
+              <div className="mb-6 p-4 bg-red-500/10 border border-red-500/30 rounded-lg">
+                <p className="text-red-400">{submitError}</p>
+              </div>
+            )}
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
@@ -201,10 +236,12 @@ export default function Services({ onNavigate }: ServicesProps) {
                   <input
                     type="text"
                     required
+                    minLength={2}
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-[#00ff88] focus:ring-2 focus:ring-[#00ff88]/20 transition-all outline-none"
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-[#00ff88] focus:ring-2 focus:ring-[#00ff88]/20 transition-all outline-none min-h-[44px]"
                     placeholder="Your name"
+                    disabled={isSubmitting}
                   />
                 </div>
                 <div>
@@ -216,8 +253,9 @@ export default function Services({ onNavigate }: ServicesProps) {
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-[#00ff88] focus:ring-2 focus:ring-[#00ff88]/20 transition-all outline-none"
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-[#00ff88] focus:ring-2 focus:ring-[#00ff88]/20 transition-all outline-none min-h-[44px]"
                     placeholder="your@email.com"
+                    disabled={isSubmitting}
                   />
                 </div>
               </div>
@@ -231,8 +269,9 @@ export default function Services({ onNavigate }: ServicesProps) {
                     type="tel"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-[#00ff88] focus:ring-2 focus:ring-[#00ff88]/20 transition-all outline-none"
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-[#00ff88] focus:ring-2 focus:ring-[#00ff88]/20 transition-all outline-none min-h-[44px]"
                     placeholder="+91 XXXXX XXXXX"
+                    disabled={isSubmitting}
                   />
                 </div>
                 <div>
@@ -242,7 +281,8 @@ export default function Services({ onNavigate }: ServicesProps) {
                   <select
                     value={formData.service}
                     onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-[#00ff88] focus:ring-2 focus:ring-[#00ff88]/20 transition-all outline-none"
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-[#00ff88] focus:ring-2 focus:ring-[#00ff88]/20 transition-all outline-none min-h-[44px]"
+                    disabled={isSubmitting}
                   >
                     <option value="">Select a service</option>
                     {services.map((service) => (
@@ -264,11 +304,12 @@ export default function Services({ onNavigate }: ServicesProps) {
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-[#00ff88] focus:ring-2 focus:ring-[#00ff88]/20 transition-all outline-none resize-none"
                   placeholder="Tell us about your project..."
+                  disabled={isSubmitting}
                 />
               </div>
 
-              <Button3D type="submit" className="w-full" size="lg">
-                Submit Request
+              <Button3D type="submit" className="w-full" size="lg" disabled={isSubmitting}>
+                {isSubmitting ? 'Submitting...' : 'Submit Request'}
               </Button3D>
             </form>
           </GlassCard>

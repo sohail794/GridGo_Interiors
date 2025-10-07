@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { X, CheckCircle, Upload, Trash2 } from 'lucide-react';
 import Button3D from './Button3D';
 import GlassCard from './GlassCard';
+import { submitContactForm } from '../lib/supabase';
 
 interface LeadModalProps {
   isOpen: boolean;
@@ -23,6 +24,8 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
     images: [] as File[],
   });
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
 
   if (!isOpen) return null;
 
@@ -47,8 +50,25 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
     handleInputChange('images', images);
   };
 
-  const handleSubmit = () => {
-    setSubmitted(true);
+  const handleSubmit = async () => {
+    setIsSubmitting(true);
+    setSubmitError('');
+
+    try {
+      await submitContactForm({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        message: `City: ${formData.city}\nProject Types: ${formData.projectTypes.join(', ')}\nScope: ${formData.scope}\nTimeline: ${formData.timeline}\nDetails: ${formData.details}`,
+        form_type: 'service_quote',
+        service: formData.projectTypes.join(', '),
+      });
+      setSubmitted(true);
+    } catch (error) {
+      setSubmitError('Failed to submit. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const projectTypes = [
@@ -344,12 +364,18 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
                 </span>
               </label>
 
+              {submitError && (
+                <div className="p-3 bg-red-500/10 border border-red-500/30 rounded-lg">
+                  <p className="text-red-400 text-sm">{submitError}</p>
+                </div>
+              )}
+
               <div className="flex gap-4">
-                <Button3D variant="ghost" className="flex-1" onClick={() => setStep(2)}>
+                <Button3D variant="ghost" className="flex-1" onClick={() => setStep(2)} disabled={isSubmitting}>
                   ← Back
                 </Button3D>
-                <Button3D className="flex-1" onClick={handleSubmit}>
-                  Submit Request
+                <Button3D className="flex-1" onClick={handleSubmit} disabled={isSubmitting}>
+                  {isSubmitting ? 'Submitting...' : 'Submit Request'}
                 </Button3D>
               </div>
             </div>

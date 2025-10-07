@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { Mail, Phone, MapPin, Clock } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, CheckCircle } from 'lucide-react';
 import GlassCard from '../components/GlassCard';
 import Button3D from '../components/Button3D';
+import { submitContactForm } from '../lib/supabase';
 
 interface ContactProps {
   onNavigate: (page: string) => void;
@@ -15,12 +16,28 @@ export default function Contact({ onNavigate }: ContactProps) {
     subject: '',
     message: '',
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Contact form:', formData);
-    alert('Thank you! We will get back to you within 24 hours.');
-    setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+    setIsSubmitting(true);
+    setSubmitError('');
+
+    try {
+      await submitContactForm({
+        ...formData,
+        form_type: 'contact',
+      });
+      setSubmitSuccess(true);
+      setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+      setTimeout(() => setSubmitSuccess(false), 5000);
+    } catch (error) {
+      setSubmitError('Failed to submit form. Please try again or contact us directly.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
@@ -129,6 +146,20 @@ export default function Contact({ onNavigate }: ContactProps) {
 
             <div>
               <GlassCard>
+                {submitSuccess && (
+                  <div className="mb-6 p-4 bg-[#00ff88]/10 border border-[#00ff88]/30 rounded-lg flex items-center gap-3">
+                    <CheckCircle className="text-[#00ff88]" size={24} />
+                    <div>
+                      <p className="text-white font-semibold">Thank you for reaching out!</p>
+                      <p className="text-sm text-[#b4b4b4]">We'll get back to you within 24 hours.</p>
+                    </div>
+                  </div>
+                )}
+                {submitError && (
+                  <div className="mb-6 p-4 bg-red-500/10 border border-red-500/30 rounded-lg">
+                    <p className="text-red-400">{submitError}</p>
+                  </div>
+                )}
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
                     <label className="block text-sm font-medium mb-2 text-[#b4b4b4]">
@@ -137,14 +168,16 @@ export default function Contact({ onNavigate }: ContactProps) {
                     <input
                       type="text"
                       required
+                      minLength={2}
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-[#00ff88] focus:ring-2 focus:ring-[#00ff88]/20 transition-all outline-none"
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-[#00ff88] focus:ring-2 focus:ring-[#00ff88]/20 transition-all outline-none min-h-[44px]"
                       placeholder="Your name"
+                      disabled={isSubmitting}
                     />
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-medium mb-2 text-[#b4b4b4]">
                         Email *
@@ -154,8 +187,9 @@ export default function Contact({ onNavigate }: ContactProps) {
                         required
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-[#00ff88] focus:ring-2 focus:ring-[#00ff88]/20 transition-all outline-none"
+                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-[#00ff88] focus:ring-2 focus:ring-[#00ff88]/20 transition-all outline-none min-h-[44px]"
                         placeholder="your@email.com"
+                        disabled={isSubmitting}
                       />
                     </div>
 
@@ -167,8 +201,9 @@ export default function Contact({ onNavigate }: ContactProps) {
                         type="tel"
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-[#00ff88] focus:ring-2 focus:ring-[#00ff88]/20 transition-all outline-none"
+                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-[#00ff88] focus:ring-2 focus:ring-[#00ff88]/20 transition-all outline-none min-h-[44px]"
                         placeholder="+91 XXXXX"
+                        disabled={isSubmitting}
                       />
                     </div>
                   </div>
@@ -181,8 +216,9 @@ export default function Contact({ onNavigate }: ContactProps) {
                       type="text"
                       value={formData.subject}
                       onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-[#00ff88] focus:ring-2 focus:ring-[#00ff88]/20 transition-all outline-none"
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-[#00ff88] focus:ring-2 focus:ring-[#00ff88]/20 transition-all outline-none min-h-[44px]"
                       placeholder="How can we help?"
+                      disabled={isSubmitting}
                     />
                   </div>
 
@@ -193,15 +229,17 @@ export default function Contact({ onNavigate }: ContactProps) {
                     <textarea
                       rows={6}
                       required
+                      minLength={10}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-[#00ff88] focus:ring-2 focus:ring-[#00ff88]/20 transition-all outline-none resize-none"
                       placeholder="Tell us about your project..."
+                      disabled={isSubmitting}
                     />
                   </div>
 
-                  <Button3D type="submit" className="w-full" size="lg">
-                    Send Message
+                  <Button3D type="submit" className="w-full" size="lg" disabled={isSubmitting}>
+                    {isSubmitting ? 'Sending...' : 'Send Message'}
                   </Button3D>
                 </form>
               </GlassCard>

@@ -10,6 +10,7 @@ import Services from './pages/Services';
 import Portfolio from './pages/Portfolio';
 import Blog from './pages/Blog';
 import Contact from './pages/Contact';
+import { updatePageMeta, pageMeta } from './utils/seo';
 
 type Page = 'home' | 'about' | 'services' | 'portfolio' | 'blog' | 'contact';
 
@@ -24,6 +25,10 @@ function App() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    const meta = pageMeta[currentPage];
+    if (meta) {
+      updatePageMeta(meta.title, meta.description);
+    }
   }, [currentPage]);
 
   return (

@@ -12,10 +12,15 @@ interface PortfolioProps {
 export default function Portfolio({ onNavigate }: PortfolioProps) {
   const [filter, setFilter] = useState<'all' | 'residential' | 'commercial' | 'retail'>('all');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [imageLoading, setImageLoading] = useState<Record<string, boolean>>({});
 
   const filteredProjects = filter === 'all'
     ? featuredProjects
     : featuredProjects.filter(p => p.category === filter);
+
+  const handleImageLoad = (projectId: string) => {
+    setImageLoading(prev => ({ ...prev, [projectId]: false }));
+  };
 
   return (
     <div className="min-h-screen">
@@ -67,17 +72,23 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
               <GlassCard
                 key={project.id}
                 padding="sm"
-                className="group cursor-pointer"
+                className="group cursor-pointer touch-manipulation"
                 onClick={() => setSelectedProject(project)}
               >
                 <div className="relative overflow-hidden rounded-lg mb-4">
+                  {imageLoading[project.id] !== false && (
+                    <div className="absolute inset-0 bg-white/5 animate-pulse rounded-lg flex items-center justify-center">
+                      <div className="w-12 h-12 border-4 border-[#00ff88]/20 border-t-[#00ff88] rounded-full animate-spin" />
+                    </div>
+                  )}
                   <img
                     src={project.image}
-                    alt={`${project.title} - ${project.category}`}
+                    alt={`${project.title} - ${project.category} interior design project`}
                     className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500"
                     loading="lazy"
+                    onLoad={() => handleImageLoad(project.id)}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
                     <Button3D size="sm" variant="ghost">
                       View Details
                     </Button3D>
