@@ -24,9 +24,9 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal }: Head
 
   const menuItems = [
     { label: 'Home', page: 'home' },
-    { label: 'About', page: 'about' },
-    { label: 'Services', page: 'services' },
     { label: 'Portfolio', page: 'portfolio', hasDropdown: true },
+    { label: 'Services', page: 'services' },
+    { label: 'About', page: 'about' },
     { label: 'Insights', page: 'blog' },
   ];
 
@@ -60,7 +60,7 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal }: Head
             />
           </div>
 
-          <nav className="hidden lg:flex items-center gap-1">
+          <nav className="hidden lg:flex items-center space-x-8">
             {menuItems.map((item) => (
               <div
                 key={item.page}
@@ -71,18 +71,22 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal }: Head
                 <button
                   onClick={() => onNavigate(item.page)}
                   className={`
-                    px-4 py-2 rounded-lg text-base font-medium transition-all duration-300
-                    flex items-center gap-1 min-h-[44px]
+                    text-base font-medium transition-all duration-300
+                    flex items-center gap-1
                     ${
                       currentPage === item.page
-                        ? 'text-white bg-white/5'
-                        : 'text-[#b4b4b4] hover:text-white hover:bg-white/5'
+                        ? 'text-white text-glow'
+                        : 'text-[#b4b4b4] hover:text-white hover:text-glow'
                     }
                   `}
                 >
                   {item.label}
                   {item.hasDropdown && <ChevronDown size={16} />}
                 </button>
+
+                {item.hasDropdown && currentPage === item.page && (
+                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#00ff88] to-[#00d9ff]" />
+                )}
 
                 {item.hasDropdown && portfolioDropdown && (
                   <div className="absolute top-full left-0 mt-2 w-48 glass-card p-2 animate-fade-in">
@@ -94,7 +98,7 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal }: Head
                           setPortfolioDropdown(false);
                         }}
                         className="
-                          w-full text-left px-4 py-3 rounded-lg min-h-[44px]
+                          w-full text-left px-4 py-3 rounded-lg
                           text-[#b4b4b4] hover:text-white
                           hover:bg-white/5
                           transition-all duration-200
@@ -107,28 +111,17 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal }: Head
                 )}
               </div>
             ))}
-
-            <a
-              href="https://x.com/GridGoInteriors"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-4 py-2 rounded-lg text-base font-medium transition-all duration-300 text-[#b4b4b4] hover:text-white hover:bg-white/5 min-h-[44px] flex items-center"
-              aria-label="Follow us on X (Twitter)"
-            >
-              𝕏
-            </a>
           </nav>
 
-          <div className="hidden lg:block ml-4">
-            <Button3D size="sm" onClick={onOpenModal} className="animate-pulse-glow">
-              GET A QUOTE
+          <div className="hidden lg:block">
+            <Button3D size="sm" onClick={onOpenModal}>
+              Get a Quote
             </Button3D>
           </div>
 
           <button
-            className="lg:hidden text-white p-3 min-w-[44px] min-h-[44px] flex items-center justify-center"
+            className="lg:hidden text-white p-2"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle menu"
           >
             {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
@@ -159,7 +152,7 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal }: Head
                     setMobileMenuOpen(false);
                   }}
                   className={`
-                    w-full text-left px-4 py-4 rounded-lg font-medium min-h-[44px]
+                    w-full text-left px-4 py-4 rounded-lg font-medium
                     transition-all duration-200
                     ${
                       currentPage === item.page
@@ -171,20 +164,9 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal }: Head
                   {item.label}
                 </button>
               ))}
-
-              <a
-                href="https://x.com/GridGoInteriors"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full flex items-center gap-3 px-4 py-4 rounded-lg font-medium min-h-[44px] text-[#b4b4b4] hover:bg-white/5 hover:text-white transition-all duration-200"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <span className="text-xl">𝕏</span>
-                <span>Follow us on X</span>
-              </a>
             </nav>
 
-            <div className="absolute bottom-0 left-0 right-0 p-6 space-y-3">
+            <div className="absolute bottom-0 left-0 right-0 p-6">
               <Button3D
                 className="w-full"
                 onClick={() => {
@@ -192,7 +174,7 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal }: Head
                   setMobileMenuOpen(false);
                 }}
               >
-                GET A QUOTE
+                Get a Quote
               </Button3D>
             </div>
           </div>
