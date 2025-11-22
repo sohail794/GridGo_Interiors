@@ -137,16 +137,6 @@ export default function Home({ onNavigate }: HomeProps) {
             >
               Get in Touch
             </button>
-            <button
-              onClick={() => {
-                const phoneNumber = '91XXXXXXXXXX';
-                const message = encodeURIComponent('Hi! I want to discuss my interior project.');
-                window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
-              }}
-              className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-md font-sans font-bold text-lg hover:bg-white hover:text-emerald transition-colors"
-            >
-              WhatsApp Us
-            </button>
           </div>
         </div>
       </section>

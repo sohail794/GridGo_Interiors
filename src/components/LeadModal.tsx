@@ -162,7 +162,7 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
                     value={formData.phone}
                     onChange={(e) => handleInputChange('phone', e.target.value)}
                     className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-[#00ff88] focus:ring-2 focus:ring-[#00ff88]/20 transition-all outline-none"
-                    placeholder="+91 XXXXX XXXXX"
+                    placeholder="Enter your phone number"
                     required
                   />
                 </div>

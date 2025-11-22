@@ -1,4 +1,5 @@
 import { Instagram, Linkedin, Share2, Mail, Phone, MapPin } from 'lucide-react';
+import { CONTACT } from '../config/contact';
 
 interface FooterProps {
   onNavigate: (page: string) => void;
@@ -91,18 +92,30 @@ export default function Footer({ onNavigate }: FooterProps) {
           <div>
             <h4 className="font-sans font-bold mb-4">Contact Us</h4>
             <ul className="space-y-3 text-sm text-silver-light">
-              <li className="flex items-start">
-                <Phone size={18} className="mr-2 mt-1 flex-shrink-0" />
-                <span>+91 XXX XXX XXXX</span>
-              </li>
+              {CONTACT.phone && (
+                <li className="flex items-start">
+                  <Phone size={18} className="mr-2 mt-1 flex-shrink-0" />
+                  <a href={`tel:${CONTACT.phone.replace(/[^\d+]/g, '')}`} className="hover:text-emerald transition-colors">
+                    {CONTACT.phone}
+                  </a>
+                </li>
+              )}
               <li className="flex items-start">
                 <Mail size={18} className="mr-2 mt-1 flex-shrink-0" />
                 <span>info@gridgointeriors.com</span>
               </li>
-              <li className="flex items-start">
-                <MapPin size={18} className="mr-2 mt-1 flex-shrink-0" />
-                <span>Your City, India</span>
-              </li>
+              {CONTACT.addressLabel && (
+                <li className="flex items-start">
+                  <MapPin size={18} className="mr-2 mt-1 flex-shrink-0" />
+                  {CONTACT.mapsUrl ? (
+                    <a href={CONTACT.mapsUrl} target="_blank" rel="noopener noreferrer" className="hover:text-emerald transition-colors">
+                      {CONTACT.addressLabel}
+                    </a>
+                  ) : (
+                    <span>{CONTACT.addressLabel}</span>
+                  )}
+                </li>
+              )}
             </ul>
           </div>
         </div>
