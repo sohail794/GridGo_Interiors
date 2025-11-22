@@ -102,7 +102,7 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal }: Head
                           w-full text-left px-4 py-3 rounded-lg
                           text-[#b4b4b4] hover:text-white
                           hover:bg-white/5
-                          transition-all duration-200
+                          transition-all duration-200 hover:opacity-100 opacity-80
                         "
                       >
                         {subItem.label}

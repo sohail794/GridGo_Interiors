@@ -69,7 +69,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                 <li key={item}>
                   <button
                     onClick={() => onNavigate(item.toLowerCase())}
-                    className="text-silver-light hover:text-emerald transition-colors"
+                    className="text-silver-light hover:text-emerald transition-colors duration-200 hover:opacity-90"
                   >
                     {item}
                   </button>

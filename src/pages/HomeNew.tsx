@@ -151,7 +151,7 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredProjects.map((project) => (
-              <GlassCard key={project.id} padding="sm" className="group cursor-pointer overflow-hidden">
+              <GlassCard key={project.id} padding="sm" className="group cursor-pointer overflow-hidden hover:scale-[1.02] hover:shadow-lg transition-all duration-200 ease-out">
                 <div className="relative overflow-hidden rounded-lg mb-4">
                   <img
                     src={project.image}

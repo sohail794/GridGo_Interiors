@@ -58,8 +58,8 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
                   transition-all duration-300
                   ${
                     filter === category
-                      ? 'bg-gradient-to-br from-[#00ff88] to-[#00b894] text-[#0a0e27] shadow-3d'
-                      : 'bg-white/5 text-[#b4b4b4] hover:bg-white/10 hover:text-white border border-white/10'
+                      ? 'bg-gradient-to-br from-[#00ff88] to-[#00b894] text-[#0a0e27] shadow-3d hover:scale-[1.02]'
+                      : 'bg-white/5 text-[#b4b4b4] hover:bg-white/10 hover:text-white hover:scale-[1.02] border border-white/10 transition-all duration-200'
                   }
                 `}
               >
@@ -73,7 +73,7 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
               <GlassCard
                 key={project.id}
                 padding="sm"
-                className="group cursor-pointer touch-manipulation"
+                className="group cursor-pointer touch-manipulation hover:scale-[1.02] hover:shadow-lg transition-all duration-200 ease-out"
                 onClick={() => setSelectedProject(project)}
               >
                 <div className="relative overflow-hidden rounded-lg mb-4">

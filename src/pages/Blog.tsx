@@ -28,7 +28,7 @@ export default function Blog({ onNavigate }: BlogProps) {
         <div className="max-w-[1400px] mx-auto px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
             {blogPosts.map((post) => (
-              <GlassCard key={post.id} padding="sm" className="group cursor-pointer overflow-hidden">
+              <GlassCard key={post.id} padding="sm" className="group cursor-pointer overflow-hidden hover:scale-[1.02] hover:shadow-lg transition-all duration-200 ease-out">
                 <div className="relative overflow-hidden rounded-lg mb-4">
                   <img
                     src={post.image}
