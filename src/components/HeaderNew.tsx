@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Menu, X, ChevronDown, Linkedin, Mail } from 'lucide-react';
 import Button3D from './Button3D';
 import logo from '../assets/images/logo/gridgo-logo.svg';
@@ -12,16 +12,7 @@ interface HeaderProps {
 
 export default function HeaderNew({ currentPage, onNavigate, onOpenModal }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const [portfolioDropdown, setPortfolioDropdown] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 100);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const menuItems = [
     { label: 'Home', page: 'home' },
@@ -41,11 +32,11 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal }: Head
   return (
     <header
       className={`
-        fixed top-0 left-0 right-0 z-[1000]
+        sticky top-0 w-full z-[9999]
         glass-nav
         border-b border-white/10
         transition-all duration-300
-        ${scrolled ? 'bg-opacity-95' : 'bg-opacity-80'}
+        backdrop-blur-md bg-[#0a0e27]/80
       `}
     >
       <div className="max-w-[1400px] mx-auto px-8">
@@ -132,12 +123,12 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal }: Head
       {mobileMenuOpen && (
         <>
           <div
-            className="fixed inset-0 bg-black/70 backdrop-blur-md z-[998]"
+            className="fixed inset-0 bg-black/70 backdrop-blur-md z-[99998]"
             onClick={() => setMobileMenuOpen(false)}
           />
 
-          <div className="fixed top-20 right-0 left-0 bottom-0 w-full glass-card z-[999] animate-slide-up rounded-tl-3xl rounded-tr-3xl shadow-luxury-hover">
-            <div className="h-full flex flex-col">
+          <div className="fixed inset-0 w-full glass-card z-[99999] animate-slide-up">
+            <div className="h-full flex flex-col pt-20">
               {/* Menu Header */}
               <div className="flex justify-between items-center px-6 py-4 border-b border-white/10">
                 <span className="text-lg font-bold gradient-text">Navigation</span>
