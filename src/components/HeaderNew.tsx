@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { Menu, X, ChevronDown, Linkedin, Mail } from 'lucide-react';
+import { ChevronDown, Linkedin, Mail } from 'lucide-react';
 import Button3D from './Button3D';
+import HamburgerMenu from './HamburgerMenu';
 import logo from '../assets/images/logo/gridgo-logo.svg';
 import { CONTACT } from '../config/contact';
 
@@ -111,12 +112,10 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal }: Head
             </Button3D>
           </div>
 
-          <button
-            className="lg:hidden text-white p-2"
+          <HamburgerMenu 
+            isOpen={mobileMenuOpen}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-          </button>
+          />
         </div>
       </div>
 
@@ -132,13 +131,10 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal }: Head
               {/* Menu Header */}
               <div className="flex justify-between items-center px-6 py-4 border-b border-white/10">
                 <span className="text-lg font-bold gradient-text">Navigation</span>
-                <button 
+                <HamburgerMenu 
+                  isOpen={mobileMenuOpen}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="p-2 hover:bg-white/10 rounded-lg transition-colors"
-                  aria-label="Close menu"
-                >
-                  <X size={24} className="text-white" />
-                </button>
+                />
               </div>
 
               {/* Menu Items */}
