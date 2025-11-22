@@ -3,6 +3,7 @@ import { blogPosts } from '../data/content';
 import GlassCard from '../components/GlassCard';
 import Button3D from '../components/Button3D';
 import Button from '../components/ui/Button';
+import { CONTACT } from '../config/contact';
 
 interface BlogProps {
   onNavigate: (page: string) => void;
@@ -115,14 +116,16 @@ export default function Blog({ onNavigate }: BlogProps) {
           <div className="text-center mt-10">
             <p className="text-sm text-[#6b7280] mb-6">or reach us via</p>
             <div className="flex justify-center gap-6">
-              <a
-                href="https://wa.me/918595007476"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#b4b4b4] hover:text-[#00ff88] transition-all hover:scale-110 cursor-pointer"
-              >
-                <span className="text-sm">WhatsApp</span>
-              </a>
+              {CONTACT.whatsappUrl && (
+                <a
+                  href={CONTACT.whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#b4b4b4] hover:text-[#00ff88] transition-all hover:scale-110 cursor-pointer"
+                >
+                  <span className="text-sm">WhatsApp</span>
+                </a>
+              )}
               <a
                 href="mailto:sohailsaifi561@gmail.com"
                 className="text-[#b4b4b4] hover:text-[#00ff88] transition-all hover:scale-110 cursor-pointer"

@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import HeaderNew from './components/HeaderNew';
 import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
-import Chatbot from './components/Chatbot';
 import LeadModal from './components/LeadModal';
 import HomeNew from './pages/HomeNew';
 import About from './pages/About';
@@ -52,7 +51,6 @@ function App() {
 
       <Footer onNavigate={handleNavigate} />
       <WhatsAppButton />
-      <Chatbot />
       <LeadModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
     </div>
   );
