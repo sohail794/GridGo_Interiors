@@ -7,7 +7,6 @@ import Button from '../components/ui/Button';
 import TestimonialCarousel from '../components/TestimonialCarousel';
 import { featuredProjects, testimonials } from '../data/content';
 import { COMPANY } from '../config/company';
-import { CONTACT } from '../config/contact';
 
 interface HomeNewProps {
   onNavigate: (page: string) => void;
@@ -316,16 +315,14 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
 <div className="text-center">
   <p className="text-sm text-[#6b7280] mb-6">or reach us via</p>
   <div className="flex justify-center gap-6">
-    {CONTACT.whatsappUrl && (
-      <a
-        href={CONTACT.whatsappUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-[#b4b4b4] hover:text-[#00ff88] transition-all hover:scale-110 cursor-pointer"
-      >
-        <span className="text-sm">WhatsApp</span>
-      </a>
-    )}
+    <a
+      href="https://wa.me/918595007476"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-[#b4b4b4] hover:text-[#00ff88] transition-all hover:scale-110 cursor-pointer"
+    >
+      <span className="text-sm">WhatsApp</span>
+    </a>
     <a
       href="mailto:sohailsaifi561@gmail.com"
       className="text-[#b4b4b4] hover:text-[#00ff88] transition-all hover:scale-110 cursor-pointer"
