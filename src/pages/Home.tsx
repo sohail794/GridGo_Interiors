@@ -1,9 +1,9 @@
-import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { ArrowRight } from 'lucide-react';
 import { testimonials, featuredProjects, services } from '../data/content';
 import ServiceCard from '../components/ServiceCard';
 import ProjectSlider from '../components/ProjectSlider';
 import TestimonialCarousel from '../components/TestimonialCarousel';
+import { Helmet } from 'react-helmet';
 
 interface HomeProps {
   onNavigate: (page: string) => void;
@@ -12,6 +12,25 @@ interface HomeProps {
 export default function Home({ onNavigate }: HomeProps) {
   return (
     <div className="pt-20">
+      <Helmet>
+        <title>GridGo Interiors - Luxury Interior Design</title>
+        <meta
+          name="description"
+          content="Transform your space with GridGo Interiors. Offering premium interior design and fabrication services across India."
+        />
+        <meta
+          property="og:title"
+          content="GridGo Interiors - Luxury Interior Design"
+        />
+        <meta
+          property="og:description"
+          content="Transform your space with GridGo Interiors. Offering premium interior design and fabrication services across India."
+        />
+        <meta property="og:image" content="/path-to-og-image.jpg" />
+        <meta property="og:url" content="https://gridgo-interiors.com" />
+        <meta name="twitter:card" content="summary_large_image" />
+      </Helmet>
+
       <section
         className="relative h-screen bg-cover bg-center bg-fixed"
         style={{

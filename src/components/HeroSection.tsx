@@ -1,46 +1,11 @@
-import { useEffect, useState } from 'react';
 import { ArrowDown } from 'lucide-react';
 import Button3D from './Button3D';
 
 interface HeroSectionProps {
-  onNavigate: (page: string) => void;
   onOpenModal: () => void;
 }
 
-export default function HeroSection({ onNavigate, onOpenModal }: HeroSectionProps) {
-  const [yearsCount, setYearsCount] = useState(0);
-  const [projectsCount, setProjectsCount] = useState(0);
-  const [citiesCount, setCitiesCount] = useState(0);
-
-  useEffect(() => {
-    const duration = 2000;
-    const steps = 60;
-    const yearTarget = 20;
-    const projectTarget = 300;
-    const cityTarget = 15;
-
-    const interval = duration / steps;
-
-    let currentStep = 0;
-    const timer = setInterval(() => {
-      currentStep++;
-      const progress = currentStep / steps;
-
-      setYearsCount(Math.floor(yearTarget * progress));
-      setProjectsCount(Math.floor(projectTarget * progress));
-      setCitiesCount(Math.floor(cityTarget * progress));
-
-      if (currentStep >= steps) {
-        setYearsCount(yearTarget);
-        setProjectsCount(projectTarget);
-        setCitiesCount(cityTarget);
-        clearInterval(timer);
-      }
-    }, interval);
-
-    return () => clearInterval(timer);
-  }, []);
-
+export default function HeroSection({ onOpenModal }: HeroSectionProps) {
   const scrollToPortfolio = () => {
     const portfolioSection = document.getElementById('portfolio-section');
     if (portfolioSection) {
@@ -64,7 +29,7 @@ export default function HeroSection({ onNavigate, onOpenModal }: HeroSectionProp
 
       <div className="relative z-10 max-w-[1400px] mx-auto px-8 py-20 grid lg:grid-cols-2 gap-12 items-center">
         <div className="text-left space-y-8">
-          <div className="space-y-4 animate-slide-up" style={{ animationDelay: '0.2s' }}>
+          <div className="space-y-4 animate-slide-up" style={{ animationDelay: '0.2s', animationDuration: '0.8s' }}>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
               Crafting Premium
               <br />
@@ -74,14 +39,14 @@ export default function HeroSection({ onNavigate, onOpenModal }: HeroSectionProp
 
           <p
             className="text-lg md:text-xl text-[#b4b4b4] max-w-xl animate-slide-up"
-            style={{ animationDelay: '0.4s' }}
+            style={{ animationDelay: '0.4s', animationDuration: '0.8s' }}
           >
             Full-service design & fabrication across India. Transform your space with 20+ years of interior mastery.
           </p>
 
           <div
             className="flex flex-wrap gap-4 animate-slide-up"
-            style={{ animationDelay: '0.6s' }}
+            style={{ animationDelay: '0.6s', animationDuration: '0.8s' }}
           >
             <Button3D size="lg" onClick={onOpenModal}>
               Start Your Project
@@ -89,36 +54,6 @@ export default function HeroSection({ onNavigate, onOpenModal }: HeroSectionProp
             <Button3D size="lg" variant="ghost" onClick={scrollToPortfolio}>
               View Portfolio
             </Button3D>
-          </div>
-
-          <div
-            className="grid grid-cols-3 gap-8 pt-8 animate-fade-in"
-            style={{ animationDelay: '0.8s' }}
-          >
-            <div className="text-center lg:text-left">
-              <div className="text-4xl md:text-5xl font-bold gradient-text">
-                {yearsCount}+
-              </div>
-              <div className="text-sm text-[#6b7280] mt-1 uppercase tracking-wide">
-                Years
-              </div>
-            </div>
-            <div className="text-center lg:text-left">
-              <div className="text-4xl md:text-5xl font-bold gradient-text">
-                {projectsCount}+
-              </div>
-              <div className="text-sm text-[#6b7280] mt-1 uppercase tracking-wide">
-                Projects
-              </div>
-            </div>
-            <div className="text-center lg:text-left">
-              <div className="text-4xl md:text-5xl font-bold gradient-text">
-                {citiesCount}
-              </div>
-              <div className="text-sm text-[#6b7280] mt-1 uppercase tracking-wide">
-                Cities
-              </div>
-            </div>
           </div>
         </div>
 
@@ -128,7 +63,7 @@ export default function HeroSection({ onNavigate, onOpenModal }: HeroSectionProp
             <div className="relative z-10 w-full h-full rounded-2xl overflow-hidden shadow-card-hover">
               <img
                 src="https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=1200"
-                alt="Luxury Interior Design"
+                alt="Luxury interior design showcasing modern furniture and decor."
                 className="w-full h-full object-cover"
               />
             </div>
