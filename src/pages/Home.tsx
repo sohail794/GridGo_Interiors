@@ -4,6 +4,7 @@ import ServiceCard from '../components/ServiceCard';
 import ProjectSlider from '../components/ProjectSlider';
 import TestimonialCarousel from '../components/TestimonialCarousel';
 import { Helmet } from 'react-helmet';
+import { COMPANY } from '../config/company';
 
 interface HomeProps {
   onNavigate: (page: string) => void;
@@ -47,7 +48,7 @@ export default function Home({ onNavigate }: HomeProps) {
               <span className="text-silver">Enduring Spaces</span>
             </h1>
             <p className="font-sans text-xl md:text-2xl mb-8 text-silver-light">
-              20+ Years of Interior Mastery
+              {COMPANY.yearsExperienceLabel}
             </p>
             <button
               onClick={() => onNavigate('contact')}

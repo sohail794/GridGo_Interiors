@@ -231,7 +231,7 @@ export const teamMembers: TeamMember[] = [
 
 export const timeline: TimelineEvent[] = [
   {
-    year: '2003',
+    year: '2004',
     title: 'Foundation',
     description: 'GridGo Interiors was established with a vision to transform interior spaces',
   },

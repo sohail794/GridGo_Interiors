@@ -2,6 +2,7 @@ import { CheckCircle, Award, Users, Target, Lightbulb, Leaf } from 'lucide-react
 import { teamMembers, timeline } from '../data/content';
 import GlassCard from '../components/GlassCard';
 import Button3D from '../components/Button3D';
+import { COMPANY } from '../config/company';
 
 interface AboutProps {
   onNavigate: (page: string) => void;
@@ -53,7 +54,7 @@ export default function About({ onNavigate }: AboutProps) {
             <span className="gradient-text">Inspired Craftsmanship</span>
           </h1>
           <p className="text-xl md:text-2xl text-[#b4b4b4]">
-            Transforming visions into reality since 2004
+            Transforming visions into reality since {COMPANY.foundingYear}
           </p>
         </div>
       </section>
@@ -80,7 +81,7 @@ export default function About({ onNavigate }: AboutProps) {
               </h2>
               <div className="space-y-4 text-lg text-[#b4b4b4] leading-relaxed">
                 <p>
-                  Founded in 2003, GridGo Interiors emerged from a vision to transform ordinary spaces
+                  Founded in {COMPANY.foundingYear}, GridGo Interiors emerged from a vision to transform ordinary spaces
                   into extraordinary environments. With over two decades of dedication to excellence, we
                   have established ourselves as India's premier integrated interior services provider.
                 </p>

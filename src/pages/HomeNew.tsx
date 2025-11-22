@@ -5,6 +5,7 @@ import GlassCard from '../components/GlassCard';
 import Button3D from '../components/Button3D';
 import TestimonialCarousel from '../components/TestimonialCarousel';
 import { featuredProjects, testimonials } from '../data/content';
+import { COMPANY } from '../config/company';
 
 interface HomeNewProps {
   onNavigate: (page: string) => void;
@@ -19,9 +20,9 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
     : featuredProjects.filter((p) => p.category === filter).slice(0, 6);
 
   const trustIndicators = [
-    { icon: Award, text: '20+ Years Experience' },
-    { icon: CheckCircle, text: '300+ Projects Completed' },
-    { icon: Sparkles, text: '15 Cities Across India' },
+    { icon: Award, text: COMPANY.yearsExperienceLabel },
+    { icon: CheckCircle, text: COMPANY.projectsCompletedLabel },
+    { icon: Sparkles, text: `${COMPANY.citiesServedLabel} Across India` },
     { icon: Wrench, text: 'In-House Fabrication' },
     { icon: Clock, text: '24-Hour Response Time' },
   ];

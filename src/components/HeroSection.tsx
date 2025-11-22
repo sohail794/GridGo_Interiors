@@ -1,5 +1,6 @@
 import { ArrowDown } from 'lucide-react';
 import Button3D from './Button3D';
+import { COMPANY } from '../config/company';
 
 interface HeroSectionProps {
   onOpenModal: () => void;
@@ -33,7 +34,7 @@ export default function HeroSection({ onOpenModal }: HeroSectionProps) {
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
               Crafting Premium
               <br />
-              <span className="gradient-text">Interiors Since 2004</span>
+              <span className="gradient-text">Interiors Since {COMPANY.foundingYear}</span>
             </h1>
           </div>
 
@@ -41,7 +42,7 @@ export default function HeroSection({ onOpenModal }: HeroSectionProps) {
             className="text-lg md:text-xl text-[#b4b4b4] max-w-xl animate-slide-up"
             style={{ animationDelay: '0.4s', animationDuration: '0.8s' }}
           >
-            Full-service design & fabrication across India. Transform your space with 20+ years of interior mastery.
+            Full-service design & fabrication across India. Transform your space with {COMPANY.yearsExperienceLabel.toLowerCase()}.
           </p>
 
           <div
