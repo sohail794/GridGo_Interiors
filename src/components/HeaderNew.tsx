@@ -23,18 +23,6 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal }: Head
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Manage body scroll when mobile menu is open
-  useEffect(() => {
-    if (mobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [mobileMenuOpen]);
-
   const menuItems = [
     { label: 'Home', page: 'home' },
     { label: 'Portfolio', page: 'portfolio', hasDropdown: true },
@@ -53,9 +41,8 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal }: Head
   return (
     <header
       className={`
-        sticky top-0 left-0 right-0 z-[9999]
+        fixed top-0 left-0 right-0 z-[1000]
         glass-nav
-        backdrop-blur-md bg-[#0a0e27]/80
         border-b border-white/10
         transition-all duration-300
         ${scrolled ? 'bg-opacity-95' : 'bg-opacity-80'}
@@ -145,11 +132,11 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal }: Head
       {mobileMenuOpen && (
         <>
           <div
-            className="fixed inset-0 bg-black/70 backdrop-blur-md z-[99998]"
+            className="fixed inset-0 bg-black/70 backdrop-blur-md z-[998]"
             onClick={() => setMobileMenuOpen(false)}
           />
 
-          <div className="fixed inset-0 top-auto w-full glass-card z-[99999] animate-slide-up rounded-tl-3xl rounded-tr-3xl shadow-luxury-hover flex flex-col">
+          <div className="fixed top-20 right-0 left-0 bottom-0 w-full glass-card z-[999] animate-slide-up rounded-tl-3xl rounded-tr-3xl shadow-luxury-hover">
             <div className="h-full flex flex-col">
               {/* Menu Header */}
               <div className="flex justify-between items-center px-6 py-4 border-b border-white/10">
