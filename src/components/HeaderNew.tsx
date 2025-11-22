@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, ChevronDown, Linkedin, Mail } from 'lucide-react';
 import Button3D from './Button3D';
+import logo from '../assets/images/logo/gridgo-logo.svg';
 
 interface HeaderProps {
   currentPage: string;
@@ -52,11 +53,11 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal }: Head
             className="flex items-center cursor-pointer group"
             onClick={() => onNavigate('home')}
           >
-            {/* <img
+            <img
               src={logo}
               alt="GridGo Interiors"
               className="h-12 w-auto transition-all group-hover:scale-105"
-            /> */}
+            />
           </div>
 
           <nav className="hidden lg:flex items-center space-x-8">
