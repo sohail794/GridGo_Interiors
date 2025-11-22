@@ -66,7 +66,7 @@ export default function Chatbot() {
         'We have completed 200+ projects across India in residential, commercial, and retail sectors. You can view our portfolio on the Portfolio page. Would you like me to share some featured projects?';
     } else if (input.includes('contact') || input.includes('call') || input.includes('phone')) {
       response =
-        'You can reach us at +91 XXX XXX XXXX or email info@gridgointeriors.com. Would you like to schedule a consultation?';
+        'You can reach us via email at info@gridgointeriors.com or through our contact form. Would you like to schedule a consultation?';
     } else if (input.includes('location') || input.includes('where')) {
       response =
         'GridGo Interiors operates across major cities in India. We serve clients nationwide with our comprehensive interior solutions. Which city are you located in?';

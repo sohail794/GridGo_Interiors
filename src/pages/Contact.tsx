@@ -3,6 +3,7 @@ import { Mail, Phone, MapPin, Clock, CheckCircle } from 'lucide-react';
 import GlassCard from '../components/GlassCard';
 import Button3D from '../components/Button3D';
 import { submitContactForm } from '../lib/supabase';
+import { CONTACT } from '../config/contact';
 
 interface ContactProps {
   onNavigate: (page: string) => void;
@@ -41,24 +42,24 @@ export default function Contact({ onNavigate }: ContactProps) {
   };
 
   const contactInfo = [
-    {
+    ...(CONTACT.phone ? [{
       icon: Phone,
       title: 'Phone',
-      content: '+91 (XXX) XXX-XXXX',
-      link: 'tel:+91XXXXXXXXXX',
-    },
+      content: CONTACT.phone,
+      link: `tel:${CONTACT.phone.replace(/[^\d+]/g, '')}`,
+    }] : []),
     {
       icon: Mail,
       title: 'Email',
       content: 'hello@gridgointeriors.com',
       link: 'mailto:hello@gridgointeriors.com',
     },
-    {
+    ...(CONTACT.addressLabel ? [{
       icon: MapPin,
       title: 'Location',
-      content: 'Mumbai, India',
-      link: null,
-    },
+      content: CONTACT.addressLabel,
+      link: CONTACT.mapsUrl || null,
+    }] : []),
     {
       icon: Clock,
       title: 'Working Hours',
@@ -202,7 +203,7 @@ export default function Contact({ onNavigate }: ContactProps) {
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-[#00ff88] focus:ring-2 focus:ring-[#00ff88]/20 transition-all outline-none min-h-[44px]"
-                        placeholder="+91 XXXXX"
+                        placeholder="Enter your phone number"
                         disabled={isSubmitting}
                       />
                     </div>

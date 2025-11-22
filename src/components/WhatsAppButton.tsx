@@ -1,10 +1,14 @@
 import { MessageCircle } from 'lucide-react';
+import { CONTACT } from '../config/contact';
 
 export default function WhatsAppButton() {
+  if (!CONTACT.whatsappUrl) {
+    return null;
+  }
+
   const handleWhatsAppClick = () => {
-    const phoneNumber = '91XXXXXXXXXX';
     const message = encodeURIComponent('Hi! I am interested in GridGo Interiors services.');
-    window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+    window.open(`${CONTACT.whatsappUrl}?text=${message}`, '_blank');
   };
 
   return (
