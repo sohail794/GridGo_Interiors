@@ -2,6 +2,7 @@ import { Calendar, Tag } from 'lucide-react';
 import { blogPosts } from '../data/content';
 import GlassCard from '../components/GlassCard';
 import Button3D from '../components/Button3D';
+import Button from '../components/ui/Button';
 
 interface BlogProps {
   onNavigate: (page: string) => void;
@@ -62,9 +63,9 @@ export default function Blog({ onNavigate }: BlogProps) {
                     {post.excerpt}
                   </p>
 
-                  <Button3D size="sm" variant="ghost" className="mt-4">
+                  <Button variant="secondary" className="mt-4">
                     Read More →
-                  </Button3D>
+                  </Button>
                 </div>
               </GlassCard>
             ))}
@@ -89,9 +90,9 @@ export default function Blog({ onNavigate }: BlogProps) {
                 className="flex-1 px-6 py-4 rounded-lg bg-white/5 border border-white/10 text-white placeholder-[#6b7280] focus:border-[#00ff88] focus:bg-white/10 outline-none transition-all"
                 required
               />
-              <Button3D size="md" type="submit">
+              <Button variant="primary" type="submit">
                 Subscribe
-              </Button3D>
+              </Button>
             </form>
           </GlassCard>
         </div>
@@ -107,9 +108,9 @@ export default function Blog({ onNavigate }: BlogProps) {
             Let's discuss how we can bring your interior design vision to life
           </p>
 
-          <Button3D size="lg" onClick={() => onNavigate('contact')}>
+          <Button variant="primary" onClick={() => onNavigate('contact')} className="text-lg px-10 py-5">
             Contact Us
-          </Button3D>
+          </Button>
 
           <div className="text-center mt-10">
             <p className="text-sm text-[#6b7280] mb-6">or reach us via</p>

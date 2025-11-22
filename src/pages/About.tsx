@@ -2,6 +2,7 @@ import { CheckCircle, Award, Users, Target, Lightbulb, Leaf } from 'lucide-react
 import { teamMembers, timeline } from '../data/content';
 import GlassCard from '../components/GlassCard';
 import Button3D from '../components/Button3D';
+import Button from '../components/ui/Button';
 import { COMPANY } from '../config/company';
 
 interface AboutProps {
@@ -227,9 +228,9 @@ export default function About({ onNavigate }: AboutProps) {
             Ready to transform your space? Let's discuss your vision and create something
             extraordinary together.
           </p>
-          <Button3D size="lg" onClick={() => onNavigate('contact')}>
+          <Button variant="primary" onClick={() => onNavigate('contact')} className="text-lg px-10 py-5">
             Start Your Project
-          </Button3D>
+          </Button>
         </div>
       </section>
     </div>

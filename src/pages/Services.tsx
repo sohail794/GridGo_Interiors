@@ -5,6 +5,7 @@ import { Wrench, Square, Gem, Armchair, Palette, Paintbrush } from 'lucide-react
 import { services } from '../data/content';
 import GlassCard from '../components/GlassCard';
 import Button3D from '../components/Button3D';
+import Button from '../components/ui/Button';
 
 const iconMap = {
   Wrench,
@@ -308,9 +309,9 @@ export default function Services({ onNavigate }: ServicesProps) {
                 />
               </div>
 
-              <Button3D type="submit" className="w-full" size="lg" disabled={isSubmitting}>
+              <Button variant="primary" type="submit" className="w-full py-3" disabled={isSubmitting}>
                 {isSubmitting ? 'Submitting...' : 'Submit Request'}
-              </Button3D>
+              </Button>
             </form>
           </GlassCard>
         </div>

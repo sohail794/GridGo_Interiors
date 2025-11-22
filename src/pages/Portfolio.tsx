@@ -4,6 +4,7 @@ import { featuredProjects } from '../data/content';
 import { Project } from '../types';
 import GlassCard from '../components/GlassCard';
 import Button3D from '../components/Button3D';
+import Button from '../components/ui/Button';
 
 interface PortfolioProps {
   onNavigate: (page: string) => void;
@@ -119,9 +120,9 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
           <p className="text-xl text-[#b4b4b4] mb-10">
             Ready to create something extraordinary? Let's bring your vision to life.
           </p>
-          <Button3D size="lg" onClick={() => onNavigate('contact')}>
+          <Button variant="primary" onClick={() => onNavigate('contact')} className="text-lg px-10 py-5">
             Start Your Journey
-          </Button3D>
+          </Button>
         </div>
       </section>
 

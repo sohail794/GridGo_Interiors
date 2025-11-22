@@ -3,6 +3,7 @@ import { CheckCircle, Award, Clock, Shield, Wrench, Sparkles } from 'lucide-reac
 import HeroSection from '../components/HeroSection';
 import GlassCard from '../components/GlassCard';
 import Button3D from '../components/Button3D';
+import Button from '../components/ui/Button';
 import TestimonialCarousel from '../components/TestimonialCarousel';
 import { featuredProjects, testimonials } from '../data/content';
 import { COMPANY } from '../config/company';
@@ -177,9 +178,9 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
           </div>
 
           <div className="text-center mt-12">
-            <Button3D size="lg" onClick={() => onNavigate('portfolio')}>
+            <Button variant="primary" onClick={() => onNavigate('portfolio')} className="text-lg px-10 py-5">
               View All Projects
-            </Button3D>
+            </Button>
           </div>
         </div>
       </section>
@@ -303,12 +304,12 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
           </p>
 
           <div className="flex flex-wrap justify-center gap-4 mb-10">
-            <Button3D size="lg" onClick={onOpenModal}>
+            <Button variant="primary" onClick={onOpenModal} className="text-lg px-10 py-5">
               Get a Free Quote
-            </Button3D>
-            <Button3D size="lg" variant="secondary" onClick={() => onNavigate('contact')}>
+            </Button>
+            <Button variant="secondary" onClick={() => onNavigate('contact')} className="text-lg px-10 py-5">
               Contact Us
-            </Button3D>
+            </Button>
           </div>
 
 <div className="text-center">

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Mail, Phone, MapPin, Clock, CheckCircle } from 'lucide-react';
 import GlassCard from '../components/GlassCard';
 import Button3D from '../components/Button3D';
+import Button from '../components/ui/Button';
 import { submitContactForm } from '../lib/supabase';
 import { CONTACT } from '../config/contact';
 
@@ -239,9 +240,9 @@ export default function Contact({ onNavigate }: ContactProps) {
                     />
                   </div>
 
-                  <Button3D type="submit" className="w-full" size="lg" disabled={isSubmitting}>
+                  <Button variant="primary" type="submit" className="w-full py-3" disabled={isSubmitting}>
                     {isSubmitting ? 'Sending...' : 'Send Message'}
-                  </Button3D>
+                  </Button>
                 </form>
               </GlassCard>
             </div>

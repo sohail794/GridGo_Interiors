@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { X, CheckCircle, Upload, Trash2 } from 'lucide-react';
 import Button3D from './Button3D';
+import Button from './ui/Button';
 import GlassCard from './GlassCard';
 import { submitContactForm } from '../lib/supabase';
 
@@ -90,9 +91,9 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
           <p className="text-[#b4b4b4]">
             We'll contact you within 24 hours. A confirmation email has been sent to {formData.email}
           </p>
-          <Button3D className="w-full" onClick={onClose}>
+          <Button variant="primary" className="w-full" onClick={onClose}>
             Close
-          </Button3D>
+          </Button>
         </GlassCard>
       </div>
     );
@@ -192,13 +193,14 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
                 />
               </div>
 
-              <Button3D
-                className="w-full mt-6"
+              <Button
+                variant="primary"
+                className="w-full mt-6 py-3"
                 onClick={() => setStep(2)}
                 disabled={!formData.name || !formData.phone || !formData.email || !formData.city}
               >
                 Next: Project Details →
-              </Button3D>
+              </Button>
             </div>
           )}
 
@@ -318,13 +320,14 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
                 <Button3D variant="ghost" className="flex-1" onClick={() => setStep(1)}>
                   ← Back
                 </Button3D>
-                <Button3D
-                  className="flex-1"
+                <Button
+                  variant="primary"
+                  className="flex-1 py-3"
                   onClick={() => setStep(3)}
                   disabled={formData.projectTypes.length === 0 || !formData.scope}
                 >
                   Review & Submit →
-                </Button3D>
+                </Button>
               </div>
             </div>
           )}
@@ -374,9 +377,9 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
                 <Button3D variant="ghost" className="flex-1" onClick={() => setStep(2)} disabled={isSubmitting}>
                   ← Back
                 </Button3D>
-                <Button3D className="flex-1" onClick={handleSubmit} disabled={isSubmitting}>
+                <Button variant="primary" className="flex-1" onClick={handleSubmit} disabled={isSubmitting}>
                   {isSubmitting ? 'Submitting...' : 'Submit Request'}
-                </Button3D>
+                </Button>
               </div>
             </div>
           )}

@@ -5,6 +5,7 @@ import ProjectSlider from '../components/ProjectSlider';
 import TestimonialCarousel from '../components/TestimonialCarousel';
 import { Helmet } from 'react-helmet';
 import { COMPANY } from '../config/company';
+import Button from '../components/ui/Button';
 
 interface HomeProps {
   onNavigate: (page: string) => void;
@@ -50,13 +51,14 @@ export default function Home({ onNavigate }: HomeProps) {
             <p className="font-sans text-xl md:text-2xl mb-8 text-silver-light">
               {COMPANY.yearsExperienceLabel}
             </p>
-            <button
+            <Button
+              variant="primary"
               onClick={() => onNavigate('contact')}
-              className="bg-emerald hover:bg-emerald-dark text-white px-8 py-4 rounded-md font-sans font-bold text-lg transition-all shadow-luxury hover:shadow-luxury-hover inline-flex items-center"
+              className="font-sans text-lg shadow-luxury hover:shadow-luxury-hover"
             >
               Schedule Your Consultation
               <ArrowRight className="ml-2" size={20} />
-            </button>
+            </Button>
           </div>
         </div>
       </section>
@@ -132,12 +134,13 @@ export default function Home({ onNavigate }: HomeProps) {
             Let's bring your vision to life with our expertise and craftsmanship
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button
+            <Button
+              variant="secondary"
               onClick={() => onNavigate('contact')}
-              className="bg-white text-emerald px-8 py-4 rounded-md font-sans font-bold text-lg hover:bg-silver-light transition-colors"
+              className="font-sans text-lg hover:bg-emerald"
             >
               Get in Touch
-            </button>
+            </Button>
           </div>
         </div>
       </section>
