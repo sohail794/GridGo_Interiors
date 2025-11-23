@@ -167,7 +167,7 @@ export default function Chatbot() {
                     placeholder="Your name"
                     value={userName}
                     onChange={(e) => setUserName(e.target.value)}
-                    className="w-full px-3 py-2 rounded border border-silver focus:border-emerald focus:ring-2 focus:ring-emerald/30 focus:scale-[1.01] outline-none text-sm transition-all duration-200"
+                    className="w-full px-3 py-2 rounded border border-silver focus-visible:border-emerald focus-visible:ring-2 focus-visible:ring-emerald/30 focus-visible:scale-[1.01] outline-none text-sm transition-all duration-200"
                     required
                   />
                   <input
@@ -175,7 +175,7 @@ export default function Chatbot() {
                     placeholder="Your email"
                     value={userEmail}
                     onChange={(e) => setUserEmail(e.target.value)}
-                    className="w-full px-3 py-2 rounded border border-silver focus:border-emerald focus:ring-2 focus:ring-emerald/30 focus:scale-[1.01] outline-none text-sm transition-all duration-200"
+                    className="w-full px-3 py-2 rounded border border-silver focus-visible:border-emerald focus-visible:ring-2 focus-visible:ring-emerald/30 focus-visible:scale-[1.01] outline-none text-sm transition-all duration-200"
                     required
                   />
                   <button
@@ -217,7 +217,7 @@ export default function Chatbot() {
                 value={inputMessage}
                 onChange={(e) => setInputMessage(e.target.value)}
                 placeholder="Type your message..."
-                className="flex-1 px-4 py-2 rounded-full border-2 border-silver focus:border-emerald focus:ring-2 focus:ring-emerald/20 outline-none transition-all duration-200"
+                className="flex-1 px-4 py-2 rounded-full border-2 border-silver focus-visible:border-emerald focus-visible:ring-2 focus-visible:ring-emerald/20 outline-none transition-all duration-200"
               />
               <button
                 type="submit"

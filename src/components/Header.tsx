@@ -48,7 +48,7 @@ export default function Header({ onNavigate, onOpenModal }: HeaderProps) {
               <div key={item.page} className="relative">
                 <button
                   onClick={() => onNavigate(item.page)}
-                  className="text-gray-700 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-emerald"
+                  className="text-gray-700 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald"
                   aria-label={`Navigate to ${item.label}`}
                 >
                   {item.label}
@@ -64,7 +64,7 @@ export default function Header({ onNavigate, onOpenModal }: HeaderProps) {
                         {portfolioItems.map((subItem) => (
                           <li
                             key={subItem.category}
-                            className="px-4 py-2 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none"
+                            className="px-4 py-2 hover:bg-gray-100 focus-visible:bg-gray-200 focus-visible:outline-none"
                             tabIndex={0}
                             role="menuitem"
                           >
