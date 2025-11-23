@@ -1,10 +1,84 @@
-export const updatePageMeta = (title: string, description: string) => {
+export const updatePageMeta = (title: string, description: string, url?: string, image?: string) => {
   document.title = `${title} | GridGo Interiors`;
 
-  const metaDescription = document.querySelector('meta[name="description"]');
+  // Update meta description
+  let metaDescription = document.querySelector('meta[name="description"]');
   if (metaDescription) {
     metaDescription.setAttribute('content', description);
+  } else {
+    metaDescription = document.createElement('meta');
+    metaDescription.setAttribute('name', 'description');
+    metaDescription.setAttribute('content', description);
+    document.head.appendChild(metaDescription);
   }
+
+  // Update Open Graph tags
+  const ogTags = [
+    { property: 'og:title', content: title },
+    { property: 'og:description', content: description },
+    { property: 'og:url', content: url || window.location.href },
+    { property: 'og:image', content: image || 'https://images.pexels.com/photos/1350468/pexels-photo-1350468.jpeg?auto=compress&cs=tinysrgb&w=800' },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:site_name', content: 'GridGo Interiors' },
+  ];
+
+  ogTags.forEach(({ property, content }) => {
+    let element = document.querySelector(`meta[property="${property}"]`);
+    if (!element) {
+      element = document.createElement('meta');
+      element.setAttribute('property', property);
+      document.head.appendChild(element);
+    }
+    element.setAttribute('content', content);
+  });
+
+  // Update Twitter Card tags
+  const twitterTags = [
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: title },
+    { name: 'twitter:description', content: description },
+    { name: 'twitter:image', content: image || 'https://images.pexels.com/photos/1350468/pexels-photo-1350468.jpeg?auto=compress&cs=tinysrgb&w=800' },
+  ];
+
+  twitterTags.forEach(({ name, content }) => {
+    let element = document.querySelector(`meta[name="${name}"]`);
+    if (!element) {
+      element = document.createElement('meta');
+      element.setAttribute('name', name);
+      document.head.appendChild(element);
+    }
+    element.setAttribute('content', content);
+  });
+};
+
+// Add structured data (JSON-LD) for search engines
+export const addStructuredData = (data: object) => {
+  const script = document.createElement('script');
+  script.type = 'application/ld+json';
+  script.textContent = JSON.stringify(data);
+  document.head.appendChild(script);
+};
+
+// Organization schema
+export const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'GridGo Interiors',
+  description: 'Premium interior design and fabrication services',
+  image: 'https://images.pexels.com/photos/1350468/pexels-photo-1350468.jpeg?auto=compress&cs=tinysrgb&w=800',
+  telephone: '+91-XXXXXXXXXX',
+  address: {
+    '@type': 'PostalAddress',
+    addressCountry: 'IN',
+    addressRegion: 'Multiple Cities',
+    addressLocality: 'Mumbai, Delhi, Bangalore',
+  },
+  sameAs: [
+    'https://www.facebook.com/gridgointeriors',
+    'https://www.instagram.com/gridgointeriors',
+    'https://www.linkedin.com/company/gridgo-interiors',
+  ],
+  url: 'https://gridgointeriors.com',
 };
 
 export const pageMeta = {

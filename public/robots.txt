@@ -1,0 +1,27 @@
+# robots.txt for GridGo Interiors
+# Allow search engines to crawl all pages
+
+User-agent: *
+Allow: /
+Allow: /assets/
+Disallow: /node_modules/
+Disallow: /.git/
+
+# Sitemap location
+Sitemap: https://gridgointeriors.com/sitemap.xml
+
+# Crawl delay (milliseconds)
+Crawl-delay: 1
+
+# Specific rules for common bots
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
