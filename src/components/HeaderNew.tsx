@@ -30,7 +30,7 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal, mobile
     };
   }, [mobileMenuOpen]);
 
-  // Close menu on Escape key
+  // Close menu on Escape key or backdrop click
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && mobileMenuOpen) {
@@ -41,6 +41,13 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal, mobile
     window.addEventListener('keydown', handleEscape);
     return () => window.removeEventListener('keydown', handleEscape);
   }, [mobileMenuOpen, onMobileMenuChange]);
+
+  // Close menu when clicking on backdrop
+  const handleBackdropClick = (e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) {
+      onMobileMenuChange(false);
+    }
+  };
 
   const menuItems = [
     { label: 'Home', page: 'home' },
@@ -148,12 +155,16 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal, mobile
 
       {/* Mobile Menu Overlay */}
       <div
+        onClick={handleBackdropClick}
         className={`
           fixed inset-0 w-full max-w-full z-[10000]
           bg-[#0a0e27] backdrop-blur-md
-          transition-transform duration-300 ease-in-out
+          transition-all duration-300 ease-in-out
           lg:hidden
-          ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}
+          ${mobileMenuOpen 
+            ? 'translate-x-0 opacity-100' 
+            : 'translate-x-full opacity-0 pointer-events-none'
+          }
         `}
       >
         {/* Header with close button */}
@@ -187,11 +198,12 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal, mobile
                 className={`
                   w-full text-center px-8 py-4 rounded-xl text-lg font-semibold
                   transition-all duration-200 ease-in-out
-                  hover:scale-[1.02]
+                  hover:scale-[1.02] active:scale-95
+                  focus:outline-none focus:ring-2 focus:ring-[#00ff88]/50
                   ${
                     currentPage === item.page
                       ? 'bg-gradient-to-r from-[#00ff88]/20 to-[#00d9ff]/20 text-white border border-[#00ff88]/50 shadow-lg'
-                      : 'text-[#b4b4b4] hover:text-[#00F5A0] hover:bg-white/5'
+                      : 'text-[#b4b4b4] hover:text-white hover:bg-white/5 border border-transparent hover:border-[#00ff88]/30'
                   }
                 `}
               >

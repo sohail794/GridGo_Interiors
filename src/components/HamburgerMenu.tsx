@@ -9,18 +9,20 @@ export default function HamburgerMenu({ isOpen, onClick }: HamburgerMenuProps) {
       onClick={onClick}
       aria-label={isOpen ? 'Close menu' : 'Open menu'}
       aria-expanded={isOpen}
-      className="
+      className={`
         relative lg:hidden
         w-11 h-11
         flex items-center justify-center
         rounded-xl
         group
         transition-all duration-300
-        hover:bg-white/5
         focus:outline-none focus:ring-2 focus:ring-[#00ff88]/30
         border border-white/10
-        hover:border-[#00ff88]/40
-      "
+        ${isOpen 
+          ? 'bg-[#00ff88]/10 border-[#00ff88]/50 shadow-lg shadow-[#00ff88]/20' 
+          : 'hover:bg-white/5 hover:border-[#00ff88]/40'
+        }
+      `}
     >
       {/* Premium glow effect on hover */}
       <div className="
