@@ -26,7 +26,9 @@ export default function Card({
 }: CardProps) {
   const baseClasses = 'rounded-radius-lg border border-white/10 transition-all duration-300';
   const glassClasses = glass ? 'glass-card' : 'bg-background-elevated';
-  const hoverClasses = hover ? 'hover:border-brand-emerald/50 hover:shadow-lg' : '';
+  const hoverClasses = hover 
+    ? 'hover:border-[rgb(0,255,136)]/50 hover:shadow-lg hover:shadow-[rgb(0,255,136)]/10 hover:scale-[1.02]' 
+    : '';
 
   return (
     <div className={`${baseClasses} ${glassClasses} ${hoverClasses} ${paddingMap[padding]} ${className}`}>

@@ -28,17 +28,19 @@ export default function Button({
     primary: `
       bg-[#00F5A0]
       text-[#0A0E27]
-      hover:brightness-110
+      hover:brightness-110 hover:shadow-lg hover:shadow-[#00F5A0]/20
       active:scale-95
       disabled:opacity-50 disabled:cursor-not-allowed
+      transition-all duration-200
     `,
     secondary: `
       bg-transparent
       border-2 border-[#00F5A0]
       text-[#00F5A0]
-      hover:bg-[#00F5A010]
+      hover:bg-[#00F5A010] hover:shadow-lg hover:shadow-[#00F5A0]/10
       active:bg-[#00F5A015]
       disabled:opacity-50 disabled:cursor-not-allowed
+      transition-all duration-200
     `,
   };
 
