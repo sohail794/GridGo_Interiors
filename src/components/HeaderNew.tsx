@@ -9,10 +9,11 @@ interface HeaderProps {
   currentPage: string;
   onNavigate: (page: string) => void;
   onOpenModal: () => void;
+  mobileMenuOpen: boolean;
+  onMobileMenuChange: (open: boolean) => void;
 }
 
-export default function HeaderNew({ currentPage, onNavigate, onOpenModal }: HeaderProps) {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+export default function HeaderNew({ currentPage, onNavigate, onOpenModal, mobileMenuOpen, onMobileMenuChange }: HeaderProps) {
   const [portfolioDropdown, setPortfolioDropdown] = useState(false);
 
   // Lock body scroll when mobile menu is open
@@ -28,6 +29,18 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal }: Head
       document.body.style.overflow = '';
     };
   }, [mobileMenuOpen]);
+
+  // Close menu on Escape key
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && mobileMenuOpen) {
+        onMobileMenuChange(false);
+      }
+    };
+
+    window.addEventListener('keydown', handleEscape);
+    return () => window.removeEventListener('keydown', handleEscape);
+  }, [mobileMenuOpen, onMobileMenuChange]);
 
   const menuItems = [
     { label: 'Home', page: 'home' },
@@ -128,7 +141,7 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal }: Head
 
           <HamburgerMenu 
             isOpen={mobileMenuOpen}
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            onClick={() => onMobileMenuChange(!mobileMenuOpen)}
           />
         </div>
       </div>
@@ -137,14 +150,14 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal }: Head
       <div
         className={`
           fixed inset-0 w-full max-w-full z-[10000]
-          bg-[#0a0e27]/95 backdrop-blur-md
+          bg-[#0a0e27] backdrop-blur-md
           transition-transform duration-300 ease-in-out
           lg:hidden
           ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}
         `}
       >
         {/* Header with close button */}
-        <div className="fixed top-0 left-0 right-0 z-[10001] bg-[#0a0e27]/95 border-b border-white/10">
+        <div className="fixed top-0 left-0 right-0 z-[10001] bg-[#0a0e27] border-b border-white/10">
           <div className="flex justify-between items-center px-6 py-4">
             <img
               src={logo}
@@ -152,7 +165,7 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal }: Head
               className="h-10 w-auto"
             />
             <button
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={() => onMobileMenuChange(false)}
               aria-label="Close menu"
               className="p-2 text-[#00ff88] hover:text-[#00d9ff] transition-colors"
             >
@@ -169,15 +182,16 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal }: Head
                 key={item.page}
                 onClick={() => {
                   onNavigate(item.page);
-                  setMobileMenuOpen(false);
+                  onMobileMenuChange(false);
                 }}
                 className={`
                   w-full text-center px-8 py-4 rounded-xl text-lg font-semibold
-                  transition-all duration-300
+                  transition-all duration-200 ease-in-out
+                  hover:scale-[1.02]
                   ${
                     currentPage === item.page
                       ? 'bg-gradient-to-r from-[#00ff88]/20 to-[#00d9ff]/20 text-white border border-[#00ff88]/50 shadow-lg'
-                      : 'text-[#b4b4b4] hover:text-white hover:bg-white/5'
+                      : 'text-[#b4b4b4] hover:text-[#00F5A0] hover:bg-white/5'
                   }
                 `}
               >
@@ -190,7 +204,7 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal }: Head
                 className="w-full min-h-[56px] text-lg font-semibold"
                 onClick={() => {
                   onOpenModal();
-                  setMobileMenuOpen(false);
+                  onMobileMenuChange(false);
                 }}
               >
                 Get a Quote

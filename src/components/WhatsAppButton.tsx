@@ -1,7 +1,11 @@
 import { MessageCircle } from 'lucide-react';
 import { CONTACT } from '../config/contact';
 
-export default function WhatsAppButton() {
+interface WhatsAppButtonProps {
+  menuOpen?: boolean;
+}
+
+export default function WhatsAppButton({ menuOpen = false }: WhatsAppButtonProps) {
   if (!CONTACT.whatsappUrl) {
     return null;
   }
@@ -14,7 +18,7 @@ export default function WhatsAppButton() {
   return (
     <button
       onClick={handleWhatsAppClick}
-      className="fixed bottom-6 right-24 z-40 bg-green-500 hover:bg-green-600 text-white p-3.5 rounded-full shadow-luxury hover:shadow-luxury-hover transition-all"
+      className={`fixed bottom-6 right-24 z-40 bg-green-500 hover:bg-green-600 text-white p-3.5 rounded-full shadow-luxury hover:shadow-luxury-hover transition-all ${menuOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
       aria-label="Contact us on WhatsApp"
       title="WhatsApp Us"
     >

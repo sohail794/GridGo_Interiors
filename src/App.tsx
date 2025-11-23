@@ -17,6 +17,7 @@ type Page = 'home' | 'about' | 'services' | 'portfolio' | 'blog' | 'contact';
 function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
   const [modalOpen, setModalOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleNavigate = (page: string) => {
     setCurrentPage(page as Page);
@@ -37,6 +38,8 @@ function App() {
         currentPage={currentPage}
         onNavigate={handleNavigate}
         onOpenModal={() => setModalOpen(true)}
+        mobileMenuOpen={mobileMenuOpen}
+        onMobileMenuChange={setMobileMenuOpen}
       />
 
       <main className="pt-20">
@@ -51,7 +54,7 @@ function App() {
       </main>
 
       <Footer onNavigate={handleNavigate} />
-      <WhatsAppButton />
+      <WhatsAppButton menuOpen={mobileMenuOpen} />
       <Chatbot />
       <LeadModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
     </div>
