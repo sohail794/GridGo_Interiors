@@ -136,7 +136,7 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal }: Head
       {/* Mobile Menu Overlay */}
       <div
         className={`
-          fixed inset-0 z-[10000]
+          fixed inset-0 w-full max-w-full z-[10000]
           bg-[#0a0e27]/95 backdrop-blur-md
           transition-transform duration-300 ease-in-out
           lg:hidden

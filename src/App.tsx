@@ -32,7 +32,7 @@ function App() {
   }, [currentPage]);
 
   return (
-    <div className="min-h-screen bg-[#0a0e27]">
+    <div className="min-h-screen bg-[#0a0e27] overflow-x-hidden">
       <HeaderNew
         currentPage={currentPage}
         onNavigate={handleNavigate}
