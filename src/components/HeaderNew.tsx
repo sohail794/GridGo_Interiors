@@ -81,6 +81,7 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal, mobile
                     text-base font-medium transition-all duration-200 ease-out
                     flex items-center gap-1
                     py-1 px-2 rounded-lg
+                    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(0,255,136)]/50 focus-visible:ring-offset-1 focus-visible:ring-offset-[#0a0e27]
                     ${
                       currentPage === item.page
                         ? 'text-white text-glow'
@@ -113,7 +114,7 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal, mobile
                           text-text-secondary hover:text-white
                           hover:bg-white/5 hover:translate-x-1
                           transition-all duration-200 hover:opacity-100 opacity-80
-                          focus:outline-none focus:ring-2 focus:ring-[rgb(0,255,136)]/50 rounded-lg
+                          focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(0,255,136)]/50
                         "
                       >
                         {subItem.label}

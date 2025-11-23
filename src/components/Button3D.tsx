@@ -13,9 +13,10 @@ export default function Button3D({
   size = 'md',
   icon,
   className = '',
+  disabled = false,
   ...props
 }: Button3DProps) {
-  const baseClasses = 'font-semibold uppercase tracking-wide rounded-xl transition-all duration-200 ease-out inline-flex items-center justify-center gap-2 focus-ring';
+  const baseClasses = 'font-semibold uppercase tracking-wide rounded-xl transition-all duration-200 ease-out inline-flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00ff88] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0e27] disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none';
 
   const sizeClasses = {
     sm: 'px-4 py-2 text-sm',
@@ -61,6 +62,7 @@ export default function Button3D({
         ${variantClasses[variant]}
         ${className}
       `}
+      disabled={disabled}
       {...props}
     >
       {icon && <span className="inline-flex">{icon}</span>}

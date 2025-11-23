@@ -16,7 +16,7 @@ export default function Button({
   disabled = false,
   ...props
 }: ButtonProps) {
-  const baseClasses = 'rounded-lg font-semibold transition-all duration-300 inline-flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-[rgb(0,255,136)]/50 focus:ring-offset-2 focus:ring-offset-[#0a0e27]';
+  const baseClasses = 'rounded-lg font-semibold transition-all duration-300 inline-flex items-center justify-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(0,255,136)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0e27]';
 
   const sizeClasses = {
     sm: 'px-4 py-2 text-sm',

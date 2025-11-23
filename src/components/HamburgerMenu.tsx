@@ -16,7 +16,7 @@ export default function HamburgerMenu({ isOpen, onClick }: HamburgerMenuProps) {
         rounded-xl
         group
         transition-all duration-300
-        focus:outline-none focus:ring-2 focus:ring-[#00ff88]/30
+        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00ff88]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0e27]
         border border-white/10
         ${isOpen 
           ? 'bg-[#00ff88]/10 border-[#00ff88]/50 shadow-lg shadow-[#00ff88]/20' 
