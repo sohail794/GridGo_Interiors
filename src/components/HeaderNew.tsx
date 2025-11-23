@@ -158,7 +158,7 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal, mobile
         onClick={handleBackdropClick}
         className={`
           fixed inset-0 w-full max-w-full z-[10000]
-          bg-[#0a0e27] backdrop-blur-md
+          bg-[#050816]
           transition-all duration-300 ease-in-out
           lg:hidden
           ${mobileMenuOpen 
@@ -168,7 +168,7 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal, mobile
         `}
       >
         {/* Header with close button */}
-        <div className="fixed top-0 left-0 right-0 z-[10001] bg-[#0a0e27] border-b border-white/10">
+        <div className="fixed top-0 left-0 right-0 z-[10001] bg-[#050816] border-b border-white/10">
           <div className="flex justify-between items-center px-6 py-4">
             <img
               src={logo}
