@@ -750,3 +750,437 @@ img[loading='lazy'].loaded,
 .long-press-feedback {
   animation: breathePulse 1s ease-in-out;
 }
+
+/* ============================================
+   PHASE 4: ADVANCED SCROLL EFFECTS
+   ============================================ */
+
+/* Scroll-triggered counter animation */
+@keyframes countUpNumber {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Parallax depth effect */
+@keyframes parallaxShift {
+  0% {
+    transform: translateZ(0) scale(1);
+  }
+  50% {
+    transform: translateZ(20px) scale(1.02);
+  }
+  100% {
+    transform: translateZ(0) scale(1);
+  }
+}
+
+/* Scroll progress bar animation */
+@keyframes progressExpand {
+  from {
+    width: 0%;
+    opacity: 0;
+  }
+  to {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+/* Floating cards on scroll */
+@keyframes floatOnScroll {
+  0% {
+    transform: translateY(0px) scale(0.95);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-8px) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Smooth reveal with slide */
+@keyframes smoothReveal {
+  from {
+    clip-path: inset(0 100% 0 0);
+    opacity: 0;
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+}
+
+/* Utility classes for Phase 4 */
+.count-up-enter {
+  animation: countUpNumber 600ms ease-out forwards;
+}
+
+.parallax-card {
+  will-change: transform;
+  transition: transform 200ms ease-out;
+}
+
+.scroll-progress-bar {
+  animation: progressExpand 500ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.float-on-scroll {
+  animation: floatOnScroll 800ms ease-out forwards;
+}
+
+.smooth-reveal {
+  animation: smoothReveal 700ms ease-out forwards;
+}
+
+/* ============================================
+   PHASE 5: PAGE TRANSITIONS
+   ============================================ */
+
+/* Page fade transition in */
+@keyframes pageTransitionIn {
+  from {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+  to {
+    opacity: 1;
+    backdrop-filter: blur(4px);
+  }
+}
+
+/* Page fade transition out */
+@keyframes pageTransitionOut {
+  from {
+    opacity: 1;
+    backdrop-filter: blur(4px);
+  }
+  to {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+}
+
+/* Smooth page content fade in */
+@keyframes pageContentFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Slide left entrance for page */
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Slide right exit for page */
+@keyframes slideOutToLeft {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+}
+
+/* Page transition utility classes */
+.page-transition-enter {
+  animation: pageTransitionIn 400ms ease-out forwards;
+}
+
+.page-transition-exit {
+  animation: pageTransitionOut 300ms ease-in forwards;
+}
+
+.page-content-enter {
+  animation: pageContentFadeIn 500ms ease-out forwards;
+}
+
+.page-slide-in {
+  animation: slideInFromRight 600ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.page-slide-out {
+  animation: slideOutToLeft 400ms ease-in forwards;
+}
+
+/* ============================================
+   PHASE 6: GESTURE ANIMATIONS
+   ============================================ */
+
+/* Tap/press feedback animation */
+@keyframes tapPulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Long press indicator */
+@keyframes longPressPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 5px rgba(0, 255, 136, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 0 10px rgba(0, 255, 136, 0);
+  }
+}
+
+/* Swipe indicator left */
+@keyframes swipeIndicatorLeft {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+}
+
+/* Swipe indicator right */
+@keyframes swipeIndicatorRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+}
+
+/* Double tap animation */
+@keyframes doubleTapFeedback {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Pinch zoom animation */
+@keyframes pinchZoomIn {
+  from {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  to {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
+
+/* Touch feedback glow */
+@keyframes touchGlow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 0 12px rgba(0, 255, 136, 0);
+  }
+}
+
+/* Gesture utility classes */
+.tap-feedback {
+  animation: tapPulse 200ms ease-out;
+}
+
+.long-press-active {
+  animation: longPressPulse 1000ms ease-in-out infinite;
+}
+
+.swipe-left {
+  animation: swipeIndicatorLeft 300ms ease-out forwards;
+}
+
+.swipe-right {
+  animation: swipeIndicatorRight 300ms ease-out forwards;
+}
+
+.double-tap-feedback {
+  animation: doubleTapFeedback 300ms ease-out;
+}
+
+.pinch-zoom {
+  animation: pinchZoomIn 400ms ease-out forwards;
+}
+
+.touch-glow {
+  animation: touchGlow 600ms ease-out;
+}
+
+.gesture-interactive {
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+/* ============================================
+   PHASE 7: ADVANCED LOADING STATES
+   ============================================ */
+
+/* Skeleton shimmer animation */
+@keyframes skeletonShimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* Progressive image fade in */
+@keyframes progressiveFadeIn {
+  from {
+    filter: blur(5px);
+    opacity: 0;
+  }
+  to {
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+
+/* Skeleton pulse animation */
+@keyframes skeletonPulse {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+/* Loading spinner animation */
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Content reveal from top */
+@keyframes revealFromTop {
+  from {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+  }
+  to {
+    max-height: 1000px;
+    opacity: 1;
+  }
+}
+
+/* Staggered content reveal */
+@keyframes staggerReveal {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Loading bar animation */
+@keyframes loadingBar {
+  0% {
+    width: 10%;
+  }
+  50% {
+    width: 70%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+/* Utility classes for Phase 7 */
+.skeleton-loader {
+  animation: skeletonPulse 1.5s ease-in-out infinite;
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  background-size: 200% 100%;
+  animation: skeletonShimmer 2s infinite;
+}
+
+.progressive-image {
+  animation: progressiveFadeIn 600ms ease-out forwards;
+}
+
+.loading-spinner {
+  animation: spinner 1s linear infinite;
+}
+
+.content-reveal {
+  animation: revealFromTop 400ms ease-out forwards;
+}
+
+.stagger-reveal {
+  animation: staggerReveal 600ms ease-out forwards;
+}
+
+.loading-bar {
+  animation: loadingBar 2s ease-out forwards;
+}
+
+/* Loading state utilities */
+.is-loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.loading-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 14, 39, 0.4);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+

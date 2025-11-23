@@ -1,4 +1,5 @@
 import { ArrowRight } from 'lucide-react';
+import { useState, useRef } from 'react';
 import { testimonials, featuredProjects, services } from '../data/content';
 import ServiceCard from '../components/ServiceCard';
 import ProjectSlider from '../components/ProjectSlider';
@@ -6,9 +7,63 @@ import TestimonialCarousel from '../components/TestimonialCarousel';
 import { Helmet } from 'react-helmet';
 import { COMPANY } from '../config/company';
 import Button from '../components/ui/Button';
+import { useCountUpInView } from '../hooks/useCountUp';
 
 interface HomeProps {
   onNavigate: (page: string) => void;
+}
+
+// Stats component with scroll counters
+function StatsSection() {
+  const stat1Ref = useRef<HTMLDivElement>(null);
+  const stat2Ref = useRef<HTMLDivElement>(null);
+  const stat3Ref = useRef<HTMLDivElement>(null);
+  const stat4Ref = useRef<HTMLDivElement>(null);
+
+  const { displayValue: projects } = useCountUpInView(200, stat1Ref, { threshold: 0.4, duration: 2000 });
+  const { displayValue: experience } = useCountUpInView(8, stat2Ref, { threshold: 0.4, duration: 2000 });
+  const { displayValue: cities } = useCountUpInView(25, stat3Ref, { threshold: 0.4, duration: 2000 });
+  const { displayValue: clients } = useCountUpInView(500, stat4Ref, { threshold: 0.4, duration: 2000 });
+
+  return (
+    <section className="py-20 bg-gradient-to-r from-emerald/10 to-emerald/5">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div ref={stat1Ref} className="text-center p-6" style={{ animation: 'fadeInUp 600ms ease-out forwards' }}>
+            <div className="text-5xl md:text-6xl font-bold text-emerald mb-2" style={{ animation: 'countUp 2s ease-out forwards' }}>
+              {projects}+
+            </div>
+            <p className="font-serif text-xl text-charcoal">Projects Completed</p>
+            <p className="text-sm text-gray-600 mt-2">Across residential and commercial spaces</p>
+          </div>
+
+          <div ref={stat2Ref} className="text-center p-6" style={{ animation: 'fadeInUp 600ms ease-out forwards', animationDelay: '100ms' }}>
+            <div className="text-5xl md:text-6xl font-bold text-emerald mb-2" style={{ animation: 'countUp 2s ease-out forwards', animationDelay: '100ms' }}>
+              {experience}+
+            </div>
+            <p className="font-serif text-xl text-charcoal">Years of Excellence</p>
+            <p className="text-sm text-gray-600 mt-2">Crafting luxury interiors since 2016</p>
+          </div>
+
+          <div ref={stat3Ref} className="text-center p-6" style={{ animation: 'fadeInUp 600ms ease-out forwards', animationDelay: '200ms' }}>
+            <div className="text-5xl md:text-6xl font-bold text-emerald mb-2" style={{ animation: 'countUp 2s ease-out forwards', animationDelay: '200ms' }}>
+              {cities}+
+            </div>
+            <p className="font-serif text-xl text-charcoal">Cities Served</p>
+            <p className="text-sm text-gray-600 mt-2">Nationwide presence across India</p>
+          </div>
+
+          <div ref={stat4Ref} className="text-center p-6" style={{ animation: 'fadeInUp 600ms ease-out forwards', animationDelay: '300ms' }}>
+            <div className="text-5xl md:text-6xl font-bold text-emerald mb-2" style={{ animation: 'countUp 2s ease-out forwards', animationDelay: '300ms' }}>
+              {clients}+
+            </div>
+            <p className="font-serif text-xl text-charcoal">Happy Clients</p>
+            <p className="text-sm text-gray-600 mt-2">Satisfied customers worldwide</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }
 
 export default function Home({ onNavigate }: HomeProps) {
@@ -78,6 +133,8 @@ export default function Home({ onNavigate }: HomeProps) {
           </div>
         </div>
       </section>
+
+      <StatsSection />
 
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

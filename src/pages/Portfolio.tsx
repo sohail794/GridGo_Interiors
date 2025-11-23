@@ -3,6 +3,7 @@ import { X, MapPin, Calendar, Tag } from 'lucide-react';
 import { featuredProjects } from '../data/content';
 import { Project } from '../types';
 import GlassCard from '../components/GlassCard';
+import PortfolioCard from '../components/PortfolioCard';
 import Button3D from '../components/Button3D';
 import Button from '../components/ui/Button';
 import Container from '../components/ui/Container';
@@ -10,6 +11,7 @@ import Section from '../components/ui/Section';
 import SectionHeader from '../components/ui/SectionHeader';
 import Card from '../components/ui/Card';
 import { useScrollRevealWave } from '../hooks/useScrollReveal';
+import { useMouseParallax } from '../hooks/useMouseParallax';
 
 interface PortfolioProps {
   onNavigate: (page: string) => void;
@@ -88,43 +90,13 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" ref={portfolioGridRef}>
             {filteredProjects.map((project) => (
-              <GlassCard
+              <PortfolioCard
                 key={project.id}
-                padding="sm"
-                className="group cursor-pointer touch-manipulation hover:scale-[1.02] hover:shadow-lg transition-all duration-200 ease-out"
-                onClick={() => setSelectedProject(project)}
-              >
-                <div className="relative overflow-hidden rounded-lg mb-4">
-                  {imageLoading[project.id] !== false && (
-                    <div className="absolute inset-0 bg-white/5 animate-pulse rounded-lg flex items-center justify-center">
-                      <div className="w-12 h-12 border-4 border-brand-emerald/20 border-t-brand-emerald rounded-full animate-spin" />
-                    </div>
-                  )}
-                  <img
-                    src={project.image}
-                    alt={`${project.title} - ${project.category} interior design project`}
-                    className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500"
-                    loading="lazy"
-                    onLoad={() => handleImageLoad(project.id)}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                    <Button3D size="sm" variant="ghost">
-                      View Details
-                    </Button3D>
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <span className="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wide bg-brand-emerald/10 text-brand-emerald rounded-full">
-                    {project.category}
-                  </span>
-                  <h3 className="text-2xl font-bold text-white">{project.title}</h3>
-                  <p className="text-text-secondary flex items-center gap-2">
-                    <MapPin size={16} />
-                    {project.location}
-                  </p>
-                </div>
-              </GlassCard>
+                project={project}
+                isImageLoading={imageLoading[project.id] !== false}
+                onSelect={setSelectedProject}
+                onImageLoad={handleImageLoad}
+              />
             ))}
           </div>
         </Container>

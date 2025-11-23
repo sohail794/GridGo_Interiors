@@ -21,7 +21,6 @@ export interface CountUpInViewOptions extends CountUpOptions {
  */
 export const useCountUp = (
   targetNumber: number,
-  ref: RefObject<HTMLElement>,
   options: CountUpOptions = {}
 ): { displayValue: number | string; isAnimating: boolean } => {
   const [displayValue, setDisplayValue] = useState<number | string>(

@@ -231,11 +231,6 @@ export const useScrollRevealWave = (
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting && !hasAnimated) {
-            // Get grid properties for wave calculation
-            const containerRect = element.getBoundingClientRect();
-            const containerWidth = element.offsetWidth;
-            const containerHeight = element.offsetHeight;
-            
             // Estimate grid columns (use CSS grid or fallback)
             const computedStyle = window.getComputedStyle(element);
             const gridTemplateColumns = computedStyle.gridTemplateColumns;

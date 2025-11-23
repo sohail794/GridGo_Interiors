@@ -3,6 +3,7 @@ import { Quote } from 'lucide-react';
 import Card from './ui/Card';
 import { Testimonial } from '../types';
 import { useScrollRevealItem } from '../hooks/useScrollReveal';
+import { useGestureDetection } from '../hooks/useGestureDetection';
 
 interface TestimonialCarouselProps {
   testimonials: Testimonial[];
@@ -16,6 +17,19 @@ export default function TestimonialCarousel({ testimonials }: TestimonialCarouse
   // Use scroll reveal for testimonial card
   useScrollRevealItem(cardRef, 0, { threshold: 0.4, duration: 600, distance: 30 });
 
+  // Handle swipe gestures
+  useGestureDetection(cardRef, {
+    onSwipe: (direction) => {
+      if (direction === 'left') {
+        // Swipe left = next testimonial
+        setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+      } else if (direction === 'right') {
+        // Swipe right = previous testimonial
+        setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+      }
+    },
+  });
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % testimonials.length);
@@ -27,7 +41,7 @@ export default function TestimonialCarousel({ testimonials }: TestimonialCarouse
 
   return (
     <div className="max-w-4xl mx-auto">
-      <div ref={cardRef}>
+      <div ref={cardRef} className="gesture-interactive">
         <Card padding="lg" glass hover style={{ animation: 'fadeInUp 600ms ease-out forwards' }}>
           <Quote size={48} className="text-brand-emerald mb-6 hover:scale-110 transition-transform duration-300" style={{ animation: 'fadeIn 600ms ease-out 200ms forwards, glowPulse 3s ease-in-out 500ms infinite' }} aria-hidden="true" />
           <p className="text-xl md:text-2xl text-text-primary mb-8 italic leading-relaxed" style={{ animation: 'fadeInUp 600ms ease-out 300ms forwards' }}>

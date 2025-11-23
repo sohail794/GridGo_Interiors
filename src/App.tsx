@@ -5,6 +5,8 @@ import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
 import LeadModal from './components/LeadModal';
 import PageLoader from './components/PageLoader';
+import ScrollProgressBar from './components/ScrollProgressBar';
+import PageTransition from './components/PageTransition';
 import { updatePageMeta, pageMeta } from './utils/seo';
 
 // Lazy load pages for code splitting and performance
@@ -21,9 +23,17 @@ function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
   const [modalOpen, setModalOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [pageTransitionActive, setPageTransitionActive] = useState(false);
 
   const handleNavigate = (page: string) => {
-    setCurrentPage(page as Page);
+    // Trigger page transition on navigation
+    setPageTransitionActive(true);
+    
+    setTimeout(() => {
+      setCurrentPage(page as Page);
+      setPageTransitionActive(false);
+    }, 200);
+    
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -37,6 +47,9 @@ function App() {
 
   return (
     <div className="min-h-screen bg-[#0a0e27] overflow-x-hidden">
+      <ScrollProgressBar />
+      <PageTransition isVisible={pageTransitionActive} />
+
       {/* Skip to main content link for accessibility */}
       <a
         href="#main-content"
