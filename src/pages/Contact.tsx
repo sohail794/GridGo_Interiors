@@ -9,6 +9,9 @@ import Container from '../components/ui/Container';
 import Section from '../components/ui/Section';
 import SectionHeader from '../components/ui/SectionHeader';
 import Card from '../components/ui/Card';
+import FormLabel from '../components/ui/FormLabel';
+import FormInput from '../components/ui/FormInput';
+import FormTextarea from '../components/ui/FormTextarea';
 
 interface ContactProps {
   onNavigate: (page: string) => void;
@@ -170,16 +173,16 @@ export default function Contact({ onNavigate }: ContactProps) {
                 )}
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <label className="block text-sm font-medium mb-2 text-text-secondary">
-                      Name *
-                    </label>
-                    <input
+                    <FormLabel htmlFor="name" required>
+                      Name
+                    </FormLabel>
+                    <FormInput
+                      id="name"
                       type="text"
                       required
                       minLength={2}
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20 transition-all outline-none min-h-[44px]"
                       placeholder="Your name"
                       disabled={isSubmitting}
                     />
@@ -187,29 +190,29 @@ export default function Contact({ onNavigate }: ContactProps) {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium mb-2 text-text-secondary">
-                        Email *
-                      </label>
-                      <input
+                      <FormLabel htmlFor="email" required>
+                        Email
+                      </FormLabel>
+                      <FormInput
+                        id="email"
                         type="email"
                         required
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20 transition-all outline-none min-h-[44px]"
                         placeholder="your@email.com"
                         disabled={isSubmitting}
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium mb-2 text-text-secondary">
+                      <FormLabel htmlFor="phone">
                         Phone
-                      </label>
-                      <input
+                      </FormLabel>
+                      <FormInput
+                        id="phone"
                         type="tel"
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20 transition-all outline-none min-h-[44px]"
                         placeholder="Enter your phone number"
                         disabled={isSubmitting}
                       />
@@ -217,36 +220,35 @@ export default function Contact({ onNavigate }: ContactProps) {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium mb-2 text-text-secondary">
+                    <FormLabel htmlFor="subject">
                       Subject
-                    </label>
-                    <input
+                    </FormLabel>
+                    <FormInput
+                      id="subject"
                       type="text"
                       value={formData.subject}
                       onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20 transition-all outline-none min-h-[44px]"
                       placeholder="How can we help?"
                       disabled={isSubmitting}
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium mb-2 text-text-secondary">
-                      Message *
-                    </label>
-                    <textarea
-                      rows={6}
+                    <FormLabel htmlFor="message" required>
+                      Message
+                    </FormLabel>
+                    <FormTextarea
+                      id="message"
                       required
                       minLength={10}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20 transition-all outline-none resize-none"
                       placeholder="Tell us about your project..."
                       disabled={isSubmitting}
                     />
                   </div>
 
-                  <Button variant="primary" type="submit" className="w-full py-3" disabled={isSubmitting}>
+                  <Button variant="primary" size="lg" type="submit" className="w-full" loading={isSubmitting} disabled={isSubmitting}>
                     {isSubmitting ? 'Sending...' : 'Send Message'}
                   </Button>
                 </form>

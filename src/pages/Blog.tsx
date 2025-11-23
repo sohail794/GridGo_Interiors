@@ -7,6 +7,7 @@ import Container from '../components/ui/Container';
 import Section from '../components/ui/Section';
 import SectionHeader from '../components/ui/SectionHeader';
 import Card from '../components/ui/Card';
+import FormInput from '../components/ui/FormInput';
 
 interface BlogProps {
   onNavigate: (page: string) => void;
@@ -91,13 +92,13 @@ export default function Blog({ onNavigate }: BlogProps) {
                 Subscribe to our newsletter for the latest trends, tips, and project showcases
               </p>
               <form className="flex flex-col sm:flex-row gap-3 max-w-xl mx-auto">
-                <input
+                <FormInput
                   type="email"
                   placeholder="Enter your email"
-                  className="flex-1 px-4 sm:px-6 py-3 sm:py-4 rounded-lg bg-white/5 border border-white/10 text-white placeholder-text-tertiary focus:border-brand-emerald focus:bg-white/10 outline-none transition-all min-h-[44px]"
                   required
+                  className="flex-1"
                 />
-                <Button variant="primary" type="submit" className="w-full sm:w-auto">
+                <Button variant="primary" size="md" type="submit" className="w-full sm:w-auto">
                   Subscribe
                 </Button>
               </form>

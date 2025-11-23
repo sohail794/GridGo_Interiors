@@ -10,6 +10,10 @@ import Container from '../components/ui/Container';
 import Section from '../components/ui/Section';
 import SectionHeader from '../components/ui/SectionHeader';
 import Card from '../components/ui/Card';
+import FormLabel from '../components/ui/FormLabel';
+import FormInput from '../components/ui/FormInput';
+import FormSelect from '../components/ui/FormSelect';
+import FormTextarea from '../components/ui/FormTextarea';
 
 const iconMap = {
   Wrench,
@@ -238,30 +242,30 @@ export default function Services({ onNavigate }: ServicesProps) {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium mb-2 text-text-secondary">
-                    Name *
-                  </label>
-                  <input
+                  <FormLabel htmlFor="name" required>
+                    Name
+                  </FormLabel>
+                  <FormInput
+                    id="name"
                     type="text"
                     required
                     minLength={2}
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20 transition-all outline-none min-h-[44px]"
                     placeholder="Your name"
                     disabled={isSubmitting}
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2 text-text-secondary">
-                    Email *
-                  </label>
-                  <input
+                  <FormLabel htmlFor="email" required>
+                    Email
+                  </FormLabel>
+                  <FormInput
+                    id="email"
                     type="email"
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20 transition-all outline-none min-h-[44px]"
                     placeholder="your@email.com"
                     disabled={isSubmitting}
                   />
@@ -270,26 +274,26 @@ export default function Services({ onNavigate }: ServicesProps) {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium mb-2 text-text-secondary">
+                  <FormLabel htmlFor="phone">
                     Phone
-                  </label>
-                  <input
+                  </FormLabel>
+                  <FormInput
+                    id="phone"
                     type="tel"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20 transition-all outline-none min-h-[44px]"
                     placeholder="Enter your phone number"
                     disabled={isSubmitting}
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2 text-text-secondary">
+                  <FormLabel htmlFor="service">
                     Service of Interest
-                  </label>
-                  <select
+                  </FormLabel>
+                  <FormSelect
+                    id="service"
                     value={formData.service}
                     onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20 transition-all outline-none min-h-[44px]"
                     disabled={isSubmitting}
                   >
                     <option value="">Select a service</option>
@@ -298,25 +302,24 @@ export default function Services({ onNavigate }: ServicesProps) {
                         {service.title}
                       </option>
                     ))}
-                  </select>
+                  </FormSelect>
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-2 text-text-secondary">
+                <FormLabel htmlFor="message">
                   Project Details
-                </label>
-                <textarea
-                  rows={4}
+                </FormLabel>
+                <FormTextarea
+                  id="message"
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20 transition-all outline-none resize-none"
                   placeholder="Tell us about your project..."
                   disabled={isSubmitting}
                 />
               </div>
 
-              <Button variant="primary" type="submit" className="w-full py-3" disabled={isSubmitting}>
+              <Button variant="primary" size="lg" type="submit" className="w-full" loading={isSubmitting} disabled={isSubmitting}>
                 {isSubmitting ? 'Submitting...' : 'Submit Request'}
               </Button>
             </form>
