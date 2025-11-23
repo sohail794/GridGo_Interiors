@@ -101,15 +101,17 @@ export default function Services({ onNavigate }: ServicesProps) {
         />
         <div className="absolute inset-0 z-0 bg-gradient-to-b from-black/70 to-black/50" />
 
-        <div className="relative z-10 max-w-4xl mx-auto px-8 text-center">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-            Tailored Interior
-            <br />
-            <span className="gradient-text">Mastery</span>
-          </h1>
-          <p className="text-xl md:text-2xl text-[#b4b4b4]">
-            Comprehensive solutions for every vision
-          </p>
+        <div className="relative z-10 text-center">
+          <Container maxWidth="lg">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+              Tailored Interior
+              <br />
+              <span className="gradient-text">Mastery</span>
+            </h1>
+            <p className="text-xl md:text-2xl text-text-secondary">
+              Comprehensive solutions for every vision
+            </p>
+          </Container>
         </div>
       </section>
 

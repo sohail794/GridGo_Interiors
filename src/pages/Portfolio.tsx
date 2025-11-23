@@ -40,13 +40,15 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
         />
         <div className="absolute inset-0 z-0 bg-gradient-to-b from-black/70 to-black/50" />
 
-        <div className="relative z-10 max-w-4xl mx-auto px-8 text-center">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-            <span className="gradient-text">Timeless Creations</span>
-          </h1>
-          <p className="text-xl md:text-2xl text-text-secondary">
-            Design excellence in action
-          </p>
+        <div className="relative z-10 text-center">
+          <Container maxWidth="lg">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+              <span className="gradient-text">Timeless Creations</span>
+            </h1>
+            <p className="text-xl md:text-2xl text-text-secondary">
+              Design excellence in action
+            </p>
+          </Container>
         </div>
       </section>
 
@@ -136,8 +138,9 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
         <div className="fixed inset-0 z-[2000] flex items-center justify-center p-4 overflow-y-auto">
           <div className="absolute inset-0 bg-black/90 backdrop-blur-md" onClick={() => setSelectedProject(null)} />
 
-          <div className="relative z-10 w-full max-w-5xl my-8">
-            <GlassCard className="relative">
+          <div className="relative z-10 w-full my-8">
+            <Container maxWidth="lg">
+              <GlassCard className="relative">
               <button
                 onClick={() => setSelectedProject(null)}
                 className="absolute top-6 right-6 w-10 h-10 rounded-full border-2 border-white/10 hover:border-brand-coral text-white hover:text-brand-coral transition-all flex items-center justify-center z-10"
@@ -202,6 +205,7 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
                 </div>
               </div>
             </GlassCard>
+            </Container>
           </div>
         </div>
       )}

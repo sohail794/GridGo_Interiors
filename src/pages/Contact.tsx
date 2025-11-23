@@ -86,13 +86,15 @@ export default function Contact({ onNavigate }: ContactProps) {
         />
         <div className="absolute inset-0 z-0 bg-gradient-to-b from-black/70 to-black/50" />
 
-        <div className="relative z-10 max-w-4xl mx-auto px-8 text-center">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-            Let's <span className="gradient-text">Connect</span>
-          </h1>
-          <p className="text-xl md:text-2xl text-text-secondary">
-            Ready to transform your space? We're here to help
-          </p>
+        <div className="relative z-10 text-center">
+          <Container maxWidth="lg">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+              Let's <span className="gradient-text">Connect</span>
+            </h1>
+            <p className="text-xl md:text-2xl text-text-secondary">
+              Ready to transform your space? We're here to help
+            </p>
+          </Container>
         </div>
       </section>
 
