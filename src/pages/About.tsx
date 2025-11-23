@@ -69,20 +69,20 @@ export default function About({ onNavigate }: AboutProps) {
       {/* Stats Section */}
       <Section spacing="lg" background="none">
         <Container>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-20">
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
-                <div className="text-4xl md:text-5xl font-bold gradient-text mb-2">
+                <div className="text-3xl sm:text-4xl md:text-5xl font-bold gradient-text mb-2">
                   {stat.value}
                 </div>
-                <div className="text-sm text-text-tertiary uppercase tracking-wide font-medium">
+                <div className="text-xs sm:text-sm text-text-tertiary uppercase tracking-wide font-medium">
                   {stat.label}
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
             <div className="space-y-6">
               <h2 className="text-4xl md:text-5xl font-bold">
                 Our <span className="gradient-text">Story</span>

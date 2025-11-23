@@ -104,16 +104,16 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
 
       <Section spacing="md" background="secondary">
         <Container>
-          <div className="flex flex-wrap justify-around items-center gap-8">
+          <div className="flex flex-col sm:flex-row flex-wrap justify-around items-center gap-4 sm:gap-6 md:gap-8">
             {trustIndicators.map((item, index) => {
               const Icon = item.icon;
               return (
                 <div
                   key={index}
-                  className="flex items-center gap-3 hover:-translate-y-1 transition-all duration-300 cursor-default"
+                  className="flex items-center gap-2 sm:gap-3 hover:-translate-y-1 transition-all duration-300 cursor-default"
                 >
-                  <Icon size={32} className="text-brand-emerald drop-shadow-[0_0_10px_rgba(0,255,136,0.5)]" />
-                  <span className="text-lg font-semibold text-text-primary">{item.text}</span>
+                  <Icon size={28} className="text-brand-emerald drop-shadow-[0_0_10px_rgba(0,255,136,0.5)] flex-shrink-0" />
+                  <span className="text-sm sm:text-base md:text-lg font-semibold text-text-primary">{item.text}</span>
                 </div>
               );
             })}

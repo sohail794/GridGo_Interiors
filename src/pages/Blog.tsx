@@ -90,14 +90,14 @@ export default function Blog({ onNavigate }: BlogProps) {
               <p className="text-lg text-text-secondary mb-8">
                 Subscribe to our newsletter for the latest trends, tips, and project showcases
               </p>
-              <form className="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto">
+              <form className="flex flex-col sm:flex-row gap-3 max-w-xl mx-auto">
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="flex-1 px-6 py-4 rounded-lg bg-white/5 border border-white/10 text-white placeholder-text-tertiary focus:border-brand-emerald focus:bg-white/10 outline-none transition-all"
+                  className="flex-1 px-4 sm:px-6 py-3 sm:py-4 rounded-lg bg-white/5 border border-white/10 text-white placeholder-text-tertiary focus:border-brand-emerald focus:bg-white/10 outline-none transition-all min-h-[44px]"
                   required
                 />
-                <Button variant="primary" type="submit">
+                <Button variant="primary" type="submit" className="w-full sm:w-auto">
                   Subscribe
                 </Button>
               </form>
