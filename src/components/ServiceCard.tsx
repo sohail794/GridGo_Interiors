@@ -38,4 +38,4 @@ export default function ServiceCard({ service, onNavigate }: ServiceCardProps) {
       </button>
     </Card>
   );
-
+}
