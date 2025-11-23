@@ -2,12 +2,16 @@ import { TextareaHTMLAttributes } from 'react';
 
 interface FormTextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   error?: string;
+  errorId?: string;
 }
 
-export default function FormTextarea({ error, className = '', ...props }: FormTextareaProps) {
+export default function FormTextarea({ error, errorId, className = '', id, ...props }: FormTextareaProps) {
+  const errorMessageId = errorId || (id ? `${id}-error` : undefined);
+
   return (
     <div className="w-full">
       <textarea
+        id={id}
         {...props}
         className={`
           w-full px-4 py-3 min-h-[120px]
@@ -20,9 +24,14 @@ export default function FormTextarea({ error, className = '', ...props }: FormTe
           ${error ? 'border-[rgb(255,107,53)] focus:ring-[rgb(255,107,53)]/20' : ''}
           ${className}
         `}
+        aria-invalid={!!error}
+        aria-required={props.required}
+        aria-describedby={error ? errorMessageId : undefined}
       />
       {error && (
-        <p className="text-[rgb(255,107,53)] text-xs mt-1">{error}</p>
+        <p id={errorMessageId} className="text-[rgb(255,107,53)] text-xs mt-1" role="alert">
+          {error}
+        </p>
       )}
     </div>
   );

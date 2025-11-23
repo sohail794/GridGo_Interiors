@@ -2,12 +2,16 @@ import { InputHTMLAttributes } from 'react';
 
 interface FormInputProps extends InputHTMLAttributes<HTMLInputElement> {
   error?: string;
+  errorId?: string;
 }
 
-export default function FormInput({ error, className = '', ...props }: FormInputProps) {
+export default function FormInput({ error, errorId, className = '', id, ...props }: FormInputProps) {
+  const errorMessageId = errorId || (id ? `${id}-error` : undefined);
+
   return (
     <div className="w-full">
       <input
+        id={id}
         {...props}
         className={`
           w-full px-4 py-3 min-h-[44px]
@@ -20,9 +24,14 @@ export default function FormInput({ error, className = '', ...props }: FormInput
           ${error ? 'border-[rgb(255,107,53)] focus:ring-[rgb(255,107,53)]/20' : ''}
           ${className}
         `}
+        aria-invalid={!!error}
+        aria-required={props.required}
+        aria-describedby={error ? errorMessageId : undefined}
       />
       {error && (
-        <p className="text-[rgb(255,107,53)] text-xs mt-1">{error}</p>
+        <p id={errorMessageId} className="text-[rgb(255,107,53)] text-xs mt-1" role="alert">
+          {error}
+        </p>
       )}
     </div>
   );

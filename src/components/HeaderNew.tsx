@@ -51,6 +51,8 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal, mobile
         backdrop-blur-md 
         ${isScrolled ? 'bg-[#0a0e27]/95 shadow-lg shadow-[#00ff88]/10' : 'bg-[#0a0e27]/80'}
       `}
+      role="banner"
+      aria-label="Site navigation"
     >
       <div className="max-w-[1400px] mx-auto px-8">
         <div className="flex justify-between items-center h-20">
@@ -84,6 +86,9 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal, mobile
                         : 'text-text-secondary hover:text-white hover:text-glow'
                     }
                   `}
+                  aria-current={currentPage === item.page ? 'page' : undefined}
+                  aria-expanded={item.hasDropdown ? portfolioDropdown : undefined}
+                  aria-haspopup={item.hasDropdown ? 'true' : undefined}
                 >
                   {item.label}
                   {item.hasDropdown && <ChevronDown size={16} />}

@@ -226,7 +226,12 @@ export default function Services({ onNavigate }: ServicesProps) {
 
           <Card padding="lg" glass>
             {submitSuccess && (
-              <div className="mb-6 p-4 bg-brand-emerald/10 border border-brand-emerald/30 rounded-lg flex items-center gap-3">
+              <div
+                className="mb-6 p-4 bg-brand-emerald/10 border border-brand-emerald/30 rounded-lg flex items-center gap-3"
+                role="status"
+                aria-live="polite"
+                aria-atomic="true"
+              >
                 <CheckCircle className="text-brand-emerald" size={24} />
                 <div>
                   <p className="text-white font-semibold">Request submitted successfully!</p>
@@ -235,7 +240,12 @@ export default function Services({ onNavigate }: ServicesProps) {
               </div>
             )}
             {submitError && (
-              <div className="mb-6 p-4 bg-red-500/10 border border-red-500/30 rounded-lg">
+              <div
+                className="mb-6 p-4 bg-red-500/10 border border-red-500/30 rounded-lg"
+                role="alert"
+                aria-live="assertive"
+                aria-atomic="true"
+              >
                 <p className="text-red-400">{submitError}</p>
               </div>
             )}

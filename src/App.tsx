@@ -34,6 +34,14 @@ function App() {
 
   return (
     <div className="min-h-screen bg-[#0a0e27] overflow-x-hidden">
+      {/* Skip to main content link for accessibility */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-0 focus:left-0 focus:z-[10000] focus:px-4 focus:py-2 focus:bg-[rgb(0,255,136)] focus:text-[#0a0e27] focus:font-semibold"
+      >
+        Skip to main content
+      </a>
+
       <HeaderNew
         currentPage={currentPage}
         onNavigate={handleNavigate}
@@ -50,7 +58,7 @@ function App() {
         onOpenModal={() => setModalOpen(true)}
       />
 
-      <main className="pt-20">
+      <main id="main-content" className="pt-20" role="main">
         {currentPage === 'home' && (
           <HomeNew onNavigate={handleNavigate} onOpenModal={() => setModalOpen(true)} />
         )}

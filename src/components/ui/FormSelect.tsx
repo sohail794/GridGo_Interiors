@@ -2,13 +2,17 @@ import { SelectHTMLAttributes } from 'react';
 
 interface FormSelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   error?: string;
+  errorId?: string;
   options?: { value: string; label: string }[];
 }
 
-export default function FormSelect({ error, options, className = '', children, ...props }: FormSelectProps) {
+export default function FormSelect({ error, errorId, options, className = '', children, id, ...props }: FormSelectProps) {
+  const errorMessageId = errorId || (id ? `${id}-error` : undefined);
+
   return (
     <div className="w-full">
       <select
+        id={id}
         {...props}
         className={`
           w-full px-4 py-3 min-h-[44px]
@@ -21,11 +25,16 @@ export default function FormSelect({ error, options, className = '', children, .
           ${error ? 'border-[rgb(255,107,53)] focus:ring-[rgb(255,107,53)]/20' : ''}
           ${className}
         `}
+        aria-invalid={!!error}
+        aria-required={props.required}
+        aria-describedby={error ? errorMessageId : undefined}
       >
         {children}
       </select>
       {error && (
-        <p className="text-[rgb(255,107,53)] text-xs mt-1">{error}</p>
+        <p id={errorMessageId} className="text-[rgb(255,107,53)] text-xs mt-1" role="alert">
+          {error}
+        </p>
       )}
     </div>
   );
