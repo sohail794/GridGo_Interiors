@@ -197,7 +197,8 @@ body {
     overflow-x: hidden;
   }
   
-  * {
-    max-width: 100vw;
+  /* Prevent specific containers from overflowing */
+  section, div, main {
+    max-width: 100%;
   }
 }
