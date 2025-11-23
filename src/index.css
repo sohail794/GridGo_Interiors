@@ -481,3 +481,272 @@ body {
 .animate-duration-1000 {
   animation-duration: 1000ms;
 }
+
+/* ============================================
+   PHASE 3: SCROLL REVEAL ANIMATIONS
+   ============================================ */
+
+@keyframes revealUp {
+  from {
+    opacity: 0;
+    transform: translateY(var(--reveal-distance, 30px));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes revealDown {
+  from {
+    opacity: 0;
+    transform: translateY(calc(-1 * var(--reveal-distance, 30px)));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes revealLeft {
+  from {
+    opacity: 0;
+    transform: translateX(var(--reveal-distance, 30px));
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes revealRight {
+  from {
+    opacity: 0;
+    transform: translateX(calc(-1 * var(--reveal-distance, 30px)));
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes revealScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(var(--reveal-distance, 30px));
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes countUp {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes successCheck {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) rotate(-45deg);
+  }
+  70% {
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes errorShake {
+  0%, 100% {
+    transform: translateX(0) scale(1);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-5px) scale(1.02);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(5px) scale(1.02);
+  }
+}
+
+@keyframes breathePulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes shimmerLoad {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes progressFill {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* ============================================
+   SCROLL REVEAL UTILITY CLASSES
+   ============================================ */
+
+.scroll-reveal-up {
+  animation: revealUp 600ms ease-out forwards;
+}
+
+.scroll-reveal-down {
+  animation: revealDown 600ms ease-out forwards;
+}
+
+.scroll-reveal-left {
+  animation: revealLeft 600ms ease-out forwards;
+}
+
+.scroll-reveal-right {
+  animation: revealRight 600ms ease-out forwards;
+}
+
+.scroll-reveal-scale {
+  animation: revealScale 600ms ease-out forwards;
+}
+
+/* ============================================
+   LOADING STATE ANIMATIONS
+   ============================================ */
+
+.loading-pulse {
+  animation: breathePulse 2s ease-in-out infinite;
+}
+
+.loading-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 1000px 100%;
+  animation: shimmerLoad 2s infinite;
+}
+
+.loading-skeleton {
+  background-color: rgba(255, 255, 255, 0.1);
+  animation: breathePulse 2s ease-in-out infinite;
+}
+
+/* ============================================
+   STATE FEEDBACK ANIMATIONS
+   ============================================ */
+
+.state-entering {
+  animation: fadeInUp 300ms ease-out forwards;
+}
+
+.state-exiting {
+  animation: fadeOut 300ms ease-out forwards;
+}
+
+.state-loading {
+  animation: breathePulse 1.5s ease-in-out infinite;
+}
+
+.state-success {
+  animation: successCheck 600ms ease-out forwards;
+}
+
+.state-error {
+  animation: errorShake 600ms ease-out;
+}
+
+/* ============================================
+   LAZY LOADING ANIMATIONS
+   ============================================ */
+
+img[loading='lazy'],
+.lazy-image {
+  animation: fadeIn 400ms ease-out forwards;
+  animation-play-state: paused;
+}
+
+img[loading='lazy'].loaded,
+.lazy-image.loaded {
+  animation-play-state: running;
+}
+
+/* ============================================
+   PROGRESS INDICATORS
+   ============================================ */
+
+.progress-bar-fill {
+  animation: progressFill 1000ms ease-out forwards;
+}
+
+.progress-indicator {
+  animation: fadeInUp 400ms ease-out forwards;
+}
+
+/* ============================================
+   GESTURE & INTERACTION FEEDBACK
+   ============================================ */
+
+.tap-feedback {
+  transition: all 150ms ease-out;
+}
+
+.tap-feedback:active {
+  transform: scale(0.95);
+  opacity: 0.8;
+}
+
+.swipe-indicator {
+  opacity: 0;
+  animation: fadeInUp 300ms ease-out forwards;
+}
+
+.long-press-feedback {
+  animation: breathePulse 1s ease-in-out;
+}

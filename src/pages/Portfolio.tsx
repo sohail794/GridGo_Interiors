@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { X, MapPin, Calendar, Tag } from 'lucide-react';
 import { featuredProjects } from '../data/content';
 import { Project } from '../types';
@@ -9,6 +9,7 @@ import Container from '../components/ui/Container';
 import Section from '../components/ui/Section';
 import SectionHeader from '../components/ui/SectionHeader';
 import Card from '../components/ui/Card';
+import { useScrollRevealWave } from '../hooks/useScrollReveal';
 
 interface PortfolioProps {
   onNavigate: (page: string) => void;
@@ -18,6 +19,17 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
   const [filter, setFilter] = useState<'all' | 'residential' | 'commercial' | 'retail'>('all');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [imageLoading, setImageLoading] = useState<Record<string, boolean>>({});
+  
+  // Scroll reveal refs
+  const portfolioGridRef = useRef<HTMLDivElement>(null);
+  
+  // Use wave stagger for portfolio grid
+  useScrollRevealWave(portfolioGridRef, {
+    threshold: 0.2,
+    staggerDelay: 60,
+    duration: 600,
+    distance: 30,
+  });
 
   const filteredProjects = filter === 'all'
     ? featuredProjects
@@ -74,7 +86,7 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
             ))}
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" ref={portfolioGridRef}>
             {filteredProjects.map((project) => (
               <GlassCard
                 key={project.id}

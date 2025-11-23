@@ -83,15 +83,15 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
     return (
       <div className="fixed inset-0 z-[2000] flex items-center justify-center p-4">
         <div className="absolute inset-0 bg-black/85 backdrop-blur-md" onClick={onClose} />
-        <GlassCard className="relative z-10 max-w-lg w-full text-center space-y-6 animate-fade-in">
-          <div className="w-20 h-20 mx-auto rounded-full bg-[#00ff88]/10 flex items-center justify-center animate-pulse-glow">
-            <CheckCircle size={48} className="text-[#00ff88]" />
+        <GlassCard className="relative z-10 max-w-lg w-full text-center space-y-6" style={{ animation: 'revealScale 500ms ease-out forwards' }}>
+          <div className="w-20 h-20 mx-auto rounded-full bg-[#00ff88]/10 flex items-center justify-center" style={{ animation: 'pulse-glow 2s ease-in-out infinite' }}>
+            <CheckCircle size={48} className="text-[#00ff88]" style={{ animation: 'popIn 600ms ease-out forwards', animationDelay: '200ms' }} />
           </div>
-          <h2 className="text-3xl font-bold gradient-text">Request Submitted Successfully!</h2>
-          <p className="text-[#b4b4b4]">
+          <h2 className="text-3xl font-bold gradient-text" style={{ animation: 'fadeInUp 600ms ease-out forwards', animationDelay: '300ms' }}>Request Submitted Successfully!</h2>
+          <p className="text-[#b4b4b4]" style={{ animation: 'fadeInUp 600ms ease-out forwards', animationDelay: '400ms' }}>
             We'll contact you within 24 hours. A confirmation email has been sent to {formData.email}
           </p>
-          <Button variant="primary" className="w-full" onClick={onClose}>
+          <Button variant="primary" className="w-full" onClick={onClose} style={{ animation: 'fadeInUp 600ms ease-out forwards', animationDelay: '500ms' }}>
             Close
           </Button>
         </GlassCard>
@@ -104,15 +104,15 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
       <div className="absolute inset-0 bg-black/85 backdrop-blur-md" onClick={onClose} />
 
       <div className="relative z-10 w-full max-w-2xl my-8">
-        <GlassCard className="relative">
+        <GlassCard className="relative animate-fade-in" style={{ animation: 'revealScale 500ms ease-out forwards' }}>
           <button
             onClick={onClose}
-            className="absolute top-6 right-6 w-10 h-10 rounded-full border-2 border-white/10 hover:border-[#ff6b35] text-white hover:text-[#ff6b35] transition-all flex items-center justify-center"
+            className="absolute top-6 right-6 w-10 h-10 rounded-full border-2 border-white/10 hover:border-[#ff6b35] text-white hover:text-[#ff6b35] hover:scale-110 hover:shadow-lg active:scale-95 transition-all flex items-center justify-center duration-200"
           >
             <X size={20} />
           </button>
 
-          <div className="mb-8">
+          <div className="mb-8" style={{ animation: 'fadeInUp 600ms ease-out forwards', animationDelay: '100ms' }}>
             <h2 className="text-3xl font-bold gradient-text mb-2">Start Your Project</h2>
             <p className="text-[#b4b4b4]">Tell us about your vision and we'll bring it to life</p>
           </div>
@@ -142,8 +142,8 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
           </div>
 
           {step === 1 && (
-            <div className="space-y-4 animate-fade-in">
-              <div>
+            <div className="space-y-4" style={{ animation: 'fadeInUp 400ms ease-out forwards' }}>
+              <div style={{ animation: 'fadeInUp 400ms ease-out forwards', animationDelay: '50ms' }}>
                 <label className="block text-sm font-medium mb-2 text-[#b4b4b4]">Full Name *</label>
                 <input
                   type="text"
@@ -156,7 +156,7 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
               </div>
 
               <div className="grid grid-cols-2 gap-4">
-                <div>
+                <div style={{ animation: 'fadeInUp 400ms ease-out forwards', animationDelay: '100ms' }}>
                   <label className="block text-sm font-medium mb-2 text-[#b4b4b4]">Phone *</label>
                   <input
                     type="tel"
@@ -168,7 +168,7 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
                   />
                 </div>
 
-                <div>
+                <div style={{ animation: 'fadeInUp 400ms ease-out forwards', animationDelay: '150ms' }}>
                   <label className="block text-sm font-medium mb-2 text-[#b4b4b4]">Email *</label>
                   <input
                     type="email"
@@ -181,7 +181,7 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
                 </div>
               </div>
 
-              <div>
+              <div style={{ animation: 'fadeInUp 400ms ease-out forwards', animationDelay: '200ms' }}>
                 <label className="block text-sm font-medium mb-2 text-[#b4b4b4]">City *</label>
                 <input
                   type="text"
@@ -198,6 +198,7 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
                 className="w-full mt-6 py-3"
                 onClick={() => setStep(2)}
                 disabled={!formData.name || !formData.phone || !formData.email || !formData.city}
+                style={{ animation: 'fadeInUp 400ms ease-out forwards', animationDelay: '250ms' }}
               >
                 Next: Project Details →
               </Button>
@@ -205,24 +206,25 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
           )}
 
           {step === 2 && (
-            <div className="space-y-6 animate-fade-in">
-              <div>
+            <div className="space-y-6" style={{ animation: 'fadeInUp 400ms ease-out forwards' }}>
+              <div style={{ animation: 'fadeInUp 400ms ease-out forwards', animationDelay: '50ms' }}>
                 <label className="block text-sm font-medium mb-4 text-[#b4b4b4]">
                   Project Type * (Select all that apply)
                 </label>
                 <div className="grid grid-cols-2 gap-3">
-                  {projectTypes.map((type) => (
+                  {projectTypes.map((type, idx) => (
                     <button
                       key={type.id}
                       onClick={() => toggleProjectType(type.id)}
                       className={`
-                        p-4 rounded-xl border-2 transition-all
+                        p-4 rounded-xl border-2 transition-all hover:scale-105 active:scale-95
                         ${
                           formData.projectTypes.includes(type.id)
                             ? 'border-[#00ff88] bg-[#00ff88]/5'
                             : 'border-white/10 hover:border-white/20'
                         }
                       `}
+                      style={{ animation: 'fadeInUp 400ms ease-out forwards', animationDelay: `${50 + idx * 50}ms` }}
                     >
                       <div className="text-3xl mb-2">{type.icon}</div>
                       <div className="text-sm font-medium text-white">{type.label}</div>
@@ -231,7 +233,7 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-4" style={{ animation: 'fadeInUp 400ms ease-out forwards', animationDelay: '200ms' }}>
                 <div>
                   <label className="block text-sm font-medium mb-2 text-[#b4b4b4]">Scope *</label>
                   <select
@@ -264,7 +266,7 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
                 </div>
               </div>
 
-              <div>
+              <div style={{ animation: 'fadeInUp 400ms ease-out forwards', animationDelay: '250ms' }}>
                 <label className="block text-sm font-medium mb-2 text-[#b4b4b4]">
                   Project Details
                 </label>
@@ -281,13 +283,13 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
                 </div>
               </div>
 
-              <div>
+              <div style={{ animation: 'fadeInUp 400ms ease-out forwards', animationDelay: '300ms' }}>
                 <label className="block text-sm font-medium mb-2 text-[#b4b4b4]">
                   Upload Images (Optional, max 3)
                 </label>
                 <div className="space-y-2">
                   {formData.images.length < 3 && (
-                    <label className="flex items-center justify-center gap-2 p-4 border-2 border-dashed border-white/10 rounded-lg cursor-pointer hover:border-[#00ff88] transition-all">
+                    <label className="flex items-center justify-center gap-2 p-4 border-2 border-dashed border-white/10 rounded-lg cursor-pointer hover:border-[#00ff88] hover:bg-[#00ff88]/5 transition-all">
                       <Upload size={20} className="text-[#00ff88]" />
                       <span className="text-sm text-[#b4b4b4]">Choose files</span>
                       <input
@@ -302,12 +304,12 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
                   {formData.images.map((file, index) => (
                     <div
                       key={index}
-                      className="flex items-center justify-between p-3 bg-white/5 rounded-lg"
+                      className="flex items-center justify-between p-3 bg-white/5 rounded-lg hover:bg-white/10 transition-all"
                     >
                       <span className="text-sm text-white truncate">{file.name}</span>
                       <button
                         onClick={() => removeImage(index)}
-                        className="text-[#ff6b35] hover:text-[#ff6b35]/70"
+                        className="text-[#ff6b35] hover:text-[#ff6b35]/70 hover:scale-110 active:scale-95 transition-all"
                       >
                         <Trash2 size={18} />
                       </button>
@@ -316,7 +318,7 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
                 </div>
               </div>
 
-              <div className="flex gap-4">
+              <div className="flex gap-4" style={{ animation: 'fadeInUp 400ms ease-out forwards', animationDelay: '350ms' }}>
                 <Button3D variant="ghost" className="flex-1" onClick={() => setStep(1)}>
                   ← Back
                 </Button3D>
@@ -333,11 +335,11 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
           )}
 
           {step === 3 && (
-            <div className="space-y-6 animate-fade-in">
-              <h3 className="text-xl font-bold text-white mb-4">Review Your Information</h3>
+            <div className="space-y-6" style={{ animation: 'fadeInUp 400ms ease-out forwards' }}>
+              <h3 className="text-xl font-bold text-white mb-4" style={{ animation: 'fadeInUp 400ms ease-out forwards', animationDelay: '50ms' }}>Review Your Information</h3>
 
               <div className="space-y-4">
-                <div className="p-4 bg-white/5 rounded-lg">
+                <div className="p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-all" style={{ animation: 'fadeInUp 400ms ease-out forwards', animationDelay: '100ms' }}>
                   <div className="text-sm text-[#6b7280] mb-1">Contact</div>
                   <div className="text-white">{formData.name}</div>
                   <div className="text-[#b4b4b4] text-sm">
@@ -346,7 +348,7 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
                   <div className="text-[#b4b4b4] text-sm">{formData.city}</div>
                 </div>
 
-                <div className="p-4 bg-white/5 rounded-lg">
+                <div className="p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-all" style={{ animation: 'fadeInUp 400ms ease-out forwards', animationDelay: '150ms' }}>
                   <div className="text-sm text-[#6b7280] mb-1">Project</div>
                   <div className="text-white mb-1">
                     {formData.projectTypes.map((t) => t.charAt(0).toUpperCase() + t.slice(1)).join(', ')}
@@ -360,7 +362,7 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
                 </div>
               </div>
 
-              <label className="flex items-start gap-3">
+              <label className="flex items-start gap-3" style={{ animation: 'fadeInUp 400ms ease-out forwards', animationDelay: '200ms' }}>
                 <input type="checkbox" className="mt-1" required />
                 <span className="text-sm text-[#b4b4b4]">
                   I agree to the privacy policy and terms of service
@@ -368,12 +370,12 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
               </label>
 
               {submitError && (
-                <div className="p-3 bg-red-500/10 border border-red-500/30 rounded-lg">
+                <div className="p-3 bg-red-500/10 border border-red-500/30 rounded-lg" style={{ animation: 'fadeInUp 400ms ease-out forwards', animationDelay: '250ms' }}>
                   <p className="text-red-400 text-sm">{submitError}</p>
                 </div>
               )}
 
-              <div className="flex gap-4">
+              <div className="flex gap-4" style={{ animation: 'fadeInUp 400ms ease-out forwards', animationDelay: '300ms' }}>
                 <Button3D variant="ghost" className="flex-1" onClick={() => setStep(2)} disabled={isSubmitting}>
                   ← Back
                 </Button3D>

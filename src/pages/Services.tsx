@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { ChevronDown, ChevronUp, CheckCircle } from 'lucide-react';
 import { submitContactForm } from '../lib/supabase';
 import { Wrench, Square, Gem, Armchair, Palette, Paintbrush } from 'lucide-react';
@@ -14,6 +14,7 @@ import FormLabel from '../components/ui/FormLabel';
 import FormInput from '../components/ui/FormInput';
 import FormSelect from '../components/ui/FormSelect';
 import FormTextarea from '../components/ui/FormTextarea';
+import { useScrollRevealStagger, useScrollRevealItem } from '../hooks/useScrollReveal';
 
 const iconMap = {
   Wrench,
@@ -40,6 +41,33 @@ export default function Services({ onNavigate }: ServicesProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState('');
+  
+  // Scroll reveal refs
+  const servicesGridRef = useRef<HTMLDivElement>(null);
+  const processGridRef = useRef<HTMLDivElement>(null);
+  const formSectionRef = useRef<HTMLDivElement>(null);
+  
+  // Use scroll reveal hooks
+  useScrollRevealStagger(servicesGridRef, {
+    threshold: 0.2,
+    staggerDelay: 75,
+    duration: 600,
+    distance: 30,
+  });
+  
+  useScrollRevealStagger(processGridRef, {
+    threshold: 0.2,
+    staggerDelay: 100,
+    duration: 600,
+    distance: 30,
+  });
+  
+  useScrollRevealItem(formSectionRef, 0, {
+    threshold: 0.2,
+    duration: 600,
+    distance: 30,
+    delay: 100,
+  });
 
   const toggleService = (id: string) => {
     setExpandedService(expandedService === id ? null : id);
@@ -129,7 +157,7 @@ export default function Services({ onNavigate }: ServicesProps) {
             />
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-4" ref={servicesGridRef}>
             {services.map((service) => {
               const Icon = iconMap[service.icon as keyof typeof iconMap] || Wrench;
               const isExpanded = expandedService === service.id;
@@ -200,7 +228,7 @@ export default function Services({ onNavigate }: ServicesProps) {
             />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8" ref={processGridRef}>
             {processSteps.map((step, index) => (
               <div key={index} className="text-center">
                 <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-brand-emerald to-brand-emerald/60 rounded-full flex items-center justify-center shadow-3d">
@@ -215,7 +243,8 @@ export default function Services({ onNavigate }: ServicesProps) {
       </Section>
 
       <Section spacing="lg" background="none">
-        <Container maxWidth="md">
+        <div ref={formSectionRef}>
+          <Container maxWidth="md">
           <div className="text-center mb-12">
             <SectionHeader 
               title="Request a Service Quote"
@@ -335,6 +364,7 @@ export default function Services({ onNavigate }: ServicesProps) {
             </form>
           </Card>
         </Container>
+        </div>
       </Section>
     </div>
   );

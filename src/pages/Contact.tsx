@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Mail, Phone, MapPin, Clock, CheckCircle } from 'lucide-react';
 import GlassCard from '../components/GlassCard';
 import Button3D from '../components/Button3D';
@@ -12,6 +12,7 @@ import Card from '../components/ui/Card';
 import FormLabel from '../components/ui/FormLabel';
 import FormInput from '../components/ui/FormInput';
 import FormTextarea from '../components/ui/FormTextarea';
+import { useScrollRevealItem } from '../hooks/useScrollReveal';
 
 interface ContactProps {
   onNavigate: (page: string) => void;
@@ -28,6 +29,22 @@ export default function Contact({ onNavigate }: ContactProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState('');
+  
+  // Scroll reveal refs for form fields
+  const formNameRef = useRef<HTMLDivElement>(null);
+  const formEmailRef = useRef<HTMLDivElement>(null);
+  const formPhoneRef = useRef<HTMLDivElement>(null);
+  const formSubjectRef = useRef<HTMLDivElement>(null);
+  const formMessageRef = useRef<HTMLDivElement>(null);
+  const formSubmitRef = useRef<HTMLDivElement>(null);
+  
+  // Use reveal item with stagger for each form field
+  useScrollRevealItem(formNameRef, 0, { threshold: 0.3, staggerDelay: 100, duration: 500 });
+  useScrollRevealItem(formEmailRef, 1, { threshold: 0.3, staggerDelay: 100, duration: 500 });
+  useScrollRevealItem(formPhoneRef, 2, { threshold: 0.3, staggerDelay: 100, duration: 500 });
+  useScrollRevealItem(formSubjectRef, 3, { threshold: 0.3, staggerDelay: 100, duration: 500 });
+  useScrollRevealItem(formMessageRef, 4, { threshold: 0.3, staggerDelay: 100, duration: 500 });
+  useScrollRevealItem(formSubmitRef, 5, { threshold: 0.3, staggerDelay: 100, duration: 500 });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -182,7 +199,7 @@ export default function Contact({ onNavigate }: ContactProps) {
                   </div>
                 )}
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
+                  <div ref={formNameRef}>
                     <FormLabel htmlFor="name" required>
                       Name
                     </FormLabel>
@@ -198,7 +215,7 @@ export default function Contact({ onNavigate }: ContactProps) {
                     />
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div ref={formEmailRef} className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <FormLabel htmlFor="email" required>
                         Email
@@ -214,7 +231,7 @@ export default function Contact({ onNavigate }: ContactProps) {
                       />
                     </div>
 
-                    <div>
+                    <div ref={formPhoneRef}>
                       <FormLabel htmlFor="phone">
                         Phone
                       </FormLabel>
@@ -229,7 +246,7 @@ export default function Contact({ onNavigate }: ContactProps) {
                     </div>
                   </div>
 
-                  <div>
+                  <div ref={formSubjectRef}>
                     <FormLabel htmlFor="subject">
                       Subject
                     </FormLabel>
@@ -243,7 +260,7 @@ export default function Contact({ onNavigate }: ContactProps) {
                     />
                   </div>
 
-                  <div>
+                  <div ref={formMessageRef}>
                     <FormLabel htmlFor="message" required>
                       Message
                     </FormLabel>
@@ -258,9 +275,11 @@ export default function Contact({ onNavigate }: ContactProps) {
                     />
                   </div>
 
-                  <Button variant="primary" size="lg" type="submit" className="w-full" loading={isSubmitting} disabled={isSubmitting}>
-                    {isSubmitting ? 'Sending...' : 'Send Message'}
-                  </Button>
+                  <div ref={formSubmitRef}>
+                    <Button variant="primary" size="lg" type="submit" className="w-full" loading={isSubmitting} disabled={isSubmitting}>
+                      {isSubmitting ? 'Sending...' : 'Send Message'}
+                    </Button>
+                  </div>
                 </form>
               </Card>
             </div>
