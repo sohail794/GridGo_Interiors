@@ -149,7 +149,7 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
                   type="text"
                   value={formData.name}
                   onChange={(e) => handleInputChange('name', e.target.value)}
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-[#00ff88] focus:ring-2 focus:ring-[#00ff88]/20 transition-all outline-none"
+                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus-visible:border-[#00ff88] focus-visible:ring-2 focus-visible:ring-[#00ff88]/20 transition-all outline-none"
                   placeholder="Enter your name"
                   required
                 />
@@ -162,7 +162,7 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
                     type="tel"
                     value={formData.phone}
                     onChange={(e) => handleInputChange('phone', e.target.value)}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-[#00ff88] focus:ring-2 focus:ring-[#00ff88]/20 transition-all outline-none"
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus-visible:border-[#00ff88] focus-visible:ring-2 focus-visible:ring-[#00ff88]/20 transition-all outline-none"
                     placeholder="Enter your phone number"
                     required
                   />
@@ -174,7 +174,7 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
                     type="email"
                     value={formData.email}
                     onChange={(e) => handleInputChange('email', e.target.value)}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-[#00ff88] focus:ring-2 focus:ring-[#00ff88]/20 transition-all outline-none"
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus-visible:border-[#00ff88] focus-visible:ring-2 focus-visible:ring-[#00ff88]/20 transition-all outline-none"
                     placeholder="your@email.com"
                     required
                   />
@@ -187,7 +187,7 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
                   type="text"
                   value={formData.city}
                   onChange={(e) => handleInputChange('city', e.target.value)}
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-[#00ff88] focus:ring-2 focus:ring-[#00ff88]/20 transition-all outline-none"
+                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus-visible:border-[#00ff88] focus-visible:ring-2 focus-visible:ring-[#00ff88]/20 transition-all outline-none"
                   placeholder="Your city"
                   required
                 />
@@ -239,7 +239,7 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
                   <select
                     value={formData.scope}
                     onChange={(e) => handleInputChange('scope', e.target.value)}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-[#00ff88] focus:ring-2 focus:ring-[#00ff88]/20 transition-all outline-none"
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus-visible:border-[#00ff88] focus-visible:ring-2 focus-visible:ring-[#00ff88]/20 transition-all outline-none"
                   >
                     <option value="">Select scope</option>
                     <option value="design">Design Only</option>
@@ -254,7 +254,7 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
                   <select
                     value={formData.timeline}
                     onChange={(e) => handleInputChange('timeline', e.target.value)}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-[#00ff88] focus:ring-2 focus:ring-[#00ff88]/20 transition-all outline-none"
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus-visible:border-[#00ff88] focus-visible:ring-2 focus-visible:ring-[#00ff88]/20 transition-all outline-none"
                   >
                     <option value="">Select timeline</option>
                     <option value="immediate">Immediately</option>
@@ -275,7 +275,7 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
                   onChange={(e) => handleInputChange('details', e.target.value)}
                   rows={4}
                   maxLength={500}
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-[#00ff88] focus:ring-2 focus:ring-[#00ff88]/20 transition-all outline-none resize-none"
+                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus-visible:border-[#00ff88] focus-visible:ring-2 focus-visible:ring-[#00ff88]/20 transition-all outline-none resize-none"
                   placeholder="Tell us more about your project..."
                 />
                 <div className="text-right text-xs text-[#6b7280] mt-1">
