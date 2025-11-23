@@ -5,6 +5,10 @@ import { Project } from '../types';
 import GlassCard from '../components/GlassCard';
 import Button3D from '../components/Button3D';
 import Button from '../components/ui/Button';
+import Container from '../components/ui/Container';
+import Section from '../components/ui/Section';
+import SectionHeader from '../components/ui/SectionHeader';
+import Card from '../components/ui/Card';
 
 interface PortfolioProps {
   onNavigate: (page: string) => void;
@@ -40,14 +44,14 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
             <span className="gradient-text">Timeless Creations</span>
           </h1>
-          <p className="text-xl md:text-2xl text-[#b4b4b4]">
+          <p className="text-xl md:text-2xl text-text-secondary">
             Design excellence in action
           </p>
         </div>
       </section>
 
-      <section className="py-24 bg-[#0a0e27]">
-        <div className="max-w-7xl mx-auto px-8">
+      <Section spacing="lg" background="none">
+        <Container>
           <div className="flex flex-wrap justify-center gap-4 mb-16">
             {['all', 'residential', 'commercial', 'retail'].map((category) => (
               <button
@@ -58,8 +62,8 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
                   transition-all duration-300
                   ${
                     filter === category
-                      ? 'bg-gradient-to-br from-[#00ff88] to-[#00b894] text-[#0a0e27] shadow-3d hover:scale-[1.02]'
-                      : 'bg-white/5 text-[#b4b4b4] hover:bg-white/10 hover:text-white hover:scale-[1.02] border border-white/10 transition-all duration-200'
+                      ? 'bg-gradient-to-br from-brand-emerald to-brand-emerald/60 text-background-primary shadow-3d hover:scale-[1.02]'
+                      : 'bg-white/5 text-text-secondary hover:bg-white/10 hover:text-white hover:scale-[1.02] border border-white/10 transition-all duration-200'
                   }
                 `}
               >
@@ -79,7 +83,7 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
                 <div className="relative overflow-hidden rounded-lg mb-4">
                   {imageLoading[project.id] !== false && (
                     <div className="absolute inset-0 bg-white/5 animate-pulse rounded-lg flex items-center justify-center">
-                      <div className="w-12 h-12 border-4 border-[#00ff88]/20 border-t-[#00ff88] rounded-full animate-spin" />
+                      <div className="w-12 h-12 border-4 border-brand-emerald/20 border-t-brand-emerald rounded-full animate-spin" />
                     </div>
                   )}
                   <img
@@ -97,11 +101,11 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
                 </div>
 
                 <div className="space-y-2">
-                  <span className="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wide bg-[#00ff88]/10 text-[#00ff88] rounded-full">
+                  <span className="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wide bg-brand-emerald/10 text-brand-emerald rounded-full">
                     {project.category}
                   </span>
                   <h3 className="text-2xl font-bold text-white">{project.title}</h3>
-                  <p className="text-[#b4b4b4] flex items-center gap-2">
+                  <p className="text-text-secondary flex items-center gap-2">
                     <MapPin size={16} />
                     {project.location}
                   </p>
@@ -109,22 +113,24 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
               </GlassCard>
             ))}
           </div>
-        </div>
-      </section>
+        </Container>
+      </Section>
 
-      <section className="py-32 bg-gradient-to-br from-[#141b2d] to-[#1a1f3a]">
-        <div className="max-w-4xl mx-auto px-8 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            <span className="gradient-text">Envision Your Project</span>
-          </h2>
-          <p className="text-xl text-[#b4b4b4] mb-10">
-            Ready to create something extraordinary? Let's bring your vision to life.
-          </p>
-          <Button variant="primary" onClick={() => onNavigate('contact')} className="text-lg px-10 py-5">
-            Start Your Journey
-          </Button>
-        </div>
-      </section>
+      <Section spacing="xl" background="gradient">
+        <Container maxWidth="md">
+          <div className="text-center">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              <span className="gradient-text">Envision Your Project</span>
+            </h2>
+            <p className="text-xl text-text-secondary mb-10">
+              Ready to create something extraordinary? Let's bring your vision to life.
+            </p>
+            <Button variant="primary" onClick={() => onNavigate('contact')} size="lg">
+              Start Your Journey
+            </Button>
+          </div>
+        </Container>
+      </Section>
 
       {selectedProject && (
         <div className="fixed inset-0 z-[2000] flex items-center justify-center p-4 overflow-y-auto">
@@ -134,7 +140,7 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
             <GlassCard className="relative">
               <button
                 onClick={() => setSelectedProject(null)}
-                className="absolute top-6 right-6 w-10 h-10 rounded-full border-2 border-white/10 hover:border-[#ff6b35] text-white hover:text-[#ff6b35] transition-all flex items-center justify-center z-10"
+                className="absolute top-6 right-6 w-10 h-10 rounded-full border-2 border-white/10 hover:border-brand-coral text-white hover:text-brand-coral transition-all flex items-center justify-center z-10"
               >
                 <X size={20} />
               </button>
@@ -148,7 +154,7 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
 
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
-                    <span className="px-4 py-2 text-sm font-semibold uppercase tracking-wide bg-[#00ff88]/10 text-[#00ff88] rounded-full">
+                    <span className="px-4 py-2 text-sm font-semibold uppercase tracking-wide bg-brand-emerald/10 text-brand-emerald rounded-full">
                       {selectedProject.category}
                     </span>
                   </div>
@@ -157,20 +163,20 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
                     {selectedProject.title}
                   </h2>
 
-                  <div className="flex flex-wrap gap-6 text-[#b4b4b4]">
+                  <div className="flex flex-wrap gap-6 text-text-secondary">
                     <div className="flex items-center gap-2">
-                      <MapPin size={20} className="text-[#00ff88]" />
+                      <MapPin size={20} className="text-brand-emerald" />
                       <span>{selectedProject.location}</span>
                     </div>
                     {selectedProject.year && (
                       <div className="flex items-center gap-2">
-                        <Calendar size={20} className="text-[#00ff88]" />
+                        <Calendar size={20} className="text-brand-emerald" />
                         <span>{selectedProject.year}</span>
                       </div>
                     )}
                   </div>
 
-                  <p className="text-lg text-[#b4b4b4] leading-relaxed">
+                  <p className="text-lg text-text-secondary leading-relaxed">
                     {selectedProject.description}
                   </p>
 
@@ -179,8 +185,8 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
                       <h3 className="text-xl font-bold text-white mb-3">Project Highlights</h3>
                       <ul className="grid grid-cols-2 gap-3">
                         {selectedProject.features.map((feature, index) => (
-                          <li key={index} className="flex items-center gap-2 text-[#b4b4b4]">
-                            <Tag size={16} className="text-[#00ff88]" />
+                          <li key={index} className="flex items-center gap-2 text-text-secondary">
+                            <Tag size={16} className="text-brand-emerald" />
                             <span>{feature}</span>
                           </li>
                         ))}

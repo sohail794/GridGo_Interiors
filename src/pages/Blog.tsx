@@ -3,6 +3,10 @@ import { blogPosts } from '../data/content';
 import GlassCard from '../components/GlassCard';
 import Button3D from '../components/Button3D';
 import Button from '../components/ui/Button';
+import Container from '../components/ui/Container';
+import Section from '../components/ui/Section';
+import SectionHeader from '../components/ui/SectionHeader';
+import Card from '../components/ui/Card';
 
 interface BlogProps {
   onNavigate: (page: string) => void;
@@ -12,20 +16,22 @@ export default function Blog({ onNavigate }: BlogProps) {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-br from-[#141b2d] to-[#1a1f3a]">
-        <div className="max-w-[1200px] mx-auto px-8 text-center">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">
-            Expert <span className="gradient-text">Perspectives</span>
-          </h1>
-          <p className="text-xl text-[#b4b4b4]">
-            on Interior Design & Craftsmanship
-          </p>
-        </div>
-      </section>
+      <Section spacing="lg" background="secondary">
+        <Container>
+          <div className="text-center">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6">
+              Expert <span className="gradient-text">Perspectives</span>
+            </h1>
+            <p className="text-xl text-text-secondary">
+              on Interior Design & Craftsmanship
+            </p>
+          </div>
+        </Container>
+      </Section>
 
       {/* Blog Posts Section */}
-      <section className="py-24 bg-[#0a0e27]">
-        <div className="max-w-[1400px] mx-auto px-8">
+      <Section spacing="lg" background="none">
+        <Container>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
             {blogPosts.map((post) => (
               <GlassCard key={post.id} padding="sm" className="group cursor-pointer overflow-hidden hover:scale-[1.02] hover:shadow-lg transition-all duration-200 ease-out">
@@ -37,15 +43,15 @@ export default function Blog({ onNavigate }: BlogProps) {
                     loading="lazy"
                   />
                   <div className="absolute top-4 left-4">
-                    <span className="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wide bg-[#00ff88]/10 text-[#00ff88] rounded-full">
+                    <span className="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wide bg-brand-emerald/10 text-brand-emerald rounded-full">
                       {post.category}
                     </span>
                   </div>
                 </div>
 
                 <div className="space-y-3">
-                  <div className="flex items-center text-[#b4b4b4]">
-                    <Calendar size={16} className="mr-2 text-[#00ff88]" />
+                  <div className="flex items-center text-text-secondary">
+                    <Calendar size={16} className="mr-2 text-brand-emerald" />
                     <span className="text-sm">
                       {new Date(post.date).toLocaleDateString('en-US', {
                         year: 'numeric',
@@ -55,11 +61,11 @@ export default function Blog({ onNavigate }: BlogProps) {
                     </span>
                   </div>
 
-                  <h2 className="text-2xl font-semibold text-white group-hover:text-[#00ff88] transition-colors">
+                  <h2 className="text-2xl font-semibold text-white group-hover:text-brand-emerald transition-colors">
                     {post.title}
                   </h2>
 
-                  <p className="text-[#b4b4b4] leading-relaxed">
+                  <p className="text-text-secondary leading-relaxed">
                     {post.excerpt}
                   </p>
 
@@ -70,77 +76,81 @@ export default function Blog({ onNavigate }: BlogProps) {
               </GlassCard>
             ))}
           </div>
-        </div>
-      </section>
+        </Container>
+      </Section>
 
       {/* Newsletter Section */}
-      <section className="py-24 bg-[#141b2d]">
-        <div className="max-w-[800px] mx-auto px-8">
-          <GlassCard className="text-center">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Stay <span className="gradient-text">Updated</span>
-            </h2>
-            <p className="text-lg text-[#b4b4b4] mb-8">
-              Subscribe to our newsletter for the latest trends, tips, and project showcases
-            </p>
-            <form className="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-6 py-4 rounded-lg bg-white/5 border border-white/10 text-white placeholder-[#6b7280] focus:border-[#00ff88] focus:bg-white/10 outline-none transition-all"
-                required
-              />
-              <Button variant="primary" type="submit">
-                Subscribe
-              </Button>
-            </form>
-          </GlassCard>
-        </div>
-      </section>
+      <Section spacing="lg" background="secondary">
+        <Container maxWidth="md">
+          <Card padding="lg" glass>
+            <div className="text-center">
+              <h2 className="text-4xl md:text-5xl font-bold mb-4">
+                Stay <span className="gradient-text">Updated</span>
+              </h2>
+              <p className="text-lg text-text-secondary mb-8">
+                Subscribe to our newsletter for the latest trends, tips, and project showcases
+              </p>
+              <form className="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto">
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="flex-1 px-6 py-4 rounded-lg bg-white/5 border border-white/10 text-white placeholder-text-tertiary focus:border-brand-emerald focus:bg-white/10 outline-none transition-all"
+                  required
+                />
+                <Button variant="primary" type="submit">
+                  Subscribe
+                </Button>
+              </form>
+            </div>
+          </Card>
+        </Container>
+      </Section>
 
       {/* CTA Section */}
-      <section className="py-32 bg-gradient-to-br from-[#141b2d] to-[#1a1f3a]">
-        <div className="max-w-[800px] mx-auto px-8 text-center">
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 gradient-text">
-            Have a Project in Mind?
-          </h2>
-          <p className="text-xl text-[#b4b4b4] mb-10">
-            Let's discuss how we can bring your interior design vision to life
-          </p>
+      <Section spacing="xl" background="gradient">
+        <Container maxWidth="md">
+          <div className="text-center">
+            <h2 className="text-5xl md:text-6xl font-bold mb-6 gradient-text">
+              Have a Project in Mind?
+            </h2>
+            <p className="text-xl text-text-secondary mb-10">
+              Let's discuss how we can bring your interior design vision to life
+            </p>
 
-          <Button variant="primary" onClick={() => onNavigate('contact')} className="text-lg px-10 py-5">
-            Contact Us
-          </Button>
+            <Button variant="primary" onClick={() => onNavigate('contact')} size="lg">
+              Contact Us
+            </Button>
 
-          <div className="text-center mt-10">
-            <p className="text-sm text-[#6b7280] mb-6">or reach us via</p>
-            <div className="flex justify-center gap-6">
-              <a
-                href="https://wa.me/918595007476"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#b4b4b4] hover:text-[#00ff88] transition-all hover:scale-110 cursor-pointer"
-              >
-                <span className="text-sm">WhatsApp</span>
-              </a>
-              <a
-                href="mailto:sohailsaifi561@gmail.com"
-                className="text-[#b4b4b4] hover:text-[#00ff88] transition-all hover:scale-110 cursor-pointer"
-              >
-                <span className="text-sm">Email</span>
-              </a>
-              <a
-                href="https://www.linkedin.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#b4b4b4] hover:text-[#00ff88] transition-all hover:scale-110 cursor-pointer"
-              >
-                <span className="text-sm">LinkedIn</span>
-              </a>
+            <div className="text-center mt-10">
+              <p className="text-sm text-text-tertiary mb-6">or reach us via</p>
+              <div className="flex justify-center gap-6">
+                <a
+                  href="https://wa.me/918595007476"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-text-secondary hover:text-brand-emerald transition-all hover:scale-110 cursor-pointer"
+                >
+                  <span className="text-sm">WhatsApp</span>
+                </a>
+                <a
+                  href="mailto:sohailsaifi561@gmail.com"
+                  className="text-text-secondary hover:text-brand-emerald transition-all hover:scale-110 cursor-pointer"
+                >
+                  <span className="text-sm">Email</span>
+                </a>
+                <a
+                  href="https://www.linkedin.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-text-secondary hover:text-brand-emerald transition-all hover:scale-110 cursor-pointer"
+                >
+                  <span className="text-sm">LinkedIn</span>
+                </a>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </Container>
+      </Section>
     </div>
   );
 }

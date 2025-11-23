@@ -6,6 +6,10 @@ import { services } from '../data/content';
 import GlassCard from '../components/GlassCard';
 import Button3D from '../components/Button3D';
 import Button from '../components/ui/Button';
+import Container from '../components/ui/Container';
+import Section from '../components/ui/Section';
+import SectionHeader from '../components/ui/SectionHeader';
+import Card from '../components/ui/Card';
 
 const iconMap = {
   Wrench,
@@ -109,15 +113,14 @@ export default function Services({ onNavigate }: ServicesProps) {
         </div>
       </section>
 
-      <section className="py-24 bg-[#0a0e27]">
-        <div className="max-w-5xl mx-auto px-8">
+      <Section spacing="lg" background="none">
+        <Container>
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Our <span className="gradient-text">Services</span>
-            </h2>
-            <p className="text-xl text-[#b4b4b4]">
-              End-to-end interior solutions with expert execution
-            </p>
+            <SectionHeader 
+              title="Our Services"
+              subtitle="End-to-end interior solutions with expert execution"
+              align="center"
+            />
           </div>
 
           <div className="space-y-4">
@@ -130,7 +133,7 @@ export default function Services({ onNavigate }: ServicesProps) {
                   key={service.id}
                   hover={false}
                   className={`transition-all duration-300 ${
-                    isExpanded ? 'border-[#00ff88]/50' : ''
+                    isExpanded ? 'border-brand-emerald/50' : ''
                   }`}
                 >
                   <button
@@ -138,26 +141,26 @@ export default function Services({ onNavigate }: ServicesProps) {
                     className="w-full flex items-center justify-between text-left"
                   >
                     <div className="flex items-center flex-1">
-                      <div className="w-16 h-16 rounded-xl bg-[#00ff88]/10 flex items-center justify-center mr-4 flex-shrink-0">
-                        <Icon className="text-[#00ff88]" size={32} />
+                      <div className="w-16 h-16 rounded-xl bg-brand-emerald/10 flex items-center justify-center mr-4 flex-shrink-0">
+                        <Icon className="text-brand-emerald" size={32} />
                       </div>
                       <div>
                         <h3 className="text-2xl font-bold text-white mb-1">
                           {service.title}
                         </h3>
-                        <p className="text-[#b4b4b4]">{service.description}</p>
+                        <p className="text-text-secondary">{service.description}</p>
                       </div>
                     </div>
                     {isExpanded ? (
-                      <ChevronUp className="text-[#00ff88] ml-4 flex-shrink-0" size={28} />
+                      <ChevronUp className="text-brand-emerald ml-4 flex-shrink-0" size={28} />
                     ) : (
-                      <ChevronDown className="text-[#00ff88] ml-4 flex-shrink-0" size={28} />
+                      <ChevronDown className="text-brand-emerald ml-4 flex-shrink-0" size={28} />
                     )}
                   </button>
 
                   {isExpanded && (
                     <div className="mt-6 pt-6 border-t border-white/10 animate-fade-in">
-                      <p className="text-[#b4b4b4] mb-6 leading-relaxed">
+                      <p className="text-text-secondary mb-6 leading-relaxed">
                         {service.details}
                       </p>
                       <h4 className="font-bold text-white mb-4">Key Features:</h4>
@@ -165,10 +168,10 @@ export default function Services({ onNavigate }: ServicesProps) {
                         {service.features.map((feature, index) => (
                           <li key={index} className="flex items-start">
                             <CheckCircle
-                              className="text-[#00ff88] mr-3 flex-shrink-0 mt-1"
+                              className="text-brand-emerald mr-3 flex-shrink-0 mt-1"
                               size={20}
                             />
-                            <span className="text-[#b4b4b4]">{feature}</span>
+                            <span className="text-text-secondary">{feature}</span>
                           </li>
                         ))}
                       </ul>
@@ -178,48 +181,50 @@ export default function Services({ onNavigate }: ServicesProps) {
               );
             })}
           </div>
-        </div>
-      </section>
+        </Container>
+      </Section>
 
-      <section className="py-24 bg-[#141b2d]">
-        <div className="max-w-6xl mx-auto px-8">
+      <Section spacing="lg" background="secondary">
+        <Container>
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Our <span className="gradient-text">Process</span>
-            </h2>
-            <p className="text-xl text-[#b4b4b4]">A proven approach to perfection</p>
+            <SectionHeader 
+              title="Our Process"
+              subtitle="A proven approach to perfection"
+              align="center"
+            />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {processSteps.map((step, index) => (
               <div key={index} className="text-center">
-                <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-[#00ff88] to-[#00b894] rounded-full flex items-center justify-center shadow-3d">
-                  <span className="text-2xl font-bold text-[#0a0e27]">{step.number}</span>
+                <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-brand-emerald to-brand-emerald/60 rounded-full flex items-center justify-center shadow-3d">
+                  <span className="text-2xl font-bold text-background-primary">{step.number}</span>
                 </div>
                 <h3 className="text-xl font-bold text-white mb-3">{step.title}</h3>
-                <p className="text-sm text-[#b4b4b4]">{step.description}</p>
+                <p className="text-sm text-text-secondary">{step.description}</p>
               </div>
             ))}
           </div>
-        </div>
-      </section>
+        </Container>
+      </Section>
 
-      <section className="py-24 bg-[#0a0e27]">
-        <div className="max-w-3xl mx-auto px-8">
+      <Section spacing="lg" background="none">
+        <Container maxWidth="md">
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Request a <span className="gradient-text">Service Quote</span>
-            </h2>
-            <p className="text-xl text-[#b4b4b4]">Let's discuss your project requirements</p>
+            <SectionHeader 
+              title="Request a Service Quote"
+              subtitle="Let's discuss your project requirements"
+              align="center"
+            />
           </div>
 
-          <GlassCard>
+          <Card padding="lg" glass>
             {submitSuccess && (
-              <div className="mb-6 p-4 bg-[#00ff88]/10 border border-[#00ff88]/30 rounded-lg flex items-center gap-3">
-                <CheckCircle className="text-[#00ff88]" size={24} />
+              <div className="mb-6 p-4 bg-brand-emerald/10 border border-brand-emerald/30 rounded-lg flex items-center gap-3">
+                <CheckCircle className="text-brand-emerald" size={24} />
                 <div>
                   <p className="text-white font-semibold">Request submitted successfully!</p>
-                  <p className="text-sm text-[#b4b4b4]">We'll contact you soon to discuss your project.</p>
+                  <p className="text-sm text-text-secondary">We'll contact you soon to discuss your project.</p>
                 </div>
               </div>
             )}
@@ -231,7 +236,7 @@ export default function Services({ onNavigate }: ServicesProps) {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium mb-2 text-[#b4b4b4]">
+                  <label className="block text-sm font-medium mb-2 text-text-secondary">
                     Name *
                   </label>
                   <input
@@ -240,13 +245,13 @@ export default function Services({ onNavigate }: ServicesProps) {
                     minLength={2}
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-[#00ff88] focus:ring-2 focus:ring-[#00ff88]/20 transition-all outline-none min-h-[44px]"
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20 transition-all outline-none min-h-[44px]"
                     placeholder="Your name"
                     disabled={isSubmitting}
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2 text-[#b4b4b4]">
+                  <label className="block text-sm font-medium mb-2 text-text-secondary">
                     Email *
                   </label>
                   <input
@@ -254,7 +259,7 @@ export default function Services({ onNavigate }: ServicesProps) {
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-[#00ff88] focus:ring-2 focus:ring-[#00ff88]/20 transition-all outline-none min-h-[44px]"
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20 transition-all outline-none min-h-[44px]"
                     placeholder="your@email.com"
                     disabled={isSubmitting}
                   />
@@ -263,26 +268,26 @@ export default function Services({ onNavigate }: ServicesProps) {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium mb-2 text-[#b4b4b4]">
+                  <label className="block text-sm font-medium mb-2 text-text-secondary">
                     Phone
                   </label>
                   <input
                     type="tel"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-[#00ff88] focus:ring-2 focus:ring-[#00ff88]/20 transition-all outline-none min-h-[44px]"
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20 transition-all outline-none min-h-[44px]"
                     placeholder="Enter your phone number"
                     disabled={isSubmitting}
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2 text-[#b4b4b4]">
+                  <label className="block text-sm font-medium mb-2 text-text-secondary">
                     Service of Interest
                   </label>
                   <select
                     value={formData.service}
                     onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-[#00ff88] focus:ring-2 focus:ring-[#00ff88]/20 transition-all outline-none min-h-[44px]"
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20 transition-all outline-none min-h-[44px]"
                     disabled={isSubmitting}
                   >
                     <option value="">Select a service</option>
@@ -296,14 +301,14 @@ export default function Services({ onNavigate }: ServicesProps) {
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-2 text-[#b4b4b4]">
+                <label className="block text-sm font-medium mb-2 text-text-secondary">
                   Project Details
                 </label>
                 <textarea
                   rows={4}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-[#00ff88] focus:ring-2 focus:ring-[#00ff88]/20 transition-all outline-none resize-none"
+                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20 transition-all outline-none resize-none"
                   placeholder="Tell us about your project..."
                   disabled={isSubmitting}
                 />
@@ -313,9 +318,9 @@ export default function Services({ onNavigate }: ServicesProps) {
                 {isSubmitting ? 'Submitting...' : 'Submit Request'}
               </Button>
             </form>
-          </GlassCard>
-        </div>
-      </section>
+          </Card>
+        </Container>
+      </Section>
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import { Instagram, Linkedin, Share2, Mail, Phone, MapPin } from 'lucide-react';
 import { CONTACT } from '../config/contact';
-import { COMPANY } from '../config/company';
+import Container from './ui/Container';
+import Section from './ui/Section';
 
 interface FooterProps {
   onNavigate: (page: string) => void;

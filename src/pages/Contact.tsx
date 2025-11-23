@@ -5,6 +5,10 @@ import Button3D from '../components/Button3D';
 import Button from '../components/ui/Button';
 import { submitContactForm } from '../lib/supabase';
 import { CONTACT } from '../config/contact';
+import Container from '../components/ui/Container';
+import Section from '../components/ui/Section';
+import SectionHeader from '../components/ui/SectionHeader';
+import Card from '../components/ui/Card';
 
 interface ContactProps {
   onNavigate: (page: string) => void;
@@ -86,21 +90,21 @@ export default function Contact({ onNavigate }: ContactProps) {
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
             Let's <span className="gradient-text">Connect</span>
           </h1>
-          <p className="text-xl md:text-2xl text-[#b4b4b4]">
+          <p className="text-xl md:text-2xl text-text-secondary">
             Ready to transform your space? We're here to help
           </p>
         </div>
       </section>
 
-      <section className="py-24 bg-[#0a0e27]">
-        <div className="max-w-6xl mx-auto px-8">
+      <Section spacing="lg" background="none">
+        <Container>
           <div className="grid md:grid-cols-2 gap-12">
             <div className="space-y-8">
               <div>
                 <h2 className="text-4xl font-bold mb-4">
                   <span className="gradient-text">Get in Touch</span>
                 </h2>
-                <p className="text-lg text-[#b4b4b4]">
+                <p className="text-lg text-text-secondary">
                   Have a project in mind? Fill out the form and our team will get back to you within 24 hours.
                 </p>
               </div>
@@ -111,20 +115,20 @@ export default function Contact({ onNavigate }: ContactProps) {
                   return (
                     <GlassCard key={index} hover={false} padding="sm">
                       <div className="flex items-start gap-4">
-                        <div className="w-12 h-12 rounded-xl bg-[#00ff88]/10 flex items-center justify-center flex-shrink-0">
-                          <Icon size={24} className="text-[#00ff88]" />
+                        <div className="w-12 h-12 rounded-xl bg-brand-emerald/10 flex items-center justify-center flex-shrink-0">
+                          <Icon size={24} className="text-brand-emerald" />
                         </div>
                         <div>
                           <h3 className="font-semibold text-white mb-1">{info.title}</h3>
                           {info.link ? (
                             <a
                               href={info.link}
-                              className="text-[#b4b4b4] hover:text-[#00ff88] transition-colors"
+                              className="text-text-secondary hover:text-brand-emerald transition-colors"
                             >
                               {info.content}
                             </a>
                           ) : (
-                            <p className="text-[#b4b4b4]">{info.content}</p>
+                            <p className="text-text-secondary">{info.content}</p>
                           )}
                         </div>
                       </div>
@@ -147,13 +151,13 @@ export default function Contact({ onNavigate }: ContactProps) {
             </div>
 
             <div>
-              <GlassCard>
+              <Card padding="lg" glass>
                 {submitSuccess && (
-                  <div className="mb-6 p-4 bg-[#00ff88]/10 border border-[#00ff88]/30 rounded-lg flex items-center gap-3">
-                    <CheckCircle className="text-[#00ff88]" size={24} />
+                  <div className="mb-6 p-4 bg-brand-emerald/10 border border-brand-emerald/30 rounded-lg flex items-center gap-3">
+                    <CheckCircle className="text-brand-emerald" size={24} />
                     <div>
                       <p className="text-white font-semibold">Thank you for reaching out!</p>
-                      <p className="text-sm text-[#b4b4b4]">We'll get back to you within 24 hours.</p>
+                      <p className="text-sm text-text-secondary">We'll get back to you within 24 hours.</p>
                     </div>
                   </div>
                 )}
@@ -164,7 +168,7 @@ export default function Contact({ onNavigate }: ContactProps) {
                 )}
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <label className="block text-sm font-medium mb-2 text-[#b4b4b4]">
+                    <label className="block text-sm font-medium mb-2 text-text-secondary">
                       Name *
                     </label>
                     <input
@@ -173,7 +177,7 @@ export default function Contact({ onNavigate }: ContactProps) {
                       minLength={2}
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-[#00ff88] focus:ring-2 focus:ring-[#00ff88]/20 transition-all outline-none min-h-[44px]"
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20 transition-all outline-none min-h-[44px]"
                       placeholder="Your name"
                       disabled={isSubmitting}
                     />
@@ -181,7 +185,7 @@ export default function Contact({ onNavigate }: ContactProps) {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium mb-2 text-[#b4b4b4]">
+                      <label className="block text-sm font-medium mb-2 text-text-secondary">
                         Email *
                       </label>
                       <input
@@ -189,21 +193,21 @@ export default function Contact({ onNavigate }: ContactProps) {
                         required
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-[#00ff88] focus:ring-2 focus:ring-[#00ff88]/20 transition-all outline-none min-h-[44px]"
+                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20 transition-all outline-none min-h-[44px]"
                         placeholder="your@email.com"
                         disabled={isSubmitting}
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium mb-2 text-[#b4b4b4]">
+                      <label className="block text-sm font-medium mb-2 text-text-secondary">
                         Phone
                       </label>
                       <input
                         type="tel"
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-[#00ff88] focus:ring-2 focus:ring-[#00ff88]/20 transition-all outline-none min-h-[44px]"
+                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20 transition-all outline-none min-h-[44px]"
                         placeholder="Enter your phone number"
                         disabled={isSubmitting}
                       />
@@ -211,21 +215,21 @@ export default function Contact({ onNavigate }: ContactProps) {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium mb-2 text-[#b4b4b4]">
+                    <label className="block text-sm font-medium mb-2 text-text-secondary">
                       Subject
                     </label>
                     <input
                       type="text"
                       value={formData.subject}
                       onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-[#00ff88] focus:ring-2 focus:ring-[#00ff88]/20 transition-all outline-none min-h-[44px]"
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20 transition-all outline-none min-h-[44px]"
                       placeholder="How can we help?"
                       disabled={isSubmitting}
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium mb-2 text-[#b4b4b4]">
+                    <label className="block text-sm font-medium mb-2 text-text-secondary">
                       Message *
                     </label>
                     <textarea
@@ -234,7 +238,7 @@ export default function Contact({ onNavigate }: ContactProps) {
                       minLength={10}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-[#00ff88] focus:ring-2 focus:ring-[#00ff88]/20 transition-all outline-none resize-none"
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20 transition-all outline-none resize-none"
                       placeholder="Tell us about your project..."
                       disabled={isSubmitting}
                     />
@@ -244,11 +248,11 @@ export default function Contact({ onNavigate }: ContactProps) {
                     {isSubmitting ? 'Sending...' : 'Send Message'}
                   </Button>
                 </form>
-              </GlassCard>
+              </Card>
             </div>
           </div>
-        </div>
-      </section>
+        </Container>
+      </Section>
     </div>
   );
 }

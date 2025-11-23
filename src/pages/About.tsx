@@ -3,6 +3,9 @@ import { teamMembers, timeline } from '../data/content';
 import GlassCard from '../components/GlassCard';
 import Button3D from '../components/Button3D';
 import Button from '../components/ui/Button';
+import Container from '../components/ui/Container';
+import Section from '../components/ui/Section';
+import SectionHeader from '../components/ui/SectionHeader';
 import { COMPANY } from '../config/company';
 
 interface AboutProps {
@@ -37,6 +40,7 @@ export default function About({ onNavigate }: AboutProps) {
 
   return (
     <div className="min-h-screen">
+      {/* Hero Banner */}
       <section className="relative h-[500px] flex items-center justify-center overflow-hidden">
         <div
           className="absolute inset-0 z-0"
@@ -48,27 +52,30 @@ export default function About({ onNavigate }: AboutProps) {
         />
         <div className="absolute inset-0 z-0 bg-gradient-to-b from-black/70 to-black/50" />
 
-        <div className="relative z-10 max-w-4xl mx-auto px-8 text-center">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-            Two Decades of
-            <br />
-            <span className="gradient-text">Inspired Craftsmanship</span>
-          </h1>
-          <p className="text-xl md:text-2xl text-[#b4b4b4]">
-            Transforming visions into reality since {COMPANY.foundingYear}
-          </p>
-        </div>
+        <Container>
+          <div className="relative z-10 text-center">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+              Two Decades of
+              <br />
+              <span className="gradient-text">Inspired Craftsmanship</span>
+            </h1>
+            <p className="text-xl md:text-2xl text-text-secondary">
+              Transforming visions into reality since {COMPANY.foundingYear}
+            </p>
+          </div>
+        </Container>
       </section>
 
-      <section className="py-24 bg-[#0a0e27]">
-        <div className="max-w-6xl mx-auto px-8">
+      {/* Stats Section */}
+      <Section spacing="lg" background="none">
+        <Container>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20">
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
                 <div className="text-4xl md:text-5xl font-bold gradient-text mb-2">
                   {stat.value}
                 </div>
-                <div className="text-sm text-[#6b7280] uppercase tracking-wide">
+                <div className="text-sm text-text-tertiary uppercase tracking-wide font-medium">
                   {stat.label}
                 </div>
               </div>
@@ -80,7 +87,7 @@ export default function About({ onNavigate }: AboutProps) {
               <h2 className="text-4xl md:text-5xl font-bold">
                 Our <span className="gradient-text">Story</span>
               </h2>
-              <div className="space-y-4 text-lg text-[#b4b4b4] leading-relaxed">
+              <div className="space-y-4 text-lg text-text-secondary leading-relaxed">
                 <p>
                   Founded in {COMPANY.foundingYear}, GridGo Interiors emerged from a vision to transform ordinary spaces
                   into extraordinary environments. With over two decades of dedication to excellence, we
@@ -102,28 +109,27 @@ export default function About({ onNavigate }: AboutProps) {
             </div>
 
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-[#00ff88]/10 to-[#00d9ff]/10 rounded-3xl blur-3xl" />
+              <div className="absolute inset-0 bg-gradient-to-br from-brand-emerald/10 to-brand-cyan/10 rounded-radius-2xl blur-3xl" />
               <img
                 src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800"
                 alt="GridGo Workshop"
-                className="relative z-10 w-full h-[400px] object-cover rounded-2xl shadow-card-hover"
+                className="relative z-10 w-full h-[400px] object-cover rounded-radius-2xl shadow-lg"
               />
             </div>
           </div>
-        </div>
-      </section>
+        </Container>
+      </Section>
 
-      <section className="py-24 bg-[#141b2d]">
-        <div className="max-w-6xl mx-auto px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Our <span className="gradient-text">Journey</span>
-            </h2>
-            <p className="text-xl text-[#b4b4b4]">Milestones that shaped our legacy</p>
-          </div>
+      {/* Timeline Section */}
+      <Section spacing="lg" background="secondary">
+        <Container>
+          <SectionHeader 
+            title="Our Journey"
+            subtitle="Milestones that shaped our legacy"
+          />
 
-          <div className="relative">
-            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-[#00ff88] via-[#00d9ff] to-transparent hidden md:block" />
+          <div className="relative mt-12">
+            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-brand-emerald via-brand-cyan to-transparent hidden md:block" />
 
             <div className="space-y-12">
               {timeline.map((event, index) => (
@@ -136,21 +142,21 @@ export default function About({ onNavigate }: AboutProps) {
                   <div className="w-full md:w-5/12">
                     {index % 2 === 0 && (
                       <GlassCard hover={false}>
-                        <h3 className="text-2xl font-bold text-white mb-3">{event.title}</h3>
-                        <p className="text-[#b4b4b4]">{event.description}</p>
+                        <h3 className="text-2xl font-bold text-text-primary mb-3">{event.title}</h3>
+                        <p className="text-text-secondary leading-relaxed">{event.description}</p>
                       </GlassCard>
                     )}
                   </div>
 
-                  <div className="relative flex items-center justify-center w-20 h-20 bg-gradient-to-br from-[#00ff88] to-[#00b894] rounded-full shadow-3d flex-shrink-0 z-10">
-                    <span className="text-xl font-bold text-[#0a0e27]">{event.year}</span>
+                  <div className="relative flex items-center justify-center w-20 h-20 bg-gradient-to-br from-brand-emerald to-brand-emerald-dark rounded-full shadow-3d flex-shrink-0 z-10">
+                    <span className="text-xl font-bold text-background-primary">{event.year}</span>
                   </div>
 
                   <div className="w-full md:w-5/12">
                     {index % 2 !== 0 && (
                       <GlassCard hover={false}>
-                        <h3 className="text-2xl font-bold text-white mb-3">{event.title}</h3>
-                        <p className="text-[#b4b4b4]">{event.description}</p>
+                        <h3 className="text-2xl font-bold text-text-primary mb-3">{event.title}</h3>
+                        <p className="text-text-secondary leading-relaxed">{event.description}</p>
                       </GlassCard>
                     )}
                   </div>
@@ -158,23 +164,22 @@ export default function About({ onNavigate }: AboutProps) {
               ))}
             </div>
           </div>
-        </div>
-      </section>
+        </Container>
+      </Section>
 
-      <section className="py-24 bg-[#0a0e27]">
-        <div className="max-w-6xl mx-auto px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Meet Our <span className="gradient-text">Leadership</span>
-            </h2>
-            <p className="text-xl text-[#b4b4b4]">Visionaries driving excellence</p>
-          </div>
+      {/* Leadership Section */}
+      <Section spacing="lg" background="none">
+        <Container>
+          <SectionHeader 
+            title="Meet Our Leadership"
+            subtitle="Visionaries driving excellence"
+          />
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
             {teamMembers.map((member) => (
               <GlassCard key={member.id} padding="sm" className="text-center group">
                 {member.image && (
-                  <div className="relative overflow-hidden rounded-lg mb-6">
+                  <div className="relative overflow-hidden rounded-radius-lg mb-6">
                     <img
                       src={member.image}
                       alt={`${member.name} - ${member.title}`}
@@ -184,55 +189,57 @@ export default function About({ onNavigate }: AboutProps) {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
                   </div>
                 )}
-                <h3 className="text-2xl font-bold text-white mb-2">{member.name}</h3>
-                <p className="text-[#00ff88] font-semibold mb-3">{member.title}</p>
-                <p className="text-sm text-[#b4b4b4]">{member.expertise}</p>
+                <h3 className="text-2xl font-bold text-text-primary mb-2">{member.name}</h3>
+                <p className="text-brand-emerald font-semibold mb-3">{member.title}</p>
+                <p className="text-sm text-text-secondary leading-relaxed">{member.expertise}</p>
               </GlassCard>
             ))}
           </div>
-        </div>
-      </section>
+        </Container>
+      </Section>
 
-      <section className="py-24 bg-[#141b2d]">
-        <div className="max-w-6xl mx-auto px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Our Core <span className="gradient-text">Principles</span>
-            </h2>
-            <p className="text-xl text-[#b4b4b4]">Values that guide every project</p>
-          </div>
+      {/* Principles Section */}
+      <Section spacing="lg" background="secondary">
+        <Container>
+          <SectionHeader 
+            title="Our Core Principles"
+            subtitle="Values that guide every project"
+          />
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-8 mt-12">
             {principles.map((principle, index) => {
               const Icon = principle.icon;
               return (
                 <GlassCard key={index} className="text-center">
-                  <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-[#00ff88]/10 flex items-center justify-center">
-                    <Icon size={40} className="text-[#00ff88]" />
+                  <div className="w-20 h-20 mx-auto mb-6 rounded-radius-lg bg-brand-emerald/10 flex items-center justify-center">
+                    <Icon size={40} className="text-brand-emerald" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-4">{principle.title}</h3>
-                  <p className="text-[#b4b4b4] leading-relaxed">{principle.description}</p>
+                  <h3 className="text-2xl font-bold text-text-primary mb-4">{principle.title}</h3>
+                  <p className="text-text-secondary leading-relaxed">{principle.description}</p>
                 </GlassCard>
               );
             })}
           </div>
-        </div>
-      </section>
+        </Container>
+      </Section>
 
-      <section className="py-32 bg-gradient-to-br from-[#141b2d] to-[#1a1f3a]">
-        <div className="max-w-4xl mx-auto px-8 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            <span className="gradient-text">Partner with Us</span>
-          </h2>
-          <p className="text-xl text-[#b4b4b4] mb-10">
-            Ready to transform your space? Let's discuss your vision and create something
-            extraordinary together.
-          </p>
-          <Button variant="primary" onClick={() => onNavigate('contact')} className="text-lg px-10 py-5">
-            Start Your Project
-          </Button>
-        </div>
-      </section>
+      {/* CTA Section */}
+      <Section spacing="xl" background="gradient">
+        <Container maxWidth="md">
+          <div className="text-center">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              <span className="gradient-text">Partner with Us</span>
+            </h2>
+            <p className="text-xl text-text-secondary mb-10 leading-relaxed">
+              Ready to transform your space? Let's discuss your vision and create something
+              extraordinary together.
+            </p>
+            <Button variant="primary" size="lg" onClick={() => onNavigate('contact')}>
+              Start Your Project
+            </Button>
+          </div>
+        </Container>
+      </Section>
     </div>
   );
 }
