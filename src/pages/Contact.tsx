@@ -52,8 +52,8 @@ export default function Contact({ onNavigate }: ContactProps) {
     {
       icon: Mail,
       title: 'Email',
-      content: 'hello@gridgointeriors.com',
-      link: 'mailto:hello@gridgointeriors.com',
+      content: 'info@gridgointeriors.com',
+      link: 'mailto:info@gridgointeriors.com',
     },
     ...(CONTACT.addressLabel ? [{
       icon: MapPin,

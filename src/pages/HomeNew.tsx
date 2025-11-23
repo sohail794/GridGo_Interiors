@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CheckCircle, Award, Clock, Shield, Wrench, Sparkles } from 'lucide-react';
+import { CheckCircle, Award, Clock, Shield, Wrench, Sparkles, Palette, Hammer, Building2 } from 'lucide-react';
 import HeroSection from '../components/HeroSection';
 import GlassCard from '../components/GlassCard';
 import Button3D from '../components/Button3D';
@@ -31,19 +31,19 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
   const services = [
     {
       title: 'Interior Design',
-      icon: '🎨',
+      IconComponent: Palette,
       description: 'Complete design solutions from concept to completion',
       features: ['3D Visualization', 'Space Planning', 'Material Selection', 'Project Management'],
     },
     {
       title: 'Custom Fabrication',
-      icon: '🔨',
+      IconComponent: Hammer,
       description: 'In-house fabrication for steel, glass, and custom furniture',
       features: ['Steel Structures', 'Glass Applications', 'Marble Work', 'Bespoke Furniture'],
     },
     {
       title: 'Turnkey Execution',
-      icon: '🏗️',
+      IconComponent: Building2,
       description: 'End-to-end project delivery with complete peace of mind',
       features: ['Design + Build', 'Quality Control', 'Timely Delivery', 'Post-Project Support'],
     },
@@ -197,8 +197,8 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {services.map((service, index) => (
               <GlassCard key={index} className="text-center">
-                <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-[#00ff88]/10 flex items-center justify-center text-5xl">
-                  {service.icon}
+                <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-[#00ff88]/10 flex items-center justify-center">
+                  <service.IconComponent size={40} className="text-[#00ff88]" />
                 </div>
                 <h3 className="text-2xl font-semibold text-white mb-4">{service.title}</h3>
                 <p className="text-[#b4b4b4] mb-6">{service.description}</p>

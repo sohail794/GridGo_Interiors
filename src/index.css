@@ -169,3 +169,35 @@ body {
 .animate-slide-in-right {
   animation: slideInRight 0.3s ease-out;
 }
+
+/* Mobile-specific improvements */
+@media (max-width: 768px) {
+  /* Increase hero padding on mobile */
+  section[class*="hero"] .px-8,
+  section[class*="relative min-h-screen"] > div {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+  }
+
+  /* Ensure tap target sizes meet minimum 44px */
+  button,
+  a[role="button"],
+  .project-card button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Improve footer link spacing */
+  footer ul li {
+    margin-bottom: 1rem;
+  }
+
+  /* Prevent horizontal scroll */
+  body {
+    overflow-x: hidden;
+  }
+  
+  * {
+    max-width: 100vw;
+  }
+}

@@ -11,14 +11,19 @@
     <meta name="author" content="GridGo Interiors" />
     <meta name="robots" content="index, follow" />
 
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://gridgointeriors.com/" />
     <meta property="og:title" content="GridGo Interiors - Luxury Interior Design Services" />
     <meta property="og:description" content="Transform your space with 20+ years of interior mastery. Complete design-to-delivery services across India." />
-    <meta property="og:type" content="website" />
     <meta property="og:image" content="/og-image.jpg" />
 
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://gridgointeriors.com/" />
     <meta name="twitter:title" content="GridGo Interiors - Luxury Interior Design Services" />
     <meta name="twitter:description" content="Transform your space with 20+ years of interior mastery." />
+    <meta name="twitter:image" content="/og-image.jpg" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -27,10 +32,26 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- JSON-LD Schema for LocalBusiness -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "GridGo Interiors",
+      "description": "Premium interior design services specializing in steel fabrication, glass work, marble craftsmanship, and bespoke furniture across India",
+      "url": "https://gridgointeriors.com",
+      "telephone": "+91-98765-43210",
+      "email": "info@gridgointeriors.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "IN",
+        "addressLocality": "India"
+      },
+      "areaServed": "India",
+      "priceRange": "$$$$",
+      "openingHours": "Mo-Sa 09:00-18:00"
+    }
+    </script>
   </body>
 </html>
-
-<meta name="description" content="Premium interior design services">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <meta property="og:title" content="GridGo Interiors">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <meta property="og:description" content="Premium interior design services">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <meta name="twitter:card" content="summary_large_image">
