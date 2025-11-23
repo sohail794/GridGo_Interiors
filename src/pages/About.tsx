@@ -114,6 +114,7 @@ export default function About({ onNavigate }: AboutProps) {
                 src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800"
                 alt="GridGo Workshop"
                 className="relative z-10 w-full h-[400px] object-cover rounded-radius-2xl shadow-lg"
+                loading="lazy"
               />
             </div>
           </div>

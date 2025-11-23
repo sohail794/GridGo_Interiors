@@ -1,16 +1,19 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense, lazy } from 'react';
 import HeaderNew from './components/HeaderNew';
 import MobileMenuOverlay from './components/MobileMenuOverlay';
 import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
 import LeadModal from './components/LeadModal';
-import HomeNew from './pages/HomeNew';
-import About from './pages/About';
-import Services from './pages/Services';
-import Portfolio from './pages/Portfolio';
-import Blog from './pages/Blog';
-import Contact from './pages/Contact';
+import PageLoader from './components/PageLoader';
 import { updatePageMeta, pageMeta } from './utils/seo';
+
+// Lazy load pages for code splitting and performance
+const HomeNew = lazy(() => import('./pages/HomeNew'));
+const About = lazy(() => import('./pages/About'));
+const Services = lazy(() => import('./pages/Services'));
+const Portfolio = lazy(() => import('./pages/Portfolio'));
+const Blog = lazy(() => import('./pages/Blog'));
+const Contact = lazy(() => import('./pages/Contact'));
 
 type Page = 'home' | 'about' | 'services' | 'portfolio' | 'blog' | 'contact';
 
@@ -59,14 +62,16 @@ function App() {
       />
 
       <main id="main-content" className="pt-20" role="main">
-        {currentPage === 'home' && (
-          <HomeNew onNavigate={handleNavigate} onOpenModal={() => setModalOpen(true)} />
-        )}
-        {currentPage === 'about' && <About onNavigate={handleNavigate} />}
-        {currentPage === 'services' && <Services onNavigate={handleNavigate} />}
-        {currentPage === 'portfolio' && <Portfolio onNavigate={handleNavigate} />}
-        {currentPage === 'blog' && <Blog onNavigate={handleNavigate} />}
-        {currentPage === 'contact' && <Contact onNavigate={handleNavigate} />}
+        <Suspense fallback={<PageLoader />}>
+          {currentPage === 'home' && (
+            <HomeNew onNavigate={handleNavigate} onOpenModal={() => setModalOpen(true)} />
+          )}
+          {currentPage === 'about' && <About onNavigate={handleNavigate} />}
+          {currentPage === 'services' && <Services onNavigate={handleNavigate} />}
+          {currentPage === 'portfolio' && <Portfolio onNavigate={handleNavigate} />}
+          {currentPage === 'blog' && <Blog onNavigate={handleNavigate} />}
+          {currentPage === 'contact' && <Contact onNavigate={handleNavigate} />}
+        </Suspense>
       </main>
 
       <Footer onNavigate={handleNavigate} />

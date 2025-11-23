@@ -152,7 +152,8 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
                 <img
                   src={selectedProject.image}
                   alt={selectedProject.title}
-                  className="w-full h-[400px] object-cover rounded-xl"
+                  className="w-full h-96 object-cover rounded-lg mb-6"
+                  loading="lazy"
                 />
 
                 <div className="space-y-4">
