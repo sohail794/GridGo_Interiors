@@ -159,11 +159,11 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal, mobile
         className={`
           fixed inset-0 w-full max-w-full z-[10000]
           bg-[#050816]
-          transition-all duration-300 ease-in-out
+          transition-transform duration-300 ease-in-out
           lg:hidden
           ${mobileMenuOpen 
-            ? 'translate-x-0 opacity-100' 
-            : 'translate-x-full opacity-0 pointer-events-none'
+            ? 'translate-x-0' 
+            : 'translate-x-full pointer-events-none'
           }
         `}
       >
