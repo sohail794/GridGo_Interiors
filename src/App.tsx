@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import HeaderNew from './components/HeaderNew';
+import MobileMenuOverlay from './components/MobileMenuOverlay';
 import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
 import Chatbot from './components/Chatbot';
@@ -40,6 +41,14 @@ function App() {
         onOpenModal={() => setModalOpen(true)}
         mobileMenuOpen={mobileMenuOpen}
         onMobileMenuChange={setMobileMenuOpen}
+      />
+
+      <MobileMenuOverlay
+        open={mobileMenuOpen}
+        onClose={() => setMobileMenuOpen(false)}
+        currentPage={currentPage}
+        onNavigate={handleNavigate}
+        onOpenModal={() => setModalOpen(true)}
       />
 
       <main className="pt-20">
