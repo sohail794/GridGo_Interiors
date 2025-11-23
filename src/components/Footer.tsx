@@ -1,4 +1,4 @@
-import { Instagram, Linkedin, Share2, Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, Phone, MapPin } from 'lucide-react';
 import { CONTACT } from '../config/contact';
 import { COMPANY } from '../config/company';
 
@@ -31,33 +31,6 @@ export default function Footer({ onNavigate }: FooterProps) {
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                 </svg>
-              </a>
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-silver hover:text-emerald transition-colors"
-                aria-label="Instagram"
-              >
-                <Instagram size={24} />
-              </a>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-silver hover:text-emerald transition-colors"
-                aria-label="LinkedIn"
-              >
-                <Linkedin size={24} />
-              </a>
-              <a
-                href="https://pinterest.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-silver hover:text-emerald transition-colors"
-                aria-label="Pinterest"
-              >
-                <Share2 size={24} />
               </a>
             </div>
           </div>
@@ -103,7 +76,9 @@ export default function Footer({ onNavigate }: FooterProps) {
               )}
               <li className="flex items-start">
                 <Mail size={18} className="mr-2 mt-1 flex-shrink-0" />
-                <span>info@gridgointeriors.com</span>
+                <a href="mailto:info@gridgointeriors.com" className="hover:text-emerald transition-colors">
+                  info@gridgointeriors.com
+                </a>
               </li>
               {CONTACT.addressLabel && (
                 <li className="flex items-start">

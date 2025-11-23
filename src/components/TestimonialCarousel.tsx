@@ -26,13 +26,12 @@ export default function TestimonialCarousel({ testimonials }: TestimonialCarouse
           "{currentTestimonial.quote}"
         </p>
         <div className="flex items-center">
-          {currentTestimonial.image && (
-            <img
-              src={currentTestimonial.image}
-              alt={`${currentTestimonial.name} - GridGo Interiors Client`}
-              className="w-16 h-16 rounded-full object-cover mr-4"
-              loading="lazy"
-            />
+          {!currentTestimonial.image && (
+            <div className="w-16 h-16 rounded-full bg-emerald/10 flex items-center justify-center mr-4">
+              <span className="text-2xl font-bold text-emerald">
+                {currentTestimonial.name.charAt(0)}
+              </span>
+            </div>
           )}
           <div>
             <p className="font-sans font-bold text-charcoal">{currentTestimonial.name}</p>

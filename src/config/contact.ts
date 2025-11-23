@@ -1,7 +1,7 @@
 export const CONTACT = {
-  phone: '',           // real phone to be filled later
-  email: '',           // real email to be filled later
-  whatsappUrl: '',     // real wa.me link to be filled later (e.g., "https://wa.me/91XXXXXXXXXX")
-  addressLabel: '',    // e.g., "Andheri West, Mumbai, India"
-  mapsUrl: '',         // full Google Maps URL
+  phone: '+91 98765 43210',           // placeholder phone number
+  email: 'info@gridgointeriors.com',  // professional email
+  whatsappUrl: 'https://wa.me/919876543210',     // placeholder WhatsApp link
+  addressLabel: 'Based in India, serving clients nationwide',
+  mapsUrl: '',         // no specific address yet
 };

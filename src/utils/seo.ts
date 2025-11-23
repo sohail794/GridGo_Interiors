@@ -13,8 +13,8 @@ export const pageMeta = {
     description: 'Premium interior design services in Mumbai, Delhi, Bangalore. Expert steel fabrication, glass work, marble craftsmanship. 20+ years of excellence.',
   },
   portfolio: {
-    title: 'Portfolio - Interior Design Projects',
-    description: 'View our stunning portfolio of residential, commercial, and retail interior design projects across India. 300+ completed projects.',
+    title: 'Design Concepts - Interior Visualization Gallery',
+    description: 'Explore our design concept visualizations showcasing residential, commercial, and retail interior design capabilities across India.',
   },
   services: {
     title: 'Interior Design Services - Fabrication & Furniture',

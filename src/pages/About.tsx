@@ -173,15 +173,13 @@ export default function About({ onNavigate }: AboutProps) {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {teamMembers.map((member) => (
               <GlassCard key={member.id} padding="sm" className="text-center group">
-                {member.image && (
-                  <div className="relative overflow-hidden rounded-lg mb-6">
-                    <img
-                      src={member.image}
-                      alt={`${member.name} - ${member.title}`}
-                      className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+                {!member.image && (
+                  <div className="relative overflow-hidden rounded-lg mb-6 bg-gradient-to-br from-[#00ff88]/10 to-[#00d9ff]/10 h-60 flex items-center justify-center">
+                    <div className="w-24 h-24 rounded-full bg-[#00ff88]/20 flex items-center justify-center">
+                      <span className="text-4xl font-bold text-[#00ff88]">
+                        {member.name.charAt(0)}
+                      </span>
+                    </div>
                   </div>
                 )}
                 <h3 className="text-2xl font-bold text-white mb-2">{member.name}</h3>

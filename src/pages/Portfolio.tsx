@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { X, MapPin, Calendar, Tag } from 'lucide-react';
+import { X, Tag } from 'lucide-react';
 import { featuredProjects } from '../data/content';
 import { Project } from '../types';
 import GlassCard from '../components/GlassCard';
@@ -38,10 +38,10 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
 
         <div className="relative z-10 max-w-4xl mx-auto px-8 text-center">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-            <span className="gradient-text">Timeless Creations</span>
+            <span className="gradient-text">Design Concepts</span>
           </h1>
           <p className="text-xl md:text-2xl text-[#b4b4b4]">
-            Design excellence in action
+            Visual inspirations showcasing our design capabilities
           </p>
         </div>
       </section>
@@ -84,7 +84,7 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
                   )}
                   <img
                     src={project.image}
-                    alt={`${project.title} - ${project.category} interior design project`}
+                    alt={`${project.title} - ${project.category} interior design concept visualization`}
                     className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500"
                     loading="lazy"
                     onLoad={() => handleImageLoad(project.id)}
@@ -101,9 +101,8 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
                     {project.category}
                   </span>
                   <h3 className="text-2xl font-bold text-white">{project.title}</h3>
-                  <p className="text-[#b4b4b4] flex items-center gap-2">
-                    <MapPin size={16} />
-                    {project.location}
+                  <p className="text-[#b4b4b4] text-sm">
+                    {project.scope}
                   </p>
                 </div>
               </GlassCard>
@@ -140,11 +139,18 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
               </button>
 
               <div className="space-y-6">
-                <img
-                  src={selectedProject.image}
-                  alt={selectedProject.title}
-                  className="w-full h-[400px] object-cover rounded-xl"
-                />
+                <div className="relative">
+                  <img
+                    src={selectedProject.image}
+                    alt={selectedProject.title}
+                    className="w-full h-[400px] object-cover rounded-xl"
+                  />
+                  <div className="absolute top-4 left-4">
+                    <span className="px-3 py-1.5 text-xs font-semibold uppercase tracking-wide bg-white/90 text-[#0a0e27] rounded-full">
+                      Design Concept Visualization
+                    </span>
+                  </div>
+                </div>
 
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
@@ -157,31 +163,24 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
                     {selectedProject.title}
                   </h2>
 
-                  <div className="flex flex-wrap gap-6 text-[#b4b4b4]">
-                    <div className="flex items-center gap-2">
-                      <MapPin size={20} className="text-[#00ff88]" />
-                      <span>{selectedProject.location}</span>
-                    </div>
-                    {selectedProject.year && (
-                      <div className="flex items-center gap-2">
-                        <Calendar size={20} className="text-[#00ff88]" />
-                        <span>{selectedProject.year}</span>
-                      </div>
-                    )}
+                  <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-4">
+                    <p className="text-sm text-blue-400 leading-relaxed">
+                      <strong>Note:</strong> This is a design concept visualization showcasing our creative capabilities. Not a completed client project.
+                    </p>
                   </div>
 
                   <p className="text-lg text-[#b4b4b4] leading-relaxed">
                     {selectedProject.description}
                   </p>
 
-                  {selectedProject.features && selectedProject.features.length > 0 && (
+                  {selectedProject.materials && selectedProject.materials.length > 0 && (
                     <div>
-                      <h3 className="text-xl font-bold text-white mb-3">Project Highlights</h3>
+                      <h3 className="text-xl font-bold text-white mb-3">Featured Materials</h3>
                       <ul className="grid grid-cols-2 gap-3">
-                        {selectedProject.features.map((feature, index) => (
+                        {selectedProject.materials.map((material, index) => (
                           <li key={index} className="flex items-center gap-2 text-[#b4b4b4]">
                             <Tag size={16} className="text-[#00ff88]" />
-                            <span>{feature}</span>
+                            <span>{material}</span>
                           </li>
                         ))}
                       </ul>
