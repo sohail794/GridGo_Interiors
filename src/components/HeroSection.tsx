@@ -1,4 +1,3 @@
-import { ArrowDown } from 'lucide-react';
 import Button3D from './Button3D';
 import { COMPANY } from '../config/company';
 
@@ -72,15 +71,6 @@ export default function HeroSection({ onOpenModal }: HeroSectionProps) {
         </div>
       </div>
 
-      <button
-        onClick={scrollToPortfolio}
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20 animate-bounce text-[#00ff88] hover:text-[#00d9ff] transition-colors"
-      >
-        <div className="flex flex-col items-center gap-2">
-          <span className="text-sm uppercase tracking-wide">Scroll</span>
-          <ArrowDown size={24} />
-        </div>
-      </button>
     </section>
   );
 }

@@ -68,7 +68,11 @@ export default function MobileMenuOverlay({
   return (
     <div
       onClick={handleBackdropClick}
-      className="fixed inset-0 w-full h-full z-[99999] bg-[#0a0e27] backdrop-blur-md lg:hidden flex flex-col transition-opacity duration-300"
+      className={`
+        fixed inset-0 w-full h-full z-[99999] bg-[#0a0e27] backdrop-blur-md lg:hidden flex flex-col
+        transition-all duration-300 ease-in-out
+        ${open ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0 pointer-events-none'}
+      `}
     >
       {/* Header with logo and close button */}
       <div className="fixed top-0 left-0 right-0 z-[100000] bg-[#0a0e27] border-b border-white/10">
