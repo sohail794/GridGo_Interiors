@@ -99,29 +99,29 @@ export default function Chatbot() {
         <div className="fixed bottom-6 right-6 z-50">
           <button
             onClick={() => setIsOpen(true)}
-            className="relative bg-emerald-dark hover:bg-emerald text-white p-4 rounded-full shadow-luxury hover:shadow-luxury-hover transition-all group"
+            className="relative bg-emerald-dark hover:bg-emerald text-white p-4 rounded-full shadow-luxury hover:shadow-luxury-hover transition-all duration-200 ease-out hover:scale-110 hover:-translate-y-1 active:scale-95 group focus-ring"
             aria-label="Open chat"
           >
             <MessageCircle size={28} />
-            <span className={`absolute -top-1 -right-1 w-3 h-3 rounded-full ${
+            <span className={`absolute -top-1 -right-1 w-3 h-3 rounded-full animate-pulse ${
               isOnline ? 'bg-green-400' : 'bg-gray-400'
             } border-2 border-white`} />
           </button>
-          <div className="absolute bottom-full right-0 mb-2 bg-white px-3 py-2 rounded-lg shadow-lg text-xs font-sans whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+          <div className="absolute bottom-full right-0 mb-2 bg-white px-3 py-2 rounded-lg shadow-lg text-xs font-sans whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
             {isOnline ? "We're online — chat with us" : "All agents are busy — leave a message"}
           </div>
         </div>
       )}
 
       {isOpen && (
-        <div className="fixed bottom-6 right-6 z-50 w-96 max-w-[calc(100vw-3rem)] h-[600px] bg-white rounded-lg shadow-luxury-hover flex flex-col animate-slide-up">
-          <div className="bg-emerald text-white p-4 rounded-t-lg flex justify-between items-center">
+        <div className="fixed bottom-6 right-6 z-50 w-96 max-w-[calc(100vw-3rem)] h-[600px] bg-white rounded-lg shadow-luxury-hover flex flex-col animate-fade-in-up">
+          <div className="bg-emerald text-white p-4 rounded-t-lg flex justify-between items-center transition-all duration-200">
             <div className="flex items-center">
               <MessageCircle size={24} className="mr-2" />
               <div>
                 <h3 className="font-sans font-bold">GridGo Assistant</h3>
                 <p className="text-xs flex items-center gap-1">
-                  <span className={`w-2 h-2 rounded-full ${
+                  <span className={`w-2 h-2 rounded-full animate-pulse ${
                     isOnline ? 'bg-green-300' : 'bg-gray-300'
                   }`} />
                   {isOnline ? 'Online' : 'Offline'}
@@ -130,7 +130,7 @@ export default function Chatbot() {
             </div>
             <button
               onClick={() => setIsOpen(false)}
-              className="text-white hover:text-silver-light transition-colors"
+              className="text-white hover:text-silver-light transition-all duration-200 hover:scale-110 focus-ring rounded p-1"
               aria-label="Close chat"
             >
               <X size={24} />
@@ -141,13 +141,14 @@ export default function Chatbot() {
             {messages.map((msg, index) => (
               <div
                 key={index}
-                className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                className={`flex animate-fade-in-up ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                style={{ animationDelay: `${index * 50}ms` }}
               >
                 <div
-                  className={`max-w-[80%] p-3 rounded-lg ${
+                  className={`max-w-[80%] p-3 rounded-lg transition-all duration-200 ${
                     msg.role === 'user'
-                      ? 'bg-emerald text-white'
-                      : 'bg-silver-light text-charcoal'
+                      ? 'bg-emerald text-white hover:shadow-lg'
+                      : 'bg-silver-light text-charcoal hover:shadow-lg'
                   }`}
                 >
                   <p className="font-sans text-sm">{msg.content}</p>
@@ -156,7 +157,7 @@ export default function Chatbot() {
             ))}
 
             {!leadCaptured && messages.length > 2 && (
-              <div className="bg-ivory p-4 rounded-lg border-2 border-emerald/20">
+              <div className="bg-ivory p-4 rounded-lg border-2 border-emerald/20 animate-fade-in-up">
                 <p className="font-sans text-sm text-charcoal mb-3">
                   Share your details for personalized assistance:
                 </p>
@@ -166,7 +167,7 @@ export default function Chatbot() {
                     placeholder="Your name"
                     value={userName}
                     onChange={(e) => setUserName(e.target.value)}
-                    className="w-full px-3 py-2 rounded border border-silver focus:border-emerald outline-none text-sm"
+                    className="w-full px-3 py-2 rounded border border-silver focus:border-emerald focus:ring-2 focus:ring-emerald/30 focus:scale-[1.01] outline-none text-sm transition-all duration-200"
                     required
                   />
                   <input
@@ -174,12 +175,12 @@ export default function Chatbot() {
                     placeholder="Your email"
                     value={userEmail}
                     onChange={(e) => setUserEmail(e.target.value)}
-                    className="w-full px-3 py-2 rounded border border-silver focus:border-emerald outline-none text-sm"
+                    className="w-full px-3 py-2 rounded border border-silver focus:border-emerald focus:ring-2 focus:ring-emerald/30 focus:scale-[1.01] outline-none text-sm transition-all duration-200"
                     required
                   />
                   <button
                     type="submit"
-                    className="w-full bg-emerald text-white py-2 rounded font-sans font-semibold text-sm hover:bg-emerald-dark transition-colors"
+                    className="w-full bg-emerald text-white py-2 rounded font-sans font-semibold text-sm hover:bg-emerald-dark transition-all duration-200 hover:scale-105 active:scale-95"
                   >
                     Submit
                   </button>
@@ -189,11 +190,12 @@ export default function Chatbot() {
 
             {messages.length === 1 && (
               <div className="flex flex-wrap gap-2">
-                {quickReplies.map((reply) => (
+                {quickReplies.map((reply, idx) => (
                   <button
                     key={reply}
                     onClick={() => handleSendMessage(reply)}
-                    className="bg-silver-light hover:bg-silver text-charcoal px-3 py-2 rounded-full text-xs font-sans transition-colors"
+                    className="bg-silver-light hover:bg-silver text-charcoal px-3 py-2 rounded-full text-xs font-sans transition-all duration-200 hover:scale-105 active:scale-95 animate-fade-in-up"
+                    style={{ animationDelay: `${idx * 50}ms` }}
                   >
                     {reply}
                   </button>
@@ -215,11 +217,11 @@ export default function Chatbot() {
                 value={inputMessage}
                 onChange={(e) => setInputMessage(e.target.value)}
                 placeholder="Type your message..."
-                className="flex-1 px-4 py-2 rounded-full border-2 border-silver focus:border-emerald outline-none transition-colors"
+                className="flex-1 px-4 py-2 rounded-full border-2 border-silver focus:border-emerald focus:ring-2 focus:ring-emerald/20 outline-none transition-all duration-200"
               />
               <button
                 type="submit"
-                className="bg-emerald hover:bg-emerald-dark text-white p-2 rounded-full transition-colors"
+                className="bg-emerald hover:bg-emerald-dark text-white p-2 rounded-full transition-all duration-200 hover:scale-110 active:scale-95 focus-ring"
                 aria-label="Send message"
               >
                 <Send size={20} />

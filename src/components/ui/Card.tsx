@@ -24,7 +24,7 @@ export default function Card({
   hover = true,
   className = '',
 }: CardProps) {
-  const baseClasses = 'rounded-radius-lg border border-white/10 transition-all duration-300';
+  const baseClasses = 'rounded-radius-lg border border-white/10 transition-all duration-200 ease-out';
   const glassClasses = glass ? 'glass-card' : 'bg-background-elevated';
   const hoverClasses = hover 
     ? 'hover:border-[rgb(0,255,136)]/50 hover:shadow-lg hover:shadow-[rgb(0,255,136)]/10 hover:scale-[1.02]' 

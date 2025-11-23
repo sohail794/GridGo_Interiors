@@ -19,10 +19,10 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal, mobile
   // Handle scroll effects
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+      setIsScrolled(window.scrollY > 50);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -47,23 +47,23 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal, mobile
         sticky top-0 w-full z-[9999]
         glass-nav
         border-b border-white/10
-        transition-all duration-300
+        transition-all duration-200 ease-out
         backdrop-blur-md 
-        ${isScrolled ? 'bg-[#0a0e27]/95 shadow-lg shadow-[#00ff88]/10' : 'bg-[#0a0e27]/80'}
+        ${isScrolled ? 'h-16 shadow-lg shadow-[#00ff88]/10 bg-[#0a0e27]/95' : 'h-20 bg-[#0a0e27]/80'}
       `}
       role="banner"
       aria-label="Site navigation"
     >
-      <div className="max-w-[1400px] mx-auto px-8">
-        <div className="flex justify-between items-center h-20">
+      <div className="max-w-[1400px] mx-auto px-8 h-full">
+        <div className="flex justify-between items-center h-full">
           <div
-            className="flex items-center cursor-pointer group"
+            className="flex items-center cursor-pointer group transition-all duration-200"
             onClick={() => onNavigate('home')}
           >
             <img
               src={logo}
               alt="GridGo Interiors"
-              className="h-12 w-auto transition-all group-hover:scale-105"
+              className="h-12 w-auto transition-all duration-200 group-hover:scale-105"
             />
           </div>
 
@@ -78,12 +78,13 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal, mobile
                 <button
                   onClick={() => onNavigate(item.page)}
                   className={`
-                    text-base font-medium transition-all duration-300
+                    text-base font-medium transition-all duration-200 ease-out
                     flex items-center gap-1
+                    py-1 px-2 rounded-lg
                     ${
                       currentPage === item.page
                         ? 'text-white text-glow'
-                        : 'text-text-secondary hover:text-white hover:text-glow'
+                        : 'text-text-secondary hover:text-white hover:text-glow hover:bg-white/5'
                     }
                   `}
                   aria-current={currentPage === item.page ? 'page' : undefined}
@@ -91,7 +92,7 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal, mobile
                   aria-haspopup={item.hasDropdown ? 'true' : undefined}
                 >
                   {item.label}
-                  {item.hasDropdown && <ChevronDown size={16} />}
+                  {item.hasDropdown && <ChevronDown size={16} className={`transition-transform duration-200 ${portfolioDropdown ? 'rotate-180' : ''}`} />}
                 </button>
 
                 {item.hasDropdown && currentPage === item.page && (
@@ -99,7 +100,7 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal, mobile
                 )}
 
                 {item.hasDropdown && portfolioDropdown && (
-                  <div className="absolute top-full left-0 mt-2 w-48 glass-card p-2 animate-fade-in">
+                  <div className="absolute top-full left-0 mt-2 w-48 glass-card p-2 animate-fade-in-down">
                     {portfolioItems.map((subItem) => (
                       <button
                         key={subItem.category}
@@ -110,7 +111,7 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal, mobile
                         className="
                           w-full text-left px-4 py-3 rounded-lg
                           text-text-secondary hover:text-white
-                          hover:bg-white/5
+                          hover:bg-white/5 hover:translate-x-1
                           transition-all duration-200 hover:opacity-100 opacity-80
                           focus:outline-none focus:ring-2 focus:ring-[rgb(0,255,136)]/50 rounded-lg
                         "

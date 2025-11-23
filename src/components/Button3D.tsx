@@ -15,7 +15,7 @@ export default function Button3D({
   className = '',
   ...props
 }: Button3DProps) {
-  const baseClasses = 'font-semibold uppercase tracking-wide rounded-xl transition-all duration-300 ease-out inline-flex items-center justify-center gap-2';
+  const baseClasses = 'font-semibold uppercase tracking-wide rounded-xl transition-all duration-200 ease-out inline-flex items-center justify-center gap-2 focus-ring';
 
   const sizeClasses = {
     sm: 'px-4 py-2 text-sm',
@@ -28,9 +28,8 @@ export default function Button3D({
       bg-gradient-to-br from-[#00ff88] to-[#00b894]
       text-[#0a0e27]
       shadow-3d
-      hover:shadow-3d-hover
-      hover:-translate-y-1
-      active:translate-y-0
+      hover:shadow-3d-hover hover:scale-105 hover:-translate-y-1
+      active:translate-y-0 active:scale-95
       active:shadow-3d
     `,
     secondary: `
@@ -38,8 +37,8 @@ export default function Button3D({
       text-[#0a0e27]
       shadow-[0_1px_2px_rgba(0,217,255,0.2),0_4px_8px_rgba(0,217,255,0.15),0_8px_16px_rgba(0,217,255,0.1),0_16px_32px_rgba(0,217,255,0.05)]
       hover:shadow-[0_2px_4px_rgba(0,217,255,0.4),0_8px_16px_rgba(0,217,255,0.3),0_16px_32px_rgba(0,217,255,0.2),0_32px_64px_rgba(0,217,255,0.1),0_0_80px_rgba(0,217,255,0.3)]
-      hover:-translate-y-1
-      active:translate-y-0
+      hover:scale-105 hover:-translate-y-1
+      active:translate-y-0 active:scale-95
     `,
     ghost: `
       bg-transparent
@@ -49,7 +48,8 @@ export default function Button3D({
       hover:text-[#00d9ff]
       hover:shadow-[0_0_20px_rgba(0,255,136,0.4)]
       hover:bg-[rgba(0,255,136,0.1)]
-      active:scale-95
+      hover:scale-105 hover:-translate-y-1
+      active:scale-95 active:translate-y-0
     `,
   };
 
