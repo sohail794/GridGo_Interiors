@@ -84,7 +84,7 @@ export default function MobileMenuOverlay({
           <button
             onClick={onClose}
             aria-label="Close menu"
-            className="p-2 text-[#00ff88] hover:text-[#00d9ff] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#00ff88]/50 rounded-lg hover:bg-white/5"
+            className="p-2 text-[rgb(0,255,136)] hover:text-[rgb(0,217,255)] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[rgb(0,255,136)]/50 rounded-lg hover:bg-white/5"
           >
             <X size={28} />
           </button>
@@ -102,11 +102,11 @@ export default function MobileMenuOverlay({
                 w-full text-center px-8 py-4 rounded-xl text-lg font-semibold
                 transition-all duration-200 ease-in-out
                 hover:scale-[1.02] active:scale-95
-                focus:outline-none focus:ring-2 focus:ring-[#00ff88]/50 focus:ring-offset-2 focus:ring-offset-[#0a0e27]
+                focus:outline-none focus:ring-2 focus:ring-[rgb(0,255,136)]/50 focus:ring-offset-2 focus:ring-offset-[#0a0e27]
                 ${
                   currentPage === item.page
-                    ? 'bg-gradient-to-r from-[#00ff88]/20 to-[#00d9ff]/20 text-white border border-[#00ff88]/50 shadow-[0_0_20px_rgba(0,255,136,0.15)]'
-                    : 'text-[#b4b4b4] hover:text-[#00ff88] hover:bg-white/5 border border-white/10 hover:border-[#00ff88]/50'
+                    ? 'bg-gradient-to-r from-[rgb(0,255,136)]/20 to-[rgb(0,217,255)]/20 text-white border border-[rgb(0,255,136)]/50 shadow-[0_0_20px_rgba(0,255,136,0.15)]'
+                    : 'text-text-secondary hover:text-[rgb(0,255,136)] hover:bg-white/5 border border-white/10 hover:border-[rgb(0,255,136)]/50'
                 }
               `}
             >

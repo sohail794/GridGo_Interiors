@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ChevronDown } from 'lucide-react';
 import Button3D from './Button3D';
 import HamburgerMenu from './HamburgerMenu';
@@ -14,6 +14,17 @@ interface HeaderProps {
 
 export default function HeaderNew({ currentPage, onNavigate, onOpenModal, mobileMenuOpen, onMobileMenuChange }: HeaderProps) {
   const [portfolioDropdown, setPortfolioDropdown] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // Handle scroll effects
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const menuItems = [
     { label: 'Home', page: 'home' },
@@ -37,7 +48,8 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal, mobile
         glass-nav
         border-b border-white/10
         transition-all duration-300
-        backdrop-blur-md bg-[#0a0e27]/80
+        backdrop-blur-md 
+        ${isScrolled ? 'bg-[#0a0e27]/95 shadow-lg shadow-[#00ff88]/10' : 'bg-[#0a0e27]/80'}
       `}
     >
       <div className="max-w-[1400px] mx-auto px-8">
@@ -69,7 +81,7 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal, mobile
                     ${
                       currentPage === item.page
                         ? 'text-white text-glow'
-                        : 'text-[#b4b4b4] hover:text-white hover:text-glow'
+                        : 'text-text-secondary hover:text-white hover:text-glow'
                     }
                   `}
                 >
@@ -78,7 +90,7 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal, mobile
                 </button>
 
                 {item.hasDropdown && currentPage === item.page && (
-                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#00ff88] to-[#00d9ff]" />
+                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[rgb(0,255,136)] to-[rgb(0,217,255)]" />
                 )}
 
                 {item.hasDropdown && portfolioDropdown && (
@@ -92,9 +104,10 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal, mobile
                         }}
                         className="
                           w-full text-left px-4 py-3 rounded-lg
-                          text-[#b4b4b4] hover:text-white
+                          text-text-secondary hover:text-white
                           hover:bg-white/5
                           transition-all duration-200 hover:opacity-100 opacity-80
+                          focus:outline-none focus:ring-2 focus:ring-[rgb(0,255,136)]/50 rounded-lg
                         "
                       >
                         {subItem.label}
