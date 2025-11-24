@@ -26,15 +26,31 @@ export default function MobileMenuOverlay({
     { label: 'Insights', page: 'blog' },
   ];
 
-  // Lock body scroll when menu is open
+  // Lock body scroll when menu is open and prevent scroll-up animations
   useEffect(() => {
     if (open) {
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
       document.body.style.overflow = 'hidden';
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+      document.body.style.top = '0';
+      document.documentElement.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
+      document.body.style.paddingRight = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.body.style.top = '';
+      document.documentElement.style.overflow = '';
     }
     return () => {
       document.body.style.overflow = '';
+      document.body.style.paddingRight = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.body.style.top = '';
+      document.documentElement.style.overflow = '';
     };
   }, [open]);
 
@@ -45,8 +61,10 @@ export default function MobileMenuOverlay({
         onClose();
       }
     };
-    window.addEventListener('keydown', handleEscape);
-    return () => window.removeEventListener('keydown', handleEscape);
+    if (open) {
+      window.addEventListener('keydown', handleEscape);
+      return () => window.removeEventListener('keydown', handleEscape);
+    }
   }, [open, onClose]);
 
   if (!open) {
@@ -72,6 +90,9 @@ export default function MobileMenuOverlay({
         transition-all duration-300 ease-in-out
         ${open ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0 pointer-events-none'}
       `}
+      role="navigation"
+      aria-label="Mobile navigation menu"
+      aria-hidden={!open}
     >
       {/* Header with logo and close button */}
       <div className="fixed top-0 left-0 right-0 z-[100000] bg-[#0a0e27] border-b border-white/10">
