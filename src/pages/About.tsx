@@ -92,28 +92,54 @@ export default function About({ onNavigate }: AboutProps) {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
-            <div className="space-y-6">
-              <h2 className="text-4xl md:text-5xl font-bold">
-                Our <span className="gradient-text">Story</span>
-              </h2>
-              <div className="space-y-4 text-lg text-text-secondary leading-relaxed">
-                <p>
-                  Founded in {COMPANY.foundingYear}, GridGo Interiors emerged from a vision to transform ordinary spaces
-                  into extraordinary environments. With over two decades of dedication to excellence, we
-                  have established ourselves as India's premier integrated interior services provider.
+            <div className="space-y-8">
+              <div>
+                <h2 className="text-4xl md:text-5xl font-bold mb-4">
+                  Our <span className="gradient-text">Story</span>
+                </h2>
+                <p className="text-lg text-text-secondary">
+                  From vision to reality in over two decades
                 </p>
-                <p>
-                  Our journey began with a small team of passionate craftsmen and designers who believed
-                  that every space tells a story. Today, we are proud to have completed over 300
-                  projects across India, each one a testament to our commitment to quality,
-                  innovation, and client satisfaction.
-                </p>
-                <p>
-                  What sets GridGo apart is our comprehensive approach to interior design. We don't just
-                  design spaces; we bring them to life through our expertise in steel fabrication, glass
-                  applications, marble craftsmanship, bespoke furniture creation, artistic décor, and
-                  premium painting.
-                </p>
+              </div>
+
+              <div className="space-y-6">
+                <div className="space-y-3">
+                  <h3 className="text-xl font-semibold text-white flex items-center gap-3">
+                    <CheckCircle size={24} className="text-brand-emerald flex-shrink-0" />
+                    The Beginning
+                  </h3>
+                  <p className="text-text-secondary leading-relaxed pl-9">
+                    Founded in {COMPANY.foundingYear}, GridGo Interiors emerged from a vision to transform ordinary spaces
+                    into extraordinary environments. With over two decades of dedication to excellence, we
+                    have established ourselves as India's premier integrated interior services provider.
+                  </p>
+                </div>
+
+                <div className="space-y-3">
+                  <h3 className="text-xl font-semibold text-white flex items-center gap-3">
+                    <Award size={24} className="text-brand-emerald flex-shrink-0" />
+                    Our Evolution
+                  </h3>
+                  <p className="text-text-secondary leading-relaxed pl-9">
+                    Our journey began with a small team of passionate craftsmen and designers who believed
+                    that every space tells a story. Today, we are proud to have completed over 300
+                    projects across India, each one a testament to our commitment to quality,
+                    innovation, and client satisfaction.
+                  </p>
+                </div>
+
+                <div className="space-y-3">
+                  <h3 className="text-xl font-semibold text-white flex items-center gap-3">
+                    <Target size={24} className="text-brand-emerald flex-shrink-0" />
+                    Our Expertise
+                  </h3>
+                  <p className="text-text-secondary leading-relaxed pl-9">
+                    What sets GridGo apart is our comprehensive approach to interior design. We don't just
+                    design spaces; we bring them to life through our expertise in steel fabrication, glass
+                    applications, marble craftsmanship, bespoke furniture creation, artistic décor, and
+                    premium painting.
+                  </p>
+                </div>
               </div>
             </div>
 
