@@ -34,9 +34,28 @@ export default function HeroSection({ onOpenModal }: HeroSectionProps) {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-0">
+      {/* Background Image Layer */}
+      <div
+        className="absolute inset-0 z-0"
+        style={{
+          backgroundImage: 'url(https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1920&q=80)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          filter: 'brightness(0.65) contrast(1.15) saturate(1.1)',
+        }}
+        aria-hidden="true"
+      />
+      
+      {/* Navy overlay for brand consistency */}
+      <div 
+        className="absolute inset-0 z-0 bg-[#0A0E27]/50" 
+        style={{ mixBlendMode: 'multiply' }}
+        aria-hidden="true"
+      />
+
       {/* Gradient Background */}
       <div
-        className="absolute inset-0 z-0 bg-gradient-hero"
+        className="absolute inset-0 z-0 bg-gradient-hero opacity-40"
         aria-hidden="true"
       />
 

@@ -44,15 +44,24 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
   return (
     <div className="min-h-screen">
       <section className="relative h-[500px] flex items-center justify-center overflow-hidden">
+        {/* Background Image Layer */}
         <div
           className="absolute inset-0 z-0"
           style={{
-            backgroundImage: 'url(https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=1600)',
+            backgroundImage: 'url(https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1920&q=80)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
+            filter: 'brightness(0.65) contrast(1.15) saturate(1.1)',
           }}
+          aria-hidden="true"
         />
-        <div className="absolute inset-0 z-0 bg-gradient-to-b from-black/70 to-black/50" />
+        
+        {/* Navy overlay for brand consistency */}
+        <div 
+          className="absolute inset-0 z-0 bg-[#0A0E27]/50" 
+          style={{ mixBlendMode: 'multiply' }}
+          aria-hidden="true"
+        />
 
         <div className="relative z-10 text-center">
           <Container maxWidth="lg">
