@@ -83,7 +83,7 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
     return (
       <div className="fixed inset-0 z-[2000] flex items-center justify-center p-4">
         <div className="absolute inset-0 bg-black/85 backdrop-blur-md" onClick={onClose} />
-        <GlassCard className="relative z-10 max-w-lg w-full text-center space-y-6" style={{ animation: 'revealScale 500ms ease-out forwards' }}>
+        <GlassCard className="relative z-10 max-w-lg w-full text-center space-y-6 animate-fade-in">
           <div className="w-20 h-20 mx-auto rounded-full bg-[#00ff88]/10 flex items-center justify-center" style={{ animation: 'pulse-glow 2s ease-in-out infinite' }}>
             <CheckCircle size={48} className="text-[#00ff88]" style={{ animation: 'popIn 600ms ease-out forwards', animationDelay: '200ms' }} />
           </div>
@@ -104,7 +104,7 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
       <div className="absolute inset-0 bg-black/85 backdrop-blur-md" onClick={onClose} />
 
       <div className="relative z-10 w-full max-w-2xl my-8">
-        <GlassCard className="relative animate-fade-in" style={{ animation: 'revealScale 500ms ease-out forwards' }}>
+        <GlassCard className="relative animate-fade-in">
           <button
             onClick={onClose}
             className="absolute top-6 right-6 w-10 h-10 rounded-full border-2 border-white/10 hover:border-[#ff6b35] text-white hover:text-[#ff6b35] hover:scale-110 hover:shadow-lg active:scale-95 transition-all flex items-center justify-center duration-200"

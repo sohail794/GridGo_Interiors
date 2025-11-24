@@ -11,7 +11,7 @@ export interface ValidationRule {
 }
 
 export interface FormErrors {
-  [key: string]: string;
+  [key: string]: string | undefined;
 }
 
 export interface UseFormValidationReturn {
