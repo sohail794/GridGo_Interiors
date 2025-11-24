@@ -102,6 +102,11 @@ export const services: Service[] = [
       'Stainless steel fixtures',
       'Precision welding and finishing',
     ],
+    gallery: [
+      'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=500&q=80',
+      'https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=500&q=80',
+      'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=500&q=80',
+    ],
   },
   {
     id: '2',
@@ -114,6 +119,11 @@ export const services: Service[] = [
       'Glass partitions and facades',
       'Decorative and frosted glass',
       'Custom glass installations',
+    ],
+    gallery: [
+      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=80',
+      'https://images.unsplash.com/photo-1582821261290-91b90f643fe1?w=500&q=80',
+      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=80',
     ],
   },
   {
@@ -128,6 +138,11 @@ export const services: Service[] = [
       'Intricate inlay work',
       'Restoration and polishing',
     ],
+    gallery: [
+      'https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?w=500&q=80',
+      'https://images.unsplash.com/photo-1618221195710-dd905b578db1?w=500&q=80',
+      'https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?w=500&q=80',
+    ],
   },
   {
     id: '4',
@@ -140,6 +155,11 @@ export const services: Service[] = [
       'Premium wood and materials',
       'Ergonomic and functional',
       'Unique artistic pieces',
+    ],
+    gallery: [
+      'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=500&q=80',
+      'https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?w=500&q=80',
+      'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=500&q=80',
     ],
   },
   {
@@ -154,6 +174,11 @@ export const services: Service[] = [
       'Designer lighting',
       'Unique art pieces',
     ],
+    gallery: [
+      'https://images.unsplash.com/photo-1578500494198-246f612d03b3?w=500&q=80',
+      'https://images.unsplash.com/photo-1578500494198-246f612d03b3?w=500&q=80',
+      'https://images.unsplash.com/photo-1578500494198-246f612d03b3?w=500&q=80',
+    ],
   },
   {
     id: '6',
@@ -166,6 +191,11 @@ export const services: Service[] = [
       'Textured and specialty finishes',
       'Color consultation',
       'Protective coatings',
+    ],
+    gallery: [
+      'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=500&q=80',
+      'https://images.unsplash.com/photo-1565636192335-14c46fa1120d?w=500&q=80',
+      'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=500&q=80',
     ],
   },
 ];

@@ -203,6 +203,29 @@ export default function Services({ onNavigate }: ServicesProps) {
 
                   {isExpanded && (
                     <div className="mt-6 pt-6 border-t border-white/10 animate-fade-in">
+                      {/* Service Gallery */}
+                      {service.gallery && service.gallery.length > 0 && (
+                        <div className="mb-8">
+                          <h4 className="font-bold text-white mb-4">Project Gallery</h4>
+                          <div className="grid grid-cols-3 gap-4 mb-6">
+                            {service.gallery.map((image, idx) => (
+                              <div
+                                key={idx}
+                                className="relative w-full h-24 rounded-lg overflow-hidden"
+                              >
+                                <img
+                                  src={image}
+                                  alt={`${service.title} example ${idx + 1}`}
+                                  className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                                  loading="lazy"
+                                />
+                              </div>
+                            ))}
+                          </div>
+                          <div className="border-b border-white/10 mb-6" />
+                        </div>
+                      )}
+                      
                       <p className="text-text-secondary mb-6 leading-relaxed">
                         {service.details}
                       </p>

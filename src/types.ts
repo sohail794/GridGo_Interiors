@@ -27,6 +27,7 @@ export interface Service {
   description: string;
   details: string;
   features: string[];
+  gallery?: string[];
 }
 
 export interface BlogPost {
