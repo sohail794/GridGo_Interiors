@@ -42,6 +42,8 @@ export const featuredProjects: Project[] = [
     materials: ['Italian Marble', 'Teak Wood', 'Brass Fixtures', 'Designer Glass'],
     location: 'New Delhi',
     timeline: 'Completed in 4 months',
+    beforeImage: 'https://images.unsplash.com/photo-1550355291-bbee04a92027?w=800&q=80',
+    afterImage: 'https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?w=800&q=80',
   },
   {
     id: '2',
@@ -53,6 +55,8 @@ export const featuredProjects: Project[] = [
     materials: ['Stainless Steel', 'Tempered Glass', 'Engineered Wood', 'Premium Paint'],
     location: 'Mumbai',
     timeline: 'Completed in 3 months',
+    beforeImage: 'https://images.unsplash.com/photo-1577658423778-e8800266c2ca?w=800&q=80',
+    afterImage: 'https://images.pexels.com/photos/1957477/pexels-photo-1957477.jpeg?w=800&q=80',
   },
   {
     id: '3',
@@ -64,6 +68,8 @@ export const featuredProjects: Project[] = [
     materials: ['Decorative Glass', 'Luxury Flooring', 'LED Systems', 'Custom Furniture'],
     location: 'Bangalore',
     timeline: 'Completed in 2 months',
+    beforeImage: 'https://images.unsplash.com/photo-1566443562216-b746ae4d6c4e?w=800&q=80',
+    afterImage: 'https://images.pexels.com/photos/1350789/pexels-photo-1350789.jpeg?w=800&q=80',
   },
   {
     id: '4',
@@ -75,6 +81,8 @@ export const featuredProjects: Project[] = [
     materials: ['Reclaimed Wood', 'Heritage Marble', 'Brass Fittings', 'Traditional Décor'],
     location: 'Jaipur',
     timeline: 'Completed in 5 months',
+    beforeImage: 'https://images.unsplash.com/photo-1603857671923-461f558e2136?w=800&q=80',
+    afterImage: 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?w=800&q=80',
   },
   {
     id: '5',

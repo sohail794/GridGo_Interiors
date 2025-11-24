@@ -10,6 +10,7 @@ import Container from '../components/ui/Container';
 import Section from '../components/ui/Section';
 import SectionHeader from '../components/ui/SectionHeader';
 import Card from '../components/ui/Card';
+import BeforeAfterSlider from '../components/BeforeAfterSlider';
 import { useScrollRevealWave } from '../hooks/useScrollReveal';
 import { useMouseParallax } from '../hooks/useMouseParallax';
 
@@ -142,12 +143,21 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
               </button>
 
               <div className="space-y-6">
-                <img
-                  src={selectedProject.image}
-                  alt={selectedProject.title}
-                  className="w-full h-96 object-cover rounded-lg mb-6"
-                  loading="lazy"
-                />
+                {selectedProject.beforeImage && selectedProject.afterImage ? (
+                  <div className="rounded-lg overflow-hidden">
+                    <BeforeAfterSlider 
+                      beforeImage={selectedProject.beforeImage}
+                      afterImage={selectedProject.afterImage}
+                    />
+                  </div>
+                ) : (
+                  <img
+                    src={selectedProject.image}
+                    alt={selectedProject.title}
+                    className="w-full h-96 object-cover rounded-lg mb-6"
+                    loading="lazy"
+                  />
+                )}
 
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
