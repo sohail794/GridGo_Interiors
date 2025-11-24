@@ -33,6 +33,31 @@ export default {
         'bg-elevated': '#1a1f3a',
         'background-primary': '#0a0e27',
       },
+      fontSize: {
+        // Display - Large hero headings
+        'display-xl': ['3.5rem', { lineHeight: '1.1', letterSpacing: '-0.02em' }],
+        'display-lg': ['3rem', { lineHeight: '1.15', letterSpacing: '-0.02em' }],
+        'display-md': ['2.5rem', { lineHeight: '1.2', letterSpacing: '-0.01em' }],
+        
+        // Heading - Section headings
+        'h1': ['2rem', { lineHeight: '1.3', letterSpacing: '-0.01em', fontWeight: '700' }],
+        'h2': ['1.75rem', { lineHeight: '1.35', letterSpacing: '-0.01em', fontWeight: '700' }],
+        'h3': ['1.5rem', { lineHeight: '1.4', letterSpacing: '0', fontWeight: '600' }],
+        'h4': ['1.25rem', { lineHeight: '1.5', letterSpacing: '0', fontWeight: '600' }],
+        'h5': ['1.125rem', { lineHeight: '1.5', letterSpacing: '0', fontWeight: '600' }],
+        'h6': ['1rem', { lineHeight: '1.5', letterSpacing: '0', fontWeight: '600' }],
+        
+        // Body - Reading text
+        'body-lg': ['1.125rem', { lineHeight: '1.7', letterSpacing: '0' }],
+        'body-base': ['1rem', { lineHeight: '1.7', letterSpacing: '0' }],
+        'body-sm': ['0.875rem', { lineHeight: '1.6', letterSpacing: '0' }],
+        'body-xs': ['0.75rem', { lineHeight: '1.5', letterSpacing: '0' }],
+        
+        // Labels & UI
+        'label': ['0.875rem', { lineHeight: '1.5', letterSpacing: '0', fontWeight: '500' }],
+        'label-sm': ['0.75rem', { lineHeight: '1.4', letterSpacing: '0.05em', fontWeight: '600' }],
+        'label-xs': ['0.625rem', { lineHeight: '1.4', letterSpacing: '0.1em', fontWeight: '700', textTransform: 'uppercase' }],
+      },
       boxShadow: {
         luxury: '0 4px 6px rgba(0, 0, 0, 0.1)',
         'luxury-hover': '0 6px 8px rgba(0, 0, 0, 0.15)',
@@ -69,6 +94,33 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addBase, theme }) {
+      addBase({
+        // Display styles
+        '.text-display-xl': { fontSize: theme('fontSize.display-xl') },
+        '.text-display-lg': { fontSize: theme('fontSize.display-lg') },
+        '.text-display-md': { fontSize: theme('fontSize.display-md') },
+        
+        // Heading styles
+        'h1, .text-h1': { fontSize: theme('fontSize.h1'), fontWeight: '700' },
+        'h2, .text-h2': { fontSize: theme('fontSize.h2'), fontWeight: '700' },
+        'h3, .text-h3': { fontSize: theme('fontSize.h3'), fontWeight: '600' },
+        'h4, .text-h4': { fontSize: theme('fontSize.h4'), fontWeight: '600' },
+        'h5, .text-h5': { fontSize: theme('fontSize.h5'), fontWeight: '600' },
+        'h6, .text-h6': { fontSize: theme('fontSize.h6'), fontWeight: '600' },
+        
+        // Body styles
+        '.text-body-lg': { fontSize: theme('fontSize.body-lg') },
+        '.text-body-base': { fontSize: theme('fontSize.body-base') },
+        '.text-body-sm': { fontSize: theme('fontSize.body-sm') },
+        '.text-body-xs': { fontSize: theme('fontSize.body-xs') },
+        
+        // Label styles
+        '.text-label': { fontSize: theme('fontSize.label'), fontWeight: '500' },
+        '.text-label-sm': { fontSize: theme('fontSize.label-sm'), fontWeight: '600' },
+        '.text-label-xs': { fontSize: theme('fontSize.label-xs'), fontWeight: '700', textTransform: 'uppercase' },
+      });
+    },
+  ],
 };
-
