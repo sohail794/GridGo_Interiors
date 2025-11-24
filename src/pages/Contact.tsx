@@ -13,6 +13,7 @@ import FormLabel from '../components/ui/FormLabel';
 import FormInput from '../components/ui/FormInput';
 import FormTextarea from '../components/ui/FormTextarea';
 import { useScrollRevealItem } from '../hooks/useScrollReveal';
+import { useFormValidation } from '../hooks/useFormValidation';
 
 interface ContactProps {
   onNavigate: (page: string) => void;
@@ -29,6 +30,8 @@ export default function Contact({ onNavigate }: ContactProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState('');
+  
+  const { errors, validate, validateAll, clearError } = useFormValidation();
   
   // Scroll reveal refs for form fields
   const formNameRef = useRef<HTMLDivElement>(null);
@@ -48,6 +51,21 @@ export default function Contact({ onNavigate }: ContactProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validate all fields before submission
+    const validationRules = {
+      name: { required: true, minLength: 2, maxLength: 100 },
+      email: { required: true, email: true },
+      phone: { phone: true },
+      subject: { maxLength: 100 },
+      message: { required: true, minLength: 10, maxLength: 1000 },
+    };
+    
+    const validationErrors = validateAll(formData, validationRules);
+    if (Object.keys(validationErrors).length > 0) {
+      return;
+    }
+    
     setIsSubmitting(true);
     setSubmitError('');
 
@@ -209,9 +227,15 @@ export default function Contact({ onNavigate }: ContactProps) {
                       required
                       minLength={2}
                       value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      onChange={(e) => {
+                        setFormData({ ...formData, name: e.target.value });
+                        clearError('name');
+                      }}
+                      onBlur={() => validate('name', formData.name, { required: true, minLength: 2 })}
                       placeholder="Your name"
                       disabled={isSubmitting}
+                      error={errors.name}
+                      errorId="name-error"
                     />
                   </div>
 
@@ -225,9 +249,15 @@ export default function Contact({ onNavigate }: ContactProps) {
                         type="email"
                         required
                         value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        onChange={(e) => {
+                          setFormData({ ...formData, email: e.target.value });
+                          clearError('email');
+                        }}
+                        onBlur={() => validate('email', formData.email, { required: true, email: true })}
                         placeholder="your@email.com"
                         disabled={isSubmitting}
+                        error={errors.email}
+                        errorId="email-error"
                       />
                     </div>
 
@@ -239,9 +269,15 @@ export default function Contact({ onNavigate }: ContactProps) {
                         id="phone"
                         type="tel"
                         value={formData.phone}
-                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                        onChange={(e) => {
+                          setFormData({ ...formData, phone: e.target.value });
+                          clearError('phone');
+                        }}
+                        onBlur={() => validate('phone', formData.phone, { phone: true })}
                         placeholder="Enter your phone number"
                         disabled={isSubmitting}
+                        error={errors.phone}
+                        errorId="phone-error"
                       />
                     </div>
                   </div>
@@ -254,9 +290,15 @@ export default function Contact({ onNavigate }: ContactProps) {
                       id="subject"
                       type="text"
                       value={formData.subject}
-                      onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                      onChange={(e) => {
+                        setFormData({ ...formData, subject: e.target.value });
+                        clearError('subject');
+                      }}
+                      onBlur={() => validate('subject', formData.subject, { maxLength: 100 })}
                       placeholder="How can we help?"
                       disabled={isSubmitting}
+                      error={errors.subject}
+                      errorId="subject-error"
                     />
                   </div>
 
@@ -269,9 +311,15 @@ export default function Contact({ onNavigate }: ContactProps) {
                       required
                       minLength={10}
                       value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      onChange={(e) => {
+                        setFormData({ ...formData, message: e.target.value });
+                        clearError('message');
+                      }}
+                      onBlur={() => validate('message', formData.message, { required: true, minLength: 10 })}
                       placeholder="Tell us about your project..."
                       disabled={isSubmitting}
+                      error={errors.message}
+                      errorId="message-error"
                     />
                   </div>
 
