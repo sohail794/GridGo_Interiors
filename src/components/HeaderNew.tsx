@@ -75,30 +75,27 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal, mobile
                 onMouseEnter={() => item.hasDropdown && setPortfolioDropdown(true)}
                 onMouseLeave={() => item.hasDropdown && setPortfolioDropdown(false)}
               >
-                <button
-                  onClick={() => onNavigate(item.page)}
-                  className={`
-                    text-base font-medium transition-all duration-200 ease-out
-                    flex items-center gap-1
-                    py-1 px-2 rounded-lg
-                    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(0,255,136)]/50 focus-visible:ring-offset-1 focus-visible:ring-offset-[#0a0e27]
-                    ${
-                      currentPage === item.page
-                        ? 'text-white text-glow'
-                        : 'text-text-secondary hover:text-white hover:text-glow hover:bg-white/5'
-                    }
-                  `}
+                <a
+                  href={`#${item.page}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate(item.page);
+                  }}
+                  className={`relative inline-flex items-center text-sm md:text-base font-medium group transition-all duration-200 ${
+                    currentPage === item.page ? "text-white" : "text-gray-300 hover:text-white"
+                  }`}
                   aria-current={currentPage === item.page ? 'page' : undefined}
-                  aria-expanded={item.hasDropdown ? portfolioDropdown : undefined}
-                  aria-haspopup={item.hasDropdown ? 'true' : undefined}
                 >
-                  {item.label}
-                  {item.hasDropdown && <ChevronDown size={16} className={`transition-transform duration-200 ${portfolioDropdown ? 'rotate-180' : ''}`} />}
-                </button>
-
-                {item.hasDropdown && currentPage === item.page && (
-                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[rgb(0,255,136)] to-[rgb(0,217,255)]" />
-                )}
+                  <span className="transition-transform duration-200 group-hover:-translate-y-[1px]">
+                    {item.label}
+                    {item.hasDropdown && <ChevronDown size={16} className={`inline-block ml-1 transition-transform duration-200 ${portfolioDropdown ? 'rotate-180' : ''}`} />}
+                  </span>
+                  <span
+                    className={`pointer-events-none absolute left-0 -bottom-1 h-[2px] w-full origin-left scale-x-0 bg-[#00F5A0] transition-transform duration-200 group-hover:scale-x-100 ${
+                      currentPage === item.page ? "scale-x-100" : ""
+                    }`}
+                  />
+                </a>
 
                 {item.hasDropdown && portfolioDropdown && (
                   <div className="absolute top-full left-0 mt-2 w-48 glass-card p-2 animate-fade-in-down">

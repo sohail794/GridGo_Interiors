@@ -78,79 +78,93 @@ export default function About({ onNavigate }: AboutProps) {
       {/* Stats Section */}
       <Section spacing="lg" background="none">
         <Container>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-20">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-16 md:mb-24 pb-12 border-b border-white/5">
             {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-3xl sm:text-4xl md:text-5xl font-bold gradient-text mb-2">
+              <div key={index} className="text-center p-6 md:p-8">
+                <div className="text-4xl sm:text-5xl md:text-display-md font-bold gradient-text mb-3">
                   {stat.value}
                 </div>
-                <div className="text-xs sm:text-sm text-text-tertiary uppercase tracking-wide font-medium">
+                <div className="text-body-sm text-text-tertiary uppercase tracking-wider font-medium">
                   {stat.label}
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
-            <div className="space-y-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div className="space-y-10">
               <div>
-                <h2 className="text-4xl md:text-5xl font-bold mb-4">
+                <p className="text-label-sm text-brand-emerald uppercase tracking-widest mb-3">Our Journey</p>
+                <h2 className="text-h1 md:text-display-md font-bold mb-4">
                   Our <span className="gradient-text">Story</span>
                 </h2>
-                <p className="text-lg text-text-secondary">
-                  From vision to reality in over two decades
+                <p className="text-body-lg text-text-secondary leading-relaxed">
+                  From a vision of transforming spaces to becoming India's premier integrated interior services provider — our journey spans over two decades of dedication to excellence.
                 </p>
               </div>
 
-              <div className="space-y-6">
-                <div className="space-y-3">
-                  <h3 className="text-xl font-semibold text-white flex items-center gap-3">
-                    <CheckCircle size={24} className="text-brand-emerald flex-shrink-0" />
-                    The Beginning
+              <div className="space-y-8">
+                <div className="space-y-4 p-6 rounded-xl bg-white/[0.02] border border-white/5 hover:border-brand-emerald/20 transition-colors">
+                  <h3 className="text-h4 font-semibold text-white flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-lg bg-brand-emerald/10 flex items-center justify-center flex-shrink-0">
+                      <CheckCircle size={20} className="text-brand-emerald" />
+                    </div>
+                    How GridGo Began
                   </h3>
-                  <p className="text-text-secondary leading-relaxed pl-9">
+                  <p className="text-body-base text-text-secondary leading-relaxed pl-[52px]">
                     Founded in {COMPANY.foundingYear}, GridGo Interiors emerged from a vision to transform ordinary spaces
-                    into extraordinary environments. With over two decades of dedication to excellence, we
-                    have established ourselves as India's premier integrated interior services provider.
+                    into extraordinary environments. What started as a small team of passionate craftsmen 
+                    has grown into a comprehensive design powerhouse.
                   </p>
                 </div>
 
-                <div className="space-y-3">
-                  <h3 className="text-xl font-semibold text-white flex items-center gap-3">
-                    <Award size={24} className="text-brand-emerald flex-shrink-0" />
-                    Our Evolution
+                <div className="space-y-4 p-6 rounded-xl bg-white/[0.02] border border-white/5 hover:border-brand-emerald/20 transition-colors">
+                  <h3 className="text-h4 font-semibold text-white flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-lg bg-brand-emerald/10 flex items-center justify-center flex-shrink-0">
+                      <Award size={20} className="text-brand-emerald" />
+                    </div>
+                    Our Design Philosophy
                   </h3>
-                  <p className="text-text-secondary leading-relaxed pl-9">
-                    Our journey began with a small team of passionate craftsmen and designers who believed
-                    that every space tells a story. Today, we are proud to have completed over 300
-                    projects across India, each one a testament to our commitment to quality,
-                    innovation, and client satisfaction.
+                  <p className="text-body-base text-text-secondary leading-relaxed pl-[52px]">
+                    We believe that every space tells a story. Our philosophy centers on understanding 
+                    your unique vision and translating it into environments that inspire, function 
+                    beautifully, and stand the test of time.
                   </p>
                 </div>
 
-                <div className="space-y-3">
-                  <h3 className="text-xl font-semibold text-white flex items-center gap-3">
-                    <Target size={24} className="text-brand-emerald flex-shrink-0" />
-                    Our Expertise
+                <div className="space-y-4 p-6 rounded-xl bg-white/[0.02] border border-white/5 hover:border-brand-emerald/20 transition-colors">
+                  <h3 className="text-h4 font-semibold text-white flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-lg bg-brand-emerald/10 flex items-center justify-center flex-shrink-0">
+                      <Target size={20} className="text-brand-emerald" />
+                    </div>
+                    Comprehensive Expertise
                   </h3>
-                  <p className="text-text-secondary leading-relaxed pl-9">
-                    What sets GridGo apart is our comprehensive approach to interior design. We don't just
-                    design spaces; we bring them to life through our expertise in steel fabrication, glass
-                    applications, marble craftsmanship, bespoke furniture creation, artistic décor, and
-                    premium painting.
+                  <p className="text-body-base text-text-secondary leading-relaxed pl-[52px]">
+                    What sets GridGo apart is our end-to-end approach: from steel fabrication and glass
+                    applications to marble craftsmanship, bespoke furniture, artistic décor, and premium 
+                    painting — we bring every element together seamlessly.
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-brand-emerald/10 to-brand-cyan/10 rounded-radius-2xl blur-3xl" />
-              <img
-                src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800"
-                alt="GridGo Workshop"
-                className="relative z-10 w-full h-[400px] object-cover rounded-radius-2xl shadow-lg"
-                loading="lazy"
-              />
+            <div className="relative order-first lg:order-last">
+              <div className="absolute inset-0 bg-gradient-to-br from-brand-emerald/20 to-brand-cyan/20 rounded-2xl blur-3xl" />
+              <div className="relative">
+                <img
+                  src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800"
+                  alt="GridGo Workshop - Crafting premium interiors"
+                  className="relative z-10 w-full h-[450px] lg:h-[550px] object-cover rounded-2xl shadow-2xl"
+                  loading="lazy"
+                />
+                {/* Floating stat card */}
+                <div className="absolute -bottom-6 -left-6 z-20 bg-background-secondary/90 backdrop-blur-md border border-white/10 rounded-xl p-6 shadow-xl hidden md:block">
+                  <div className="text-3xl font-bold gradient-text mb-1">300+</div>
+                  <div className="text-body-sm text-text-secondary">Projects Completed</div>
+                </div>
+                {/* Corner accent */}
+                <div className="absolute -top-4 -right-4 w-24 h-24 border-t-2 border-r-2 border-brand-emerald/40 rounded-tr-2xl hidden lg:block" />
+              </div>
             </div>
           </div>
         </Container>
@@ -211,7 +225,7 @@ export default function About({ onNavigate }: AboutProps) {
             subtitle="Visionaries driving excellence"
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mt-12">
             {teamMembers.map((member) => (
               <GlassCard key={member.id} padding="sm" className="text-center group">
                 {member.image && (
@@ -242,16 +256,16 @@ export default function About({ onNavigate }: AboutProps) {
             subtitle="Values that guide every project"
           />
 
-          <div className="grid md:grid-cols-3 gap-8 mt-12">
+          <div className="grid md:grid-cols-3 gap-6 md:gap-8 mt-12">
             {principles.map((principle, index) => {
               const Icon = principle.icon;
               return (
-                <GlassCard key={index} className="text-center">
-                  <div className="w-20 h-20 mx-auto mb-6 rounded-radius-lg bg-brand-emerald/10 flex items-center justify-center">
+                <GlassCard key={index} className="text-center p-6 md:p-8 group hover:border-brand-emerald/30 transition-colors">
+                  <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-brand-emerald/10 flex items-center justify-center group-hover:bg-brand-emerald/20 transition-colors">
                     <Icon size={40} className="text-brand-emerald" />
                   </div>
-                  <h3 className="text-2xl font-bold text-text-primary mb-4">{principle.title}</h3>
-                  <p className="text-text-secondary leading-relaxed">{principle.description}</p>
+                  <h3 className="text-h3 font-bold text-text-primary mb-4">{principle.title}</h3>
+                  <p className="text-body-base text-text-secondary leading-relaxed">{principle.description}</p>
                 </GlassCard>
               );
             })}
@@ -263,10 +277,11 @@ export default function About({ onNavigate }: AboutProps) {
       <Section spacing="xl" background="gradient">
         <Container maxWidth="md">
           <div className="text-center">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            <p className="text-label-sm text-brand-emerald uppercase tracking-widest mb-4">Ready to Begin?</p>
+            <h2 className="text-h1 md:text-display-md font-bold mb-6">
               <span className="gradient-text">Partner with Us</span>
             </h2>
-            <p className="text-xl text-text-secondary mb-10 leading-relaxed">
+            <p className="text-body-lg text-text-secondary mb-10 leading-relaxed max-w-2xl mx-auto">
               Ready to transform your space? Let's discuss your vision and create something
               extraordinary together.
             </p>

@@ -260,7 +260,7 @@ export default function Services({ onNavigate }: ServicesProps) {
             />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8" ref={processGridRef}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8" ref={processGridRef}>
             {processSteps.map((step, index) => (
               <div key={index} className="text-center">
                 <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-brand-emerald to-brand-emerald/60 rounded-full flex items-center justify-center shadow-3d">
