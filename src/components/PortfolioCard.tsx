@@ -2,7 +2,6 @@ import { useRef, useState } from 'react';
 import { Project } from '../types';
 import { useMouseParallax } from '../hooks/useMouseParallax';
 import GlassCard from './GlassCard';
-import Button3D from './Button3D';
 
 interface PortfolioCardProps {
   project: Project;
@@ -56,9 +55,9 @@ export default function PortfolioCard({
               onLoad={handleImageLoad}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-              <Button3D size="sm" variant="ghost">
-                View Details
-              </Button3D>
+              <span className="inline-flex items-center gap-1 text-brand-emerald font-semibold text-sm">
+                View Project Details →
+              </span>
             </div>
           </div>
         </div>

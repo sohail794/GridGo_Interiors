@@ -65,7 +65,7 @@ export default function OptimizedImage({
       {/* Error state */}
       {hasError && (
         <div className="absolute inset-0 bg-gray-800 flex items-center justify-center z-10">
-          <span className="text-gray-500 text-sm">Image unavailable</span>
+          <span className="text-gray-400 text-sm">Image unavailable</span>
         </div>
       )}
 

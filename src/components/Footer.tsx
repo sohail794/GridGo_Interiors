@@ -71,7 +71,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                   href="https://x.com/GridGoInteriors"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-full bg-white/5 hover:bg-brand-emerald/20 text-gray-400 hover:text-brand-emerald transition-all flex items-center justify-center"
+                  className="w-9 h-9 rounded-full bg-white/5 hover:bg-brand-emerald/20 text-gray-300 hover:text-brand-emerald transition-all flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:ring-offset-2 focus:ring-offset-[#0A0E27]"
                   aria-label="Follow us on X (Twitter)"
                 >
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
@@ -82,7 +82,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                   href="https://instagram.com/gridgointeriors"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-full bg-white/5 hover:bg-brand-emerald/20 text-gray-400 hover:text-brand-emerald transition-all flex items-center justify-center"
+                  className="w-9 h-9 rounded-full bg-white/5 hover:bg-brand-emerald/20 text-gray-300 hover:text-brand-emerald transition-all flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:ring-offset-2 focus:ring-offset-[#0A0E27]"
                   aria-label="Follow us on Instagram"
                 >
                   <Instagram size={18} />
@@ -91,7 +91,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                   href="https://linkedin.com/company/gridgointeriors"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-full bg-white/5 hover:bg-brand-emerald/20 text-gray-400 hover:text-brand-emerald transition-all flex items-center justify-center"
+                  className="w-9 h-9 rounded-full bg-white/5 hover:bg-brand-emerald/20 text-gray-300 hover:text-brand-emerald transition-all flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:ring-offset-2 focus:ring-offset-[#0A0E27]"
                   aria-label="Follow us on LinkedIn"
                 >
                   <Linkedin size={18} />
@@ -100,7 +100,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                   href="https://pinterest.com/gridgointeriors"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-full bg-white/5 hover:bg-brand-emerald/20 text-gray-400 hover:text-brand-emerald transition-all flex items-center justify-center"
+                  className="w-9 h-9 rounded-full bg-white/5 hover:bg-brand-emerald/20 text-gray-300 hover:text-brand-emerald transition-all flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:ring-offset-2 focus:ring-offset-[#0A0E27]"
                   aria-label="Follow us on Pinterest"
                 >
                   <Share2 size={18} />
@@ -114,29 +114,29 @@ export default function Footer({ onNavigate }: FooterProps) {
             <h4 className="font-semibold text-white mb-4 uppercase tracking-wide text-sm">Our Services</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <button onClick={() => onNavigate('services')} className="text-gray-300 hover:text-brand-emerald transition-colors">
+                <button onClick={() => onNavigate('services')} className="text-gray-300 hover:text-brand-emerald transition-colors focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:ring-offset-2 focus:ring-offset-[#0A0E27] rounded">
                   Steel Fabrication
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('services')} className="text-gray-300 hover:text-brand-emerald transition-colors">
+                <button onClick={() => onNavigate('services')} className="text-gray-300 hover:text-brand-emerald transition-colors focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:ring-offset-2 focus:ring-offset-[#0A0E27] rounded">
                   Glass Applications
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('services')} className="text-gray-300 hover:text-brand-emerald transition-colors">
+                <button onClick={() => onNavigate('services')} className="text-gray-300 hover:text-brand-emerald transition-colors focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:ring-offset-2 focus:ring-offset-[#0A0E27] rounded">
                   Marble Craftsmanship
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('services')} className="text-gray-300 hover:text-brand-emerald transition-colors">
+                <button onClick={() => onNavigate('services')} className="text-gray-300 hover:text-brand-emerald transition-colors focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:ring-offset-2 focus:ring-offset-[#0A0E27] rounded">
                   Bespoke Furniture
                 </button>
               </li>
               <li className="pt-1">
                 <button 
                   onClick={() => onNavigate('services')} 
-                  className="text-brand-emerald hover:text-brand-cyan font-medium inline-flex items-center gap-1 transition-colors"
+                  className="text-brand-emerald hover:text-brand-cyan font-medium inline-flex items-center gap-1 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:ring-offset-2 focus:ring-offset-[#0A0E27] rounded"
                 >
                   View All Services <ArrowRight size={14} />
                 </button>
@@ -185,7 +185,7 @@ export default function Footer({ onNavigate }: FooterProps) {
             {/* Newsletter Form */}
             <div className="mt-6 pt-5 border-t border-white/10">
               <h5 className="font-semibold text-white mb-2 text-sm">Stay Updated</h5>
-              <p className="text-xs text-gray-400 mb-3">Get design tips & exclusive offers.</p>
+              <p className="text-xs text-gray-300 mb-3">Get design tips & exclusive offers.</p>
               
               {subscribeSuccess ? (
                 <div className="flex items-center gap-2 text-brand-emerald text-sm" role="status" aria-live="polite">
@@ -205,7 +205,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                       placeholder="your@email.com"
                       disabled={isSubscribing}
                       className={`
-                        flex-1 px-3 py-2 text-sm bg-white/5 border rounded-lg text-white placeholder:text-gray-500
+                        flex-1 px-3 py-2 text-sm bg-white/5 border rounded-lg text-white placeholder:text-gray-400
                         transition-all duration-200 outline-none min-h-[40px]
                         focus-visible:border-brand-emerald focus-visible:ring-1 focus-visible:ring-brand-emerald/30
                         disabled:opacity-50 disabled:cursor-not-allowed
@@ -237,13 +237,13 @@ export default function Footer({ onNavigate }: FooterProps) {
         {/* Bottom bar */}
         <div className="border-t border-white/10 mt-10 pt-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-sm text-gray-400">&copy; {currentYear} GridGo Interiors. All rights reserved.</p>
+            <p className="text-sm text-gray-300">&copy; {currentYear} GridGo Interiors. All rights reserved.</p>
             <div className="flex items-center gap-6 text-sm">
-              <button className="text-gray-400 hover:text-brand-emerald transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-brand-emerald rounded px-2 py-1">
+              <button className="text-gray-300 hover:text-brand-emerald transition-colors focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:ring-offset-2 focus:ring-offset-[#0A0E27] rounded px-2 py-1">
                 Privacy Policy
               </button>
               <span className="text-gray-600">|</span>
-              <button className="text-gray-400 hover:text-brand-emerald transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-brand-emerald rounded px-2 py-1">
+              <button className="text-gray-300 hover:text-brand-emerald transition-colors focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:ring-offset-2 focus:ring-offset-[#0A0E27] rounded px-2 py-1">
                 Terms of Service
               </button>
             </div>
