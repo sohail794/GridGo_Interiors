@@ -157,13 +157,20 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
 
               <div className="grid grid-cols-2 gap-4">
                 <div style={{ animation: 'fadeInUp 400ms ease-out forwards', animationDelay: '100ms' }}>
-                  <label className="block text-sm font-medium mb-2 text-[#b4b4b4]">Phone *</label>
+                  <label className="block text-sm font-medium mb-2 text-[#b4b4b4]">Phone (10-digit) *</label>
                   <input
                     type="tel"
                     value={formData.phone}
-                    onChange={(e) => handleInputChange('phone', e.target.value)}
+                    onChange={(e) => {
+                      const cleaned = e.target.value.replace(/\D/g, '').slice(0, 10);
+                      handleInputChange('phone', cleaned);
+                    }}
                     className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus-visible:border-[#00ff88] focus-visible:ring-2 focus-visible:ring-[#00ff88]/20 transition-all outline-none"
-                    placeholder="Enter your phone number"
+                    placeholder="98765 43210"
+                    pattern="[6-9][0-9]{9}"
+                    title="Enter a valid 10-digit Indian mobile number starting with 6-9"
+                    inputMode="numeric"
+                    autoComplete="tel"
                     required
                   />
                 </div>

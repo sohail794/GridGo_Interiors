@@ -172,10 +172,11 @@ export default function Home({ onNavigate }: HomeProps) {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-serif text-4xl md:text-5xl text-emerald mb-4">
-              Client Voices
+              What <span className="text-charcoal">Our Clients</span> Say
             </h2>
-            <p className="font-sans text-lg text-charcoal">
-              Hear from those who experienced our excellence
+            <p className="font-sans text-lg text-charcoal max-w-2xl mx-auto leading-relaxed">
+              Don't just take our word for it. Hear from homeowners and businesses 
+              who've trusted GridGo Interiors to transform their spaces.
             </p>
           </div>
           <TestimonialCarousel testimonials={testimonials} />

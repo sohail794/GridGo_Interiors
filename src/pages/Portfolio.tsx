@@ -22,6 +22,7 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
   const [filter, setFilter] = useState<'all' | 'residential' | 'commercial' | 'retail'>('all');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [imageLoading, setImageLoading] = useState<Record<string, boolean>>({});
+  const [visibleCount, setVisibleCount] = useState(6); // Load More pagination
   
   // Scroll reveal refs
   const portfolioGridRef = useRef<HTMLDivElement>(null);
@@ -34,9 +35,22 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
     distance: 30,
   });
 
-  const filteredProjects = filter === 'all'
+  const allFilteredProjects = filter === 'all'
     ? featuredProjects
     : featuredProjects.filter(p => p.category === filter);
+  
+  const filteredProjects = allFilteredProjects.slice(0, visibleCount);
+  const hasMore = visibleCount < allFilteredProjects.length;
+
+  const loadMore = () => {
+    setVisibleCount(prev => prev + 6);
+  };
+
+  // Reset visible count when filter changes
+  const handleFilterChange = (category: typeof filter) => {
+    setFilter(category);
+    setVisibleCount(6);
+  };
 
   const handleImageLoad = (projectId: string) => {
     setImageLoading(prev => ({ ...prev, [projectId]: false }));
@@ -82,7 +96,7 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
             {['all', 'residential', 'commercial', 'retail'].map((category) => (
               <button
                 key={category}
-                onClick={() => setFilter(category as typeof filter)}
+                onClick={() => handleFilterChange(category as typeof filter)}
                 className={`
                   px-8 py-3 rounded-full font-semibold uppercase tracking-wide text-sm
                   transition-all duration-300
@@ -109,6 +123,18 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
               />
             ))}
           </div>
+
+          {/* Load More Button */}
+          {hasMore && (
+            <div className="text-center mt-12">
+              <button
+                onClick={loadMore}
+                className="bg-transparent border-2 border-brand-emerald text-brand-emerald hover:bg-brand-emerald hover:text-[#0A0E27] px-8 py-3 rounded-lg font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:ring-offset-2 focus:ring-offset-[#0A0E27]"
+              >
+                Load More Projects ({allFilteredProjects.length - visibleCount} remaining)
+              </button>
+            </div>
+          )}
         </Container>
       </Section>
 

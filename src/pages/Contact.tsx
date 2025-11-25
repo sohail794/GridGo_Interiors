@@ -270,11 +270,17 @@ export default function Contact({ onNavigate }: ContactProps) {
                         type="tel"
                         value={formData.phone}
                         onChange={(e) => {
-                          setFormData({ ...formData, phone: e.target.value });
+                          // Only allow digits
+                          const cleaned = e.target.value.replace(/\D/g, '').slice(0, 10);
+                          setFormData({ ...formData, phone: cleaned });
                           clearError('phone');
                         }}
                         onBlur={() => validate('phone', formData.phone, { indianPhone: true })}
-                        placeholder="9876543210"
+                        placeholder="98765 43210"
+                        pattern="[6-9][0-9]{9}"
+                        title="Enter a valid 10-digit Indian mobile number starting with 6-9"
+                        inputMode="numeric"
+                        autoComplete="tel"
                         disabled={isSubmitting}
                         error={errors.phone}
                         errorId="phone-error"

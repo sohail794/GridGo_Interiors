@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import { Instagram, Linkedin, Share2, Mail, Phone, MapPin, CheckCircle, Loader2, MessageCircle, ArrowRight } from 'lucide-react';
 import { CONTACT } from '../config/contact';
-import Container from './ui/Container';
-import Section from './ui/Section';
 
 interface FooterProps {
   onNavigate: (page: string) => void;
