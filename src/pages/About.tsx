@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { CheckCircle, Award, Users, Target, Lightbulb, Leaf } from 'lucide-react';
 import { teamMembers, timeline } from '../data/content';
 import GlassCard from '../components/GlassCard';
@@ -13,6 +14,8 @@ interface AboutProps {
 }
 
 export default function About({ onNavigate }: AboutProps) {
+  const [workshopImageLoaded, setWorkshopImageLoaded] = useState(false);
+  
   const principles = [
     {
       icon: Lightbulb,
@@ -150,12 +153,19 @@ export default function About({ onNavigate }: AboutProps) {
 
             <div className="relative order-first lg:order-last">
               <div className="absolute inset-0 bg-gradient-to-br from-brand-emerald/20 to-brand-cyan/20 rounded-2xl blur-3xl" />
-              <div className="relative">
+              <div className="relative" style={{ aspectRatio: '4/5' }}>
+                {/* Blur placeholder */}
+                {!workshopImageLoaded && (
+                  <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 animate-pulse rounded-2xl z-10" />
+                )}
                 <img
                   src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800"
                   alt="GridGo Workshop - Crafting premium interiors"
-                  className="relative z-10 w-full h-[450px] lg:h-[550px] object-cover rounded-2xl shadow-2xl"
+                  width={800}
+                  height={1000}
+                  className={`relative z-10 w-full h-[450px] lg:h-[550px] object-cover rounded-2xl shadow-2xl transition-opacity duration-300 ${workshopImageLoaded ? 'opacity-100' : 'opacity-0'}`}
                   loading="lazy"
+                  onLoad={() => setWorkshopImageLoaded(true)}
                 />
                 {/* Floating stat card */}
                 <div className="absolute -bottom-6 -left-6 z-20 bg-background-secondary/90 backdrop-blur-md border border-white/10 rounded-xl p-6 shadow-xl hidden md:block">
@@ -229,10 +239,12 @@ export default function About({ onNavigate }: AboutProps) {
             {teamMembers.map((member) => (
               <GlassCard key={member.id} padding="sm" className="text-center group">
                 {member.image && (
-                  <div className="relative overflow-hidden rounded-radius-lg mb-6">
+                  <div className="relative overflow-hidden rounded-radius-lg mb-6" style={{ aspectRatio: '3/4' }}>
                     <img
                       src={member.image}
                       alt={`${member.name} - ${member.title}`}
+                      width={400}
+                      height={533}
                       className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500"
                       loading="lazy"
                     />

@@ -49,13 +49,15 @@ export default function ServiceCard({ service, onNavigate }: ServiceCardProps) {
               <button
                 key={idx}
                 type="button"
-                className="relative aspect-square group/img cursor-pointer"
+                className="relative aspect-square group/img cursor-pointer overflow-hidden"
                 onClick={() => handleImageClick(idx)}
                 aria-label={`View ${service.title} image ${idx + 1}`}
               >
                 <img
                   src={img}
                   alt={`${service.title} example ${idx + 1}`}
+                  width={200}
+                  height={200}
                   loading="lazy"
                   className="w-full h-full object-cover transition-transform duration-300 group-hover/img:scale-110"
                   style={{

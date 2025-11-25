@@ -52,6 +52,8 @@ export default function TestimonialCarousel({ testimonials }: TestimonialCarouse
               <img
                 src={currentTestimonial.image}
                 alt={currentTestimonial.name}
+                width={64}
+                height={64}
                 className="w-16 h-16 rounded-radius-xl object-cover flex-shrink-0 border-2 border-brand-emerald/30 hover:scale-110 hover:border-brand-emerald transition-all duration-300"
                 loading="lazy"
               />
