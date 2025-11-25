@@ -26,7 +26,7 @@ function StatsSection() {
   const { displayValue: clients } = useCountUpInView(500, stat4Ref, { threshold: 0.4, duration: 2000 });
 
   return (
-      <section className="py-16 md:py-24 bg-gradient-to-r from-emerald/10 to-emerald/5">
+      <section className="py-section-sm md:py-section-md bg-gradient-to-r from-emerald/10 to-emerald/5">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8">
           <div ref={stat1Ref} className="text-center p-6" style={{ animation: 'fadeInUp 600ms ease-out forwards' }}>
@@ -118,7 +118,7 @@ export default function Home({ onNavigate }: HomeProps) {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-ivory">
+      <section className="py-section-sm md:py-section-md bg-ivory">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-12">
             <h2 className="font-serif text-4xl md:text-5xl text-emerald mb-6">
@@ -136,7 +136,7 @@ export default function Home({ onNavigate }: HomeProps) {
 
       <StatsSection />
 
-      <section className="py-16 md:py-24 bg-white">
+      <section className="py-section-sm md:py-section-md bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-serif text-4xl md:text-5xl text-emerald mb-4">
@@ -154,7 +154,7 @@ export default function Home({ onNavigate }: HomeProps) {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-silver-light">
+      <section className="py-section-sm md:py-section-md bg-silver-light">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-serif text-4xl md:text-5xl text-emerald mb-4">
@@ -168,7 +168,7 @@ export default function Home({ onNavigate }: HomeProps) {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-white">
+      <section className="py-section-sm md:py-section-md bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-serif text-4xl md:text-5xl text-emerald mb-4">
@@ -182,7 +182,7 @@ export default function Home({ onNavigate }: HomeProps) {
         </div>
       </section>
 
-      <section className="py-20 md:py-32 bg-emerald text-white">
+      <section className="py-section-md md:py-section-lg bg-emerald text-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-4xl">
           <h2 className="font-serif text-4xl md:text-5xl mb-6 italic">
             Transform Your Environment Today

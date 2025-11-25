@@ -23,15 +23,29 @@ export default {
       },
       textColor: {
         'text-primary': '#ffffff',
-        'text-secondary': '#b4b4b4',
-        'text-tertiary': '#6b7280',
-        'text-disabled': '#4b5563',
+        'text-secondary': '#c4c4c4',
+        'text-tertiary': '#a3a3a3', // Improved contrast (was #8b8b8b)
+        'text-disabled': '#6b7280',
       },
       backgroundColor: {
         'bg-primary': '#0a0e27',
         'bg-secondary': '#141b2d',
         'bg-elevated': '#1a1f3a',
         'background-primary': '#0a0e27',
+      },
+      // Spacing tokens for consistent section spacing
+      spacing: {
+        'section-sm': '2rem',      // 32px - subsections
+        'section-md': '4rem',      // 64px - standard sections (py-16)
+        'section-lg': '6rem',      // 96px - hero/major sections (py-24)
+        'section-xl': '8rem',      // 128px - extra large sections (py-32)
+      },
+      // Padding shortcuts
+      padding: {
+        'section-sm': '2rem',
+        'section-md': '4rem', 
+        'section-lg': '6rem',
+        'section-xl': '8rem',
       },
       fontSize: {
         // Display - Large hero headings
@@ -47,10 +61,15 @@ export default {
         'h5': ['1.125rem', { lineHeight: '1.5', letterSpacing: '0', fontWeight: '600' }],
         'h6': ['1rem', { lineHeight: '1.5', letterSpacing: '0', fontWeight: '600' }],
         
+        // Mobile heading variants
+        'h1-mobile': ['1.75rem', { lineHeight: '1.3', letterSpacing: '-0.01em', fontWeight: '700' }],
+        'h2-mobile': ['1.5rem', { lineHeight: '1.35', letterSpacing: '-0.01em', fontWeight: '700' }],
+        'h3-mobile': ['1.25rem', { lineHeight: '1.4', letterSpacing: '0', fontWeight: '600' }],
+        
         // Body - Reading text
         'body-lg': ['1.125rem', { lineHeight: '1.7', letterSpacing: '0' }],
         'body-base': ['1rem', { lineHeight: '1.7', letterSpacing: '0' }],
-        'body-sm': ['0.875rem', { lineHeight: '1.6', letterSpacing: '0' }],
+        'body-sm': ['0.875rem', { lineHeight: '1.65', letterSpacing: '0' }],
         'body-xs': ['0.75rem', { lineHeight: '1.5', letterSpacing: '0' }],
         
         // Labels & UI
@@ -62,6 +81,7 @@ export default {
         luxury: '0 4px 6px rgba(0, 0, 0, 0.1)',
         'luxury-hover': '0 6px 8px rgba(0, 0, 0, 0.15)',
         '3d': '0 10px 25px rgba(0, 0, 0, 0.3)',
+        'text': '0 2px 4px rgba(0, 0, 0, 0.3)',
       },
       animation: {
         'fade-in': 'fade-in 0.5s ease-in-out',

@@ -1,4 +1,5 @@
-import { Instagram, Linkedin, Share2, Mail, Phone, MapPin } from 'lucide-react';
+import { useState } from 'react';
+import { Instagram, Linkedin, Share2, Mail, Phone, MapPin, CheckCircle, Loader2 } from 'lucide-react';
 import { CONTACT } from '../config/contact';
 import Container from './ui/Container';
 import Section from './ui/Section';
@@ -9,10 +10,48 @@ interface FooterProps {
 
 export default function Footer({ onNavigate }: FooterProps) {
   const currentYear = new Date().getFullYear();
+  const [email, setEmail] = useState('');
+  const [isSubscribing, setIsSubscribing] = useState(false);
+  const [subscribeSuccess, setSubscribeSuccess] = useState(false);
+  const [subscribeError, setSubscribeError] = useState('');
+
+  const validateEmail = (email: string): boolean => {
+    const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+    return emailRegex.test(email);
+  };
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!email.trim()) {
+      setSubscribeError('Email is required');
+      return;
+    }
+    
+    if (!validateEmail(email)) {
+      setSubscribeError('Please enter a valid email address');
+      return;
+    }
+    
+    setIsSubscribing(true);
+    setSubscribeError('');
+    
+    // Simulate API call
+    try {
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      setSubscribeSuccess(true);
+      setEmail('');
+      setTimeout(() => setSubscribeSuccess(false), 5000);
+    } catch {
+      setSubscribeError('Failed to subscribe. Please try again.');
+    } finally {
+      setIsSubscribing(false);
+    }
+  };
 
   return (
     <footer className="bg-charcoal text-ivory">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-section-md pb-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand & Social */}
           <div className="space-y-4">
@@ -129,6 +168,56 @@ export default function Footer({ onNavigate }: FooterProps) {
                 </li>
               )}
             </ul>
+            
+            {/* Newsletter Form */}
+            <div className="mt-6 pt-6 border-t border-silver-dark/30">
+              <h5 className="font-semibold text-white mb-2 text-sm">Stay Updated</h5>
+              <p className="text-xs text-silver-light mb-3">Get design tips and exclusive offers delivered to your inbox.</p>
+              
+              {subscribeSuccess ? (
+                <div className="flex items-center gap-2 text-brand-emerald text-sm" role="status" aria-live="polite">
+                  <CheckCircle size={16} />
+                  <span>Subscribed! Check your email.</span>
+                </div>
+              ) : (
+                <form onSubmit={handleSubscribe} className="space-y-2">
+                  <div className="flex gap-2">
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => {
+                        setEmail(e.target.value);
+                        setSubscribeError('');
+                      }}
+                      placeholder="your@email.com"
+                      disabled={isSubscribing}
+                      className={`
+                        flex-1 px-3 py-2 text-sm bg-white/5 border rounded-lg text-white placeholder:text-gray-500
+                        transition-all duration-200 outline-none min-h-[40px]
+                        focus-visible:border-brand-emerald focus-visible:ring-1 focus-visible:ring-brand-emerald/30
+                        disabled:opacity-50 disabled:cursor-not-allowed
+                        ${subscribeError ? 'border-red-500/50' : 'border-white/10 hover:border-white/20'}
+                      `}
+                      aria-label="Email for newsletter"
+                      aria-invalid={!!subscribeError}
+                      aria-describedby={subscribeError ? 'newsletter-error' : undefined}
+                    />
+                    <button
+                      type="submit"
+                      disabled={isSubscribing}
+                      className="px-4 py-2 bg-brand-emerald text-charcoal font-semibold text-sm rounded-lg hover:bg-brand-emerald/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed min-h-[40px] flex items-center justify-center"
+                    >
+                      {isSubscribing ? <Loader2 size={16} className="animate-spin" /> : 'Subscribe'}
+                    </button>
+                  </div>
+                  {subscribeError && (
+                    <p id="newsletter-error" className="text-red-400 text-xs" role="alert">
+                      {subscribeError}
+                    </p>
+                  )}
+                </form>
+              )}
+            </div>
           </div>
         </div>
 

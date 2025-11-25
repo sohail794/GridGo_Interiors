@@ -114,26 +114,31 @@ export default function MobileMenuOverlay({
 
       {/* Centered menu content */}
       <div className="flex flex-col items-center justify-center flex-1 px-6 pt-20 pb-6">
-        <nav className="flex flex-col items-center gap-4 w-full max-w-md">
-          {menuItems.map((item) => (
-            <button
-              key={item.page}
-              onClick={() => handleNavClick(item.page)}
-              className={`
-                w-full text-center px-8 py-4 rounded-xl text-lg font-semibold
-                transition-all duration-200 ease-in-out
-                hover:scale-[1.02] active:scale-95
-                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(0,255,136)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0e27]
-                ${
-                  currentPage === item.page
-                    ? 'bg-gradient-to-r from-[rgb(0,255,136)]/20 to-[rgb(0,217,255)]/20 text-white border border-[rgb(0,255,136)]/50 shadow-[0_0_20px_rgba(0,255,136,0.15)]'
-                    : 'text-text-secondary hover:text-[rgb(0,255,136)] hover:bg-white/5 border border-white/10 hover:border-[rgb(0,255,136)]/50'
-                }
-              `}
-            >
-              {item.label}
-            </button>
-          ))}
+        <nav className="flex flex-col items-center gap-3 w-full max-w-md">
+          {menuItems.map((item) => {
+            const isActive = currentPage === item.page;
+            return (
+              <button
+                key={item.page}
+                onClick={() => handleNavClick(item.page)}
+                className={`
+                  w-full text-left px-6 py-4 rounded-xl text-lg font-semibold
+                  transition-all duration-200 ease-out
+                  min-h-[56px] flex items-center
+                  active:scale-[0.98]
+                  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(0,255,136)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0e27]
+                  ${
+                    isActive
+                      ? 'bg-gradient-to-r from-[rgb(0,255,136)]/20 to-[rgb(0,217,255)]/10 text-[rgb(0,255,136)] border-l-4 border-[rgb(0,255,136)] font-bold shadow-[0_0_20px_rgba(0,255,136,0.1)]'
+                      : 'text-gray-300 hover:text-[rgb(0,255,136)] hover:bg-white/5 hover:translate-x-2 border-l-4 border-transparent hover:border-[rgb(0,255,136)]/30'
+                  }
+                `}
+                aria-current={isActive ? 'page' : undefined}
+              >
+                {item.label}
+              </button>
+            );
+          })}
 
           <div className="w-full mt-6">
             <Button3D

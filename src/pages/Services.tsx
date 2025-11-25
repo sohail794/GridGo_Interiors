@@ -15,6 +15,7 @@ import FormInput from '../components/ui/FormInput';
 import FormSelect from '../components/ui/FormSelect';
 import FormTextarea from '../components/ui/FormTextarea';
 import { useScrollRevealStagger, useScrollRevealItem } from '../hooks/useScrollReveal';
+import { useFormValidation } from '../hooks/useFormValidation';
 
 const iconMap = {
   Wrench,
@@ -41,6 +42,8 @@ export default function Services({ onNavigate }: ServicesProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState('');
+  
+  const { errors, validate, validateAll, clearError } = useFormValidation();
   
   // Scroll reveal refs
   const servicesGridRef = useRef<HTMLDivElement>(null);
@@ -75,6 +78,20 @@ export default function Services({ onNavigate }: ServicesProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validate all fields before submission
+    const validationRules = {
+      name: { required: true, minLength: 2, maxLength: 100 },
+      email: { required: true, email: true },
+      phone: { indianPhone: true },
+      message: { required: true, minLength: 10, maxLength: 500 },
+    };
+    
+    const validationErrors = validateAll(formData, validationRules);
+    if (Object.keys(validationErrors).length > 0) {
+      return;
+    }
+    
     setIsSubmitting(true);
     setSubmitError('');
 
@@ -91,7 +108,7 @@ export default function Services({ onNavigate }: ServicesProps) {
       setFormData({ name: '', email: '', phone: '', service: '', message: '' });
       setTimeout(() => setSubmitSuccess(false), 5000);
     } catch (error) {
-      setSubmitError('Failed to submit form. Please try again.');
+      setSubmitError('Failed to send. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -322,9 +339,15 @@ export default function Services({ onNavigate }: ServicesProps) {
                     required
                     minLength={2}
                     value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    onChange={(e) => {
+                      setFormData({ ...formData, name: e.target.value });
+                      clearError('name');
+                    }}
+                    onBlur={() => validate('name', formData.name, { required: true, minLength: 2 })}
                     placeholder="Your name"
                     disabled={isSubmitting}
+                    error={errors.name}
+                    errorId="name-error"
                   />
                 </div>
                 <div>
@@ -336,9 +359,15 @@ export default function Services({ onNavigate }: ServicesProps) {
                     type="email"
                     required
                     value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    onChange={(e) => {
+                      setFormData({ ...formData, email: e.target.value });
+                      clearError('email');
+                    }}
+                    onBlur={() => validate('email', formData.email, { required: true, email: true })}
                     placeholder="your@email.com"
                     disabled={isSubmitting}
+                    error={errors.email}
+                    errorId="email-error"
                   />
                 </div>
               </div>
@@ -346,15 +375,21 @@ export default function Services({ onNavigate }: ServicesProps) {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <FormLabel htmlFor="phone">
-                    Phone
+                    Phone (10-digit Indian mobile)
                   </FormLabel>
                   <FormInput
                     id="phone"
                     type="tel"
                     value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    placeholder="Enter your phone number"
+                    onChange={(e) => {
+                      setFormData({ ...formData, phone: e.target.value });
+                      clearError('phone');
+                    }}
+                    onBlur={() => validate('phone', formData.phone, { indianPhone: true })}
+                    placeholder="9876543210"
                     disabled={isSubmitting}
+                    error={errors.phone}
+                    errorId="phone-error"
                   />
                 </div>
                 <div>
@@ -378,20 +413,28 @@ export default function Services({ onNavigate }: ServicesProps) {
               </div>
 
               <div>
-                <FormLabel htmlFor="message">
+                <FormLabel htmlFor="message" required>
                   Project Details
                 </FormLabel>
                 <FormTextarea
                   id="message"
                   value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  onChange={(e) => {
+                    setFormData({ ...formData, message: e.target.value });
+                    clearError('message');
+                  }}
+                  onBlur={() => validate('message', formData.message, { required: true, minLength: 10, maxLength: 500 })}
                   placeholder="Tell us about your project..."
                   disabled={isSubmitting}
+                  error={errors.message}
+                  errorId="message-error"
+                  showCharCount
+                  charLimit={500}
                 />
               </div>
 
               <Button variant="primary" size="lg" type="submit" className="w-full" loading={isSubmitting} disabled={isSubmitting}>
-                {isSubmitting ? 'Submitting...' : 'Submit Request'}
+                {isSubmitting ? 'Sending...' : 'Submit Request'}
               </Button>
             </form>
           </Card>

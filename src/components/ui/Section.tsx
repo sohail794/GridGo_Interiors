@@ -13,10 +13,10 @@ interface SectionProps {
 }
 
 const spacingMap: Record<Spacing, string> = {
-  sm: 'py-12 md:py-16',
-  md: 'py-16 md:py-24',
-  lg: 'py-24 md:py-32',
-  xl: 'py-32 md:py-40',
+  sm: 'py-section-sm md:py-section-md',
+  md: 'py-section-sm md:py-section-md',
+  lg: 'py-section-md md:py-section-lg',
+  xl: 'py-section-lg md:py-section-xl',
 };
 
 const backgroundMap: Record<Background, string> = {

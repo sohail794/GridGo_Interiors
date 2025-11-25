@@ -56,9 +56,9 @@ export default function Contact({ onNavigate }: ContactProps) {
     const validationRules = {
       name: { required: true, minLength: 2, maxLength: 100 },
       email: { required: true, email: true },
-      phone: { phone: true },
+      phone: { indianPhone: true },
       subject: { maxLength: 100 },
-      message: { required: true, minLength: 10, maxLength: 1000 },
+      message: { required: true, minLength: 10, maxLength: 500 },
     };
     
     const validationErrors = validateAll(formData, validationRules);
@@ -263,7 +263,7 @@ export default function Contact({ onNavigate }: ContactProps) {
 
                     <div ref={formPhoneRef}>
                       <FormLabel htmlFor="phone">
-                        Phone
+                        Phone (10-digit Indian mobile)
                       </FormLabel>
                       <FormInput
                         id="phone"
@@ -273,8 +273,8 @@ export default function Contact({ onNavigate }: ContactProps) {
                           setFormData({ ...formData, phone: e.target.value });
                           clearError('phone');
                         }}
-                        onBlur={() => validate('phone', formData.phone, { phone: true })}
-                        placeholder="Enter your phone number"
+                        onBlur={() => validate('phone', formData.phone, { indianPhone: true })}
+                        placeholder="9876543210"
                         disabled={isSubmitting}
                         error={errors.phone}
                         errorId="phone-error"
@@ -315,11 +315,13 @@ export default function Contact({ onNavigate }: ContactProps) {
                         setFormData({ ...formData, message: e.target.value });
                         clearError('message');
                       }}
-                      onBlur={() => validate('message', formData.message, { required: true, minLength: 10 })}
+                      onBlur={() => validate('message', formData.message, { required: true, minLength: 10, maxLength: 500 })}
                       placeholder="Tell us about your project..."
                       disabled={isSubmitting}
                       error={errors.message}
                       errorId="message-error"
+                      showCharCount
+                      charLimit={500}
                     />
                   </div>
 

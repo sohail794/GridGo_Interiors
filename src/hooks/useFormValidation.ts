@@ -6,6 +6,7 @@ export interface ValidationRule {
   maxLength?: number;
   email?: boolean;
   phone?: boolean;
+  indianPhone?: boolean;
   pattern?: RegExp;
   custom?: (value: any) => string | undefined;
 }
@@ -27,7 +28,8 @@ export function useFormValidation(): UseFormValidationReturn {
   const [errors, setErrors] = useState<FormErrors>({});
 
   const validateEmail = (email: string): boolean => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    // Standard email regex
+    const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
     return emailRegex.test(email);
   };
 
@@ -36,47 +38,72 @@ export function useFormValidation(): UseFormValidationReturn {
     return phoneRegex.test(phone);
   };
 
+  const validateIndianPhone = (phone: string): boolean => {
+    // Indian 10-digit mobile number (with optional +91 or 0 prefix)
+    const cleanPhone = phone.replace(/[\s\-\(\)]/g, '');
+    const indianPhoneRegex = /^(?:\+91|91|0)?[6-9]\d{9}$/;
+    return indianPhoneRegex.test(cleanPhone);
+  };
+
   const validate = useCallback(
     (fieldName: string, value: any, rules: ValidationRule): string | undefined => {
       let error: string | undefined;
+      const stringValue = value?.toString().trim() || '';
 
       // Required validation
-      if (rules.required && (!value || value.toString().trim() === '')) {
+      if (rules.required && !stringValue) {
         error = `This field is required`;
         setErrors((prev) => ({ ...prev, [fieldName]: error }));
         return error;
       }
 
+      // Skip other validations if field is empty and not required
+      if (!stringValue && !rules.required) {
+        setErrors((prev) => {
+          const newErrors = { ...prev };
+          delete newErrors[fieldName];
+          return newErrors;
+        });
+        return undefined;
+      }
+
       // Min length validation
-      if (rules.minLength && value && value.toString().length < rules.minLength) {
+      if (rules.minLength && stringValue.length < rules.minLength) {
         error = `Minimum ${rules.minLength} characters required`;
         setErrors((prev) => ({ ...prev, [fieldName]: error }));
         return error;
       }
 
       // Max length validation
-      if (rules.maxLength && value && value.toString().length > rules.maxLength) {
+      if (rules.maxLength && stringValue.length > rules.maxLength) {
         error = `Maximum ${rules.maxLength} characters allowed`;
         setErrors((prev) => ({ ...prev, [fieldName]: error }));
         return error;
       }
 
       // Email validation
-      if (rules.email && value && !validateEmail(value)) {
+      if (rules.email && !validateEmail(stringValue)) {
         error = 'Please enter a valid email address';
         setErrors((prev) => ({ ...prev, [fieldName]: error }));
         return error;
       }
 
       // Phone validation
-      if (rules.phone && value && !validatePhone(value)) {
+      if (rules.phone && !validatePhone(stringValue)) {
         error = 'Please enter a valid phone number';
         setErrors((prev) => ({ ...prev, [fieldName]: error }));
         return error;
       }
 
+      // Indian phone validation
+      if (rules.indianPhone && !validateIndianPhone(stringValue)) {
+        error = 'Please enter a valid 10-digit Indian mobile number';
+        setErrors((prev) => ({ ...prev, [fieldName]: error }));
+        return error;
+      }
+
       // Pattern validation
-      if (rules.pattern && value && !rules.pattern.test(value)) {
+      if (rules.pattern && !rules.pattern.test(stringValue)) {
         error = 'Invalid format';
         setErrors((prev) => ({ ...prev, [fieldName]: error }));
         return error;
