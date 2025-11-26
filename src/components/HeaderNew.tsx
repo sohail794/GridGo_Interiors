@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { ChevronDown } from 'lucide-react';
 import Button3D from './Button3D';
 import HamburgerMenu from './HamburgerMenu';
+import ThemeToggle from './ThemeToggle';
 import logo from '../assets/images/logo/gridgo-logo.svg';
 
 interface HeaderProps {
@@ -123,7 +124,8 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal, mobile
             ))}
           </nav>
 
-          <div className="hidden lg:block">
+          <div className="hidden lg:flex items-center gap-4">
+            <ThemeToggle />
             <Button3D size="sm" onClick={onOpenModal}>
               Get a Quote
             </Button3D>

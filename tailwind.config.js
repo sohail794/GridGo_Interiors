@@ -1,9 +1,19 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
+        // Theme-aware colors using CSS variables
+        'theme-bg': 'var(--bg)',
+        'theme-surface': 'var(--surface)',
+        'theme-text': 'var(--text-primary)',
+        'theme-text-secondary': 'var(--text-secondary)',
+        'theme-accent': 'var(--accent)',
+        'theme-border': 'var(--border)',
+        
+        // Brand colors (same in both themes)
         'brand-emerald': '#00ff88',
         'brand-emerald-dark': '#00b894',
         'brand-cyan': '#00d9ff',

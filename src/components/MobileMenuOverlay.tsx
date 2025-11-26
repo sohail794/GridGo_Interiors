@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { X } from 'lucide-react';
 import Button3D from './Button3D';
+import ThemeToggle from './ThemeToggle';
 import logo from '../assets/images/logo/gridgo-logo.svg';
 
 interface MobileMenuOverlayProps {
@@ -105,7 +106,7 @@ export default function MobileMenuOverlay({
           <button
             onClick={onClose}
             aria-label="Close menu"
-            className="p-2 text-[rgb(0,255,136)] hover:text-[rgb(0,217,255)] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(0,255,136)]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0e27] rounded-lg hover:bg-white/5"
+            className="w-11 h-11 flex items-center justify-center text-[rgb(0,255,136)] hover:text-[rgb(0,217,255)] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(0,255,136)]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0e27] rounded-lg hover:bg-white/5"
           >
             <X size={28} />
           </button>
@@ -140,7 +141,7 @@ export default function MobileMenuOverlay({
             );
           })}
 
-          <div className="w-full mt-6">
+          <div className="w-full mt-6 space-y-4">
             <Button3D
               className="w-full min-h-[56px] text-lg font-semibold"
               onClick={() => {
@@ -150,6 +151,12 @@ export default function MobileMenuOverlay({
             >
               Get a Quote
             </Button3D>
+            
+            {/* Theme Toggle in mobile menu */}
+            <div className="flex items-center justify-center gap-3 pt-4 border-t border-white/10">
+              <span className="text-sm text-gray-400">Theme</span>
+              <ThemeToggle />
+            </div>
           </div>
         </nav>
       </div>

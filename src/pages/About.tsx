@@ -3,6 +3,7 @@ import { CheckCircle, Award, Users, Target, Lightbulb, Leaf } from 'lucide-react
 import { teamMembers, timeline } from '../data/content';
 import GlassCard from '../components/GlassCard';
 import Button3D from '../components/Button3D';
+import HeroBackground from '../components/HeroBackground';
 import Button from '../components/ui/Button';
 import Container from '../components/ui/Container';
 import Section from '../components/ui/Section';
@@ -45,23 +46,10 @@ export default function About({ onNavigate }: AboutProps) {
     <div className="min-h-screen">
       {/* Hero Banner */}
       <section className="relative h-[500px] flex items-center justify-center overflow-hidden">
-        {/* Background Image Layer */}
-        <div
-          className="absolute inset-0 z-0"
-          style={{
-            backgroundImage: 'url(https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1920&q=80)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            filter: 'brightness(0.65) contrast(1.15) saturate(1.1)',
-          }}
-          aria-hidden="true"
-        />
-        
-        {/* Navy overlay for brand consistency */}
-        <div 
-          className="absolute inset-0 z-0 bg-[#0A0E27]/50" 
-          style={{ mixBlendMode: 'multiply' }}
-          aria-hidden="true"
+        {/* Optimized Hero Background with blur placeholder */}
+        <HeroBackground
+          src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1920&q=80"
+          alt="GridGo workshop crafting premium interiors"
         />
 
         <Container>

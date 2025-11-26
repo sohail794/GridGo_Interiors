@@ -18,6 +18,8 @@ export interface Project {
   timeline: string;
   beforeImage?: string;
   afterImage?: string;
+  year?: string;
+  features?: string[];
 }
 
 export interface Service {
