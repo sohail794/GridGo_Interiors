@@ -4,7 +4,6 @@ import { submitContactForm } from '../lib/supabase';
 import { Wrench, Square, Gem, Armchair, Palette, Paintbrush } from 'lucide-react';
 import { services } from '../data/content';
 import GlassCard from '../components/GlassCard';
-import Button3D from '../components/Button3D';
 import HeroBackground from '../components/HeroBackground';
 import Button from '../components/ui/Button';
 import Container from '../components/ui/Container';
@@ -31,7 +30,7 @@ interface ServicesProps {
   onNavigate: (page: string) => void;
 }
 
-export default function Services({ onNavigate }: ServicesProps) {
+export default function Services({ onNavigate: _onNavigate }: ServicesProps) {
   const [expandedService, setExpandedService] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     name: '',

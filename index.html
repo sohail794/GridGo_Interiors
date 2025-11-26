@@ -32,20 +32,36 @@
     <script>
       (function() {
         try {
-          var theme = localStorage.getItem('theme');
-          // Default to dark mode if no preference stored
-          if (theme === 'light') {
+          // Read from localStorage or cookie fallback
+          var stored = localStorage.getItem('theme') || (document.cookie.match(/(?:^|; )theme=([^;]+)/) || [])[1];
+          var resolved;
+          
+          if (stored === 'light') {
+            // User explicitly chose light
+            resolved = 'light';
+          } else if (stored === 'system') {
+            // User chose system - follow OS preference
+            resolved = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          } else {
+            // Default to dark for first-time visitors OR explicit dark choice
+            resolved = 'dark';
+            // Save dark as default if no preference stored
+            if (!stored) {
+              try { localStorage.setItem('theme', 'dark'); } catch(e) {}
+            }
+          }
+          
+          // Apply the resolved theme
+          if (resolved === 'light') {
             document.documentElement.classList.remove('dark');
             document.documentElement.classList.add('light');
             document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#F7F9FB');
           } else {
-            // Default to dark (including when theme is null/undefined)
             document.documentElement.classList.add('dark');
             document.documentElement.classList.remove('light');
             document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#0a0e27');
-            if (!theme) localStorage.setItem('theme', 'dark');
           }
-        } catch (e) {}
+        } catch (e) { /* Ignore errors */ }
       })();
     </script>
 
