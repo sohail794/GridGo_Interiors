@@ -8,22 +8,6 @@
    THEME CSS VARIABLES
    ============================================ */
 
-/* Motion duration variable (default) */
-:root {
-  --motion-duration: 220ms;
-  --motion-duration-fast: 150ms;
-  --motion-duration-slow: 300ms;
-}
-
-/* Respect user motion preferences */
-@media (prefers-reduced-motion: reduce) {
-  :root {
-    --motion-duration: 0ms;
-    --motion-duration-fast: 0ms;
-    --motion-duration-slow: 0ms;
-  }
-}
-
 /* Dark Theme (Default) */
 :root,
 .dark {
@@ -83,26 +67,12 @@
    THEME TRANSITION
    ============================================ */
 
-/* Smooth transitions when switching themes - uses motion-duration variable */
+/* Smooth transitions when switching themes */
 html.theme-transition,
 html.theme-transition *,
 html.theme-transition *::before,
 html.theme-transition *::after {
-  transition: 
-    background-color var(--motion-duration) ease, 
-    color var(--motion-duration-fast) ease, 
-    border-color var(--motion-duration-fast) ease, 
-    box-shadow var(--motion-duration-fast) ease !important;
-}
-
-/* Reduced motion: disable all theme transitions */
-@media (prefers-reduced-motion: reduce) {
-  html.theme-transition,
-  html.theme-transition *,
-  html.theme-transition *::before,
-  html.theme-transition *::after {
-    transition: none !important;
-  }
+  transition: background-color 0.3s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease !important;
 }
 
 * {

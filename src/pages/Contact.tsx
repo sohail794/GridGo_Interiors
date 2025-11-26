@@ -2,11 +2,13 @@ import { useState, useRef } from 'react';
 import { Mail, Phone, MapPin, Clock, CheckCircle } from 'lucide-react';
 import HeroBackground from '../components/HeroBackground';
 import GlassCard from '../components/GlassCard';
+import Button3D from '../components/Button3D';
 import Button from '../components/ui/Button';
 import { submitContactForm } from '../lib/supabase';
 import { CONTACT } from '../config/contact';
 import Container from '../components/ui/Container';
 import Section from '../components/ui/Section';
+import SectionHeader from '../components/ui/SectionHeader';
 import Card from '../components/ui/Card';
 import FormLabel from '../components/ui/FormLabel';
 import FormInput from '../components/ui/FormInput';
@@ -18,7 +20,7 @@ interface ContactProps {
   onNavigate: (page: string) => void;
 }
 
-export default function Contact({ onNavigate: _onNavigate }: ContactProps) {
+export default function Contact({ onNavigate }: ContactProps) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
