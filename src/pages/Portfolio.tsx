@@ -3,14 +3,16 @@ import { X, MapPin, Calendar, Tag } from 'lucide-react';
 import { featuredProjects } from '../data/content';
 import { Project } from '../types';
 import GlassCard from '../components/GlassCard';
-import HeroBackground from '../components/HeroBackground';
 import PortfolioCard from '../components/PortfolioCard';
 import Button3D from '../components/Button3D';
 import Button from '../components/ui/Button';
 import Container from '../components/ui/Container';
 import Section from '../components/ui/Section';
+import SectionHeader from '../components/ui/SectionHeader';
+import Card from '../components/ui/Card';
 import BeforeAfterSlider from '../components/BeforeAfterSlider';
 import { useScrollRevealWave } from '../hooks/useScrollReveal';
+import { useMouseParallax } from '../hooks/useMouseParallax';
 
 interface PortfolioProps {
   onNavigate: (page: string) => void;
@@ -57,10 +59,23 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
   return (
     <div className="min-h-screen">
       <section className="relative h-[500px] flex items-center justify-center overflow-hidden">
-        {/* Optimized Hero Background with blur placeholder */}
-        <HeroBackground
-          src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1920&q=80"
-          alt="Portfolio of timeless interior creations"
+        {/* Background Image Layer */}
+        <div
+          className="absolute inset-0 z-0"
+          style={{
+            backgroundImage: 'url(https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1920&q=80)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            filter: 'brightness(0.65) contrast(1.15) saturate(1.1)',
+          }}
+          aria-hidden="true"
+        />
+        
+        {/* Navy overlay for brand consistency */}
+        <div 
+          className="absolute inset-0 z-0 bg-[#0A0E27]/50" 
+          style={{ mixBlendMode: 'multiply' }}
+          aria-hidden="true"
         />
 
         <div className="relative z-10 text-center">

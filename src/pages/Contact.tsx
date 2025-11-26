@@ -1,6 +1,5 @@
 import { useState, useRef } from 'react';
 import { Mail, Phone, MapPin, Clock, CheckCircle } from 'lucide-react';
-import HeroBackground from '../components/HeroBackground';
 import GlassCard from '../components/GlassCard';
 import Button3D from '../components/Button3D';
 import Button from '../components/ui/Button';
@@ -115,11 +114,15 @@ export default function Contact({ onNavigate }: ContactProps) {
   return (
     <div className="min-h-screen">
       <section className="relative h-[500px] flex items-center justify-center overflow-hidden">
-        {/* Optimized Hero Background with blur placeholder */}
-        <HeroBackground
-          src="https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=1600"
-          alt="Connect with GridGo Interiors team"
+        <div
+          className="absolute inset-0 z-0"
+          style={{
+            backgroundImage: 'url(https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=1600)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
         />
+        <div className="absolute inset-0 z-0 bg-gradient-to-b from-black/70 to-black/50" />
 
         <div className="relative z-10 text-center">
           <Container maxWidth="lg">
