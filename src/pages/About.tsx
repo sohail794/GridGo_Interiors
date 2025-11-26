@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import { CheckCircle, Award, Users, Target, Lightbulb, Leaf } from 'lucide-react';
+import { CheckCircle, Award, Target, Lightbulb, Leaf } from 'lucide-react';
 import { teamMembers, timeline } from '../data/content';
 import GlassCard from '../components/GlassCard';
-import Button3D from '../components/Button3D';
 import Button from '../components/ui/Button';
 import Container from '../components/ui/Container';
 import Section from '../components/ui/Section';

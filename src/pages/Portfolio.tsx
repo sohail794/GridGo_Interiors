@@ -8,11 +8,8 @@ import Button3D from '../components/Button3D';
 import Button from '../components/ui/Button';
 import Container from '../components/ui/Container';
 import Section from '../components/ui/Section';
-import SectionHeader from '../components/ui/SectionHeader';
-import Card from '../components/ui/Card';
 import BeforeAfterSlider from '../components/BeforeAfterSlider';
 import { useScrollRevealWave } from '../hooks/useScrollReveal';
-import { useMouseParallax } from '../hooks/useMouseParallax';
 
 interface PortfolioProps {
   onNavigate: (page: string) => void;
