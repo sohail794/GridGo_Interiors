@@ -93,8 +93,33 @@ export default function About({ onNavigate }: AboutProps) {
         </Container>
       </Section>
 
-      {/* Leadership Section */}
+      {/* Principles Section */}
       <Section spacing="lg" background="none">
+        <Container>
+          <SectionHeader 
+            title="Our Core Principles"
+            subtitle="Values that guide every project"
+          />
+
+          <div className="grid md:grid-cols-3 gap-6 md:gap-8 mt-12">
+            {principles.map((principle, index) => {
+              const Icon = principle.icon;
+              return (
+                <GlassCard key={index} className="text-center p-6 md:p-8 group hover:border-brand-emerald/30 transition-colors">
+                  <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-brand-emerald/10 flex items-center justify-center group-hover:bg-brand-emerald/20 transition-colors">
+                    <Icon size={40} className="text-brand-emerald" />
+                  </div>
+                  <h3 className="text-h3 font-bold text-text-primary mb-4">{principle.title}</h3>
+                  <p className="text-body-base text-text-secondary leading-relaxed">{principle.description}</p>
+                </GlassCard>
+              );
+            })}
+          </div>
+        </Container>
+      </Section>
+
+      {/* Leadership Section */}
+      <Section spacing="lg" background="secondary">
         <Container>
           <SectionHeader 
             title="Meet Our Leadership"
@@ -122,31 +147,6 @@ export default function About({ onNavigate }: AboutProps) {
                 <p className="text-sm text-text-secondary leading-relaxed">{member.expertise}</p>
               </GlassCard>
             ))}
-          </div>
-        </Container>
-      </Section>
-
-      {/* Principles Section */}
-      <Section spacing="lg" background="secondary">
-        <Container>
-          <SectionHeader 
-            title="Our Core Principles"
-            subtitle="Values that guide every project"
-          />
-
-          <div className="grid md:grid-cols-3 gap-6 md:gap-8 mt-12">
-            {principles.map((principle, index) => {
-              const Icon = principle.icon;
-              return (
-                <GlassCard key={index} className="text-center p-6 md:p-8 group hover:border-brand-emerald/30 transition-colors">
-                  <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-brand-emerald/10 flex items-center justify-center group-hover:bg-brand-emerald/20 transition-colors">
-                    <Icon size={40} className="text-brand-emerald" />
-                  </div>
-                  <h3 className="text-h3 font-bold text-text-primary mb-4">{principle.title}</h3>
-                  <p className="text-body-base text-text-secondary leading-relaxed">{principle.description}</p>
-                </GlassCard>
-              );
-            })}
           </div>
         </Container>
       </Section>
