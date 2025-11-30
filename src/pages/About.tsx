@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { CheckCircle, Award, Target, Lightbulb, Leaf, Wrench, Clock, Truck, HeadphonesIcon } from 'lucide-react';
+import { Lightbulb, Leaf, Target } from 'lucide-react';
 import { teamMembers } from '../data/content';
 import GlassCard from '../components/GlassCard';
 import Button from '../components/ui/Button';
@@ -13,7 +12,6 @@ interface AboutProps {
 }
 
 export default function About({ onNavigate }: AboutProps) {
-  const [workshopImageLoaded, setWorkshopImageLoaded] = useState(false);
   
   const principles = [
     {
@@ -91,153 +89,6 @@ export default function About({ onNavigate }: AboutProps) {
                 </div>
               </div>
             ))}
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            <div className="space-y-10">
-              <div>
-                <p className="text-label-sm text-brand-emerald uppercase tracking-widest mb-3">Our Journey</p>
-                <h2 className="text-h1 md:text-display-md font-bold mb-4">
-                  Our <span className="gradient-text">Story</span>
-                </h2>
-                <p className="text-body-lg text-text-secondary leading-relaxed">
-                  From a vision of transforming spaces to becoming India's premier integrated interior services provider — our journey spans over two decades of dedication to excellence.
-                </p>
-              </div>
-
-              <div className="space-y-8">
-                <div className="space-y-4 p-6 rounded-xl bg-white/[0.02] border border-white/5 hover:border-brand-emerald/20 transition-colors">
-                  <h3 className="text-h4 font-semibold text-white flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-brand-emerald/10 flex items-center justify-center flex-shrink-0">
-                      <CheckCircle size={20} className="text-brand-emerald" />
-                    </div>
-                    How GridGo Began
-                  </h3>
-                  <p className="text-body-base text-text-secondary leading-relaxed pl-[52px]">
-                    Founded in {COMPANY.foundingYear}, GridGo Interiors emerged from a vision to transform ordinary spaces
-                    into extraordinary environments. What started as a small team of passionate craftsmen 
-                    has grown into a comprehensive design powerhouse.
-                  </p>
-                </div>
-
-                <div className="space-y-4 p-6 rounded-xl bg-white/[0.02] border border-white/5 hover:border-brand-emerald/20 transition-colors">
-                  <h3 className="text-h4 font-semibold text-white flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-brand-emerald/10 flex items-center justify-center flex-shrink-0">
-                      <Award size={20} className="text-brand-emerald" />
-                    </div>
-                    Our Design Philosophy
-                  </h3>
-                  <p className="text-body-base text-text-secondary leading-relaxed pl-[52px]">
-                    We believe that every space tells a story. Our philosophy centers on understanding 
-                    your unique vision and translating it into environments that inspire, function 
-                    beautifully, and stand the test of time.
-                  </p>
-                </div>
-
-                <div className="space-y-4 p-6 rounded-xl bg-white/[0.02] border border-white/5 hover:border-brand-emerald/20 transition-colors">
-                  <h3 className="text-h4 font-semibold text-white flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-brand-emerald/10 flex items-center justify-center flex-shrink-0">
-                      <Target size={20} className="text-brand-emerald" />
-                    </div>
-                    Comprehensive Expertise
-                  </h3>
-                  <p className="text-body-base text-text-secondary leading-relaxed pl-[52px]">
-                    What sets GridGo apart is our end-to-end approach: from steel fabrication and glass
-                    applications to marble craftsmanship, bespoke furniture, artistic décor, and premium 
-                    painting — we bring every element together seamlessly.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="relative order-first lg:order-last">
-              <div className="absolute inset-0 bg-gradient-to-br from-brand-emerald/20 to-brand-cyan/20 rounded-2xl blur-3xl" />
-              <div className="relative" style={{ aspectRatio: '4/5' }}>
-                {/* Blur placeholder */}
-                {!workshopImageLoaded && (
-                  <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 animate-pulse rounded-2xl z-10" />
-                )}
-                <img
-                  src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800"
-                  alt="GridGo Workshop - Crafting premium interiors"
-                  width={800}
-                  height={1000}
-                  className={`relative z-10 w-full h-[450px] lg:h-[550px] object-cover rounded-2xl shadow-2xl transition-opacity duration-300 ${workshopImageLoaded ? 'opacity-100' : 'opacity-0'}`}
-                  loading="lazy"
-                  onLoad={() => setWorkshopImageLoaded(true)}
-                />
-                {/* Floating stat card */}
-                <div className="absolute -bottom-6 -left-6 z-20 bg-background-secondary/90 backdrop-blur-md border border-white/10 rounded-xl p-6 shadow-xl hidden md:block">
-                  <div className="text-3xl font-bold gradient-text mb-1">300+</div>
-                  <div className="text-body-sm text-text-secondary">Projects Completed</div>
-                </div>
-                {/* Corner accent */}
-                <div className="absolute -top-4 -right-4 w-24 h-24 border-t-2 border-r-2 border-brand-emerald/40 rounded-tr-2xl hidden lg:block" />
-              </div>
-            </div>
-          </div>
-        </Container>
-      </Section>
-
-      {/* Why Clients Choose GridGo Section */}
-      <Section spacing="lg" background="secondary">
-        <Container>
-          <SectionHeader 
-            title="Why Clients Choose GridGo"
-            subtitle="What sets us apart"
-          />
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mt-12">
-            {[
-              {
-                icon: Award,
-                title: '20+ Years Expertise',
-                description: 'Two decades of fabrication and execution experience across residential, commercial, and hospitality projects.',
-              },
-              {
-                icon: Wrench,
-                title: 'In-House Fabrication',
-                description: 'Complete control over steel, glass, marble, and wood work — no middlemen, no delays, no surprises.',
-              },
-              {
-                icon: Clock,
-                title: 'Transparent Timelines',
-                description: 'Clear project schedules with regular updates and coordinated execution from start to handover.',
-              },
-              {
-                icon: Truck,
-                title: 'Nationwide Sourcing',
-                description: 'Access to premium materials from across India, ensuring quality and competitive pricing.',
-              },
-              {
-                icon: Target,
-                title: 'Turnkey Delivery',
-                description: 'End-to-end project management — design, fabrication, installation, and finishing under one roof.',
-              },
-              {
-                icon: HeadphonesIcon,
-                title: 'Post-Handover Support',
-                description: 'Dedicated assistance after project completion for maintenance, repairs, and future enhancements.',
-              },
-            ].map((item, index) => {
-              const Icon = item.icon;
-              return (
-                <div
-                  key={index}
-                  className="flex gap-4 p-6 rounded-xl bg-white/[0.02] border border-white/5 hover:border-brand-emerald/20 transition-colors"
-                >
-                  <div className="flex-shrink-0">
-                    <div className="w-12 h-12 rounded-lg bg-brand-emerald/10 flex items-center justify-center">
-                      <Icon size={24} className="text-brand-emerald" />
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
-                    <p className="text-sm text-text-secondary leading-relaxed">{item.description}</p>
-                  </div>
-                </div>
-              );
-            })}
           </div>
         </Container>
       </Section>
