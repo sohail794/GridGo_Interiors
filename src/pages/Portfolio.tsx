@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { X, MapPin, Calendar, Tag } from 'lucide-react';
 import { featuredProjects } from '../data/content';
 import { Project } from '../types';
@@ -31,6 +31,25 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
     duration: 600,
     distance: 30,
   });
+
+  // Handle Escape key and body scroll lock for lightbox
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && selectedProject) {
+        setSelectedProject(null);
+      }
+    };
+
+    if (selectedProject) {
+      document.addEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'hidden';
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+      document.body.style.overflow = '';
+    };
+  }, [selectedProject]);
 
   const allFilteredProjects = filter === 'all'
     ? featuredProjects
@@ -159,8 +178,13 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
             <Container maxWidth="lg">
               <GlassCard className="relative">
               <button
-                onClick={() => setSelectedProject(null)}
-                className="absolute top-6 right-6 w-10 h-10 rounded-full border-2 border-white/10 hover:border-brand-coral text-white hover:text-brand-coral transition-all flex items-center justify-center z-10"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSelectedProject(null);
+                }}
+                className="absolute top-4 right-4 z-50 w-10 h-10 rounded-full border-2 border-white/10 bg-[#0a0e27]/80 hover:border-brand-coral text-white hover:text-brand-coral transition-all flex items-center justify-center"
+                aria-label="Close project details"
+                type="button"
               >
                 <X size={20} />
               </button>

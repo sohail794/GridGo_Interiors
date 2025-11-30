@@ -26,7 +26,19 @@ export default function PortfolioCard({
   };
 
   return (
-    <div ref={cardRef} onClick={() => onSelect(project)}>
+    <div
+      ref={cardRef}
+      onClick={() => onSelect(project)}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          onSelect(project);
+        }
+      }}
+      role="button"
+      tabIndex={0}
+      aria-label={`View ${project.title} project details`}
+    >
       <GlassCard
         padding="sm"
         className="group cursor-pointer touch-manipulation hover:scale-[1.02] hover:shadow-lg transition-all duration-200 ease-out"

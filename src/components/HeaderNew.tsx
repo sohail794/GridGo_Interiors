@@ -56,16 +56,18 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal, mobile
     >
       <div className="max-w-[1400px] mx-auto px-8 h-full">
         <div className="flex justify-between items-center h-full">
-          <div
-            className="flex items-center cursor-pointer group transition-all duration-200"
+          <button
+            type="button"
+            className="flex items-center cursor-pointer group transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(0,255,136)]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0e27] rounded-lg"
             onClick={() => onNavigate('home')}
+            aria-label="Go to homepage"
           >
             <img
               src={logo}
               alt="GridGo Interiors"
               className="h-12 w-auto transition-all duration-200 group-hover:scale-105"
             />
-          </div>
+          </button>
 
           <nav className="hidden lg:flex items-center space-x-8">
             {menuItems.map((item) => (

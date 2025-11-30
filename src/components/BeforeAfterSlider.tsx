@@ -86,13 +86,26 @@ export default function BeforeAfterSlider({
     setSliderPosition(Math.max(0, Math.min(100, newPosition)));
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    const step = e.shiftKey ? 10 : 2;
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      setSliderPosition((prev) => Math.max(0, prev - step));
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      setSliderPosition((prev) => Math.min(100, prev + step));
+    }
+  };
+
   return (
     <div
       ref={containerRef}
       onClick={handleContainerClick}
-      className="relative w-full h-64 md:h-80 overflow-hidden rounded-xl select-none cursor-ew-resize group"
+      onKeyDown={handleKeyDown}
+      tabIndex={0}
+      className="relative w-full h-64 md:h-80 overflow-hidden rounded-xl select-none cursor-ew-resize group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00F5A0] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0e27]"
       role="slider"
-      aria-label="Before and after comparison slider"
+      aria-label="Before and after comparison slider. Use left and right arrow keys to adjust."
       aria-valuenow={Math.round(sliderPosition)}
       aria-valuemin={0}
       aria-valuemax={100}

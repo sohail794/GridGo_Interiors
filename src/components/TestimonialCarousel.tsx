@@ -11,6 +11,7 @@ interface TestimonialCarouselProps {
 
 export default function TestimonialCarousel({ testimonials }: TestimonialCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
   const indicatorsRef = useRef<HTMLDivElement>(null);
   
@@ -31,17 +32,25 @@ export default function TestimonialCarousel({ testimonials }: TestimonialCarouse
   });
 
   useEffect(() => {
+    if (isPaused) return;
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % testimonials.length);
     }, 5000);
     return () => clearInterval(interval);
-  }, [testimonials.length]);
+  }, [testimonials.length, isPaused]);
 
   const currentTestimonial = testimonials[currentIndex];
 
   return (
     <div className="max-w-4xl mx-auto">
-      <div ref={cardRef} className="gesture-interactive">
+      <div
+        ref={cardRef}
+        className="gesture-interactive"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+        onFocus={() => setIsPaused(true)}
+        onBlur={() => setIsPaused(false)}
+      >
         <Card padding="lg" glass hover style={{ animation: 'fadeInUp 600ms ease-out forwards' }}>
           <Quote size={48} className="text-brand-emerald mb-6 hover:scale-110 transition-transform duration-300" style={{ animation: 'fadeIn 600ms ease-out 200ms forwards, glowPulse 3s ease-in-out 500ms infinite' }} aria-hidden="true" />
           <p className="text-xl md:text-2xl text-text-primary mb-8 italic leading-relaxed" style={{ animation: 'fadeInUp 600ms ease-out 300ms forwards' }}>

@@ -15,14 +15,9 @@ export default function Chatbot() {
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
   const [leadCaptured, setLeadCaptured] = useState(false);
-  const [isOnline, setIsOnline] = useState(true);
-
   const currentHour = new Date().getHours();
   const isBusinessHours = currentHour >= 9 && currentHour < 18;
-
-  useState(() => {
-    setIsOnline(isBusinessHours);
-  });
+  const [isOnline] = useState(isBusinessHours);
 
   const quickReplies = [
     'Services offered',
