@@ -111,30 +111,42 @@ export default function BeforeAfterSlider({
       aria-valuemax={100}
     >
       {/* After Image (Background) - Enhanced styling */}
-      <img
-        src={afterImage}
-        alt={`${alt} - ${afterLabel}`}
-        className="absolute inset-0 w-full h-full object-cover"
-        loading="lazy"
-        style={{
-          filter: 'brightness(1.05) saturate(1.1)',
-        }}
-      />
+      {afterImage ? (
+        <img
+          src={afterImage}
+          alt={`${alt} - ${afterLabel}`}
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="lazy"
+          style={{
+            filter: 'brightness(1.05) saturate(1.1)',
+          }}
+        />
+      ) : (
+        <div className="absolute inset-0 w-full h-full bg-neutral-900/30 flex items-center justify-center">
+          <span className="text-text-tertiary text-sm">After image placeholder</span>
+        </div>
+      )}
 
       {/* Before Image (Clipped) - Slightly muted to show contrast */}
       <div
         className="absolute inset-0 w-full h-full overflow-hidden"
         style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
       >
-        <img
-          src={beforeImage}
-          alt={`${alt} - ${beforeLabel}`}
-          className="w-full h-full object-cover"
-          loading="lazy"
-          style={{
-            filter: 'brightness(0.85) sepia(0.15)',
-          }}
-        />
+        {beforeImage ? (
+          <img
+            src={beforeImage}
+            alt={`${alt} - ${beforeLabel}`}
+            className="w-full h-full object-cover"
+            loading="lazy"
+            style={{
+              filter: 'brightness(0.85) sepia(0.15)',
+            }}
+          />
+        ) : (
+          <div className="w-full h-full bg-neutral-800/50 flex items-center justify-center">
+            <span className="text-text-tertiary text-sm">Before image placeholder</span>
+          </div>
+        )}
       </div>
 
       {/* Slider Handle - Mint green color (#00F5A0) with 3px width */}

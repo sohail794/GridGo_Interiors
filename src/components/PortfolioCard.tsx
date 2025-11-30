@@ -57,15 +57,23 @@ export default function PortfolioCard({
                 <div className="w-10 h-10 border-3 border-brand-emerald/20 border-t-brand-emerald rounded-full animate-spin" />
               </div>
             )}
-            <img
-              src={project.image}
-              alt={`${project.title} - ${project.category} interior design project`}
-              width={800}
-              height={600}
-              className={`w-full h-80 object-cover group-hover:scale-110 transition-all duration-500 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
-              loading="lazy"
-              onLoad={handleImageLoad}
-            />
+            {/* Placeholder when no image */}
+            {!project.image && (
+              <div className="absolute inset-0 bg-neutral-900/30 z-10 flex items-center justify-center">
+                <span className="text-text-tertiary text-sm">Image placeholder</span>
+              </div>
+            )}
+            {project.image && (
+              <img
+                src={project.image}
+                alt={`${project.title} - ${project.category} interior design project`}
+                width={800}
+                height={600}
+                className={`w-full h-80 object-cover group-hover:scale-110 transition-all duration-500 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+                loading="lazy"
+                onLoad={handleImageLoad}
+              />
+            )}
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 group-active:opacity-100 transition-opacity duration-200 flex flex-col justify-end p-6">
               <span className="inline-flex items-center gap-1 text-brand-emerald font-semibold text-sm">
                 View Project Details →

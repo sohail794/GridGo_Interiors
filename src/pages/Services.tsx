@@ -139,15 +139,9 @@ export default function Services({ onNavigate: _onNavigate }: ServicesProps) {
   return (
     <div className="min-h-screen">
       <section className="relative h-[500px] flex items-center justify-center overflow-hidden">
-        {/* Background Image Layer */}
+        {/* Background Image Layer - Placeholder */}
         <div
-          className="absolute inset-0 z-0"
-          style={{
-            backgroundImage: 'url(https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1920&q=80)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            filter: 'brightness(0.65) contrast(1.15) saturate(1.1)',
-          }}
+          className="absolute inset-0 z-0 bg-neutral-900/50"
           aria-hidden="true"
         />
         
@@ -231,12 +225,16 @@ export default function Services({ onNavigate: _onNavigate }: ServicesProps) {
                                 key={idx}
                                 className="relative w-full h-24 rounded-lg overflow-hidden"
                               >
-                                <img
-                                  src={image}
-                                  alt={`${service.title} example ${idx + 1}`}
-                                  className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
-                                  loading="lazy"
-                                />
+                                {image ? (
+                                  <img
+                                    src={image}
+                                    alt={`${service.title} example ${idx + 1}`}
+                                    className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                                    loading="lazy"
+                                  />
+                                ) : (
+                                  <div className="w-full h-full bg-neutral-900/30" />
+                                )}
                               </div>
                             ))}
                           </div>

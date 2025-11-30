@@ -89,11 +89,7 @@ export default function Home({ onNavigate }: HomeProps) {
       </Helmet>
 
       <section
-        className="relative h-screen bg-cover bg-center bg-fixed"
-        style={{
-          backgroundImage:
-            'url(https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=1600)',
-        }}
+        className="relative h-screen bg-neutral-900/50"
       >
         <div className="absolute inset-0 bg-gradient-to-r from-charcoal/90 to-charcoal/50" />
         <div className="relative h-full flex items-center justify-center px-4">

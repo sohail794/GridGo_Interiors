@@ -152,12 +152,18 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
             {filteredProjects.map((project) => (
               <GlassCard key={project.id} padding="sm" className="group cursor-pointer overflow-hidden hover:scale-[1.02] hover:shadow-lg transition-all duration-200 ease-out">
                 <div className="relative overflow-hidden rounded-radius-lg mb-4">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
-                    loading="lazy"
-                  />
+                  {project.image ? (
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div className="w-full h-64 bg-neutral-900/30 flex items-center justify-center">
+                      <span className="text-text-tertiary text-sm">Image placeholder</span>
+                    </div>
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                     <Button3D size="sm" variant="ghost" onClick={() => onNavigate('portfolio')}>
                       View Project

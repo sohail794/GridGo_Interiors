@@ -17,7 +17,7 @@ export const updatePageMeta = (title: string, description: string, url?: string,
     { property: 'og:title', content: title },
     { property: 'og:description', content: description },
     { property: 'og:url', content: url || window.location.href },
-    { property: 'og:image', content: image || 'https://images.pexels.com/photos/1350468/pexels-photo-1350468.jpeg?auto=compress&cs=tinysrgb&w=800' },
+    { property: 'og:image', content: image || '' },
     { property: 'og:type', content: 'website' },
     { property: 'og:site_name', content: 'GridGo Interiors' },
   ];
@@ -37,7 +37,7 @@ export const updatePageMeta = (title: string, description: string, url?: string,
     { name: 'twitter:card', content: 'summary_large_image' },
     { name: 'twitter:title', content: title },
     { name: 'twitter:description', content: description },
-    { name: 'twitter:image', content: image || 'https://images.pexels.com/photos/1350468/pexels-photo-1350468.jpeg?auto=compress&cs=tinysrgb&w=800' },
+    { name: 'twitter:image', content: image || '' },
   ];
 
   twitterTags.forEach(({ name, content }) => {
@@ -65,7 +65,7 @@ export const organizationSchema = {
   '@type': 'LocalBusiness',
   name: 'GridGo Interiors',
   description: 'Premium interior design and fabrication services',
-  image: 'https://images.pexels.com/photos/1350468/pexels-photo-1350468.jpeg?auto=compress&cs=tinysrgb&w=800',
+  image: '',
   telephone: '+91-XXXXXXXXXX',
   address: {
     '@type': 'PostalAddress',

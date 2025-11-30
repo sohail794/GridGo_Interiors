@@ -42,15 +42,9 @@ export default function About({ onNavigate }: AboutProps) {
     <div className="min-h-screen">
       {/* Hero Banner */}
       <section className="relative h-[500px] flex items-center justify-center overflow-hidden">
-        {/* Background Image Layer */}
+        {/* Background Image Layer - Placeholder */}
         <div
-          className="absolute inset-0 z-0"
-          style={{
-            backgroundImage: 'url(https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1920&q=80)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            filter: 'brightness(0.65) contrast(1.15) saturate(1.1)',
-          }}
+          className="absolute inset-0 z-0 bg-neutral-900/50"
           aria-hidden="true"
         />
         
@@ -129,19 +123,25 @@ export default function About({ onNavigate }: AboutProps) {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mt-12">
             {teamMembers.map((member) => (
               <GlassCard key={member.id} padding="sm" className="text-center group">
-                {member.image && (
-                  <div className="relative overflow-hidden rounded-radius-lg mb-6" style={{ aspectRatio: '3/4' }}>
-                    <img
-                      src={member.image}
-                      alt={`${member.name} - ${member.title}`}
-                      width={400}
-                      height={533}
-                      className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
-                  </div>
-                )}
+                <div className="relative overflow-hidden rounded-radius-lg mb-6" style={{ aspectRatio: '3/4' }}>
+                  {member.image ? (
+                    <>
+                      <img
+                        src={member.image}
+                        alt={`${member.name} - ${member.title}`}
+                        width={400}
+                        height={533}
+                        className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+                    </>
+                  ) : (
+                    <div className="w-full h-80 bg-neutral-900/30 flex items-center justify-center">
+                      <span className="text-text-tertiary text-sm">Image placeholder</span>
+                    </div>
+                  )}
+                </div>
                 <h3 className="text-2xl font-bold text-text-primary mb-2">{member.name}</h3>
                 <p className="text-brand-emerald font-semibold mb-3">{member.title}</p>
                 <p className="text-sm text-text-secondary leading-relaxed">{member.expertise}</p>

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button3D from './Button3D';
 import Container from './ui/Container';
 import { COMPANY } from '../config/company';
@@ -34,15 +34,9 @@ export default function HeroSection({ onOpenModal }: HeroSectionProps) {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-0">
-      {/* Background Image Layer */}
+      {/* Background Image Layer - Placeholder */}
       <div
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage: 'url(https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1920&q=80)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          filter: 'brightness(0.65) contrast(1.15) saturate(1.1)',
-        }}
+        className="absolute inset-0 z-0 bg-neutral-900/50"
         aria-hidden="true"
       />
       
@@ -129,14 +123,9 @@ export default function HeroSection({ onOpenModal }: HeroSectionProps) {
                 aria-hidden="true"
               />
               
-              {/* Image Container */}
-              <div className="relative z-10 w-full h-full rounded-radius-2xl overflow-hidden shadow-lg">
-                <img
-                  src="https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=1200"
-                  alt="Luxury interior design showcasing modern furniture and decor"
-                  className="w-full h-full object-cover hover-scale"
-                  loading="lazy"
-                />
+              {/* Image Container - Placeholder */}
+              <div className="relative z-10 w-full h-full rounded-radius-2xl overflow-hidden shadow-lg bg-neutral-900/30">
+                {/* Image placeholder */}
               </div>
             </div>
           </div>

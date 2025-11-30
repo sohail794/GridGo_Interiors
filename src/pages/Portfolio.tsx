@@ -75,15 +75,9 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
   return (
     <div className="min-h-screen">
       <section className="relative h-[500px] flex items-center justify-center overflow-hidden">
-        {/* Background Image Layer */}
+        {/* Background Image Layer - Placeholder */}
         <div
-          className="absolute inset-0 z-0"
-          style={{
-            backgroundImage: 'url(https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1920&q=80)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            filter: 'brightness(0.65) contrast(1.15) saturate(1.1)',
-          }}
+          className="absolute inset-0 z-0 bg-neutral-900/50"
           aria-hidden="true"
         />
         
@@ -198,7 +192,7 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
                       afterImage={selectedProject.afterImage}
                     />
                   </div>
-                ) : (
+                ) : selectedProject.image ? (
                   <img
                     src={selectedProject.image}
                     alt={selectedProject.title}
@@ -207,6 +201,10 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
                     className="w-full h-96 object-cover rounded-lg mb-6"
                     loading="lazy"
                   />
+                ) : (
+                  <div className="w-full h-96 bg-neutral-900/30 rounded-lg mb-6 flex items-center justify-center">
+                    <span className="text-text-tertiary">Image placeholder</span>
+                  </div>
                 )}
 
                 <div className="space-y-4">

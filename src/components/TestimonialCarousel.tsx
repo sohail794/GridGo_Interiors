@@ -57,7 +57,7 @@ export default function TestimonialCarousel({ testimonials }: TestimonialCarouse
             "{currentTestimonial.quote}"
           </p>
           <div className="flex items-center gap-4" style={{ animation: 'fadeInUp 600ms ease-out 400ms forwards' }}>
-            {currentTestimonial.image && (
+            {currentTestimonial.image ? (
               <img
                 src={currentTestimonial.image}
                 alt={currentTestimonial.name}
@@ -66,6 +66,8 @@ export default function TestimonialCarousel({ testimonials }: TestimonialCarouse
                 className="w-16 h-16 rounded-radius-xl object-cover flex-shrink-0 border-2 border-brand-emerald/30 hover:scale-110 hover:border-brand-emerald transition-all duration-300"
                 loading="lazy"
               />
+            ) : (
+              <div className="w-16 h-16 rounded-radius-xl flex-shrink-0 border-2 border-brand-emerald/30 bg-neutral-900/30" />
             )}
             <div>
               <p className="font-bold text-text-primary text-lg">{currentTestimonial.name}</p>
