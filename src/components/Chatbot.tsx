@@ -125,7 +125,7 @@ export default function Chatbot() {
             </div>
             <button
               onClick={() => setIsOpen(false)}
-              className="text-white hover:text-silver-light transition-all duration-200 hover:scale-110 focus-ring rounded p-1"
+              className="text-white hover:text-silver-light transition-all duration-200 hover:scale-110 active:scale-95 focus-ring rounded p-2 min-w-[44px] min-h-[44px] flex items-center justify-center"
               aria-label="Close chat"
             >
               <X size={24} />
@@ -189,7 +189,7 @@ export default function Chatbot() {
                   <button
                     key={reply}
                     onClick={() => handleSendMessage(reply)}
-                    className="bg-silver-light hover:bg-silver text-charcoal px-3 py-2 rounded-full text-xs font-sans transition-all duration-200 hover:scale-105 active:scale-95 animate-fade-in-up"
+                    className="bg-silver-light hover:bg-silver active:bg-silver/80 text-charcoal px-4 py-2 min-h-[40px] rounded-full text-xs font-sans transition-all duration-200 active:scale-95 animate-fade-in-up"
                     style={{ animationDelay: `${idx * 50}ms` }}
                   >
                     {reply}
@@ -216,7 +216,7 @@ export default function Chatbot() {
               />
               <button
                 type="submit"
-                className="bg-emerald hover:bg-emerald-dark text-white p-2 rounded-full transition-all duration-200 hover:scale-110 active:scale-95 focus-ring"
+                className="bg-emerald hover:bg-emerald-dark active:scale-95 text-white p-3 min-w-[44px] min-h-[44px] rounded-full transition-all duration-200 focus-ring flex items-center justify-center"
                 aria-label="Send message"
               >
                 <Send size={20} />

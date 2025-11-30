@@ -111,10 +111,11 @@ export default function ServiceCard({ service, onNavigate }: ServiceCardProps) {
         >
           <button
             onClick={() => setLightboxOpen(false)}
-            className="absolute top-6 right-6 z-10 w-10 h-10 rounded-full border border-white/20 hover:border-white text-white hover:text-white transition-all flex items-center justify-center"
+            className="absolute top-4 right-4 z-10 w-11 h-11 rounded-full border border-white/20 bg-black/40 hover:bg-black/60 hover:border-white active:scale-95 text-white transition-all duration-200 flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
             aria-label="Close lightbox"
+            type="button"
           >
-            <X size={24} />
+            <X size={22} />
           </button>
 
           <div className="relative w-full max-w-4xl aspect-video bg-black rounded-lg overflow-hidden" onClick={(e) => e.stopPropagation()}>
@@ -129,15 +130,17 @@ export default function ServiceCard({ service, onNavigate }: ServiceCardProps) {
               <>
                 <button
                   onClick={handlePrevImage}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all flex items-center justify-center"
+                  className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/40 hover:bg-black/60 active:scale-95 text-white transition-all duration-200 flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
                   aria-label="Previous image"
+                  type="button"
                 >
                   ←
                 </button>
                 <button
                   onClick={handleNextImage}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all flex items-center justify-center"
+                  className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/40 hover:bg-black/60 active:scale-95 text-white transition-all duration-200 flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
                   aria-label="Next image"
+                  type="button"
                 >
                   →
                 </button>

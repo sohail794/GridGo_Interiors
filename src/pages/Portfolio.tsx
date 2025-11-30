@@ -108,18 +108,19 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
 
       <Section spacing="lg" background="none">
         <Container>
-          <div className="flex flex-wrap justify-center gap-4 mb-16">
+          <div className="flex flex-wrap justify-center gap-3 mb-16">
             {['all', 'residential', 'commercial', 'retail'].map((category) => (
               <button
                 key={category}
                 onClick={() => handleFilterChange(category as typeof filter)}
                 className={`
-                  px-8 py-3 rounded-full font-semibold uppercase tracking-wide text-sm
-                  transition-all duration-300
+                  px-6 md:px-8 py-3 min-h-[44px] rounded-full font-semibold uppercase tracking-wide text-sm
+                  transition-all duration-200 active:scale-95
+                  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-emerald focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0e27]
                   ${
                     filter === category
-                      ? 'bg-gradient-to-br from-brand-emerald to-brand-emerald/60 text-background-primary shadow-3d hover:scale-[1.02]'
-                      : 'bg-white/5 text-text-secondary hover:bg-white/10 hover:text-white hover:scale-[1.02] border border-white/10 transition-all duration-200'
+                      ? 'bg-gradient-to-br from-brand-emerald to-brand-emerald/60 text-background-primary shadow-3d'
+                      : 'bg-white/5 text-text-secondary hover:bg-white/10 hover:text-white active:bg-white/15 border border-white/10'
                   }
                 `}
               >
@@ -145,7 +146,7 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
             <div className="text-center mt-12">
               <button
                 onClick={loadMore}
-                className="bg-transparent border-2 border-brand-emerald text-brand-emerald hover:bg-brand-emerald hover:text-[#0A0E27] px-8 py-3 rounded-lg font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:ring-offset-2 focus:ring-offset-[#0A0E27]"
+                className="bg-transparent border-2 border-brand-emerald text-brand-emerald hover:bg-brand-emerald hover:text-[#0A0E27] active:scale-95 px-8 py-3 min-h-[48px] rounded-lg font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:ring-offset-2 focus:ring-offset-[#0A0E27]"
               >
                 Load More Projects ({allFilteredProjects.length - visibleCount} remaining)
               </button>

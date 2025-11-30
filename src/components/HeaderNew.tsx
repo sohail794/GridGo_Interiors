@@ -109,10 +109,10 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal, mobile
                           setPortfolioDropdown(false);
                         }}
                         className="
-                          w-full text-left px-4 py-3 rounded-lg
+                          w-full text-left px-4 py-3 min-h-[44px] rounded-lg
                           text-text-secondary hover:text-white
-                          hover:bg-white/5 hover:translate-x-1
-                          transition-all duration-200 hover:opacity-100 opacity-80
+                          hover:bg-white/5 active:bg-white/10 hover:translate-x-1
+                          transition-all duration-200
                           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(0,255,136)]/50
                         "
                       >

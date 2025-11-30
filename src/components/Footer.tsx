@@ -64,12 +64,12 @@ export default function Footer({ onNavigate }: FooterProps) {
             
             <div>
               <p className="text-xs uppercase tracking-wide text-gray-400 mb-3 font-semibold">Follow Us</p>
-              <div className="flex space-x-3">
+              <div className="flex space-x-2">
                 <a
                   href="https://x.com/GridGoInteriors"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-full bg-white/5 hover:bg-brand-emerald/20 text-gray-300 hover:text-brand-emerald transition-all flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:ring-offset-2 focus:ring-offset-[#0A0E27]"
+                  className="w-11 h-11 rounded-full bg-white/5 hover:bg-brand-emerald/20 active:bg-brand-emerald/30 text-gray-300 hover:text-brand-emerald transition-all duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:ring-offset-2 focus:ring-offset-[#0A0E27]"
                   aria-label="Follow us on X (Twitter)"
                 >
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
@@ -80,7 +80,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                   href="https://instagram.com/gridgointeriors"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-full bg-white/5 hover:bg-brand-emerald/20 text-gray-300 hover:text-brand-emerald transition-all flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:ring-offset-2 focus:ring-offset-[#0A0E27]"
+                  className="w-11 h-11 rounded-full bg-white/5 hover:bg-brand-emerald/20 active:bg-brand-emerald/30 text-gray-300 hover:text-brand-emerald transition-all duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:ring-offset-2 focus:ring-offset-[#0A0E27]"
                   aria-label="Follow us on Instagram"
                 >
                   <Instagram size={18} />
@@ -89,7 +89,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                   href="https://linkedin.com/company/gridgointeriors"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-full bg-white/5 hover:bg-brand-emerald/20 text-gray-300 hover:text-brand-emerald transition-all flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:ring-offset-2 focus:ring-offset-[#0A0E27]"
+                  className="w-11 h-11 rounded-full bg-white/5 hover:bg-brand-emerald/20 active:bg-brand-emerald/30 text-gray-300 hover:text-brand-emerald transition-all duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:ring-offset-2 focus:ring-offset-[#0A0E27]"
                   aria-label="Follow us on LinkedIn"
                 >
                   <Linkedin size={18} />
@@ -98,7 +98,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                   href="https://pinterest.com/gridgointeriors"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-full bg-white/5 hover:bg-brand-emerald/20 text-gray-300 hover:text-brand-emerald transition-all flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:ring-offset-2 focus:ring-offset-[#0A0E27]"
+                  className="w-11 h-11 rounded-full bg-white/5 hover:bg-brand-emerald/20 active:bg-brand-emerald/30 text-gray-300 hover:text-brand-emerald transition-all duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:ring-offset-2 focus:ring-offset-[#0A0E27]"
                   aria-label="Follow us on Pinterest"
                 >
                   <Share2 size={18} />

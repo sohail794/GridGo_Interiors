@@ -100,7 +100,7 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
 
   return (
     <div className="min-h-screen">
-      <HeroSection onNavigate={onNavigate} onOpenModal={onOpenModal} />
+      <HeroSection onOpenModal={onOpenModal} />
 
       <Section spacing="md" background="secondary">
         <Container>
@@ -128,14 +128,14 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
             subtitle="From concept to completion, explore our finest work"
           />
 
-          <div className="flex flex-wrap justify-center gap-4 mb-12 mt-12">
+          <div className="flex flex-wrap justify-center gap-3 mb-12 mt-12">
             {['all', 'residential', 'commercial', 'retail'].map((category) => (
               <button
                 key={category}
                 onClick={() => setFilter(category)}
                 className={`
-                  px-6 py-3 rounded-radius-md font-semibold uppercase tracking-wide text-sm
-                  transition-all duration-300 focus-ring
+                  px-6 py-3 min-h-[44px] rounded-radius-md font-semibold uppercase tracking-wide text-sm
+                  transition-all duration-200 focus-ring active:scale-95
                   ${
                     filter === category
                       ? 'bg-gradient-to-br from-brand-emerald to-brand-emerald-dark text-background-primary shadow-3d'
@@ -310,18 +310,18 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
 
             <div className="text-center">
               <p className="text-sm text-text-tertiary mb-6">or reach us via</p>
-              <div className="flex justify-center gap-8 flex-wrap">
+              <div className="flex justify-center gap-6 flex-wrap">
                 <a
                   href="https://wa.me/918595007476"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-text-secondary hover:text-brand-emerald transition-all hover:scale-110 cursor-pointer focus-ring rounded px-2 py-1 font-semibold"
+                  className="text-text-secondary hover:text-brand-emerald transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer focus-ring rounded px-3 py-2 min-h-[44px] flex items-center font-semibold"
                 >
                   WhatsApp
                 </a>
                 <a
                   href="mailto:sohailsaifi561@gmail.com"
-                  className="text-text-secondary hover:text-brand-emerald transition-all hover:scale-110 cursor-pointer focus-ring rounded px-2 py-1 font-semibold"
+                  className="text-text-secondary hover:text-brand-emerald transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer focus-ring rounded px-3 py-2 min-h-[44px] flex items-center font-semibold"
                 >
                   Email
                 </a>
@@ -329,7 +329,7 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
                   href="https://www.linkedin.com/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-text-secondary hover:text-brand-emerald transition-all hover:scale-110 cursor-pointer focus-ring rounded px-2 py-1 font-semibold"
+                  className="text-text-secondary hover:text-brand-emerald transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer focus-ring rounded px-3 py-2 min-h-[44px] flex items-center font-semibold"
                 >
                   LinkedIn
                 </a>

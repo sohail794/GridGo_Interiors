@@ -197,7 +197,9 @@ export default function Services({ onNavigate: _onNavigate }: ServicesProps) {
                 >
                   <button
                     onClick={() => toggleService(service.id)}
-                    className="w-full flex items-center justify-between text-left"
+                    className="w-full flex items-center justify-between text-left py-1 min-h-[64px] transition-colors rounded-lg"
+                    aria-expanded={isExpanded}
+                    aria-controls={`service-content-${service.id}`}
                   >
                     <div className="flex items-center flex-1">
                       <div className="w-16 h-16 rounded-xl bg-brand-emerald/10 flex items-center justify-center mr-4 flex-shrink-0">

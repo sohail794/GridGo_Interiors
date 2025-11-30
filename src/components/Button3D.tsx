@@ -30,7 +30,7 @@ export default function Button3D({
       text-[#0a0e27]
       shadow-3d
       hover:shadow-3d-hover hover:scale-105 hover:-translate-y-1
-      active:translate-y-0 active:scale-95
+      active:translate-y-0 active:scale-95 active:brightness-95
       active:shadow-3d
     `,
     secondary: `
@@ -50,7 +50,7 @@ export default function Button3D({
       hover:shadow-[0_0_20px_rgba(0,255,136,0.4)]
       hover:bg-[rgba(0,255,136,0.1)]
       hover:scale-105 hover:-translate-y-1
-      active:scale-95 active:translate-y-0
+      active:scale-95 active:translate-y-0 active:bg-[rgba(0,255,136,0.15)]
     `,
   };
 

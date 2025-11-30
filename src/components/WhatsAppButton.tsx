@@ -36,12 +36,13 @@ export default function WhatsAppButton({ menuOpen = false }: WhatsAppButtonProps
       className={`
         fixed bottom-20 right-4 md:bottom-8 md:right-8
         z-40
-        bg-[#25D366] hover:bg-[#20BA5A]
+        bg-[#25D366] hover:bg-[#20BA5A] active:bg-[#1DA851]
         text-white p-4 rounded-full
         shadow-xl hover:shadow-2xl
-        transition-all duration-300 ease-out
+        transition-all duration-200 ease-out
         hover:scale-110 active:scale-95
         focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#25D366]/50
+        min-w-[56px] min-h-[56px] flex items-center justify-center
         ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-16 opacity-0'}
         ${menuOpen ? 'opacity-0 pointer-events-none' : ''}
       `}

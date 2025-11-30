@@ -138,11 +138,11 @@ body {
 
   /* Micro-interaction utilities */
   .hover-scale {
-    @apply transition-transform duration-300 ease-out hover:scale-105;
+    @apply transition-transform duration-200 ease-out hover:scale-105;
   }
 
   .hover-lift {
-    @apply transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-xl;
+    @apply transition-all duration-200 ease-out hover:-translate-y-2 hover:shadow-xl;
   }
 
   .interactive {
@@ -734,12 +734,12 @@ img[loading='lazy'].loaded,
    ============================================ */
 
 .tap-feedback {
-  transition: all 150ms ease-out;
+  transition: all 100ms ease-out;
 }
 
 .tap-feedback:active {
-  transform: scale(0.95);
-  opacity: 0.8;
+  transform: scale(0.97);
+  opacity: 0.9;
 }
 
 .swipe-indicator {

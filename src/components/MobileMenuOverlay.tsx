@@ -124,8 +124,8 @@ export default function MobileMenuOverlay({
                 className={`
                   w-full text-left px-6 py-4 rounded-xl text-lg font-semibold
                   transition-all duration-200 ease-out
-                  min-h-[56px] flex items-center
-                  active:scale-[0.98]
+                  min-h-[56px] flex items-center touch-manipulation
+                  active:scale-[0.98] active:bg-white/5
                   focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(0,255,136)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0e27]
                   ${
                     isActive

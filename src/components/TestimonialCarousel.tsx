@@ -75,21 +75,27 @@ export default function TestimonialCarousel({ testimonials }: TestimonialCarouse
         </Card>
       </div>
 
-      <div className="flex justify-center mt-8 gap-3" ref={indicatorsRef} role="tablist" aria-label="Testimonial slides" style={{ animation: 'fadeInUp 600ms ease-out 500ms forwards' }}>
+      <div className="flex justify-center mt-8 gap-2" ref={indicatorsRef} role="tablist" aria-label="Testimonial slides" style={{ animation: 'fadeInUp 600ms ease-out 500ms forwards' }}>
         {testimonials.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
-            className={`h-2 rounded-radius-md transition-all duration-300 focus-ring hover:scale-125 active:scale-95 ${
+            className={`min-w-[44px] min-h-[44px] flex items-center justify-center transition-all duration-300 focus-ring rounded-full active:scale-90 ${
               index === currentIndex 
-                ? 'bg-brand-emerald w-8 shadow-lg shadow-brand-emerald/50' 
-                : 'bg-text-tertiary/50 w-2 hover:bg-text-tertiary'
+                ? '' 
+                : ''
             }`}
             aria-label={`Go to testimonial ${index + 1}`}
             role="tab"
             aria-selected={index === currentIndex}
             style={{ animation: 'fadeInUp 600ms ease-out forwards', animationDelay: `${550 + index * 50}ms` }}
-          />
+          >
+            <span className={`block rounded-full transition-all duration-300 ${
+              index === currentIndex 
+                ? 'bg-brand-emerald w-8 h-2 shadow-lg shadow-brand-emerald/50' 
+                : 'bg-text-tertiary/50 w-2 h-2 hover:bg-text-tertiary'
+            }`} />
+          </button>
         ))}
       </div>
     </div>

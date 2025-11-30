@@ -66,7 +66,7 @@ export default function PortfolioCard({
               loading="lazy"
               onLoad={handleImageLoad}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 group-active:opacity-100 transition-opacity duration-200 flex flex-col justify-end p-6">
               <span className="inline-flex items-center gap-1 text-brand-emerald font-semibold text-sm">
                 View Project Details →
               </span>
