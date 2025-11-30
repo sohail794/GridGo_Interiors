@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { CheckCircle, Award, Target, Lightbulb, Leaf } from 'lucide-react';
-import { teamMembers, timeline } from '../data/content';
+import { CheckCircle, Award, Target, Lightbulb, Leaf, Wrench, Clock, Truck, HeadphonesIcon } from 'lucide-react';
+import { teamMembers } from '../data/content';
 import GlassCard from '../components/GlassCard';
 import Button from '../components/ui/Button';
 import Container from '../components/ui/Container';
@@ -179,49 +179,65 @@ export default function About({ onNavigate }: AboutProps) {
         </Container>
       </Section>
 
-      {/* Timeline Section */}
+      {/* Why Clients Choose GridGo Section */}
       <Section spacing="lg" background="secondary">
         <Container>
           <SectionHeader 
-            title="Our Journey"
-            subtitle="Milestones that shaped our legacy"
+            title="Why Clients Choose GridGo"
+            subtitle="What sets us apart"
           />
 
-          <div className="relative mt-12">
-            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-brand-emerald via-brand-cyan to-transparent hidden md:block" />
-
-            <div className="space-y-12">
-              {timeline.map((event, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mt-12">
+            {[
+              {
+                icon: Award,
+                title: '20+ Years Expertise',
+                description: 'Two decades of fabrication and execution experience across residential, commercial, and hospitality projects.',
+              },
+              {
+                icon: Wrench,
+                title: 'In-House Fabrication',
+                description: 'Complete control over steel, glass, marble, and wood work — no middlemen, no delays, no surprises.',
+              },
+              {
+                icon: Clock,
+                title: 'Transparent Timelines',
+                description: 'Clear project schedules with regular updates and coordinated execution from start to handover.',
+              },
+              {
+                icon: Truck,
+                title: 'Nationwide Sourcing',
+                description: 'Access to premium materials from across India, ensuring quality and competitive pricing.',
+              },
+              {
+                icon: Target,
+                title: 'Turnkey Delivery',
+                description: 'End-to-end project management — design, fabrication, installation, and finishing under one roof.',
+              },
+              {
+                icon: HeadphonesIcon,
+                title: 'Post-Handover Support',
+                description: 'Dedicated assistance after project completion for maintenance, repairs, and future enhancements.',
+              },
+            ].map((item, index) => {
+              const Icon = item.icon;
+              return (
                 <div
-                  key={event.year}
-                  className={`flex flex-col md:flex-row items-center gap-8 ${
-                    index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                  }`}
+                  key={index}
+                  className="flex gap-4 p-6 rounded-xl bg-white/[0.02] border border-white/5 hover:border-brand-emerald/20 transition-colors"
                 >
-                  <div className="w-full md:w-5/12">
-                    {index % 2 === 0 && (
-                      <GlassCard hover={false}>
-                        <h3 className="text-2xl font-bold text-text-primary mb-3">{event.title}</h3>
-                        <p className="text-text-secondary leading-relaxed">{event.description}</p>
-                      </GlassCard>
-                    )}
+                  <div className="flex-shrink-0">
+                    <div className="w-12 h-12 rounded-lg bg-brand-emerald/10 flex items-center justify-center">
+                      <Icon size={24} className="text-brand-emerald" />
+                    </div>
                   </div>
-
-                  <div className="relative flex items-center justify-center w-20 h-20 bg-gradient-to-br from-brand-emerald to-brand-emerald-dark rounded-full shadow-3d flex-shrink-0 z-10">
-                    <span className="text-xl font-bold text-background-primary">{event.year}</span>
-                  </div>
-
-                  <div className="w-full md:w-5/12">
-                    {index % 2 !== 0 && (
-                      <GlassCard hover={false}>
-                        <h3 className="text-2xl font-bold text-text-primary mb-3">{event.title}</h3>
-                        <p className="text-text-secondary leading-relaxed">{event.description}</p>
-                      </GlassCard>
-                    )}
+                  <div>
+                    <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
+                    <p className="text-sm text-text-secondary leading-relaxed">{item.description}</p>
                   </div>
                 </div>
-              ))}
-            </div>
+              );
+            })}
           </div>
         </Container>
       </Section>
