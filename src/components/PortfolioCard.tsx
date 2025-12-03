@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { Project } from '../types';
 import GlassCard from './GlassCard';
 
@@ -12,6 +12,31 @@ export default function PortfolioCard({
   onSelect,
 }: PortfolioCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
+  const [tiltStyle, setTiltStyle] = useState({ transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg)' });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    const rotateX = ((y - centerY) / centerY) * -8;
+    const rotateY = ((x - centerX) / centerX) * 8;
+    
+    setTiltStyle({
+      transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`,
+    });
+  };
+
+  const handleMouseLeave = () => {
+    setTiltStyle({
+      transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)',
+    });
+  };
 
   return (
     <div
@@ -23,13 +48,16 @@ export default function PortfolioCard({
           onSelect(project);
         }
       }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
       role="button"
       tabIndex={0}
       aria-label={`View ${project.title} project details`}
+      style={{ ...tiltStyle, transition: 'transform 0.15s ease-out' }}
     >
       <GlassCard
         padding="sm"
-        className="group cursor-pointer touch-manipulation hover:scale-[1.02] hover:shadow-lg transition-all duration-200 ease-out"
+        className="group cursor-pointer touch-manipulation transition-shadow duration-200 ease-out hover:shadow-xl"
       >
         <div className="relative overflow-hidden rounded-lg mb-4 h-64">
           {project.image ? (

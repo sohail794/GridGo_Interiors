@@ -5,6 +5,7 @@ import Button from '../components/ui/Button';
 import Container from '../components/ui/Container';
 import Section from '../components/ui/Section';
 import SectionHeader from '../components/ui/SectionHeader';
+import StatCounter from '../components/StatCounter';
 import { COMPANY } from '../config/company';
 
 interface AboutProps {
@@ -81,14 +82,7 @@ export default function About({ onNavigate }: AboutProps) {
         <Container>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-16 md:mb-24 pb-12 border-b border-white/5">
             {stats.map((stat, index) => (
-              <div key={index} className="text-center p-6 md:p-8">
-                <div className="text-4xl sm:text-5xl md:text-display-md font-bold gradient-text mb-3">
-                  {stat.value}
-                </div>
-                <div className="text-body-sm text-text-tertiary uppercase tracking-wider font-medium">
-                  {stat.label}
-                </div>
-              </div>
+              <StatCounter key={index} value={stat.value} label={stat.label} index={index} />
             ))}
           </div>
         </Container>
@@ -128,7 +122,9 @@ export default function About({ onNavigate }: AboutProps) {
           />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mt-12">
-            {teamMembers.map((member) => (
+            {teamMembers.map((member) => {
+              const initials = member.name.split(' ').map(n => n[0]).join('').slice(0, 2);
+              return (
               <GlassCard key={member.id} padding="sm" className="text-center group">
                 <div className="relative overflow-hidden rounded-radius-lg mb-6 h-80">
                   {member.image ? (
@@ -141,8 +137,10 @@ export default function About({ onNavigate }: AboutProps) {
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
                     </>
                   ) : (
-                    <div className="w-full h-full bg-neutral-900/30 flex items-center justify-center">
-                      <span className="text-text-tertiary text-sm">Team photo</span>
+                    <div className="w-full h-full bg-gradient-to-br from-brand-emerald/20 to-brand-cyan/10 flex items-center justify-center">
+                      <div className="w-32 h-32 rounded-full bg-gradient-to-br from-brand-emerald to-brand-cyan flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                        <span className="text-4xl font-bold text-background-primary">{initials}</span>
+                      </div>
                     </div>
                   )}
                 </div>
@@ -150,7 +148,8 @@ export default function About({ onNavigate }: AboutProps) {
                 <p className="text-brand-emerald font-semibold mb-3">{member.title}</p>
                 <p className="text-sm text-text-secondary leading-relaxed">{member.expertise}</p>
               </GlassCard>
-            ))}
+            );
+            })}
           </div>
         </Container>
       </Section>

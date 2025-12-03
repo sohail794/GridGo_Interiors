@@ -85,7 +85,11 @@ export default function TestimonialCarousel({ testimonials }: TestimonialCarouse
                 loading="lazy"
               />
             ) : (
-              <div className="w-16 h-16 rounded-radius-xl flex-shrink-0 border-2 border-brand-emerald/30 bg-neutral-900/30" />
+              <div className="w-16 h-16 rounded-radius-xl flex-shrink-0 bg-gradient-to-br from-brand-emerald to-brand-cyan flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300">
+                <span className="text-xl font-bold text-background-primary">
+                  {currentTestimonial.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
+                </span>
+              </div>
             )}
             <div>
               <p className="font-bold text-text-primary text-lg">{currentTestimonial.name}</p>
