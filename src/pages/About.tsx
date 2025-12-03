@@ -42,11 +42,18 @@ export default function About({ onNavigate }: AboutProps) {
     <div className="min-h-screen">
       {/* Hero Banner */}
       <section className="relative h-[500px] flex items-center justify-center overflow-hidden">
-        {/* Background Image Layer - Placeholder */}
+        {/* Background Image Layer */}
         <div
-          className="absolute inset-0 z-0 bg-neutral-900/50"
+          className="absolute inset-0 z-0"
           aria-hidden="true"
-        />
+        >
+          <img 
+            src="/images/brass-fluted-glass-room-divider.webp" 
+            alt="" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-neutral-900/60" />
+        </div>
         
         {/* Navy overlay for brand consistency */}
         <div 

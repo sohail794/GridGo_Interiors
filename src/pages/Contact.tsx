@@ -112,10 +112,17 @@ export default function Contact({ onNavigate: _onNavigate }: ContactProps) {
   return (
     <div className="min-h-screen">
       <section className="relative h-[500px] flex items-center justify-center overflow-hidden">
-        {/* Background Image Layer - Placeholder */}
+        {/* Background Image Layer */}
         <div
-          className="absolute inset-0 z-0 bg-neutral-900/50"
-        />
+          className="absolute inset-0 z-0"
+        >
+          <img 
+            src="/images/service-custom-wardrobe-design.webp" 
+            alt="" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-neutral-900/60" />
+        </div>
         <div className="absolute inset-0 z-0 bg-gradient-to-b from-black/70 to-black/50" />
 
         <div className="relative z-10 text-center">

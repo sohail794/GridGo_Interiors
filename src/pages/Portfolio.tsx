@@ -75,11 +75,18 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
   return (
     <div className="min-h-screen">
       <section className="relative h-[500px] flex items-center justify-center overflow-hidden">
-        {/* Background Image Layer - Placeholder */}
+        {/* Background Image Layer */}
         <div
-          className="absolute inset-0 z-0 bg-neutral-900/50"
+          className="absolute inset-0 z-0"
           aria-hidden="true"
-        />
+        >
+          <img 
+            src="/images/portfolio-dining-area-modern.webp" 
+            alt="" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-neutral-900/60" />
+        </div>
         
         {/* Navy overlay for brand consistency */}
         <div 

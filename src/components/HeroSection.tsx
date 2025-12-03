@@ -34,11 +34,18 @@ export default function HeroSection({ onOpenModal }: HeroSectionProps) {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-0">
-      {/* Background Image Layer - Placeholder */}
+      {/* Background Image Layer */}
       <div
-        className="absolute inset-0 z-0 bg-neutral-900/50"
+        className="absolute inset-0 z-0"
         aria-hidden="true"
-      />
+      >
+        <img 
+          src="/images/hero-luxury-modular-kitchen.webp" 
+          alt="" 
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-neutral-900/60" />
+      </div>
       
       {/* Navy overlay for brand consistency */}
       <div 
@@ -123,9 +130,13 @@ export default function HeroSection({ onOpenModal }: HeroSectionProps) {
                 aria-hidden="true"
               />
               
-              {/* Image Container - Placeholder */}
-              <div className="relative z-10 w-full h-full rounded-radius-2xl overflow-hidden shadow-lg bg-neutral-900/30">
-                {/* Image placeholder */}
+              {/* Image Container */}
+              <div className="relative z-10 w-full h-full rounded-radius-2xl overflow-hidden shadow-lg">
+                <img 
+                  src="/images/portfolio-wood-kitchen-island.webp" 
+                  alt="Luxury modular kitchen interior" 
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
           </div>

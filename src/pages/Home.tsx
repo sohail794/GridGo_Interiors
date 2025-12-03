@@ -89,9 +89,16 @@ export default function Home({ onNavigate }: HomeProps) {
       </Helmet>
 
       <section
-        className="relative h-screen bg-neutral-900/50"
+        className="relative h-screen"
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-charcoal/90 to-charcoal/50" />
+        <div className="absolute inset-0">
+          <img 
+            src="/images/hero-luxury-modular-kitchen.webp" 
+            alt="" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-charcoal/90 to-charcoal/50" />
+        </div>
         <div className="relative h-full flex items-center justify-center px-4">
           <div className="text-center text-white max-w-4xl animate-fade-in">
             <h1 className="font-serif italic text-5xl md:text-7xl mb-6 leading-tight">
