@@ -117,7 +117,7 @@ export default function Contact({ onNavigate: _onNavigate }: ContactProps) {
           className="absolute inset-0 z-0"
         >
           <img 
-            src="/images/service-custom-wardrobe-design.webp" 
+            src="/images/service-3d-space-planning.webp" 
             alt="" 
             className="w-full h-full object-cover"
           />

@@ -48,7 +48,7 @@ export default function About({ onNavigate }: AboutProps) {
           aria-hidden="true"
         >
           <img 
-            src="/images/brass-fluted-glass-room-divider.webp" 
+            src="/images/colonial-style-staircase-interior.webp" 
             alt="" 
             className="w-full h-full object-cover"
           />

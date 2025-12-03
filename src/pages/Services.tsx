@@ -145,7 +145,7 @@ export default function Services({ onNavigate: _onNavigate }: ServicesProps) {
           aria-hidden="true"
         >
           <img 
-            src="/images/service-commercial-office-interiors.webp" 
+            src="/images/brass-fluted-glass-room-divider.webp" 
             alt="" 
             className="w-full h-full object-cover"
           />

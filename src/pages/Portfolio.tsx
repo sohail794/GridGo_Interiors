@@ -81,7 +81,7 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
           aria-hidden="true"
         >
           <img 
-            src="/images/portfolio-dining-area-modern.webp" 
+            src="/images/portfolio-bedroom-led-design.webp" 
             alt="" 
             className="w-full h-full object-cover"
           />
