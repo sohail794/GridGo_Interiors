@@ -231,7 +231,7 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
           <div className="relative mt-12">
             <div className="hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-brand-emerald to-transparent" />
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
               {processSteps.map((step, index) => (
                 <div key={index} className="relative">
                   <div className="flex flex-col items-center text-center">

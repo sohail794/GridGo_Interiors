@@ -31,6 +31,24 @@ export default function TestimonialCarousel({ testimonials }: TestimonialCarouse
     },
   });
 
+  // Handle keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') {
+        setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+      } else if (e.key === 'ArrowRight') {
+        setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+      }
+    };
+
+    const container = cardRef.current;
+    if (container) {
+      container.setAttribute('tabindex', '0');
+      container.addEventListener('keydown', handleKeyDown);
+      return () => container.removeEventListener('keydown', handleKeyDown);
+    }
+  }, [testimonials.length]);
+
   useEffect(() => {
     if (isPaused) return;
     const interval = setInterval(() => {

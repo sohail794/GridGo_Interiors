@@ -64,7 +64,7 @@ export default function About({ onNavigate }: AboutProps) {
 
         <Container>
           <div className="relative z-10 text-center">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 leading-tight">
               Two Decades of
               <br />
               <span className="gradient-text">Inspired Craftsmanship</span>

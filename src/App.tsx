@@ -81,7 +81,7 @@ function App() {
           )}
           {currentPage === 'about' && <About onNavigate={handleNavigate} />}
           {currentPage === 'services' && <Services onNavigate={handleNavigate} />}
-          {currentPage === 'portfolio' && <Portfolio onNavigate={handleNavigate} />}
+          {currentPage === 'portfolio' && <Portfolio onNavigate={handleNavigate} onOpenModal={() => setModalOpen(true)} />}
           {currentPage === 'blog' && <Blog onNavigate={handleNavigate} />}
           {currentPage === 'contact' && <Contact onNavigate={handleNavigate} />}
         </Suspense>

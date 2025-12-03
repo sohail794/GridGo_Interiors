@@ -83,7 +83,7 @@ export default function HeroSection({ onOpenModal }: HeroSectionProps) {
                 animationDuration: '0.8s' 
               }}
             >
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
                 Crafting Premium
                 <br />
                 <span className="gradient-text">Interiors Since {COMPANY.foundingYear}</span>

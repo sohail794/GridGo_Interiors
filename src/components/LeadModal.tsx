@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import FocusTrap from 'focus-trap-react';
 import { X, CheckCircle, Upload, Trash2 } from 'lucide-react';
 import Button3D from './Button3D';
 import Button from './ui/Button';
@@ -145,8 +146,9 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
   }
 
   return (
-    <div className="fixed inset-0 z-[2000] flex items-center justify-center p-4 overflow-y-auto">
-      <div className="absolute inset-0 bg-black/85 backdrop-blur-md" onClick={onClose} />
+    <FocusTrap active={isOpen}>
+      <div className="fixed inset-0 z-[2000] flex items-center justify-center p-4 overflow-y-auto">
+        <div className="absolute inset-0 bg-black/85 backdrop-blur-md" onClick={onClose} />
 
       <div className="relative z-10 w-full max-w-2xl my-8">
         <GlassCard className="relative animate-fade-in" hover={false}>
@@ -445,5 +447,6 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
         </GlassCard>
       </div>
     </div>
+    </FocusTrap>
   );
 }

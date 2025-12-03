@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import FocusTrap from 'focus-trap-react';
 import { X, MapPin, Calendar, Tag } from 'lucide-react';
 import { featuredProjects } from '../data/content';
 import { Project } from '../types';
@@ -13,9 +14,10 @@ import { useScrollRevealWave } from '../hooks/useScrollReveal';
 
 interface PortfolioProps {
   onNavigate: (page: string) => void;
+  onOpenModal?: (projectTitle?: string) => void;
 }
 
-export default function Portfolio({ onNavigate }: PortfolioProps) {
+export default function Portfolio({ onNavigate, onOpenModal }: PortfolioProps) {
   const [filter, setFilter] = useState<'all' | 'residential' | 'commercial' | 'retail'>('all');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [visibleCount, setVisibleCount] = useState(6); // Load More pagination
@@ -92,7 +94,7 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
 
         <div className="relative z-10 text-center">
           <Container maxWidth="lg">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 leading-tight">
               <span className="gradient-text">Timeless Creations</span>
             </h1>
             <p className="text-xl md:text-2xl text-text-secondary">
@@ -104,13 +106,15 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
 
       <Section spacing="lg" background="none">
         <Container>
-          <div className="flex flex-wrap justify-center gap-3 mb-16">
+          <div className="flex flex-wrap justify-center gap-3 mb-16" role="tablist" aria-label="Filter projects by category">
             {['all', 'residential', 'commercial', 'retail'].map((category) => (
               <button
                 key={category}
                 onClick={() => handleFilterChange(category as typeof filter)}
+                role="tab"
+                aria-selected={filter === category}
                 className={`
-                  px-6 md:px-8 py-3 min-h-[44px] rounded-full font-semibold uppercase tracking-wide text-sm
+                  px-6 md:px-8 py-3 min-h-[48px] min-w-[48px] rounded-full font-semibold uppercase tracking-wide text-sm
                   transition-all duration-200 active:scale-95
                   focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-emerald focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0e27]
                   ${
@@ -166,8 +170,9 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
       </Section>
 
       {selectedProject && (
-        <div className="fixed inset-0 z-[2000] overflow-y-auto">
-          <div className="fixed inset-0 bg-black/90 backdrop-blur-md" onClick={() => setSelectedProject(null)} />
+        <FocusTrap active={!!selectedProject}>
+          <div className="fixed inset-0 z-[2000] overflow-y-auto">
+            <div className="fixed inset-0 bg-black/90 backdrop-blur-md" onClick={() => setSelectedProject(null)} />
           
           <div className="relative z-10 min-h-full flex items-start justify-center p-4 py-8">
             <Container maxWidth="lg">
@@ -252,7 +257,10 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
                 </div>
 
                 <div className="pt-6 border-t border-white/10">
-                  <Button3D onClick={() => onNavigate('contact')} className="w-full">
+                  <Button3D onClick={() => {
+                    setSelectedProject(null);
+                    onOpenModal?.(selectedProject.title);
+                  }} className="w-full">
                     Request Similar Design
                   </Button3D>
                 </div>
@@ -261,6 +269,7 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
             </Container>
           </div>
         </div>
+        </FocusTrap>
       )}
     </div>
   );

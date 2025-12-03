@@ -1,4 +1,5 @@
-import { Calendar, Tag } from 'lucide-react';
+import { useState } from 'react';
+import { Calendar, Tag, CheckCircle, Loader2 } from 'lucide-react';
 import { blogPosts } from '../data/content';
 import GlassCard from '../components/GlassCard';
 import Button3D from '../components/Button3D';
@@ -14,13 +15,71 @@ interface BlogProps {
 }
 
 export default function Blog({ onNavigate }: BlogProps) {
+  const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [isSubscribing, setIsSubscribing] = useState(false);
+  const [subscribeSuccess, setSubscribeSuccess] = useState(false);
+  const [subscribeError, setSubscribeError] = useState('');
+
+  const validateEmail = (email: string): boolean => {
+    const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+    return emailRegex.test(email);
+  };
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!newsletterEmail.trim()) {
+      setSubscribeError('Email is required');
+      return;
+    }
+    
+    if (!validateEmail(newsletterEmail)) {
+      setSubscribeError('Please enter a valid email address');
+      return;
+    }
+    
+    setIsSubscribing(true);
+    setSubscribeError('');
+    
+    try {
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      setSubscribeSuccess(true);
+      setNewsletterEmail('');
+      setTimeout(() => setSubscribeSuccess(false), 5000);
+    } catch {
+      setSubscribeError('Failed to subscribe. Please try again.');
+    } finally {
+      setIsSubscribing(false);
+    }
+  };
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <Section spacing="lg" background="secondary">
+      <section className="relative h-[500px] flex items-center justify-center overflow-hidden">
+        {/* Background Image Layer */}
+        <div
+          className="absolute inset-0 z-0"
+          aria-hidden="true"
+        >
+          <img 
+            src="/images/portfolio-dining-area-modern.webp" 
+            alt="" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-neutral-900/60" />
+        </div>
+        
+        {/* Navy overlay for brand consistency */}
+        <div 
+          className="absolute inset-0 z-0 bg-[#0A0E27]/50" 
+          style={{ mixBlendMode: 'multiply' }}
+          aria-hidden="true"
+        />
+
         <Container>
-          <div className="text-center">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
+          <div className="relative z-10 text-center">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
               Expert <span className="gradient-text">Perspectives</span>
             </h1>
             <p className="text-xl text-text-secondary">
@@ -28,7 +87,7 @@ export default function Blog({ onNavigate }: BlogProps) {
             </p>
           </div>
         </Container>
-      </Section>
+      </section>
 
       {/* Blog Posts Section */}
       <Section spacing="lg" background="none">
@@ -96,17 +155,44 @@ export default function Blog({ onNavigate }: BlogProps) {
               <p className="text-lg text-text-secondary mb-8">
                 Subscribe to our newsletter for the latest trends, tips, and project showcases
               </p>
-              <form className="flex flex-col sm:flex-row gap-3 max-w-xl mx-auto">
-                <FormInput
-                  type="email"
-                  placeholder="Enter your email"
-                  required
-                  className="flex-1"
-                />
-                <Button variant="primary" size="md" type="submit" className="w-full sm:w-auto">
-                  Subscribe
-                </Button>
-              </form>
+              {subscribeSuccess ? (
+                <div className="flex items-center justify-center gap-2 text-brand-emerald text-lg" role="status" aria-live="polite">
+                  <CheckCircle size={24} />
+                  <span>Subscribed! Check your email for confirmation.</span>
+                </div>
+              ) : (
+                <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-3 max-w-xl mx-auto">
+                  <div className="flex-1">
+                    <FormInput
+                      type="email"
+                      placeholder="Enter your email"
+                      required
+                      value={newsletterEmail}
+                      onChange={(e) => {
+                        setNewsletterEmail(e.target.value);
+                        setSubscribeError('');
+                      }}
+                      disabled={isSubscribing}
+                      error={subscribeError}
+                      aria-invalid={!!subscribeError}
+                      aria-describedby={subscribeError ? 'blog-newsletter-error' : undefined}
+                    />
+                    {subscribeError && (
+                      <p id="blog-newsletter-error" className="text-red-400 text-sm mt-1 text-left" role="alert">
+                        {subscribeError}
+                      </p>
+                    )}
+                  </div>
+                  <Button variant="primary" size="md" type="submit" className="w-full sm:w-auto" disabled={isSubscribing}>
+                    {isSubscribing ? (
+                      <>
+                        <Loader2 size={16} className="animate-spin" />
+                        Subscribing...
+                      </>
+                    ) : 'Subscribe'}
+                  </Button>
+                </form>
+              )}
             </div>
           </Card>
         </Container>
