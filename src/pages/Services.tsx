@@ -230,13 +230,13 @@ export default function Services({ onNavigate: _onNavigate }: ServicesProps) {
                             {service.gallery.map((image, idx) => (
                               <div
                                 key={idx}
-                                className="relative w-full h-24 rounded-lg overflow-hidden"
+                                className="relative h-24 rounded-lg overflow-hidden"
                               >
                                 {image ? (
                                   <img
                                     src={image}
                                     alt={`${service.title} example ${idx + 1}`}
-                                    className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                                    className="absolute inset-0 w-full h-full object-cover hover:scale-110 transition-transform duration-300"
                                     loading="lazy"
                                   />
                                 ) : (

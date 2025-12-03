@@ -43,16 +43,16 @@ export default function PortfolioCard({
         padding="sm"
         className="group cursor-pointer touch-manipulation hover:scale-[1.02] hover:shadow-lg transition-all duration-200 ease-out"
       >
-        <div className="relative overflow-hidden rounded-lg mb-4" style={{ aspectRatio: '4/3' }}>
+        <div className="relative overflow-hidden rounded-lg mb-4 h-64">
           <div
             ref={imageRef}
-            className="transition-transform duration-300 ease-out h-full"
+            className="transition-transform duration-300 ease-out w-full h-full"
             style={{
               transform: `perspective(1000px) rotateX(${parallaxOffset.y * 0.5}deg) rotateY(${parallaxOffset.x * 0.5}deg)`,
             }}
           >
             {/* Blur placeholder */}
-            {!imageLoaded && (
+            {!imageLoaded && project.image && (
               <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 animate-pulse z-10 flex items-center justify-center">
                 <div className="w-10 h-10 border-3 border-brand-emerald/20 border-t-brand-emerald rounded-full animate-spin" />
               </div>
@@ -67,9 +67,7 @@ export default function PortfolioCard({
               <img
                 src={project.image}
                 alt={`${project.title} - ${project.category} interior design project`}
-                width={800}
-                height={600}
-                className={`w-full h-80 object-cover group-hover:scale-110 transition-all duration-500 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+                className={`absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-all duration-500 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
                 loading="lazy"
                 onLoad={handleImageLoad}
               />

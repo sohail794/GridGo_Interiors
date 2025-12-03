@@ -36,18 +36,16 @@ export default function Blog({ onNavigate }: BlogProps) {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
             {blogPosts.map((post) => (
               <GlassCard key={post.id} padding="sm" className="group cursor-pointer overflow-hidden hover:scale-[1.02] hover:shadow-lg transition-all duration-200 ease-out">
-                <div className="relative overflow-hidden rounded-lg mb-4" style={{ aspectRatio: '16/10' }}>
+                <div className="relative overflow-hidden rounded-lg mb-4 h-64">
                   {post.image ? (
                     <img
                       src={post.image}
                       alt={`${post.title} - ${post.category} article on interior design`}
-                      width={800}
-                      height={500}
-                      className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       loading="lazy"
                     />
                   ) : (
-                    <div className="w-full h-64 bg-neutral-900/30 flex items-center justify-center">
+                    <div className="w-full h-full bg-neutral-900/30 flex items-center justify-center">
                       <span className="text-text-tertiary text-sm">Image placeholder</span>
                     </div>
                   )}

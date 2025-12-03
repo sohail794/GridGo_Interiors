@@ -130,22 +130,20 @@ export default function About({ onNavigate }: AboutProps) {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mt-12">
             {teamMembers.map((member) => (
               <GlassCard key={member.id} padding="sm" className="text-center group">
-                <div className="relative overflow-hidden rounded-radius-lg mb-6" style={{ aspectRatio: '3/4' }}>
+                <div className="relative overflow-hidden rounded-radius-lg mb-6 h-80">
                   {member.image ? (
                     <>
                       <img
                         src={member.image}
                         alt={`${member.name} - ${member.title}`}
-                        width={400}
-                        height={533}
-                        className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500"
+                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         loading="lazy"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
                     </>
                   ) : (
-                    <div className="w-full h-80 bg-neutral-900/30 flex items-center justify-center">
-                      <span className="text-text-tertiary text-sm">Image placeholder</span>
+                    <div className="w-full h-full bg-neutral-900/30 flex items-center justify-center">
+                      <span className="text-text-tertiary text-sm">Team photo</span>
                     </div>
                   )}
                 </div>
