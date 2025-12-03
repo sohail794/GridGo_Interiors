@@ -41,8 +41,7 @@ export default function Blog({ onNavigate }: BlogProps) {
                     <img
                       src={post.image}
                       alt={`${post.title} - ${post.category} article on interior design`}
-                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                      loading="lazy"
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                   ) : (
                     <div className="w-full h-full bg-neutral-900/30 flex items-center justify-center">

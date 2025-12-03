@@ -18,7 +18,6 @@ interface PortfolioProps {
 export default function Portfolio({ onNavigate }: PortfolioProps) {
   const [filter, setFilter] = useState<'all' | 'residential' | 'commercial' | 'retail'>('all');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [imageLoading, setImageLoading] = useState<Record<string, boolean>>({});
   const [visibleCount, setVisibleCount] = useState(6); // Load More pagination
   
   // Scroll reveal refs
@@ -66,10 +65,6 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
   const handleFilterChange = (category: typeof filter) => {
     setFilter(category);
     setVisibleCount(6);
-  };
-
-  const handleImageLoad = (projectId: string) => {
-    setImageLoading(prev => ({ ...prev, [projectId]: false }));
   };
 
   return (
@@ -135,9 +130,7 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
               <PortfolioCard
                 key={project.id}
                 project={project}
-                isImageLoading={imageLoading[project.id] !== false}
                 onSelect={setSelectedProject}
-                onImageLoad={handleImageLoad}
               />
             ))}
           </div>
@@ -173,32 +166,19 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
       </Section>
 
       {selectedProject && (
-        <div className="fixed inset-0 z-[2000] flex items-start justify-center overflow-y-auto">
-          <div className="absolute inset-0 bg-black/90 backdrop-blur-md" onClick={() => setSelectedProject(null)} />
+        <div className="fixed inset-0 z-[2000] overflow-y-auto">
+          <div className="fixed inset-0 bg-black/90 backdrop-blur-md" onClick={() => setSelectedProject(null)} />
           
-          {/* Sticky close button for mobile */}
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              setSelectedProject(null);
-            }}
-            className="fixed top-4 right-4 z-[2010] w-12 h-12 rounded-full border-2 border-white/20 bg-[#0a0e27] hover:border-brand-coral text-white hover:text-brand-coral transition-all flex items-center justify-center shadow-lg md:hidden"
-            aria-label="Close project details"
-            type="button"
-          >
-            <X size={24} />
-          </button>
-
-          <div className="relative z-10 w-full py-8 px-4">
+          <div className="relative z-10 min-h-full flex items-start justify-center p-4 py-8">
             <Container maxWidth="lg">
               <GlassCard className="relative">
-              {/* Desktop close button */}
+              {/* Close button - works on both mobile and desktop */}
               <button
                 onClick={(e) => {
                   e.stopPropagation();
                   setSelectedProject(null);
                 }}
-                className="absolute top-4 right-4 z-50 w-10 h-10 rounded-full border-2 border-white/10 bg-[#0a0e27]/80 hover:border-brand-coral text-white hover:text-brand-coral transition-all items-center justify-center hidden md:flex"
+                className="absolute top-4 right-4 z-50 w-10 h-10 rounded-full border-2 border-white/20 bg-[#0a0e27] hover:border-brand-coral text-white hover:text-brand-coral transition-all flex items-center justify-center"
                 aria-label="Close project details"
                 type="button"
               >

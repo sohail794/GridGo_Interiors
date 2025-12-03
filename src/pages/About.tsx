@@ -136,8 +136,7 @@ export default function About({ onNavigate }: AboutProps) {
                       <img
                         src={member.image}
                         alt={`${member.name} - ${member.title}`}
-                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                        loading="lazy"
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
                     </>

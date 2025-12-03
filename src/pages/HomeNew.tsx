@@ -156,8 +156,7 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                      loading="lazy"
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                   ) : (
                     <div className="w-full h-full bg-neutral-900/30 flex items-center justify-center">
