@@ -7,6 +7,7 @@ import LeadModal from './components/LeadModal';
 import PageLoader from './components/PageLoader';
 import ScrollProgressBar from './components/ScrollProgressBar';
 import PageTransition from './components/PageTransition';
+import ErrorBoundary from './components/ErrorBoundary';
 import { updatePageMeta, pageMeta } from './utils/seo';
 
 // Lazy load pages for code splitting and performance
@@ -75,16 +76,18 @@ function App() {
       />
 
       <main id="main-content" className="pt-20" role="main">
-        <Suspense fallback={<PageLoader />}>
-          {currentPage === 'home' && (
-            <HomeNew onNavigate={handleNavigate} onOpenModal={() => setModalOpen(true)} />
-          )}
-          {currentPage === 'about' && <About onNavigate={handleNavigate} />}
-          {currentPage === 'services' && <Services onNavigate={handleNavigate} />}
-          {currentPage === 'portfolio' && <Portfolio onNavigate={handleNavigate} onOpenModal={() => setModalOpen(true)} />}
-          {currentPage === 'blog' && <Blog onNavigate={handleNavigate} />}
-          {currentPage === 'contact' && <Contact onNavigate={handleNavigate} />}
-        </Suspense>
+        <ErrorBoundary>
+          <Suspense fallback={<PageLoader />}>
+            {currentPage === 'home' && (
+              <HomeNew onNavigate={handleNavigate} onOpenModal={() => setModalOpen(true)} />
+            )}
+            {currentPage === 'about' && <About onNavigate={handleNavigate} />}
+            {currentPage === 'services' && <Services onNavigate={handleNavigate} />}
+            {currentPage === 'portfolio' && <Portfolio onNavigate={handleNavigate} onOpenModal={() => setModalOpen(true)} />}
+            {currentPage === 'blog' && <Blog onNavigate={handleNavigate} />}
+            {currentPage === 'contact' && <Contact onNavigate={handleNavigate} />}
+          </Suspense>
+        </ErrorBoundary>
       </main>
 
       <Footer onNavigate={handleNavigate} />

@@ -91,4 +91,4 @@ export default function ProjectSlider({ projects, onNavigate }: ProjectSliderPro
       </div>
     </div>
   );
-
+}

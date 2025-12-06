@@ -43,6 +43,8 @@ export default function HeroSection({ onOpenModal }: HeroSectionProps) {
           src="/images/hero-luxury-modular-kitchen.webp" 
           alt="" 
           className="w-full h-full object-cover"
+          width="1920"
+          height="1080"
           fetchPriority="high"
           decoding="async"
         />
@@ -138,6 +140,8 @@ export default function HeroSection({ onOpenModal }: HeroSectionProps) {
                   src="/images/portfolio-wood-kitchen-island.webp" 
                   alt="Luxury modular kitchen interior" 
                   className="w-full h-full object-cover"
+                  width="800"
+                  height="450"
                   loading="eager"
                   decoding="async"
                 />

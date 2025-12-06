@@ -1,14 +1,15 @@
 import { useState } from 'react';
-import { Calendar, Tag, CheckCircle, Loader2 } from 'lucide-react';
+import { Calendar, CheckCircle, Loader2, X } from 'lucide-react';
+import FocusTrap from 'focus-trap-react';
 import { blogPosts } from '../data/content';
+import { BlogPost } from '../types';
 import GlassCard from '../components/GlassCard';
-import Button3D from '../components/Button3D';
 import Button from '../components/ui/Button';
 import Container from '../components/ui/Container';
 import Section from '../components/ui/Section';
-import SectionHeader from '../components/ui/SectionHeader';
 import Card from '../components/ui/Card';
 import FormInput from '../components/ui/FormInput';
+import { CONTACT } from '../config/contact';
 
 interface BlogProps {
   onNavigate: (page: string) => void;
@@ -19,6 +20,7 @@ export default function Blog({ onNavigate }: BlogProps) {
   const [isSubscribing, setIsSubscribing] = useState(false);
   const [subscribeSuccess, setSubscribeSuccess] = useState(false);
   const [subscribeError, setSubscribeError] = useState('');
+  const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
 
   const validateEmail = (email: string): boolean => {
     const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
@@ -134,7 +136,11 @@ export default function Blog({ onNavigate }: BlogProps) {
                     {post.excerpt}
                   </p>
 
-                  <Button variant="secondary" className="mt-4">
+                  <Button 
+                    variant="secondary" 
+                    className="mt-4"
+                    onClick={() => setSelectedPost(post)}
+                  >
                     Read More →
                   </Button>
                 </div>
@@ -144,8 +150,105 @@ export default function Blog({ onNavigate }: BlogProps) {
         </Container>
       </Section>
 
+      {/* Blog Post Modal */}
+      {selectedPost && (
+        <FocusTrap active={!!selectedPost}>
+          <div className="fixed inset-0 z-[2000] overflow-y-auto">
+            <div 
+              className="fixed inset-0 bg-black/90 backdrop-blur-md" 
+              onClick={() => setSelectedPost(null)} 
+            />
+          
+            <div className="relative z-10 min-h-full flex items-start justify-center p-4 py-8">
+              <Container maxWidth="lg">
+                <GlassCard className="relative animate-fade-in">
+                  <button
+                    onClick={() => setSelectedPost(null)}
+                    className="absolute top-4 right-4 z-50 w-10 h-10 rounded-full border-2 border-white/20 bg-[#0a0e27] hover:border-brand-coral text-white hover:text-brand-coral transition-all flex items-center justify-center"
+                    aria-label="Close article"
+                    type="button"
+                  >
+                    <X size={20} />
+                  </button>
+
+                  <article className="space-y-6">
+                    {selectedPost.image && (
+                      <div className="relative h-64 md:h-80 rounded-lg overflow-hidden">
+                        <img
+                          src={selectedPost.image}
+                          alt={selectedPost.title}
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                      </div>
+                    )}
+
+                    <div className="space-y-4">
+                      <div className="flex flex-wrap items-center gap-4 text-sm">
+                        <span className="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wide bg-brand-emerald/10 text-brand-emerald rounded-full">
+                          {selectedPost.category}
+                        </span>
+                        <div className="flex items-center text-text-secondary">
+                          <Calendar size={16} className="mr-2 text-brand-emerald" />
+                          {new Date(selectedPost.date).toLocaleDateString('en-US', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric',
+                          })}
+                        </div>
+                      </div>
+
+                      <h2 className="text-3xl md:text-4xl font-bold text-white">
+                        {selectedPost.title}
+                      </h2>
+
+                      <div className="prose prose-invert max-w-none">
+                        <p className="text-lg text-text-secondary leading-relaxed">
+                          {selectedPost.excerpt}
+                        </p>
+                        
+                        <div className="mt-8 p-6 bg-white/5 rounded-lg border border-white/10">
+                          <p className="text-text-secondary text-center">
+                            🚧 <strong className="text-brand-emerald">Full article coming soon!</strong>
+                            <br />
+                            <span className="text-sm mt-2 block">
+                              Subscribe to our newsletter to get notified when new content is published.
+                            </span>
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t border-white/10">
+                        <Button 
+                          variant="primary" 
+                          onClick={() => {
+                            setSelectedPost(null);
+                            // Scroll to newsletter section
+                            setTimeout(() => {
+                              document.querySelector('#newsletter-section')?.scrollIntoView({ behavior: 'smooth' });
+                            }, 100);
+                          }}
+                        >
+                          Subscribe for Updates
+                        </Button>
+                        <Button 
+                          variant="secondary" 
+                          onClick={() => setSelectedPost(null)}
+                        >
+                          Back to Articles
+                        </Button>
+                      </div>
+                    </div>
+                  </article>
+                </GlassCard>
+              </Container>
+            </div>
+          </div>
+        </FocusTrap>
+      )}
+
       {/* Newsletter Section */}
-      <Section spacing="lg" background="secondary">
+      <Section spacing="lg" background="secondary" id="newsletter-section">
         <Container maxWidth="md">
           <Card padding="lg" glass>
             <div className="text-center">
@@ -217,24 +320,24 @@ export default function Blog({ onNavigate }: BlogProps) {
               <p className="text-sm text-text-tertiary mb-6">or reach us via</p>
               <div className="flex justify-center gap-6">
                 <a
-                  href="https://wa.me/918595007476"
+                  href={CONTACT.whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-text-secondary hover:text-brand-emerald transition-all hover:scale-110 cursor-pointer"
+                  className="text-text-secondary hover:text-brand-emerald transition-all hover:scale-110 cursor-pointer focus-ring rounded px-2 py-1"
                 >
                   <span className="text-sm">WhatsApp</span>
                 </a>
                 <a
-                  href="mailto:sohailsaifi561@gmail.com"
-                  className="text-text-secondary hover:text-brand-emerald transition-all hover:scale-110 cursor-pointer"
+                  href={`mailto:${CONTACT.email}`}
+                  className="text-text-secondary hover:text-brand-emerald transition-all hover:scale-110 cursor-pointer focus-ring rounded px-2 py-1"
                 >
                   <span className="text-sm">Email</span>
                 </a>
                 <a
-                  href="https://www.linkedin.com/"
+                  href={CONTACT.socialLinks.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-text-secondary hover:text-brand-emerald transition-all hover:scale-110 cursor-pointer"
+                  className="text-text-secondary hover:text-brand-emerald transition-all hover:scale-110 cursor-pointer focus-ring rounded px-2 py-1"
                 >
                   <span className="text-sm">LinkedIn</span>
                 </a>

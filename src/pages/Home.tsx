@@ -1,5 +1,5 @@
 import { ArrowRight } from 'lucide-react';
-import { useState, useRef } from 'react';
+import { useRef } from 'react';
 import { testimonials, featuredProjects, services } from '../data/content';
 import ServiceCard from '../components/ServiceCard';
 import ProjectSlider from '../components/ProjectSlider';

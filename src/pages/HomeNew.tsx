@@ -10,6 +10,7 @@ import Section from '../components/ui/Section';
 import SectionHeader from '../components/ui/SectionHeader';
 import { featuredProjects, testimonials } from '../data/content';
 import { COMPANY } from '../config/company';
+import { CONTACT } from '../config/contact';
 
 interface HomeNewProps {
   onNavigate: (page: string) => void;
@@ -317,7 +318,7 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
               <p className="text-sm text-text-tertiary mb-6">or reach us via</p>
               <div className="flex justify-center gap-6 flex-wrap">
                 <a
-                  href="https://wa.me/918595007476"
+                  href={CONTACT.whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-text-secondary hover:text-brand-emerald transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer focus-ring rounded px-3 py-2 min-h-[44px] flex items-center font-semibold"
@@ -325,13 +326,13 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
                   WhatsApp
                 </a>
                 <a
-                  href="mailto:sohailsaifi561@gmail.com"
+                  href={`mailto:${CONTACT.email}`}
                   className="text-text-secondary hover:text-brand-emerald transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer focus-ring rounded px-3 py-2 min-h-[44px] flex items-center font-semibold"
                 >
                   Email
                 </a>
                 <a
-                  href="https://www.linkedin.com/"
+                  href={CONTACT.socialLinks.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-text-secondary hover:text-brand-emerald transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer focus-ring rounded px-3 py-2 min-h-[44px] flex items-center font-semibold"

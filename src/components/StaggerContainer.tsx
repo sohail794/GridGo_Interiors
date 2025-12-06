@@ -1,4 +1,4 @@
-import { ReactNode, useRef } from 'react';
+import { ReactNode } from 'react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 interface StaggerContainerProps {
@@ -19,7 +19,7 @@ export default function StaggerContainer({
   const childArray = Array.isArray(children) ? children : [children];
 
   return (
-    <div ref={ref} className={className}>
+    <div ref={ref as React.RefObject<HTMLDivElement>} className={className}>
       {childArray.map((child, index) => (
         <div
           key={index}

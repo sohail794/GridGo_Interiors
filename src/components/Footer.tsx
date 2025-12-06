@@ -66,7 +66,7 @@ export default function Footer({ onNavigate }: FooterProps) {
               <p className="text-xs uppercase tracking-wide text-gray-400 mb-3 font-semibold">Follow Us</p>
               <div className="flex space-x-2">
                 <a
-                  href="https://x.com/GridGoInteriors"
+                  href={CONTACT.socialLinks.twitter}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-11 h-11 rounded-full bg-white/5 hover:bg-brand-emerald/20 active:bg-brand-emerald/30 text-gray-300 hover:text-brand-emerald transition-all duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:ring-offset-2 focus:ring-offset-[#0A0E27]"
@@ -77,7 +77,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                   </svg>
                 </a>
                 <a
-                  href="https://instagram.com/gridgointeriors"
+                  href={CONTACT.socialLinks.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-11 h-11 rounded-full bg-white/5 hover:bg-brand-emerald/20 active:bg-brand-emerald/30 text-gray-300 hover:text-brand-emerald transition-all duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:ring-offset-2 focus:ring-offset-[#0A0E27]"
@@ -86,7 +86,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                   <Instagram size={18} />
                 </a>
                 <a
-                  href="https://linkedin.com/company/gridgointeriors"
+                  href={CONTACT.socialLinks.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-11 h-11 rounded-full bg-white/5 hover:bg-brand-emerald/20 active:bg-brand-emerald/30 text-gray-300 hover:text-brand-emerald transition-all duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:ring-offset-2 focus:ring-offset-[#0A0E27]"
@@ -95,7 +95,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                   <Linkedin size={18} />
                 </a>
                 <a
-                  href="https://pinterest.com/gridgointeriors"
+                  href={CONTACT.socialLinks.pinterest}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-11 h-11 rounded-full bg-white/5 hover:bg-brand-emerald/20 active:bg-brand-emerald/30 text-gray-300 hover:text-brand-emerald transition-all duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:ring-offset-2 focus:ring-offset-[#0A0E27]"
@@ -168,13 +168,13 @@ export default function Footer({ onNavigate }: FooterProps) {
               )}
               <li className="flex items-center gap-3">
                 <Mail size={16} className="flex-shrink-0 text-brand-emerald" />
-                <a href="mailto:info@gridgointeriors.com" className="text-gray-300 hover:text-brand-emerald transition-colors">
-                  info@gridgointeriors.com
+                <a href={`mailto:${CONTACT.email}`} className="text-gray-300 hover:text-brand-emerald transition-colors">
+                  {CONTACT.email}
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <MessageCircle size={16} className="flex-shrink-0 text-brand-emerald" />
-                <a href="https://wa.me/918595007476" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-brand-emerald transition-colors">
+                <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-brand-emerald transition-colors">
                   WhatsApp Chat
                 </a>
               </li>

@@ -69,7 +69,7 @@ export default function TestimonialCarousel({ testimonials }: TestimonialCarouse
         onFocus={() => setIsPaused(true)}
         onBlur={() => setIsPaused(false)}
       >
-        <Card padding="lg" glass hover style={{ animation: 'fadeInUp 600ms ease-out forwards' }}>
+        <Card padding="lg" glass hover className="animate-fade-in-up">
           <Quote size={48} className="text-brand-emerald mb-6 hover:scale-110 transition-transform duration-300" style={{ animation: 'fadeIn 600ms ease-out 200ms forwards, glowPulse 3s ease-in-out 500ms infinite' }} aria-hidden="true" />
           <p className="text-xl md:text-2xl text-text-primary mb-8 italic leading-relaxed" style={{ animation: 'fadeInUp 600ms ease-out 300ms forwards' }}>
             "{currentTestimonial.quote}"

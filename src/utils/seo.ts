@@ -65,8 +65,8 @@ export const organizationSchema = {
   '@type': 'LocalBusiness',
   name: 'GridGo Interiors',
   description: 'Premium interior design and fabrication services',
-  image: '',
-  telephone: '+91-XXXXXXXXXX',
+  image: 'https://gridgointeriors.com/images/hero-luxury-modular-kitchen.webp',
+  telephone: '+91-8595007476',
   address: {
     '@type': 'PostalAddress',
     addressCountry: 'IN',
