@@ -33,7 +33,7 @@ export default function HeroSection({ onOpenModal }: HeroSectionProps) {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-0">
+    <section className="relative min-h-[calc(100vh-5rem)] flex items-center justify-center overflow-hidden">
       {/* Background Image Layer */}
       <div
         className="absolute inset-0 z-0"

@@ -151,33 +151,47 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredProjects.map((project) => (
-              <GlassCard key={project.id} padding="sm" className="group cursor-pointer overflow-hidden hover:scale-[1.02] hover:shadow-lg transition-all duration-200 ease-out">
-                <div className="relative overflow-hidden rounded-radius-lg mb-4 h-64">
-                  {project.image ? (
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                  ) : (
-                    <div className="w-full h-full bg-neutral-900/30 flex items-center justify-center">
-                      <span className="text-text-tertiary text-sm">Image placeholder</span>
+              <GlassCard 
+                key={project.id} 
+                padding="sm" 
+                className="group overflow-hidden hover:scale-[1.02] hover:shadow-lg transition-all duration-200 ease-out"
+              >
+                <button
+                  type="button"
+                  onClick={() => onNavigate('portfolio')}
+                  className="w-full text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-emerald focus-visible:ring-offset-2 focus-visible:ring-offset-background-primary rounded-radius-lg"
+                  aria-label={`View ${project.title} project details`}
+                >
+                  <div className="relative overflow-hidden rounded-radius-lg mb-4 h-64">
+                    {project.image ? (
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        width="400"
+                        height="256"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-neutral-900/30 flex items-center justify-center">
+                        <span className="text-text-tertiary text-sm">Image placeholder</span>
+                      </div>
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                      <span className="inline-flex items-center gap-2 px-4 py-2 rounded-radius-md bg-white/10 backdrop-blur-sm text-white font-medium text-sm">
+                        View Project
+                      </span>
                     </div>
-                  )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                    <Button3D size="sm" variant="ghost" onClick={() => onNavigate('portfolio')}>
-                      View Project
-                    </Button3D>
                   </div>
-                </div>
 
-                <div className="space-y-2">
-                  <span className="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wide bg-brand-emerald/10 text-brand-emerald rounded-radius-md">
-                    {project.category}
-                  </span>
-                  <h3 className="text-xl font-semibold text-text-primary">{project.title}</h3>
-                  <p className="text-sm text-text-secondary">{project.location}</p>
-                </div>
+                  <div className="space-y-2">
+                    <span className="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wide bg-brand-emerald/10 text-brand-emerald rounded-radius-md">
+                      {project.category}
+                    </span>
+                    <h3 className="text-xl font-semibold text-text-primary">{project.title}</h3>
+                    <p className="text-sm text-text-secondary">{project.location}</p>
+                  </div>
+                </button>
               </GlassCard>
             ))}
           </div>
@@ -200,15 +214,15 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
             {services.map((service, index) => (
               <GlassCard key={index} className="text-center">
-                <div className="w-20 h-20 mx-auto mb-6 rounded-radius-lg bg-brand-emerald/10 flex items-center justify-center text-5xl">
+                <div className="w-20 h-20 mx-auto mb-6 rounded-radius-lg bg-brand-emerald/10 flex items-center justify-center text-5xl" aria-hidden="true">
                   {service.icon}
                 </div>
                 <h3 className="text-2xl font-semibold text-text-primary mb-4">{service.title}</h3>
                 <p className="text-text-secondary mb-6 leading-relaxed">{service.description}</p>
-                <ul className="space-y-3 text-left">
+                <ul className="space-y-3 text-left" aria-label={`${service.title} features`}>
                   {service.features.map((feature, i) => (
                     <li key={i} className="flex items-center gap-3 text-text-secondary">
-                      <CheckCircle size={16} className="text-brand-emerald flex-shrink-0" />
+                      <CheckCircle size={16} className="text-brand-emerald flex-shrink-0" aria-hidden="true" />
                       <span>{feature}</span>
                     </li>
                   ))}

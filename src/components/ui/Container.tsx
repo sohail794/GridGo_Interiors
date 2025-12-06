@@ -12,7 +12,7 @@ const maxWidthMap: Record<MaxWidth, string> = {
   sm: 'max-w-2xl',
   md: 'max-w-3xl',
   lg: 'max-w-4xl',
-  xl: 'max-w-[1400px]',
+  xl: 'max-w-[1400px] 2xl:max-w-[1600px]',
   full: 'max-w-full',
 };
 

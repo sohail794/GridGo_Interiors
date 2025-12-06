@@ -54,7 +54,7 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal, mobile
       role="banner"
       aria-label="Site navigation"
     >
-      <div className="max-w-[1400px] mx-auto px-8 h-full">
+      <div className="max-w-[1400px] 2xl:max-w-[1600px] mx-auto px-4 sm:px-6 md:px-8 h-full">
         <div className="flex justify-between items-center h-full">
           <button
             type="button"
@@ -66,10 +66,12 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal, mobile
               src={logo}
               alt="GridGo Interiors"
               className="h-12 w-auto transition-all duration-200 group-hover:scale-105"
+              width="150"
+              height="48"
             />
           </button>
 
-          <nav className="hidden lg:flex items-center space-x-8">
+          <nav className="hidden lg:flex items-center space-x-8 xl:space-x-10" role="menubar">
             {menuItems.map((item) => (
               <div
                 key={item.page}
@@ -77,36 +79,84 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal, mobile
                 onMouseEnter={() => item.hasDropdown && setPortfolioDropdown(true)}
                 onMouseLeave={() => item.hasDropdown && setPortfolioDropdown(false)}
               >
-                <a
-                  href={`#${item.page}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    onNavigate(item.page);
-                  }}
-                  className={`relative inline-flex items-center text-sm md:text-base font-medium group transition-all duration-200 ${
-                    currentPage === item.page ? "text-white" : "text-gray-300 hover:text-white"
-                  }`}
-                  aria-current={currentPage === item.page ? 'page' : undefined}
-                >
-                  <span className="transition-transform duration-200 group-hover:-translate-y-[1px]">
-                    {item.label}
-                    {item.hasDropdown && <ChevronDown size={16} className={`inline-block ml-1 transition-transform duration-200 ${portfolioDropdown ? 'rotate-180' : ''}`} />}
-                  </span>
-                  <span
-                    className={`pointer-events-none absolute left-0 -bottom-1 h-[2px] w-full origin-left scale-x-0 bg-[#00F5A0] transition-transform duration-200 group-hover:scale-x-100 ${
-                      currentPage === item.page ? "scale-x-100" : ""
+                {item.hasDropdown ? (
+                  <button
+                    type="button"
+                    onClick={() => setPortfolioDropdown(!portfolioDropdown)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        setPortfolioDropdown(!portfolioDropdown);
+                      } else if (e.key === 'Escape') {
+                        setPortfolioDropdown(false);
+                      }
+                    }}
+                    className={`relative inline-flex items-center text-sm md:text-base font-medium group transition-all duration-200 ${
+                      currentPage === item.page ? "text-white" : "text-gray-300 hover:text-white"
                     }`}
-                  />
-                </a>
+                    aria-expanded={portfolioDropdown}
+                    aria-haspopup="menu"
+                    aria-current={currentPage === item.page ? 'page' : undefined}
+                  >
+                    <span className="transition-transform duration-200 group-hover:-translate-y-[1px]">
+                      {item.label}
+                      <ChevronDown size={16} className={`inline-block ml-1 transition-transform duration-200 ${portfolioDropdown ? 'rotate-180' : ''}`} aria-hidden="true" />
+                    </span>
+                    <span
+                      className={`pointer-events-none absolute left-0 -bottom-1 h-[2px] w-full origin-left scale-x-0 bg-[#00F5A0] transition-transform duration-200 group-hover:scale-x-100 ${
+                        currentPage === item.page ? "scale-x-100" : ""
+                      }`}
+                    />
+                  </button>
+                ) : (
+                  <a
+                    href={`#${item.page}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onNavigate(item.page);
+                    }}
+                    className={`relative inline-flex items-center text-sm md:text-base font-medium group transition-all duration-200 ${
+                      currentPage === item.page ? "text-white" : "text-gray-300 hover:text-white"
+                    }`}
+                    aria-current={currentPage === item.page ? 'page' : undefined}
+                    role="menuitem"
+                  >
+                    <span className="transition-transform duration-200 group-hover:-translate-y-[1px]">
+                      {item.label}
+                    </span>
+                    <span
+                      className={`pointer-events-none absolute left-0 -bottom-1 h-[2px] w-full origin-left scale-x-0 bg-[#00F5A0] transition-transform duration-200 group-hover:scale-x-100 ${
+                        currentPage === item.page ? "scale-x-100" : ""
+                      }`}
+                    />
+                  </a>
+                )}
 
                 {item.hasDropdown && portfolioDropdown && (
-                  <div className="absolute top-full left-0 mt-2 w-48 glass-card p-2 animate-fade-in-down">
-                    {portfolioItems.map((subItem) => (
+                  <div 
+                    className="absolute top-full left-0 mt-2 w-48 glass-card p-2 animate-fade-in-down"
+                    role="menu"
+                    aria-label="Portfolio categories"
+                  >
+                    {portfolioItems.map((subItem, index) => (
                       <button
                         key={subItem.category}
                         onClick={() => {
                           onNavigate('portfolio');
                           setPortfolioDropdown(false);
+                        }}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Escape') {
+                            setPortfolioDropdown(false);
+                          } else if (e.key === 'ArrowDown') {
+                            e.preventDefault();
+                            const next = e.currentTarget.nextElementSibling as HTMLButtonElement;
+                            next?.focus();
+                          } else if (e.key === 'ArrowUp') {
+                            e.preventDefault();
+                            const prev = e.currentTarget.previousElementSibling as HTMLButtonElement;
+                            prev?.focus();
+                          }
                         }}
                         className="
                           w-full text-left px-4 py-3 min-h-[44px] rounded-lg
@@ -115,6 +165,9 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal, mobile
                           transition-all duration-200
                           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(0,255,136)]/50
                         "
+                        role="menuitem"
+                        tabIndex={index === 0 ? 0 : -1}
+                        autoFocus={index === 0}
                       >
                         {subItem.label}
                       </button>
