@@ -2,14 +2,12 @@ import { useEffect, useState } from 'react';
 import Button3D from './Button3D';
 import Container from './ui/Container';
 import { COMPANY } from '../config/company';
-import { useParallax } from '../hooks/useScrollAnimation';
 
 interface HeroSectionProps {
   onOpenModal: () => void;
 }
 
 export default function HeroSection({ onOpenModal }: HeroSectionProps) {
-  const { ref: imageRef, offset } = useParallax(0.5);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   useEffect(() => {
@@ -75,9 +73,9 @@ export default function HeroSection({ onOpenModal }: HeroSectionProps) {
 
       {/* Content Container */}
       <Container>
-        <div className="relative z-10 py-12 md:py-20 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Left Column - Text with staggered entrance */}
-          <div className="text-left space-y-8">
+        <div className="relative z-10 py-12 md:py-20 flex items-center justify-center lg:justify-start">
+          {/* Text Content - Centered on mobile, left on desktop */}
+          <div className="text-center lg:text-left space-y-8 max-w-2xl">
             <div 
               className="space-y-4 animate-fade-in-up" 
               style={{ 
@@ -93,7 +91,7 @@ export default function HeroSection({ onOpenModal }: HeroSectionProps) {
             </div>
 
             <p
-              className="text-lg md:text-xl text-text-secondary max-w-xl leading-relaxed animate-fade-in-up"
+              className="text-lg md:text-xl text-text-secondary max-w-xl leading-relaxed animate-fade-in-up mx-auto lg:mx-0"
               style={{ 
                 animationDelay: prefersReducedMotion ? '0s' : '0.2s', 
                 animationDuration: '0.8s' 
@@ -103,7 +101,7 @@ export default function HeroSection({ onOpenModal }: HeroSectionProps) {
             </p>
 
             <div
-              className="flex flex-wrap gap-4 animate-fade-in-up"
+              className="flex flex-wrap gap-4 animate-fade-in-up justify-center lg:justify-start"
               style={{ 
                 animationDelay: prefersReducedMotion ? '0s' : '0.3s', 
                 animationDuration: '0.8s' 
@@ -115,37 +113,6 @@ export default function HeroSection({ onOpenModal }: HeroSectionProps) {
               <Button3D size="lg" variant="ghost" onClick={scrollToPortfolio}>
                 View Portfolio
               </Button3D>
-            </div>
-          </div>
-
-          {/* Right Column - Image with Parallax */}
-          <div 
-            ref={imageRef as any}
-            className="relative hidden lg:block"
-            style={{ 
-              transform: prefersReducedMotion ? 'none' : `translateY(${offset}px)`,
-              transition: 'transform 0.1s ease-out'
-            }}
-          >
-            <div className="relative w-full aspect-video flex items-center justify-center">
-              {/* Glow Background */}
-              <div 
-                className="absolute inset-0 bg-gradient-to-br from-brand-emerald/10 to-brand-cyan/10 rounded-3xl blur-3xl animate-pulse-glow" 
-                aria-hidden="true"
-              />
-              
-              {/* Image Container */}
-              <div className="relative z-10 w-full h-full rounded-radius-2xl overflow-hidden shadow-lg">
-                <img 
-                  src="/images/portfolio-wood-kitchen-island.webp" 
-                  alt="Luxury modular kitchen interior" 
-                  className="w-full h-full object-cover"
-                  width="800"
-                  height="450"
-                  loading="eager"
-                  decoding="async"
-                />
-              </div>
             </div>
           </div>
         </div>
