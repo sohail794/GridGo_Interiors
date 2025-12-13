@@ -29,7 +29,11 @@ export default function HeroSection({ onOpenModal }: HeroSectionProps) {
         };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-0">
+    <section 
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-0"
+      aria-labelledby="hero-heading"
+      role="banner"
+    >
       {/* Background Image Layer */}
       <div
         className="absolute inset-0 z-0"
@@ -75,7 +79,7 @@ export default function HeroSection({ onOpenModal }: HeroSectionProps) {
           {/* Text Content - Centered on mobile, left on desktop */}
           <div className="text-center lg:text-left space-y-8 max-w-2xl">
             <motion.div className="space-y-4" {...(fadeUp(0.3) || {})}>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+              <h1 id="hero-heading" className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-display leading-tight">
                 Crafting Premium
                 <br />
                 <span className="gradient-text">Interiors Since {COMPANY.foundingYear}</span>

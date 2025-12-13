@@ -54,10 +54,20 @@ export default function Footer({ onNavigate }: FooterProps) {
           {/* Brand & Social */}
           <div className="space-y-5">
             <div>
-              <h3 className="text-2xl font-serif font-bold italic">
-                GridGo <span className="text-brand-gold">Interiors</span>
-              </h3>
-              <p className="text-sm text-gray-300 mt-2 leading-relaxed">
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-10 h-10 flex items-center justify-center rounded-xl bg-gradient-to-br from-brand-gold to-brand-gold-deep shadow-luxury border border-brand-gold/20">
+                  <span className="text-background-primary font-bold font-display tracking-tight text-lg">G</span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="font-display font-bold tracking-tight leading-none text-white text-xl">
+                    GridGo
+                  </span>
+                  <span className="font-serif italic text-brand-gold text-sm tracking-wide leading-none mt-0.5">
+                    Interiors
+                  </span>
+                </div>
+              </div>
+              <p className="text-sm text-gray-300 mt-3 leading-relaxed">
                 Crafting Dreams into Enduring Spaces. Premium interior design & fabrication services across India.
               </p>
             </div>

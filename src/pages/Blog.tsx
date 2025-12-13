@@ -81,7 +81,7 @@ export default function Blog({ onNavigate }: BlogProps) {
 
         <Container>
           <div className="relative z-10 text-center">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold font-display mb-6 animate-hero-reveal">
               Expert <span className="gradient-text">Perspectives</span>
             </h1>
             <p className="text-xl text-text-secondary">
@@ -94,9 +94,14 @@ export default function Blog({ onNavigate }: BlogProps) {
       {/* Blog Posts Section */}
       <Section spacing="lg" background="none">
         <Container>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-            {blogPosts.map((post) => (
-              <GlassCard key={post.id} padding="sm" className="group cursor-pointer overflow-hidden hover:scale-[1.02] hover:shadow-lg transition-all duration-200 ease-out">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8" role="list" aria-label="Blog articles">
+            {blogPosts.map((post, index) => (
+              <GlassCard 
+                key={post.id} 
+                padding="sm" 
+                className="group cursor-pointer overflow-hidden hover:scale-[1.02] hover:shadow-lg transition-all duration-300 ease-out animate-stagger-fade-up"
+                style={{ animationDelay: `${index * 100}ms` } as React.CSSProperties}
+              >
                 <div className="relative overflow-hidden rounded-lg mb-4 h-64">
                   {post.image ? (
                     <img
@@ -128,7 +133,7 @@ export default function Blog({ onNavigate }: BlogProps) {
                     </span>
                   </div>
 
-                  <h2 className="text-2xl font-semibold text-white group-hover:text-brand-gold transition-colors">
+                  <h2 className="text-2xl font-semibold font-display text-white group-hover:text-brand-gold transition-colors">
                     {post.title}
                   </h2>
 
@@ -252,7 +257,7 @@ export default function Blog({ onNavigate }: BlogProps) {
         <Container maxWidth="md">
           <Card padding="lg" glass>
             <div className="text-center">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              <h2 className="text-4xl md:text-5xl font-bold font-display mb-4">
                 Stay <span className="gradient-text">Updated</span>
               </h2>
               <p className="text-lg text-text-secondary mb-8">
@@ -305,7 +310,7 @@ export default function Blog({ onNavigate }: BlogProps) {
       <Section spacing="xl" background="gradient">
         <Container maxWidth="md">
           <div className="text-center">
-            <h2 className="text-5xl md:text-6xl font-bold mb-6 gradient-text">
+            <h2 className="text-5xl md:text-6xl font-bold font-display mb-6 gradient-text">
               Have a Project in Mind?
             </h2>
             <p className="text-xl text-text-secondary mb-10">

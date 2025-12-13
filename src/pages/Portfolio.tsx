@@ -102,7 +102,7 @@ export default function Portfolio({ onNavigate, onOpenModal }: PortfolioProps) {
         <div className="relative z-10 text-center">
           <Container maxWidth="lg">
             <motion.h1
-              className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 leading-tight"
+              className="text-4xl sm:text-5xl md:text-7xl font-bold font-display mb-6 leading-tight"
               initial={prefersReducedMotion ? undefined : { opacity: 0, y: 30 }}
               animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
               transition={prefersReducedMotion ? undefined : { duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
@@ -139,13 +139,14 @@ export default function Portfolio({ onNavigate, onOpenModal }: PortfolioProps) {
                 role="tab"
                 aria-selected={filter === category}
                 className={`
-                  px-6 md:px-8 py-3 min-h-[48px] min-w-[48px] rounded-full font-semibold uppercase tracking-wide text-sm
-                  transition-all duration-200 active:scale-95
+                  px-6 md:px-8 py-3 min-h-[48px] min-w-[48px] rounded-xl font-semibold uppercase tracking-wide text-sm
+                  transition-all duration-300 active:scale-[0.98]
                   focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a1a1a]
+                  border
                   ${
                     filter === category
-                      ? 'bg-gradient-to-br from-brand-gold to-brand-gold-deep text-background-primary shadow-luxury-gold'
-                      : 'bg-white/5 text-text-secondary hover:bg-white/10 hover:text-white active:bg-white/15 border border-white/10'
+                      ? 'bg-gradient-to-br from-brand-gold to-brand-gold-deep text-background-primary shadow-luxury-gold border-brand-gold/30'
+                      : 'bg-white/5 text-text-secondary hover:bg-white/10 hover:text-white active:bg-white/15 border-white/10 hover:border-brand-gold/30'
                   }
                 `}
               >

@@ -114,7 +114,7 @@ export default function Contact({ onNavigate: _onNavigate }: ContactProps) {
 
         <div className="relative z-10 text-center">
           <Container maxWidth="lg">
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 leading-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold font-display mb-6 leading-tight animate-hero-reveal">
               Let's <span className="gradient-text">Connect</span>
             </h1>
             <p className="text-xl md:text-2xl text-text-secondary">
@@ -135,7 +135,7 @@ export default function Contact({ onNavigate: _onNavigate }: ContactProps) {
               transition={prefersReducedMotion ? undefined : transition}
             >
               <div>
-                <h2 className="text-4xl font-bold mb-4">
+                <h2 className="text-4xl font-bold font-display mb-4">
                   <span className="gradient-text">Get in Touch</span>
                 </h2>
                 <p className="text-lg text-text-secondary">

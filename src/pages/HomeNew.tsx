@@ -108,17 +108,26 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
 
       <Section spacing="md" background="secondary">
         <Container>
-          <div className="flex flex-col sm:flex-row flex-wrap justify-around items-center gap-4 sm:gap-6 md:gap-8">
+          <div 
+            className="flex flex-col sm:flex-row flex-wrap justify-around items-center gap-4 sm:gap-6 md:gap-8"
+            role="list"
+            aria-label="Company achievements"
+          >
             {trustIndicators.map((item, index) => {
               const Icon = item.icon;
               return (
-                <div
+                <motion.div
                   key={index}
                   className="flex items-center gap-2 sm:gap-3 hover:-translate-y-1 transition-all duration-300 cursor-default"
+                  initial={prefersReducedMotion ? undefined : { opacity: 0, y: 20 }}
+                  whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={prefersReducedMotion ? undefined : { ...transition, delay: index * 0.1 }}
+                  role="listitem"
                 >
-                  <Icon size={28} className="text-brand-gold drop-shadow-sm flex-shrink-0" />
+                  <Icon size={28} className="text-brand-gold drop-shadow-sm flex-shrink-0" aria-hidden="true" />
                   <span className="text-sm sm:text-base md:text-lg font-semibold text-text-primary">{item.text}</span>
-                </div>
+                </motion.div>
               );
             })}
           </div>
@@ -136,11 +145,14 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
             <SectionHeader 
               title="Featured Projects"
               subtitle="From concept to completion, explore our finest work"
+              id="portfolio-heading"
             />
           </motion.div>
 
           <motion.div
             className="flex flex-wrap justify-center gap-3 mb-12 mt-12"
+            role="tablist"
+            aria-label="Filter projects by category"
             initial={prefersReducedMotion ? undefined : { opacity: 0, y: 20 }}
             whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
@@ -150,13 +162,17 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
               <button
                 key={category}
                 onClick={() => setFilter(category)}
+                role="tab"
+                aria-selected={filter === category}
+                aria-controls="projects-grid"
                 className={`
-                  px-6 py-3 min-h-[44px] rounded-radius-md font-semibold uppercase tracking-wide text-sm
-                  transition-all duration-200 focus-ring active:scale-95
+                  px-6 py-3 min-h-[44px] rounded-xl font-semibold uppercase tracking-wide text-sm
+                  transition-all duration-300 focus-ring active:scale-[0.98]
+                  border
                   ${
                     filter === category
-                      ? 'bg-gradient-to-br from-brand-gold to-brand-gold-deep text-background-primary shadow-luxury-gold'
-                      : 'bg-white/5 text-text-secondary hover:bg-white/10 hover:text-text-primary'
+                      ? 'bg-gradient-to-br from-brand-gold to-brand-gold-deep text-background-primary shadow-luxury-gold border-brand-gold/30'
+                      : 'bg-white/5 text-text-secondary hover:bg-white/10 hover:text-text-primary border-white/10 hover:border-brand-gold/30'
                   }
                 `}
               >
@@ -165,7 +181,13 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
             ))}
           </motion.div>
 
-          <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <motion.div 
+            layout 
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            id="projects-grid"
+            role="tabpanel"
+            aria-labelledby="portfolio-heading"
+          >
             <AnimatePresence mode="popLayout" initial={false}>
               {filteredProjects.map((project, index) => (
                 <motion.div
@@ -176,33 +198,33 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
                   exit={prefersReducedMotion ? undefined : { opacity: 0, scale: 0.9 }}
                   transition={prefersReducedMotion ? undefined : { ...transition, delay: index * 0.1 }}
                 >
-                  <GlassCard padding="sm" className="group cursor-pointer overflow-hidden hover:scale-[1.02] hover:shadow-lg transition-all duration-200 ease-out">
-                <div className="relative overflow-hidden rounded-radius-lg mb-4 h-64">
-                  {project.image ? (
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                    />
-                  ) : (
-                    <div className="w-full h-full bg-neutral-900/30 flex items-center justify-center">
-                      <span className="text-text-tertiary text-sm">Image placeholder</span>
+                  <GlassCard padding="sm" className="group cursor-pointer overflow-hidden hover:scale-[1.02] hover:shadow-lg transition-all duration-300 ease-out">
+                    <div className="relative overflow-hidden rounded-radius-lg mb-4 h-64">
+                      {project.image ? (
+                        <img
+                          src={project.image}
+                          alt={project.title}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-neutral-900/30 flex items-center justify-center">
+                          <span className="text-text-tertiary text-sm">Image placeholder</span>
+                        </div>
+                      )}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <Button3D size="sm" variant="ghost" onClick={() => onNavigate('portfolio')}>
+                          View Project
+                        </Button3D>
+                      </div>
                     </div>
-                  )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                    <Button3D size="sm" variant="ghost" onClick={() => onNavigate('portfolio')}>
-                      View Project
-                    </Button3D>
-                  </div>
-                </div>
 
-                <div className="space-y-2">
-                  <span className="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wide bg-brand-gold/10 text-brand-gold rounded-radius-md">
-                    {project.category}
-                  </span>
-                  <h3 className="text-xl font-semibold text-text-primary">{project.title}</h3>
-                  <p className="text-sm text-text-secondary">{project.location}</p>
-                </div>
+                    <div className="space-y-2">
+                      <span className="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wide bg-brand-gold/10 text-brand-gold rounded-radius-md">
+                        {project.category}
+                      </span>
+                      <h3 className="text-xl font-semibold text-text-primary">{project.title}</h3>
+                      <p className="text-sm text-text-secondary">{project.location}</p>
+                    </div>
                   </GlassCard>
                 </motion.div>
               ))}
@@ -231,7 +253,7 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
             />
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12" role="list" aria-label="Our services">
             {services.map((service, index) => (
               <motion.div
                 key={index}
@@ -240,21 +262,21 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
                 viewport={{ once: true, amount: 0.2 }}
                 transition={prefersReducedMotion ? undefined : { ...transition, delay: index * 0.15 }}
               >
-                <GlassCard key={index} className="text-center">
-                  <div className="w-20 h-20 mx-auto mb-6 rounded-radius-lg bg-brand-gold/10 flex items-center justify-center text-5xl">
+                <GlassCard className="text-center">
+                  <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-brand-gold/10 flex items-center justify-center text-5xl border border-brand-gold/20" aria-hidden="true">
                     {service.icon}
                   </div>
-                  <h3 className="text-2xl font-semibold text-text-primary mb-4">{service.title}</h3>
+                  <h3 className="text-2xl font-semibold font-display text-text-primary mb-4">{service.title}</h3>
                   <p className="text-text-secondary mb-6 leading-relaxed">{service.description}</p>
-                  <ul className="space-y-3 text-left">
+                  <ul className="space-y-3 text-left" aria-label={`${service.title} features`}>
                     {service.features.map((feature, i) => (
                       <li key={i} className="flex items-center gap-3 text-text-secondary">
-                        <CheckCircle size={16} className="text-brand-gold flex-shrink-0" />
+                        <CheckCircle size={16} className="text-brand-gold flex-shrink-0" aria-hidden="true" />
                         <span>{feature}</span>
                       </li>
                     ))}
                   </ul>
-                  <Button3D size="sm" variant="ghost" className="mt-6 w-full" onClick={() => onNavigate('services')}>
+                  <Button3D size="sm" variant="ghost" className="mt-6 w-full" onClick={() => onNavigate('services')} aria-label={`Learn more about ${service.title}`}>
                     Learn More
                   </Button3D>
                 </GlassCard>
@@ -293,10 +315,10 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
                 >
                   <div className="flex flex-col items-center text-center">
                     <div className="w-16 h-16 rounded-full border-2 border-brand-gold/60 bg-background-secondary flex items-center justify-center mb-6 z-10 relative">
-                      <span className="text-2xl font-bold gradient-text">{step.number}</span>
+                      <span className="text-2xl font-bold font-display gradient-text">{step.number}</span>
                     </div>
                     <GlassCard padding="sm" className="w-full">
-                      <h3 className="text-xl font-semibold text-text-primary mb-3">{step.title}</h3>
+                      <h3 className="text-xl font-semibold font-display text-text-primary mb-3">{step.title}</h3>
                       <p className="text-sm text-text-secondary leading-relaxed">{step.description}</p>
                     </GlassCard>
                   </div>
@@ -321,25 +343,26 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
             />
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12" role="list" aria-label="Why choose GridGo">
             {whyChoose.map((item, index) => {
               const Icon = item.icon;
               return (
                 <motion.div
                   key={index}
-                  className="group flex gap-4 p-6 rounded-radius-lg bg-white/5 hover:bg-white/10 border border-white/5 hover:border-brand-gold/30 transition-all duration-300"
+                  className="group flex gap-4 p-6 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-brand-gold/30 transition-all duration-300"
                   initial={prefersReducedMotion ? undefined : { opacity: 0, y: 20 }}
                   whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.2 }}
                   transition={prefersReducedMotion ? undefined : { ...transition, delay: index * 0.1 }}
+                  role="listitem"
                 >
                   <div className="flex-shrink-0">
                     <div className="w-12 h-12 rounded-xl bg-brand-gold/10 group-hover:bg-brand-gold/20 transition-colors duration-300 flex items-center justify-center">
-                      <Icon size={24} className="text-brand-gold drop-shadow-sm" />
+                      <Icon size={24} className="text-brand-gold drop-shadow-sm" aria-hidden="true" />
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-text-primary mb-2">{item.title}</h3>
+                    <h3 className="text-xl font-semibold font-display text-text-primary mb-2">{item.title}</h3>
                     <p className="text-text-secondary leading-relaxed">{item.description}</p>
                   </div>
                 </motion.div>
@@ -380,7 +403,7 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
       <Section spacing="xl" background="gradient">
         <Container maxWidth="md">
           <div className="text-center">
-            <h2 className="text-5xl md:text-6xl font-bold mb-6">
+            <h2 className="text-5xl md:text-6xl font-bold font-display mb-6">
               Ready to Transform <span className="gradient-text">Your Space?</span>
             </h2>
             <p className="text-xl text-text-secondary mb-10 leading-relaxed">
@@ -426,6 +449,6 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
           </div>
         </Container>
       </Section>
-  </div>
-);
+    </div>
+  );
 }

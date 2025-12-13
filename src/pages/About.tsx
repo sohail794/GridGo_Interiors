@@ -65,7 +65,7 @@ export default function About({ onNavigate }: AboutProps) {
 
         <Container>
           <div className="relative z-10 text-center">
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 leading-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold font-display mb-6 leading-tight animate-hero-reveal">
               Two Decades of
               <br />
               <span className="gradient-text">Inspired Craftsmanship</span>
@@ -96,15 +96,19 @@ export default function About({ onNavigate }: AboutProps) {
             subtitle="Values that guide every project"
           />
 
-          <div className="grid md:grid-cols-3 gap-6 md:gap-8 mt-12">
+          <div className="grid md:grid-cols-3 gap-6 md:gap-8 mt-12" role="list" aria-label="Core principles">
             {principles.map((principle, index) => {
               const Icon = principle.icon;
               return (
-                <GlassCard key={index} className="text-center p-6 md:p-8 group hover:border-brand-gold/30 transition-colors">
-                  <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-brand-gold/10 flex items-center justify-center group-hover:bg-brand-gold/20 transition-colors">
+                <GlassCard 
+                  key={index} 
+                  className="text-center p-6 md:p-8 group hover:border-brand-gold/30 transition-colors animate-stagger-fade-up"
+                  style={{ animationDelay: `${index * 150}ms` } as React.CSSProperties}
+                >
+                  <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-brand-gold/10 flex items-center justify-center group-hover:bg-brand-gold/20 transition-colors border border-brand-gold/20" aria-hidden="true">
                     <Icon size={40} className="text-brand-gold" />
                   </div>
-                  <h3 className="text-h3 font-bold text-text-primary mb-4">{principle.title}</h3>
+                  <h3 className="text-h3 font-bold font-display text-text-primary mb-4">{principle.title}</h3>
                   <p className="text-body-base text-text-secondary leading-relaxed">{principle.description}</p>
                 </GlassCard>
               );
@@ -121,11 +125,16 @@ export default function About({ onNavigate }: AboutProps) {
             subtitle="Visionaries driving excellence"
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mt-12">
-            {teamMembers.map((member) => {
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mt-12" role="list" aria-label="Leadership team">
+            {teamMembers.map((member, index) => {
               const initials = member.name.split(' ').map(n => n[0]).join('').slice(0, 2);
               return (
-              <GlassCard key={member.id} padding="sm" className="text-center group">
+              <GlassCard 
+                key={member.id} 
+                padding="sm" 
+                className="text-center group animate-stagger-fade-up"
+                style={{ animationDelay: `${index * 150}ms` } as React.CSSProperties}
+              >
                 <div className="relative overflow-hidden rounded-radius-lg mb-6 h-80">
                   {member.image ? (
                     <>

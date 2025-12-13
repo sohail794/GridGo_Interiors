@@ -5,6 +5,7 @@ interface GlassCardProps {
   className?: string;
   hover?: boolean;
   padding?: 'sm' | 'md' | 'lg';
+  border?: 'default' | 'gold' | 'subtle' | 'none';
 }
 
 export default function GlassCard({
@@ -12,19 +13,30 @@ export default function GlassCard({
   className = '',
   hover = true,
   padding = 'md',
+  border = 'default',
 }: GlassCardProps) {
   const paddingClasses = {
     sm: 'p-4',
-    md: 'p-8',
-    lg: 'p-12',
+    md: 'p-6 md:p-8',
+    lg: 'p-8 md:p-12',
+  };
+
+  const borderClasses = {
+    default: 'border border-white/10',
+    gold: 'border border-brand-gold/30',
+    subtle: 'border border-white/5',
+    none: '',
   };
 
   return (
     <div
       className={`
-        glass-card
+        bg-[rgba(37,37,37,0.72)]
+        backdrop-blur-xl
+        rounded-2xl
         shadow-card
-        ${hover ? 'transition-all duration-300 hover:-translate-y-2 hover:shadow-card-hover hover:border-[rgba(0,255,136,0.3)]' : ''}
+        ${borderClasses[border]}
+        ${hover ? 'transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:shadow-card-hover hover:border-brand-gold/40' : ''}
         ${paddingClasses[padding]}
         ${className}
       `}

@@ -137,7 +137,7 @@ export default function Services({ onNavigate: _onNavigate }: ServicesProps) {
 
         <div className="relative z-10 text-center">
           <Container maxWidth="lg">
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 leading-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold font-display mb-6 leading-tight animate-hero-reveal">
               Tailored Interior
               <br />
               <span className="gradient-text">Mastery</span>
@@ -280,7 +280,7 @@ export default function Services({ onNavigate: _onNavigate }: ServicesProps) {
             </motion.div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8" role="list" aria-label="Our process steps">
             {processSteps.map((step, index) => (
               <motion.div
                 key={index}
@@ -289,11 +289,12 @@ export default function Services({ onNavigate: _onNavigate }: ServicesProps) {
                 whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={prefersReducedMotion ? undefined : { ...transition, delay: index * 0.15 }}
+                role="listitem"
               >
-                <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-brand-gold to-brand-gold/60 rounded-full flex items-center justify-center shadow-3d">
-                  <span className="text-2xl font-bold text-background-primary">{step.number}</span>
+                <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-brand-gold to-brand-gold/60 rounded-full flex items-center justify-center shadow-3d border border-brand-gold/30" aria-hidden="true">
+                  <span className="text-2xl font-bold font-display text-background-primary">{step.number}</span>
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3">{step.title}</h3>
+                <h3 className="text-xl font-bold font-display text-white mb-3">{step.title}</h3>
                 <p className="text-sm text-text-secondary">{step.description}</p>
               </motion.div>
             ))}

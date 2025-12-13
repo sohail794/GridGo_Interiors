@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { X } from 'lucide-react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import Button3D from './Button3D';
-import logo from '../assets/images/logo/gridgo-logo.svg';
+import Logo from './Logo';
 
 interface MobileMenuOverlayProps {
   open: boolean;
@@ -84,9 +84,11 @@ export default function MobileMenuOverlay({
     <AnimatePresence>
       {open && (
         <motion.div
+          id="mobile-menu"
           onClick={handleBackdropClick}
           className="fixed inset-0 w-full z-[99999] bg-background-primary backdrop-blur-md lg:hidden flex flex-col overflow-hidden"
-          role="navigation"
+          role="dialog"
+          aria-modal="true"
           aria-label="Mobile navigation menu"
           aria-hidden={!open}
           initial={prefersReducedMotion ? undefined : { opacity: 0 }}
@@ -95,20 +97,16 @@ export default function MobileMenuOverlay({
           transition={prefersReducedMotion ? undefined : { duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
         >
           <motion.div
-            className="flex flex-col w-full"
-            initial={prefersReducedMotion ? undefined : { height: 0, opacity: 0 }}
-            animate={prefersReducedMotion ? undefined : { height: 'auto', opacity: 1 }}
-            exit={prefersReducedMotion ? undefined : { height: 0, opacity: 0 }}
+            className="flex flex-col w-full h-full"
+            initial={prefersReducedMotion ? undefined : { opacity: 0 }}
+            animate={prefersReducedMotion ? undefined : { opacity: 1 }}
+            exit={prefersReducedMotion ? undefined : { opacity: 0 }}
             transition={prefersReducedMotion ? undefined : { duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
           >
             {/* Header with logo and close button */}
             <div className="fixed top-0 left-0 right-0 z-[100000] bg-background-primary border-b border-white/10">
               <div className="flex justify-between items-center px-6 py-4 max-w-[1400px] mx-auto w-full">
-                <img
-                  src={logo}
-                  alt="GridGo Interiors"
-                  className="h-10 w-auto"
-                />
+                <Logo size="sm" onClick={() => { onNavigate('home'); onClose(); }} />
                 <button
                   onClick={onClose}
                   aria-label="Close menu"
