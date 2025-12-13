@@ -1,35 +1,11 @@
-import { motion, useReducedMotion } from 'framer-motion';
-
 interface HamburgerMenuProps {
   isOpen: boolean;
   onClick: () => void;
 }
 
 export default function HamburgerMenu({ isOpen, onClick }: HamburgerMenuProps) {
-  const prefersReducedMotion = useReducedMotion();
-
-  const barVariants = {
-    closed: {
-      rotate: 0,
-      y: 0,
-      opacity: 1,
-    },
-    openTop: {
-      rotate: 45,
-      y: 8,
-    },
-    openMiddle: {
-      opacity: 0,
-      x: 10,
-    },
-    openBottom: {
-      rotate: -45,
-      y: -8,
-    },
-  };
-
   return (
-    <motion.button
+    <button
       onClick={onClick}
       aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
       aria-expanded={isOpen}
@@ -37,50 +13,80 @@ export default function HamburgerMenu({ isOpen, onClick }: HamburgerMenuProps) {
       aria-haspopup="true"
       className={`
         relative lg:hidden
-        w-14 h-14
+        w-12 h-12
         flex items-center justify-center
-        rounded-2xl
+        rounded-xl
         group
-        transition-all duration-300 ease-out
+        transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)]
         focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a1a1a]
-        border
+        border border-white/10
+        active:scale-95
         ${isOpen 
-          ? 'bg-brand-gold/20 border-brand-gold/50 shadow-[0_0_30px_rgba(212,175,55,0.25)]' 
-          : 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-brand-gold/30'
+          ? 'bg-brand-gold/15 border-brand-gold/50 shadow-luxury-gold' 
+          : 'hover:bg-white/5 hover:border-brand-gold/30'
         }
       `}
-      whileHover={prefersReducedMotion ? undefined : { scale: 1.05 }}
-      whileTap={prefersReducedMotion ? undefined : { scale: 0.95 }}
     >
+      {/* Premium glow effect on hover */}
+      <div className={`
+        absolute inset-0 rounded-xl transition-all duration-500
+        bg-gradient-to-br from-brand-gold/10 to-brand-gold-soft/5
+        ${isOpen ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}
+      `} aria-hidden="true" />
+      
       {/* Icon container */}
-      <div className="relative w-6 h-5 flex flex-col justify-between" aria-hidden="true">
+      <div className="relative w-5 h-4 flex flex-col justify-between" aria-hidden="true">
         {/* Top bar */}
-        <motion.span
-          className="block h-[2.5px] w-full rounded-full bg-brand-gold origin-center"
-          variants={barVariants}
-          initial="closed"
-          animate={isOpen ? 'openTop' : 'closed'}
-          transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+        <span
+          className={`
+            block h-[2.5px] rounded-full
+            bg-gradient-to-r from-brand-gold to-brand-gold-soft
+            transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)]
+            origin-center
+            ${isOpen 
+              ? 'rotate-45 translate-y-[7px] w-full' 
+              : 'rotate-0 translate-y-0 w-full group-hover:w-4'
+            }
+          `}
         />
         
         {/* Middle bar */}
-        <motion.span
-          className="block h-[2.5px] w-full rounded-full bg-brand-gold origin-center"
-          variants={barVariants}
-          initial="closed"
-          animate={isOpen ? 'openMiddle' : 'closed'}
-          transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+        <span
+          className={`
+            block h-[2.5px] rounded-full
+            bg-gradient-to-r from-brand-gold to-brand-gold-soft
+            transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)]
+            ${isOpen 
+              ? 'opacity-0 scale-x-0 translate-x-2' 
+              : 'opacity-100 scale-x-100 translate-x-0 w-3/4 group-hover:w-full'
+            }
+          `}
         />
         
         {/* Bottom bar */}
-        <motion.span
-          className="block h-[2.5px] w-full rounded-full bg-brand-gold origin-center"
-          variants={barVariants}
-          initial="closed"
-          animate={isOpen ? 'openBottom' : 'closed'}
-          transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+        <span
+          className={`
+            block h-[2.5px] rounded-full
+            bg-gradient-to-r from-brand-gold to-brand-gold-soft
+            transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)]
+            origin-center
+            ${isOpen 
+              ? '-rotate-45 -translate-y-[7px] w-full' 
+              : 'rotate-0 translate-y-0 w-1/2 group-hover:w-full'
+            }
+          `}
         />
       </div>
-    </motion.button>
+
+      {/* Subtle glow effect */}
+      <div className={`
+        absolute inset-0 rounded-xl transition-all duration-400
+        pointer-events-none
+        ${isOpen 
+          ? 'opacity-100 shadow-[0_0_20px_rgba(212,175,55,0.3)]' 
+          : 'opacity-0 group-hover:opacity-100 group-hover:shadow-[0_0_16px_rgba(212,175,55,0.18)]'
+        }
+      `} aria-hidden="true" />
+    </button>
   );
 }
