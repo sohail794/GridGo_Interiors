@@ -49,7 +49,7 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal, mobile
         border-b border-white/10
         transition-all duration-200 ease-out
         backdrop-blur-md 
-        ${isScrolled ? 'h-16 shadow-lg shadow-[#00ff88]/10 bg-[#0a0e27]/95' : 'h-20 bg-[#0a0e27]/80'}
+        ${isScrolled ? 'h-16 shadow-luxury bg-[#0a0e27]/95' : 'h-20 bg-[#0a0e27]/80'}
       `}
       role="banner"
       aria-label="Site navigation"
@@ -58,7 +58,7 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal, mobile
         <div className="flex justify-between items-center h-full">
           <button
             type="button"
-            className="flex items-center cursor-pointer group transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(0,255,136)]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0e27] rounded-lg"
+            className="flex items-center cursor-pointer group transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0e27] rounded-lg"
             onClick={() => onNavigate('home')}
             aria-label="Go to homepage"
           >
@@ -93,7 +93,7 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal, mobile
                     {item.hasDropdown && <ChevronDown size={16} className={`inline-block ml-1 transition-transform duration-200 ${portfolioDropdown ? 'rotate-180' : ''}`} />}
                   </span>
                   <span
-                    className={`pointer-events-none absolute left-0 -bottom-1 h-[2px] w-full origin-left scale-x-0 bg-[#00F5A0] transition-transform duration-200 group-hover:scale-x-100 ${
+                    className={`pointer-events-none absolute left-0 -bottom-1 h-[2px] w-full origin-left scale-x-0 bg-brand-gold transition-transform duration-200 group-hover:scale-x-100 ${
                       currentPage === item.page ? "scale-x-100" : ""
                     }`}
                   />
@@ -113,7 +113,7 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal, mobile
                           text-text-secondary hover:text-white
                           hover:bg-white/5 active:bg-white/10 hover:translate-x-1
                           transition-all duration-200
-                          focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(0,255,136)]/50
+                          focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/60
                         "
                       >
                         {subItem.label}

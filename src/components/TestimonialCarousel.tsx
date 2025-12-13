@@ -70,7 +70,7 @@ export default function TestimonialCarousel({ testimonials }: TestimonialCarouse
         onBlur={() => setIsPaused(false)}
       >
         <Card padding="lg" glass hover className="animate-fade-in-up">
-          <Quote size={48} className="text-brand-emerald mb-6 hover:scale-110 transition-transform duration-300" style={{ animation: 'fadeIn 600ms ease-out 200ms forwards, glowPulse 3s ease-in-out 500ms infinite' }} aria-hidden="true" />
+          <Quote size={48} className="text-brand-gold mb-6 transition-transform duration-300" style={{ animation: 'fadeIn 600ms ease-out 200ms forwards' }} aria-hidden="true" />
           <p className="text-xl md:text-2xl text-text-primary mb-8 italic leading-relaxed" style={{ animation: 'fadeInUp 600ms ease-out 300ms forwards' }}>
             "{currentTestimonial.quote}"
           </p>
@@ -81,11 +81,11 @@ export default function TestimonialCarousel({ testimonials }: TestimonialCarouse
                 alt={currentTestimonial.name}
                 width={64}
                 height={64}
-                className="w-16 h-16 rounded-radius-xl object-cover flex-shrink-0 border-2 border-brand-emerald/30 hover:scale-110 hover:border-brand-emerald transition-all duration-300"
+                className="w-16 h-16 rounded-radius-xl object-cover flex-shrink-0 border-2 border-brand-gold/25 hover:scale-110 hover:border-brand-gold/50 transition-all duration-300"
                 loading="lazy"
               />
             ) : (
-              <div className="w-16 h-16 rounded-radius-xl flex-shrink-0 bg-gradient-to-br from-brand-emerald to-brand-cyan flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300">
+              <div className="w-16 h-16 rounded-radius-xl flex-shrink-0 bg-gradient-to-br from-brand-gold to-brand-gold-deep flex items-center justify-center shadow-luxury-gold hover:scale-110 transition-transform duration-300">
                 <span className="text-xl font-bold text-background-primary">
                   {currentTestimonial.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
                 </span>
@@ -116,7 +116,7 @@ export default function TestimonialCarousel({ testimonials }: TestimonialCarouse
           >
             <span className={`block rounded-full transition-all duration-300 ${
               index === currentIndex 
-                ? 'bg-brand-emerald w-8 h-2 shadow-lg shadow-brand-emerald/50' 
+                ? 'bg-brand-gold w-8 h-2 shadow-luxury-gold' 
                 : 'bg-text-tertiary/50 w-2 h-2 hover:bg-text-tertiary'
             }`} />
           </button>

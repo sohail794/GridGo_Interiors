@@ -156,15 +156,15 @@ export default function Contact({ onNavigate: _onNavigate }: ContactProps) {
                   return (
                     <GlassCard key={index} hover={false} padding="sm">
                       <div className="flex items-start gap-4">
-                        <div className="w-12 h-12 rounded-xl bg-brand-emerald/10 flex items-center justify-center flex-shrink-0">
-                          <Icon size={24} className="text-brand-emerald" />
+                        <div className="w-12 h-12 rounded-xl bg-brand-gold/10 flex items-center justify-center flex-shrink-0">
+                          <Icon size={24} className="text-brand-gold" />
                         </div>
                         <div>
                           <h3 className="font-semibold text-white mb-1">{info.title}</h3>
                           {info.link ? (
                             <a
                               href={info.link}
-                              className="text-text-secondary hover:text-brand-emerald transition-colors"
+                              className="text-text-secondary hover:text-brand-gold transition-colors"
                             >
                               {info.content}
                             </a>
@@ -195,12 +195,12 @@ export default function Contact({ onNavigate: _onNavigate }: ContactProps) {
               <Card padding="lg" glass>
                 {submitSuccess && (
                   <div
-                    className="mb-6 p-4 bg-brand-emerald/10 border border-brand-emerald/30 rounded-lg flex items-center gap-3"
+                    className="mb-6 p-4 bg-brand-gold/10 border border-brand-gold/30 rounded-lg flex items-center gap-3"
                     role="status"
                     aria-live="polite"
                     aria-atomic="true"
                   >
-                    <CheckCircle className="text-brand-emerald" size={24} />
+                    <CheckCircle className="text-brand-gold" size={24} />
                     <div>
                       <p className="text-white font-semibold">Thank you for reaching out!</p>
                       <p className="text-sm text-text-secondary">We'll get back to you within 24 hours.</p>

@@ -110,7 +110,7 @@ export default function Blog({ onNavigate }: BlogProps) {
                     </div>
                   )}
                   <div className="absolute top-4 left-4">
-                    <span className="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wide bg-brand-emerald/10 text-brand-emerald rounded-full">
+                    <span className="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wide bg-brand-gold/10 text-brand-gold rounded-full">
                       {post.category}
                     </span>
                   </div>
@@ -118,7 +118,7 @@ export default function Blog({ onNavigate }: BlogProps) {
 
                 <div className="space-y-3">
                   <div className="flex items-center text-text-secondary">
-                    <Calendar size={16} className="mr-2 text-brand-emerald" />
+                    <Calendar size={16} className="mr-2 text-brand-gold" />
                     <span className="text-sm">
                       {new Date(post.date).toLocaleDateString('en-US', {
                         year: 'numeric',
@@ -128,7 +128,7 @@ export default function Blog({ onNavigate }: BlogProps) {
                     </span>
                   </div>
 
-                  <h2 className="text-2xl font-semibold text-white group-hover:text-brand-emerald transition-colors">
+                  <h2 className="text-2xl font-semibold text-white group-hover:text-brand-gold transition-colors">
                     {post.title}
                   </h2>
 
@@ -185,11 +185,11 @@ export default function Blog({ onNavigate }: BlogProps) {
 
                     <div className="space-y-4">
                       <div className="flex flex-wrap items-center gap-4 text-sm">
-                        <span className="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wide bg-brand-emerald/10 text-brand-emerald rounded-full">
+                        <span className="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wide bg-brand-gold/10 text-brand-gold rounded-full">
                           {selectedPost.category}
                         </span>
                         <div className="flex items-center text-text-secondary">
-                          <Calendar size={16} className="mr-2 text-brand-emerald" />
+                          <Calendar size={16} className="mr-2 text-brand-gold" />
                           {new Date(selectedPost.date).toLocaleDateString('en-US', {
                             year: 'numeric',
                             month: 'long',
@@ -209,7 +209,7 @@ export default function Blog({ onNavigate }: BlogProps) {
                         
                         <div className="mt-8 p-6 bg-white/5 rounded-lg border border-white/10">
                           <p className="text-text-secondary text-center">
-                            🚧 <strong className="text-brand-emerald">Full article coming soon!</strong>
+                            🚧 <strong className="text-brand-gold">Full article coming soon!</strong>
                             <br />
                             <span className="text-sm mt-2 block">
                               Subscribe to our newsletter to get notified when new content is published.
@@ -259,7 +259,7 @@ export default function Blog({ onNavigate }: BlogProps) {
                 Subscribe to our newsletter for the latest trends, tips, and project showcases
               </p>
               {subscribeSuccess ? (
-                <div className="flex items-center justify-center gap-2 text-brand-emerald text-lg" role="status" aria-live="polite">
+                <div className="flex items-center justify-center gap-2 text-brand-gold text-lg" role="status" aria-live="polite">
                   <CheckCircle size={24} />
                   <span>Subscribed! Check your email for confirmation.</span>
                 </div>
@@ -323,13 +323,13 @@ export default function Blog({ onNavigate }: BlogProps) {
                   href={CONTACT.whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-text-secondary hover:text-brand-emerald transition-all hover:scale-110 cursor-pointer focus-ring rounded px-2 py-1"
+                  className="text-text-secondary hover:text-brand-gold transition-all hover:scale-110 cursor-pointer focus-ring rounded px-2 py-1"
                 >
                   <span className="text-sm">WhatsApp</span>
                 </a>
                 <a
                   href={`mailto:${CONTACT.email}`}
-                  className="text-text-secondary hover:text-brand-emerald transition-all hover:scale-110 cursor-pointer focus-ring rounded px-2 py-1"
+                  className="text-text-secondary hover:text-brand-gold transition-all hover:scale-110 cursor-pointer focus-ring rounded px-2 py-1"
                 >
                   <span className="text-sm">Email</span>
                 </a>
@@ -337,7 +337,7 @@ export default function Blog({ onNavigate }: BlogProps) {
                   href={CONTACT.socialLinks.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-text-secondary hover:text-brand-emerald transition-all hover:scale-110 cursor-pointer focus-ring rounded px-2 py-1"
+                  className="text-text-secondary hover:text-brand-gold transition-all hover:scale-110 cursor-pointer focus-ring rounded px-2 py-1"
                 >
                   <span className="text-sm">LinkedIn</span>
                 </a>

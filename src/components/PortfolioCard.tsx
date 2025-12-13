@@ -41,6 +41,7 @@ export default function PortfolioCard({
   return (
     <div
       ref={cardRef}
+      className="rounded-radius-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0e27]"
       onClick={() => onSelect(project)}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') {
@@ -72,14 +73,14 @@ export default function PortfolioCard({
             </div>
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-            <span className="inline-flex items-center gap-1 text-brand-emerald font-semibold text-sm">
+            <span className="inline-flex items-center gap-1 text-brand-gold font-semibold text-sm">
               View Project Details →
             </span>
           </div>
         </div>
 
         <div className="space-y-2">
-          <span className="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wide bg-brand-emerald/10 text-brand-emerald rounded-full">
+          <span className="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wide bg-brand-gold/10 text-brand-gold rounded-full">
             {project.category}
           </span>
           <h3 className="text-2xl font-bold text-white">{project.title}</h3>

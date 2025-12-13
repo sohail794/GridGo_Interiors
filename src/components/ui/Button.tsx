@@ -1,7 +1,8 @@
 import { ButtonHTMLAttributes, ReactNode } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary';
+  variant?: 'primary' | 'secondary' | 'ghost';
   size?: 'sm' | 'md' | 'lg';
   children: ReactNode;
   loading?: boolean;
@@ -16,7 +17,9 @@ export default function Button({
   disabled = false,
   ...props
 }: ButtonProps) {
-  const baseClasses = 'rounded-lg font-semibold transition-all duration-300 inline-flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(0,255,136)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0e27]';
+  const prefersReducedMotion = useReducedMotion();
+
+  const baseClasses = 'rounded-lg font-semibold transition-all duration-300 inline-flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0e27]';
 
   const sizeClasses = {
     sm: 'px-4 py-2 text-sm',
@@ -26,26 +29,34 @@ export default function Button({
 
   const variantClasses = {
     primary: `
-      bg-[#00F5A0]
+      bg-gradient-to-br from-brand-gold to-brand-gold-deep
       text-[#0A0E27]
-      hover:brightness-110 hover:shadow-lg hover:shadow-[#00F5A0]/20
-      active:scale-95
+      shadow-luxury-gold
+      hover:brightness-110
       disabled:opacity-50 disabled:cursor-not-allowed
       transition-all duration-200
     `,
     secondary: `
       bg-transparent
-      border-2 border-[#00F5A0]
-      text-[#00F5A0]
-      hover:bg-[#00F5A010] hover:shadow-lg hover:shadow-[#00F5A0]/10
-      active:bg-[#00F5A015]
+      border-2 border-brand-gold/70
+      text-brand-gold
+      hover:bg-brand-gold/10
+      disabled:opacity-50 disabled:cursor-not-allowed
+      transition-all duration-200
+    `,
+    ghost: `
+      bg-transparent
+      text-brand-gold
+      hover:bg-brand-gold/10
       disabled:opacity-50 disabled:cursor-not-allowed
       transition-all duration-200
     `,
   };
 
+  const canAnimate = !prefersReducedMotion && !disabled && !loading;
+
   return (
-    <button
+    <motion.button
       className={`
         ${baseClasses}
         ${sizeClasses[size]}
@@ -53,6 +64,9 @@ export default function Button({
         ${className}
       `}
       disabled={disabled || loading}
+      whileHover={canAnimate ? { y: -1, scale: 1.01 } : undefined}
+      whileTap={canAnimate ? { y: 0, scale: 0.99 } : undefined}
+      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
       {...props}
     >
       {loading && (
@@ -62,6 +76,6 @@ export default function Button({
         </svg>
       )}
       {children}
-    </button>
+    </motion.button>
   );
 }

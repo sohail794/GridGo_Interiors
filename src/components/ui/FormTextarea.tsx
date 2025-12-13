@@ -32,7 +32,7 @@ export default function FormTextarea({
           bg-white/5 border border-white/10 rounded-lg
           text-white placeholder:text-gray-300
           transition-all duration-200 outline-none resize-none
-          focus-visible:border-[rgb(0,255,136)] focus-visible:ring-2 focus-visible:ring-[rgb(0,255,136)]/20
+          focus-visible:border-brand-gold/60 focus-visible:ring-2 focus-visible:ring-brand-gold/20
           hover:border-white/20
           disabled:opacity-50 disabled:cursor-not-allowed
           ${error || isOverLimit ? 'border-[rgb(255,107,53)] focus-visible:ring-[rgb(255,107,53)]/20' : ''}

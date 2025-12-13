@@ -11,7 +11,7 @@ export default function FormLabel({ children, required = false, htmlFor }: FormL
       className="block text-sm font-medium mb-2 text-white"
     >
       {children}
-      {required && <span className="text-[rgb(0,255,136)] ml-1">*</span>}
+      {required && <span className="text-brand-gold ml-1">*</span>}
     </label>
   );
 }

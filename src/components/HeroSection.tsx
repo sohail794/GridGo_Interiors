@@ -64,9 +64,9 @@ export default function HeroSection({ onOpenModal }: HeroSectionProps) {
 
       {/* Animated Gradient Orbs - Slow floating background layers */}
       <div className="absolute inset-0 z-0 opacity-30" aria-hidden="true">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-brand-emerald/20 rounded-full blur-[120px] animate-slow-float" style={{ animationDuration: '15s' }} />
+        <div className="absolute top-20 left-10 w-72 h-72 bg-brand-gold/18 rounded-full blur-[120px] animate-slow-float" style={{ animationDuration: '15s' }} />
         <div 
-          className="absolute bottom-20 right-10 w-96 h-96 bg-brand-cyan/20 rounded-full blur-[120px] animate-slow-float" 
+          className="absolute bottom-20 right-10 w-96 h-96 bg-brand-gold-soft/14 rounded-full blur-[120px] animate-slow-float" 
           style={{ animationDelay: prefersReducedMotion ? '0s' : '2s', animationDuration: '18s' }} 
         />
       </div>

@@ -47,14 +47,14 @@ function App() {
   }, [currentPage]);
 
   return (
-    <div className="min-h-screen bg-[#0a0e27] overflow-x-hidden">
+    <div className="min-h-screen bg-bg-primary overflow-x-hidden">
       <ScrollProgressBar />
       <PageTransition isVisible={pageTransitionActive} />
 
       {/* Skip to main content link for accessibility */}
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-0 focus:left-0 focus:z-[10000] focus:px-4 focus:py-2 focus:bg-[rgb(0,255,136)] focus:text-[#0a0e27] focus:font-semibold"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-0 focus:left-0 focus:z-[10000] focus:px-4 focus:py-2 focus:bg-brand-gold focus:text-[#0a0e27] focus:font-semibold"
       >
         Skip to main content
       </a>

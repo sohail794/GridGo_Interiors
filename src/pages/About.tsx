@@ -100,9 +100,9 @@ export default function About({ onNavigate }: AboutProps) {
             {principles.map((principle, index) => {
               const Icon = principle.icon;
               return (
-                <GlassCard key={index} className="text-center p-6 md:p-8 group hover:border-brand-emerald/30 transition-colors">
-                  <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-brand-emerald/10 flex items-center justify-center group-hover:bg-brand-emerald/20 transition-colors">
-                    <Icon size={40} className="text-brand-emerald" />
+                <GlassCard key={index} className="text-center p-6 md:p-8 group hover:border-brand-gold/30 transition-colors">
+                  <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-brand-gold/10 flex items-center justify-center group-hover:bg-brand-gold/20 transition-colors">
+                    <Icon size={40} className="text-brand-gold" />
                   </div>
                   <h3 className="text-h3 font-bold text-text-primary mb-4">{principle.title}</h3>
                   <p className="text-body-base text-text-secondary leading-relaxed">{principle.description}</p>
@@ -137,15 +137,15 @@ export default function About({ onNavigate }: AboutProps) {
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
                     </>
                   ) : (
-                    <div className="w-full h-full bg-gradient-to-br from-brand-emerald/20 to-brand-cyan/10 flex items-center justify-center">
-                      <div className="w-32 h-32 rounded-full bg-gradient-to-br from-brand-emerald to-brand-cyan flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    <div className="w-full h-full bg-gradient-to-br from-brand-gold/20 to-brand-gold-deep/10 flex items-center justify-center">
+                      <div className="w-32 h-32 rounded-full bg-gradient-to-br from-brand-gold to-brand-gold-deep flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
                         <span className="text-4xl font-bold text-background-primary">{initials}</span>
                       </div>
                     </div>
                   )}
                 </div>
                 <h3 className="text-2xl font-bold text-text-primary mb-2">{member.name}</h3>
-                <p className="text-brand-emerald font-semibold mb-3">{member.title}</p>
+                <p className="text-brand-gold font-semibold mb-3">{member.title}</p>
                 <p className="text-sm text-text-secondary leading-relaxed">{member.expertise}</p>
               </GlassCard>
             );
@@ -158,7 +158,7 @@ export default function About({ onNavigate }: AboutProps) {
       <Section spacing="xl" background="gradient">
         <Container maxWidth="md">
           <div className="text-center">
-            <p className="text-label-sm text-brand-emerald uppercase tracking-widest mb-4">Ready to Begin?</p>
+            <p className="text-label-sm text-brand-gold uppercase tracking-widest mb-4">Ready to Begin?</p>
             <h2 className="text-h1 md:text-display-md font-bold mb-6">
               <span className="gradient-text">Partner with Us</span>
             </h2>

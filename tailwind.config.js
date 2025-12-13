@@ -3,12 +3,18 @@ export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['DM Sans', 'ui-sans-serif', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
+        serif: ['Playfair Display', 'ui-serif', 'Georgia', 'serif'],
+      },
       colors: {
         'brand-emerald': '#00ff88',
         'brand-emerald-dark': '#00b894',
         'brand-cyan': '#00d9ff',
         'brand-coral': '#ff6b35',
         'brand-gold': '#d4af37',
+        'brand-gold-soft': '#e3c76a',
+        'brand-gold-deep': '#b8922b',
         emerald: {
           DEFAULT: '#50C878',
           dark: '#4CAF50',
@@ -82,6 +88,7 @@ export default {
         'luxury-hover': '0 6px 8px rgba(0, 0, 0, 0.15)',
         '3d': '0 10px 25px rgba(0, 0, 0, 0.3)',
         'text': '0 2px 4px rgba(0, 0, 0, 0.3)',
+        'luxury-gold': '0 12px 30px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(212, 175, 55, 0.10)',
       },
       animation: {
         'fade-in': 'fade-in 0.5s ease-in-out',

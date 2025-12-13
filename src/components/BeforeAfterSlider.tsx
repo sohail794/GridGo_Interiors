@@ -103,7 +103,7 @@ export default function BeforeAfterSlider({
       onClick={handleContainerClick}
       onKeyDown={handleKeyDown}
       tabIndex={0}
-      className="relative w-full h-64 md:h-80 overflow-hidden rounded-xl select-none cursor-ew-resize group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00F5A0] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0e27]"
+      className="relative w-full h-64 md:h-80 overflow-hidden rounded-xl select-none cursor-ew-resize group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0e27]"
       role="slider"
       aria-label="Before and after comparison slider. Use left and right arrow keys to adjust."
       aria-valuenow={Math.round(sliderPosition)}
@@ -149,7 +149,7 @@ export default function BeforeAfterSlider({
         )}
       </div>
 
-      {/* Slider Handle - Mint green color (#00F5A0) with 3px width */}
+      {/* Slider Handle - Gold accent with 3px width */}
       <div
         ref={sliderRef}
         className="absolute top-0 bottom-0 cursor-ew-resize z-10"
@@ -157,17 +157,18 @@ export default function BeforeAfterSlider({
           left: `${sliderPosition}%`,
           transform: 'translateX(-50%)',
           width: '3px',
-          backgroundColor: '#00F5A0',
-          boxShadow: '0 0 10px rgba(0, 245, 160, 0.5)',
+          backgroundColor: 'var(--accent-gold)',
+          boxShadow: '0 0 10px rgba(212, 175, 55, 0.35)',
         }}
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
       >
         {/* Handle Circle - Larger on mobile */}
         <div 
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 md:w-10 md:h-10 rounded-full bg-[#00F5A0] flex items-center justify-center shadow-lg transition-transform duration-200 hover:scale-110"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 md:w-10 md:h-10 rounded-full flex items-center justify-center shadow-lg transition-transform duration-200 hover:scale-110"
           style={{
-            boxShadow: '0 0 20px rgba(0, 245, 160, 0.4), 0 4px 12px rgba(0, 0, 0, 0.3)',
+            backgroundColor: 'var(--accent-gold)',
+            boxShadow: '0 0 20px rgba(212, 175, 55, 0.28), 0 4px 12px rgba(0, 0, 0, 0.3)',
           }}
         >
           {/* Arrow indicators */}
@@ -198,7 +199,7 @@ export default function BeforeAfterSlider({
       <div 
         className="absolute top-3 right-3 px-3 py-1.5 rounded-md text-xs font-semibold uppercase tracking-wide"
         style={{
-          backgroundColor: '#00F5A0',
+          backgroundColor: 'var(--accent-gold)',
           color: '#0A0E27',
         }}
       >

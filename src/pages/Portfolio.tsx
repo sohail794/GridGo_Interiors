@@ -1,6 +1,7 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import FocusTrap from 'focus-trap-react';
 import { X, MapPin, Calendar, Tag } from 'lucide-react';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { featuredProjects } from '../data/content';
 import { Project } from '../types';
 import GlassCard from '../components/GlassCard';
@@ -10,7 +11,6 @@ import Button from '../components/ui/Button';
 import Container from '../components/ui/Container';
 import Section from '../components/ui/Section';
 import BeforeAfterSlider from '../components/BeforeAfterSlider';
-import { useScrollRevealWave } from '../hooks/useScrollReveal';
 
 interface PortfolioProps {
   onNavigate: (page: string) => void;
@@ -21,17 +21,7 @@ export default function Portfolio({ onNavigate, onOpenModal }: PortfolioProps) {
   const [filter, setFilter] = useState<'all' | 'residential' | 'commercial' | 'retail'>('all');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [visibleCount, setVisibleCount] = useState(6); // Load More pagination
-  
-  // Scroll reveal refs
-  const portfolioGridRef = useRef<HTMLDivElement>(null);
-  
-  // Use wave stagger for portfolio grid
-  useScrollRevealWave(portfolioGridRef, {
-    threshold: 0.2,
-    staggerDelay: 60,
-    duration: 600,
-    distance: 30,
-  });
+  const prefersReducedMotion = useReducedMotion();
 
   // Handle Escape key and body scroll lock for lightbox
   useEffect(() => {
@@ -58,6 +48,16 @@ export default function Portfolio({ onNavigate, onOpenModal }: PortfolioProps) {
   
   const filteredProjects = allFilteredProjects.slice(0, visibleCount);
   const hasMore = visibleCount < allFilteredProjects.length;
+
+  const transition = { duration: 0.45, ease: [0.16, 1, 0.3, 1] as const };
+  const itemMotion = prefersReducedMotion
+    ? undefined
+    : {
+        initial: { opacity: 0, y: 10 },
+        animate: { opacity: 1, y: 0 },
+        exit: { opacity: 0, y: -10 },
+        transition,
+      };
 
   const loadMore = () => {
     setVisibleCount(prev => prev + 6);
@@ -116,10 +116,10 @@ export default function Portfolio({ onNavigate, onOpenModal }: PortfolioProps) {
                 className={`
                   px-6 md:px-8 py-3 min-h-[48px] min-w-[48px] rounded-full font-semibold uppercase tracking-wide text-sm
                   transition-all duration-200 active:scale-95
-                  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-emerald focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0e27]
+                  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0e27]
                   ${
                     filter === category
-                      ? 'bg-gradient-to-br from-brand-emerald to-brand-emerald/60 text-background-primary shadow-3d'
+                      ? 'bg-gradient-to-br from-brand-gold to-brand-gold-deep text-background-primary shadow-luxury-gold'
                       : 'bg-white/5 text-text-secondary hover:bg-white/10 hover:text-white active:bg-white/15 border border-white/10'
                   }
                 `}
@@ -129,22 +129,22 @@ export default function Portfolio({ onNavigate, onOpenModal }: PortfolioProps) {
             ))}
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8" ref={portfolioGridRef}>
-            {filteredProjects.map((project) => (
-              <PortfolioCard
-                key={project.id}
-                project={project}
-                onSelect={setSelectedProject}
-              />
-            ))}
-          </div>
+          <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            <AnimatePresence mode="popLayout" initial={false}>
+              {filteredProjects.map((project) => (
+                <motion.div key={project.id} layout {...(itemMotion || {})}>
+                  <PortfolioCard project={project} onSelect={setSelectedProject} />
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </motion.div>
 
           {/* Load More Button */}
           {hasMore && (
             <div className="text-center mt-12">
               <button
                 onClick={loadMore}
-                className="bg-transparent border-2 border-brand-emerald text-brand-emerald hover:bg-brand-emerald hover:text-[#0A0E27] active:scale-95 px-8 py-3 min-h-[48px] rounded-lg font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:ring-offset-2 focus:ring-offset-[#0A0E27]"
+                className="bg-transparent border-2 border-brand-gold/70 text-brand-gold hover:bg-brand-gold hover:text-[#0A0E27] active:scale-95 px-8 py-3 min-h-[48px] rounded-lg font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-gold/60 focus:ring-offset-2 focus:ring-offset-[#0A0E27]"
               >
                 Load More Projects ({allFilteredProjects.length - visibleCount} remaining)
               </button>
@@ -215,7 +215,7 @@ export default function Portfolio({ onNavigate, onOpenModal }: PortfolioProps) {
 
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
-                    <span className="px-4 py-2 text-sm font-semibold uppercase tracking-wide bg-brand-emerald/10 text-brand-emerald rounded-full">
+                    <span className="px-4 py-2 text-sm font-semibold uppercase tracking-wide bg-brand-gold/10 text-brand-gold rounded-full">
                       {selectedProject.category}
                     </span>
                   </div>
@@ -226,12 +226,12 @@ export default function Portfolio({ onNavigate, onOpenModal }: PortfolioProps) {
 
                   <div className="flex flex-wrap gap-6 text-text-secondary">
                     <div className="flex items-center gap-2">
-                      <MapPin size={20} className="text-brand-emerald" />
+                      <MapPin size={20} className="text-brand-gold" />
                       <span>{selectedProject.location}</span>
                     </div>
                     {selectedProject.year && (
                       <div className="flex items-center gap-2">
-                        <Calendar size={20} className="text-brand-emerald" />
+                        <Calendar size={20} className="text-brand-gold" />
                         <span>{selectedProject.year}</span>
                       </div>
                     )}
@@ -247,7 +247,7 @@ export default function Portfolio({ onNavigate, onOpenModal }: PortfolioProps) {
                       <ul className="grid grid-cols-2 gap-3">
                         {selectedProject.features.map((feature, index) => (
                           <li key={index} className="flex items-center gap-2 text-text-secondary">
-                            <Tag size={16} className="text-brand-emerald" />
+                            <Tag size={16} className="text-brand-gold" />
                             <span>{feature}</span>
                           </li>
                         ))}

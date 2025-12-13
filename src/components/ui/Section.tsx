@@ -1,4 +1,5 @@
-import { ReactNode, useEffect, useRef, useState } from 'react';
+import { ReactNode } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
 
 type Spacing = 'sm' | 'md' | 'lg' | 'xl';
 type Background = 'primary' | 'secondary' | 'gradient' | 'none';
@@ -34,45 +35,32 @@ export default function Section({
   id,
   animate = true,
 }: SectionProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
 
-  useEffect(() => {
-    if (!animate) return;
+  const baseClassName = `
+    ${spacingMap[spacing]}
+    ${backgroundMap[background]}
+    ${className}
+  `;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
-        }
-      },
-      { threshold: 0.1 }
+  if (!animate || prefersReducedMotion) {
+    return (
+      <section className={baseClassName} id={id}>
+        {children}
+      </section>
     );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
-      }
-    };
-  }, [animate]);
+  }
 
   return (
-    <section
-      ref={ref}
-      className={`
-        ${spacingMap[spacing]}
-        ${backgroundMap[background]}
-        ${animate && isVisible ? 'animate-fade-in-up' : 'opacity-0'}
-        ${className}
-      `}
+    <motion.section
+      className={baseClassName}
       id={id}
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
     >
       {children}
-    </section>
+    </motion.section>
   );
 }

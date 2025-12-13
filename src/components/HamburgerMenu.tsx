@@ -16,11 +16,11 @@ export default function HamburgerMenu({ isOpen, onClick }: HamburgerMenuProps) {
         rounded-xl
         group
         transition-all duration-300
-        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00ff88]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0e27]
+        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0e27]
         border border-white/10
         ${isOpen 
-          ? 'bg-[#00ff88]/10 border-[#00ff88]/50 shadow-lg shadow-[#00ff88]/20' 
-          : 'hover:bg-white/5 hover:border-[#00ff88]/40'
+          ? 'bg-brand-gold/10 border-brand-gold/40 shadow-luxury' 
+          : 'hover:bg-white/5 hover:border-brand-gold/30'
         }
       `}
     >
@@ -28,7 +28,7 @@ export default function HamburgerMenu({ isOpen, onClick }: HamburgerMenuProps) {
       <div className="
         absolute inset-0 rounded-xl opacity-0 
         group-hover:opacity-100 transition-opacity duration-500
-        bg-gradient-to-br from-[#00ff88]/5 to-[#00d9ff]/5
+        bg-gradient-to-br from-brand-gold/10 to-brand-gold-soft/5
       " />
       
       {/* Icon container */}
@@ -37,7 +37,7 @@ export default function HamburgerMenu({ isOpen, onClick }: HamburgerMenuProps) {
         <span
           className={`
             block h-[2px] w-full rounded-full
-            bg-gradient-to-r from-[#00ff88] to-[#00d9ff]
+            bg-gradient-to-r from-brand-gold to-brand-gold-soft
             transition-all duration-300 ease-out
             origin-center
             ${isOpen 
@@ -51,7 +51,7 @@ export default function HamburgerMenu({ isOpen, onClick }: HamburgerMenuProps) {
         <span
           className={`
             block h-[2px] w-full rounded-full
-            bg-gradient-to-r from-[#00ff88] to-[#00d9ff]
+            bg-gradient-to-r from-brand-gold to-brand-gold-soft
             transition-all duration-300 ease-out
             ${isOpen 
               ? 'opacity-0 scale-0' 
@@ -64,7 +64,7 @@ export default function HamburgerMenu({ isOpen, onClick }: HamburgerMenuProps) {
         <span
           className={`
             block h-[2px] w-full rounded-full
-            bg-gradient-to-r from-[#00ff88] to-[#00d9ff]
+            bg-gradient-to-r from-brand-gold to-brand-gold-soft
             transition-all duration-300 ease-out
             origin-center
             ${isOpen 
@@ -79,8 +79,8 @@ export default function HamburgerMenu({ isOpen, onClick }: HamburgerMenuProps) {
       <div className={`
         absolute inset-0 rounded-xl transition-opacity duration-300
         ${isOpen 
-          ? 'opacity-100 shadow-[0_0_15px_rgba(0,255,136,0.2)]' 
-          : 'opacity-0 group-hover:opacity-100 group-hover:shadow-[0_0_15px_rgba(0,255,136,0.15)]'
+          ? 'opacity-100 shadow-[0_0_16px_rgba(212,175,55,0.22)]' 
+          : 'opacity-0 group-hover:opacity-100 group-hover:shadow-[0_0_16px_rgba(212,175,55,0.16)]'
         }
       `} />
     </button>

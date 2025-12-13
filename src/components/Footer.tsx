@@ -55,7 +55,7 @@ export default function Footer({ onNavigate }: FooterProps) {
           <div className="space-y-5">
             <div>
               <h3 className="text-2xl font-serif font-bold italic">
-                GridGo <span className="text-brand-emerald">Interiors</span>
+                GridGo <span className="text-brand-gold">Interiors</span>
               </h3>
               <p className="text-sm text-gray-300 mt-2 leading-relaxed">
                 Crafting Dreams into Enduring Spaces. Premium interior design & fabrication services across India.
@@ -69,7 +69,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                   href={CONTACT.socialLinks.twitter}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-11 h-11 rounded-full bg-white/5 hover:bg-brand-emerald/20 active:bg-brand-emerald/30 text-gray-300 hover:text-brand-emerald transition-all duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:ring-offset-2 focus:ring-offset-[#0A0E27]"
+                  className="w-11 h-11 rounded-full bg-white/5 hover:bg-brand-gold/15 active:bg-brand-gold/20 text-gray-300 hover:text-brand-gold transition-all duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-brand-gold/60 focus:ring-offset-2 focus:ring-offset-[#0A0E27]"
                   aria-label="Follow us on X (Twitter)"
                 >
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
@@ -80,7 +80,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                   href={CONTACT.socialLinks.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-11 h-11 rounded-full bg-white/5 hover:bg-brand-emerald/20 active:bg-brand-emerald/30 text-gray-300 hover:text-brand-emerald transition-all duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:ring-offset-2 focus:ring-offset-[#0A0E27]"
+                  className="w-11 h-11 rounded-full bg-white/5 hover:bg-brand-gold/15 active:bg-brand-gold/20 text-gray-300 hover:text-brand-gold transition-all duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-brand-gold/60 focus:ring-offset-2 focus:ring-offset-[#0A0E27]"
                   aria-label="Follow us on Instagram"
                 >
                   <Instagram size={18} />
@@ -89,7 +89,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                   href={CONTACT.socialLinks.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-11 h-11 rounded-full bg-white/5 hover:bg-brand-emerald/20 active:bg-brand-emerald/30 text-gray-300 hover:text-brand-emerald transition-all duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:ring-offset-2 focus:ring-offset-[#0A0E27]"
+                  className="w-11 h-11 rounded-full bg-white/5 hover:bg-brand-gold/15 active:bg-brand-gold/20 text-gray-300 hover:text-brand-gold transition-all duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-brand-gold/60 focus:ring-offset-2 focus:ring-offset-[#0A0E27]"
                   aria-label="Follow us on LinkedIn"
                 >
                   <Linkedin size={18} />
@@ -98,7 +98,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                   href={CONTACT.socialLinks.pinterest}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-11 h-11 rounded-full bg-white/5 hover:bg-brand-emerald/20 active:bg-brand-emerald/30 text-gray-300 hover:text-brand-emerald transition-all duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:ring-offset-2 focus:ring-offset-[#0A0E27]"
+                  className="w-11 h-11 rounded-full bg-white/5 hover:bg-brand-gold/15 active:bg-brand-gold/20 text-gray-300 hover:text-brand-gold transition-all duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-brand-gold/60 focus:ring-offset-2 focus:ring-offset-[#0A0E27]"
                   aria-label="Follow us on Pinterest"
                 >
                   <Share2 size={18} />
@@ -112,29 +112,29 @@ export default function Footer({ onNavigate }: FooterProps) {
             <h4 className="font-semibold text-white mb-4 uppercase tracking-wide text-sm">Our Services</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <button onClick={() => onNavigate('services')} className="text-gray-300 hover:text-brand-emerald transition-colors focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:ring-offset-2 focus:ring-offset-[#0A0E27] rounded">
+                <button onClick={() => onNavigate('services')} className="text-gray-300 hover:text-brand-gold transition-colors focus:outline-none focus:ring-2 focus:ring-brand-gold/60 focus:ring-offset-2 focus:ring-offset-[#0A0E27] rounded">
                   Steel Fabrication
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('services')} className="text-gray-300 hover:text-brand-emerald transition-colors focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:ring-offset-2 focus:ring-offset-[#0A0E27] rounded">
+                <button onClick={() => onNavigate('services')} className="text-gray-300 hover:text-brand-gold transition-colors focus:outline-none focus:ring-2 focus:ring-brand-gold/60 focus:ring-offset-2 focus:ring-offset-[#0A0E27] rounded">
                   Glass Applications
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('services')} className="text-gray-300 hover:text-brand-emerald transition-colors focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:ring-offset-2 focus:ring-offset-[#0A0E27] rounded">
+                <button onClick={() => onNavigate('services')} className="text-gray-300 hover:text-brand-gold transition-colors focus:outline-none focus:ring-2 focus:ring-brand-gold/60 focus:ring-offset-2 focus:ring-offset-[#0A0E27] rounded">
                   Marble Craftsmanship
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('services')} className="text-gray-300 hover:text-brand-emerald transition-colors focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:ring-offset-2 focus:ring-offset-[#0A0E27] rounded">
+                <button onClick={() => onNavigate('services')} className="text-gray-300 hover:text-brand-gold transition-colors focus:outline-none focus:ring-2 focus:ring-brand-gold/60 focus:ring-offset-2 focus:ring-offset-[#0A0E27] rounded">
                   Bespoke Furniture
                 </button>
               </li>
               <li className="pt-1">
                 <button 
                   onClick={() => onNavigate('services')} 
-                  className="text-brand-emerald hover:text-brand-cyan font-medium inline-flex items-center gap-1 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:ring-offset-2 focus:ring-offset-[#0A0E27] rounded"
+                  className="text-brand-gold hover:text-brand-gold-soft font-medium inline-flex items-center gap-1 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-gold/60 focus:ring-offset-2 focus:ring-offset-[#0A0E27] rounded"
                 >
                   View All Services <ArrowRight size={14} />
                 </button>
@@ -148,9 +148,9 @@ export default function Footer({ onNavigate }: FooterProps) {
             <ul className="space-y-3 text-sm">
               {CONTACT.addressLabel && (
                 <li className="flex items-start gap-3">
-                  <MapPin size={16} className="mt-0.5 flex-shrink-0 text-brand-emerald" />
+                  <MapPin size={16} className="mt-0.5 flex-shrink-0 text-brand-gold" />
                   {CONTACT.mapsUrl ? (
-                    <a href={CONTACT.mapsUrl} target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-brand-emerald transition-colors leading-relaxed">
+                    <a href={CONTACT.mapsUrl} target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-brand-gold transition-colors leading-relaxed">
                       {CONTACT.addressLabel}
                     </a>
                   ) : (
@@ -160,21 +160,21 @@ export default function Footer({ onNavigate }: FooterProps) {
               )}
               {CONTACT.phone && (
                 <li className="flex items-center gap-3">
-                  <Phone size={16} className="flex-shrink-0 text-brand-emerald" />
-                  <a href={`tel:${CONTACT.phone.replace(/[^\d+]/g, '')}`} className="text-gray-300 hover:text-brand-emerald transition-colors">
+                  <Phone size={16} className="flex-shrink-0 text-brand-gold" />
+                  <a href={`tel:${CONTACT.phone.replace(/[^\d+]/g, '')}`} className="text-gray-300 hover:text-brand-gold transition-colors">
                     {CONTACT.phone}
                   </a>
                 </li>
               )}
               <li className="flex items-center gap-3">
-                <Mail size={16} className="flex-shrink-0 text-brand-emerald" />
-                <a href={`mailto:${CONTACT.email}`} className="text-gray-300 hover:text-brand-emerald transition-colors">
+                <Mail size={16} className="flex-shrink-0 text-brand-gold" />
+                <a href={`mailto:${CONTACT.email}`} className="text-gray-300 hover:text-brand-gold transition-colors">
                   {CONTACT.email}
                 </a>
               </li>
               <li className="flex items-center gap-3">
-                <MessageCircle size={16} className="flex-shrink-0 text-brand-emerald" />
-                <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-brand-emerald transition-colors">
+                <MessageCircle size={16} className="flex-shrink-0 text-brand-gold" />
+                <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-brand-gold transition-colors">
                   WhatsApp Chat
                 </a>
               </li>
@@ -186,7 +186,7 @@ export default function Footer({ onNavigate }: FooterProps) {
               <p className="text-xs text-gray-300 mb-3">Get design tips & exclusive offers.</p>
               
               {subscribeSuccess ? (
-                <div className="flex items-center gap-2 text-brand-emerald text-sm" role="status" aria-live="polite">
+                <div className="flex items-center gap-2 text-brand-gold text-sm" role="status" aria-live="polite">
                   <CheckCircle size={16} />
                   <span>Subscribed! Check your email.</span>
                 </div>
@@ -205,7 +205,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                       className={`
                         flex-1 px-3 py-2 text-sm bg-white/5 border rounded-lg text-white placeholder:text-gray-400
                         transition-all duration-200 outline-none min-h-[40px]
-                        focus-visible:border-brand-emerald focus-visible:ring-1 focus-visible:ring-brand-emerald/30
+                        focus-visible:border-brand-gold/60 focus-visible:ring-1 focus-visible:ring-brand-gold/30
                         disabled:opacity-50 disabled:cursor-not-allowed
                         ${subscribeError ? 'border-red-500/50' : 'border-white/10 hover:border-white/20'}
                       `}
@@ -216,7 +216,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                     <button
                       type="submit"
                       disabled={isSubscribing}
-                      className="px-4 py-2 bg-brand-emerald text-[#0A0E27] font-semibold text-sm rounded-lg hover:bg-brand-emerald/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed min-h-[40px] flex items-center justify-center"
+                      className="px-4 py-2 bg-gradient-to-br from-brand-gold to-brand-gold-deep text-[#0A0E27] font-semibold text-sm rounded-lg hover:brightness-110 transition-all disabled:opacity-50 disabled:cursor-not-allowed min-h-[40px] flex items-center justify-center"
                     >
                       {isSubscribing ? <Loader2 size={16} className="animate-spin" /> : 'Subscribe'}
                     </button>
@@ -237,11 +237,11 @@ export default function Footer({ onNavigate }: FooterProps) {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-sm text-gray-300">&copy; {currentYear} GridGo Interiors. All rights reserved.</p>
             <div className="flex items-center gap-6 text-sm">
-              <button className="text-gray-300 hover:text-brand-emerald transition-colors focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:ring-offset-2 focus:ring-offset-[#0A0E27] rounded px-2 py-1">
+              <button className="text-gray-300 hover:text-brand-gold transition-colors focus:outline-none focus:ring-2 focus:ring-brand-gold/60 focus:ring-offset-2 focus:ring-offset-[#0A0E27] rounded px-2 py-1">
                 Privacy Policy
               </button>
               <span className="text-gray-600">|</span>
-              <button className="text-gray-300 hover:text-brand-emerald transition-colors focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:ring-offset-2 focus:ring-offset-[#0A0E27] rounded px-2 py-1">
+              <button className="text-gray-300 hover:text-brand-gold transition-colors focus:outline-none focus:ring-2 focus:ring-brand-gold/60 focus:ring-offset-2 focus:ring-offset-[#0A0E27] rounded px-2 py-1">
                 Terms of Service
               </button>
             </div>

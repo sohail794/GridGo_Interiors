@@ -113,7 +113,7 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
                   key={index}
                   className="flex items-center gap-2 sm:gap-3 hover:-translate-y-1 transition-all duration-300 cursor-default"
                 >
-                  <Icon size={28} className="text-brand-emerald drop-shadow-[0_0_10px_rgba(0,255,136,0.5)] flex-shrink-0" />
+                  <Icon size={28} className="text-brand-gold drop-shadow-sm flex-shrink-0" />
                   <span className="text-sm sm:text-base md:text-lg font-semibold text-text-primary">{item.text}</span>
                 </div>
               );
@@ -139,7 +139,7 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
                   transition-all duration-200 focus-ring active:scale-95
                   ${
                     filter === category
-                      ? 'bg-gradient-to-br from-brand-emerald to-brand-emerald-dark text-background-primary shadow-3d'
+                      ? 'bg-gradient-to-br from-brand-gold to-brand-gold-deep text-background-primary shadow-luxury-gold'
                       : 'bg-white/5 text-text-secondary hover:bg-white/10 hover:text-text-primary'
                   }
                 `}
@@ -172,7 +172,7 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
                 </div>
 
                 <div className="space-y-2">
-                  <span className="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wide bg-brand-emerald/10 text-brand-emerald rounded-radius-md">
+                  <span className="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wide bg-brand-gold/10 text-brand-gold rounded-radius-md">
                     {project.category}
                   </span>
                   <h3 className="text-xl font-semibold text-text-primary">{project.title}</h3>
@@ -200,7 +200,7 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
             {services.map((service, index) => (
               <GlassCard key={index} className="text-center">
-                <div className="w-20 h-20 mx-auto mb-6 rounded-radius-lg bg-brand-emerald/10 flex items-center justify-center text-5xl">
+                <div className="w-20 h-20 mx-auto mb-6 rounded-radius-lg bg-brand-gold/10 flex items-center justify-center text-5xl">
                   {service.icon}
                 </div>
                 <h3 className="text-2xl font-semibold text-text-primary mb-4">{service.title}</h3>
@@ -208,7 +208,7 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
                 <ul className="space-y-3 text-left">
                   {service.features.map((feature, i) => (
                     <li key={i} className="flex items-center gap-3 text-text-secondary">
-                      <CheckCircle size={16} className="text-brand-emerald flex-shrink-0" />
+                      <CheckCircle size={16} className="text-brand-gold flex-shrink-0" />
                       <span>{feature}</span>
                     </li>
                   ))}
@@ -230,13 +230,13 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
           />
 
           <div className="relative mt-12">
-            <div className="hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-brand-emerald to-transparent" />
+            <div className="hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-brand-gold to-transparent" />
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
               {processSteps.map((step, index) => (
                 <div key={index} className="relative">
                   <div className="flex flex-col items-center text-center">
-                    <div className="w-16 h-16 rounded-full border-2 border-brand-emerald bg-background-secondary flex items-center justify-center mb-6 z-10 relative">
+                    <div className="w-16 h-16 rounded-full border-2 border-brand-gold/60 bg-background-secondary flex items-center justify-center mb-6 z-10 relative">
                       <span className="text-2xl font-bold gradient-text">{step.number}</span>
                     </div>
                     <GlassCard padding="sm" className="w-full">
@@ -264,10 +264,10 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
               return (
                 <div
                   key={index}
-                  className="flex gap-4 p-6 rounded-radius-lg bg-white/5 hover:bg-white/10 border border-white/5 hover:border-brand-emerald/30 transition-all duration-300"
+                  className="flex gap-4 p-6 rounded-radius-lg bg-white/5 hover:bg-white/10 border border-white/5 hover:border-brand-gold/30 transition-all duration-300"
                 >
                   <div className="flex-shrink-0">
-                    <Icon size={32} className="text-brand-emerald drop-shadow-[0_0_10px_rgba(0,255,136,0.5)]" />
+                    <Icon size={32} className="text-brand-gold drop-shadow-sm" />
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold text-text-primary mb-2">{item.title}</h3>
@@ -321,13 +321,13 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
                   href={CONTACT.whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-text-secondary hover:text-brand-emerald transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer focus-ring rounded px-3 py-2 min-h-[44px] flex items-center font-semibold"
+                  className="text-text-secondary hover:text-brand-gold transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer focus-ring rounded px-3 py-2 min-h-[44px] flex items-center font-semibold"
                 >
                   WhatsApp
                 </a>
                 <a
                   href={`mailto:${CONTACT.email}`}
-                  className="text-text-secondary hover:text-brand-emerald transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer focus-ring rounded px-3 py-2 min-h-[44px] flex items-center font-semibold"
+                  className="text-text-secondary hover:text-brand-gold transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer focus-ring rounded px-3 py-2 min-h-[44px] flex items-center font-semibold"
                 >
                   Email
                 </a>
@@ -335,7 +335,7 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
                   href={CONTACT.socialLinks.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-text-secondary hover:text-brand-emerald transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer focus-ring rounded px-3 py-2 min-h-[44px] flex items-center font-semibold"
+                  className="text-text-secondary hover:text-brand-gold transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer focus-ring rounded px-3 py-2 min-h-[44px] flex items-center font-semibold"
                 >
                   LinkedIn
                 </a>

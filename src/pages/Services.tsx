@@ -193,7 +193,7 @@ export default function Services({ onNavigate: _onNavigate }: ServicesProps) {
                   key={service.id}
                   hover={false}
                   className={`transition-all duration-300 ${
-                    isExpanded ? 'border-brand-emerald/50' : ''
+                    isExpanded ? 'border-brand-gold/50' : ''
                   }`}
                 >
                   <button
@@ -203,8 +203,8 @@ export default function Services({ onNavigate: _onNavigate }: ServicesProps) {
                     aria-controls={`service-content-${service.id}`}
                   >
                     <div className="flex items-center flex-1">
-                      <div className="w-16 h-16 rounded-xl bg-brand-emerald/10 flex items-center justify-center mr-4 flex-shrink-0">
-                        <Icon className="text-brand-emerald" size={32} />
+                      <div className="w-16 h-16 rounded-xl bg-brand-gold/10 flex items-center justify-center mr-4 flex-shrink-0">
+                        <Icon className="text-brand-gold" size={32} />
                       </div>
                       <div>
                         <h3 className="text-2xl font-bold text-white mb-1">
@@ -214,9 +214,9 @@ export default function Services({ onNavigate: _onNavigate }: ServicesProps) {
                       </div>
                     </div>
                     {isExpanded ? (
-                      <ChevronUp className="text-brand-emerald ml-4 flex-shrink-0" size={28} />
+                      <ChevronUp className="text-brand-gold ml-4 flex-shrink-0" size={28} />
                     ) : (
-                      <ChevronDown className="text-brand-emerald ml-4 flex-shrink-0" size={28} />
+                      <ChevronDown className="text-brand-gold ml-4 flex-shrink-0" size={28} />
                     )}
                   </button>
 
@@ -257,7 +257,7 @@ export default function Services({ onNavigate: _onNavigate }: ServicesProps) {
                         {service.features.map((feature, index) => (
                           <li key={index} className="flex items-start">
                             <CheckCircle
-                              className="text-brand-emerald mr-3 flex-shrink-0 mt-1"
+                              className="text-brand-gold mr-3 flex-shrink-0 mt-1"
                               size={20}
                             />
                             <span className="text-text-secondary">{feature}</span>
@@ -286,7 +286,7 @@ export default function Services({ onNavigate: _onNavigate }: ServicesProps) {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8" ref={processGridRef}>
             {processSteps.map((step, index) => (
               <div key={index} className="text-center">
-                <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-brand-emerald to-brand-emerald/60 rounded-full flex items-center justify-center shadow-3d">
+                <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-brand-gold to-brand-gold/60 rounded-full flex items-center justify-center shadow-3d">
                   <span className="text-2xl font-bold text-background-primary">{step.number}</span>
                 </div>
                 <h3 className="text-xl font-bold text-white mb-3">{step.title}</h3>
@@ -311,12 +311,12 @@ export default function Services({ onNavigate: _onNavigate }: ServicesProps) {
           <Card padding="lg" glass>
             {submitSuccess && (
               <div
-                className="mb-6 p-4 bg-brand-emerald/10 border border-brand-emerald/30 rounded-lg flex items-center gap-3"
+                className="mb-6 p-4 bg-brand-gold/10 border border-brand-gold/30 rounded-lg flex items-center gap-3"
                 role="status"
                 aria-live="polite"
                 aria-atomic="true"
               >
-                <CheckCircle className="text-brand-emerald" size={24} />
+                <CheckCircle className="text-brand-gold" size={24} />
                 <div>
                   <p className="text-white font-semibold">Request submitted successfully!</p>
                   <p className="text-sm text-text-secondary">We'll contact you soon to discuss your project.</p>

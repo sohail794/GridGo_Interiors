@@ -130,8 +130,8 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
       <div className="fixed inset-0 z-[2000] flex items-center justify-center p-4">
         <div className="absolute inset-0 bg-black/85 backdrop-blur-md" onClick={onClose} />
         <GlassCard className="relative z-10 max-w-lg w-full text-center space-y-6 animate-fade-in">
-          <div className="w-20 h-20 mx-auto rounded-full bg-[#00ff88]/10 flex items-center justify-center" style={{ animation: 'pulse-glow 2s ease-in-out infinite' }}>
-            <CheckCircle size={48} className="text-[#00ff88]" style={{ animation: 'popIn 600ms ease-out forwards', animationDelay: '200ms' }} />
+          <div className="w-20 h-20 mx-auto rounded-full bg-brand-gold/10 flex items-center justify-center">
+            <CheckCircle size={48} className="text-brand-gold" style={{ animation: 'popIn 600ms ease-out forwards', animationDelay: '200ms' }} />
           </div>
           <h2 className="text-3xl font-bold gradient-text" style={{ animation: 'fadeInUp 600ms ease-out forwards', animationDelay: '300ms' }}>Request Submitted Successfully!</h2>
           <p className="text-[#b4b4b4]" style={{ animation: 'fadeInUp 600ms ease-out forwards', animationDelay: '400ms' }}>
@@ -175,8 +175,8 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
                 <div
                   className={`
                     w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold
-                    ${s === step ? 'bg-gradient-to-br from-[#00ff88] to-[#00b894] text-[#0a0e27]' : ''}
-                    ${s < step ? 'bg-[#00ff88]/20 text-[#00ff88]' : ''}
+                    ${s === step ? 'bg-gradient-to-br from-brand-gold to-brand-gold-deep text-[#0a0e27]' : ''}
+                    ${s < step ? 'bg-brand-gold/20 text-brand-gold' : ''}
                     ${s > step ? 'border-2 border-white/10 text-[#6b7280]' : ''}
                   `}
                 >
@@ -185,7 +185,7 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
                 {s < 3 && (
                   <div
                     className={`h-0.5 w-20 mx-2 ${
-                      s < step ? 'bg-[#00ff88]' : 'bg-white/10'
+                      s < step ? 'bg-brand-gold' : 'bg-white/10'
                     }`}
                   />
                 )}
@@ -201,7 +201,7 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
                   type="text"
                   value={formData.name}
                   onChange={(e) => handleInputChange('name', e.target.value)}
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus-visible:border-[#00ff88] focus-visible:ring-2 focus-visible:ring-[#00ff88]/20 transition-all outline-none"
+                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus-visible:border-brand-gold/60 focus-visible:ring-2 focus-visible:ring-brand-gold/20 transition-all outline-none"
                   placeholder="Enter your name"
                   required
                 />
@@ -217,7 +217,7 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
                       const cleaned = e.target.value.replace(/\D/g, '').slice(0, 10);
                       handleInputChange('phone', cleaned);
                     }}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus-visible:border-[#00ff88] focus-visible:ring-2 focus-visible:ring-[#00ff88]/20 transition-all outline-none"
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus-visible:border-brand-gold/60 focus-visible:ring-2 focus-visible:ring-brand-gold/20 transition-all outline-none"
                     placeholder="98765 43210"
                     pattern="[6-9][0-9]{9}"
                     title="Enter a valid 10-digit Indian mobile number starting with 6-9"
@@ -233,7 +233,7 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
                     type="email"
                     value={formData.email}
                     onChange={(e) => handleInputChange('email', e.target.value)}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus-visible:border-[#00ff88] focus-visible:ring-2 focus-visible:ring-[#00ff88]/20 transition-all outline-none"
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus-visible:border-brand-gold/60 focus-visible:ring-2 focus-visible:ring-brand-gold/20 transition-all outline-none"
                     placeholder="your@email.com"
                     required
                   />
@@ -246,7 +246,7 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
                   type="text"
                   value={formData.city}
                   onChange={(e) => handleInputChange('city', e.target.value)}
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus-visible:border-[#00ff88] focus-visible:ring-2 focus-visible:ring-[#00ff88]/20 transition-all outline-none"
+                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus-visible:border-brand-gold/60 focus-visible:ring-2 focus-visible:ring-brand-gold/20 transition-all outline-none"
                   placeholder="Your city"
                   required
                 />
@@ -279,7 +279,7 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
                         p-4 rounded-xl border-2 transition-all hover:scale-105 active:scale-95
                         ${
                           formData.projectTypes.includes(type.id)
-                            ? 'border-[#00ff88] bg-[#00ff88]/5'
+                            ? 'border-brand-gold/60 bg-brand-gold/10'
                             : 'border-white/10 hover:border-white/20'
                         }
                       `}
@@ -298,7 +298,7 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
                   <select
                     value={formData.scope}
                     onChange={(e) => handleInputChange('scope', e.target.value)}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus-visible:border-[#00ff88] focus-visible:ring-2 focus-visible:ring-[#00ff88]/20 transition-all outline-none"
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus-visible:border-brand-gold/60 focus-visible:ring-2 focus-visible:ring-brand-gold/20 transition-all outline-none"
                   >
                     <option value="">Select scope</option>
                     <option value="design">Design Only</option>
@@ -313,7 +313,7 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
                   <select
                     value={formData.timeline}
                     onChange={(e) => handleInputChange('timeline', e.target.value)}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus-visible:border-[#00ff88] focus-visible:ring-2 focus-visible:ring-[#00ff88]/20 transition-all outline-none"
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus-visible:border-brand-gold/60 focus-visible:ring-2 focus-visible:ring-brand-gold/20 transition-all outline-none"
                   >
                     <option value="">Select timeline</option>
                     <option value="immediate">Immediately</option>
@@ -334,7 +334,7 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
                   onChange={(e) => handleInputChange('details', e.target.value)}
                   rows={4}
                   maxLength={500}
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus-visible:border-[#00ff88] focus-visible:ring-2 focus-visible:ring-[#00ff88]/20 transition-all outline-none resize-none"
+                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus-visible:border-brand-gold/60 focus-visible:ring-2 focus-visible:ring-brand-gold/20 transition-all outline-none resize-none"
                   placeholder="Tell us more about your project..."
                 />
                 <div className="text-right text-xs text-[#6b7280] mt-1">
@@ -348,8 +348,8 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
                 </label>
                 <div className="space-y-2">
                   {formData.images.length < 3 && (
-                    <label className="flex items-center justify-center gap-2 p-4 border-2 border-dashed border-white/10 rounded-lg cursor-pointer hover:border-[#00ff88] hover:bg-[#00ff88]/5 transition-all">
-                      <Upload size={20} className="text-[#00ff88]" />
+                    <label className="flex items-center justify-center gap-2 p-4 border-2 border-dashed border-white/10 rounded-lg cursor-pointer hover:border-brand-gold/50 hover:bg-brand-gold/10 transition-all">
+                      <Upload size={20} className="text-brand-gold" />
                       <span className="text-sm text-[#b4b4b4]">Choose files</span>
                       <input
                         type="file"
