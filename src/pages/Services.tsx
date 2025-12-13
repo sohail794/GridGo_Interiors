@@ -1,5 +1,6 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { ChevronDown, ChevronUp, CheckCircle } from 'lucide-react';
+import { motion, useReducedMotion } from 'framer-motion';
 import { submitContactForm } from '../lib/supabase';
 import { Wrench, Square, Gem, Armchair, Palette, Paintbrush } from 'lucide-react';
 import { services } from '../data/content';
@@ -13,7 +14,6 @@ import FormLabel from '../components/ui/FormLabel';
 import FormInput from '../components/ui/FormInput';
 import FormSelect from '../components/ui/FormSelect';
 import FormTextarea from '../components/ui/FormTextarea';
-import { useScrollRevealStagger, useScrollRevealItem } from '../hooks/useScrollReveal';
 import { useFormValidation } from '../hooks/useFormValidation';
 
 const iconMap = {
@@ -43,33 +43,9 @@ export default function Services({ onNavigate: _onNavigate }: ServicesProps) {
   const [submitError, setSubmitError] = useState('');
   
   const { errors, validate, validateAll, clearError } = useFormValidation();
-  
-  // Scroll reveal refs
-  const servicesGridRef = useRef<HTMLDivElement>(null);
-  const processGridRef = useRef<HTMLDivElement>(null);
-  const formSectionRef = useRef<HTMLDivElement>(null);
-  
-  // Use scroll reveal hooks
-  useScrollRevealStagger(servicesGridRef, {
-    threshold: 0.2,
-    staggerDelay: 75,
-    duration: 600,
-    distance: 30,
-  });
-  
-  useScrollRevealStagger(processGridRef, {
-    threshold: 0.2,
-    staggerDelay: 100,
-    duration: 600,
-    distance: 30,
-  });
-  
-  useScrollRevealItem(formSectionRef, 0, {
-    threshold: 0.2,
-    duration: 600,
-    distance: 30,
-    delay: 100,
-  });
+
+  const prefersReducedMotion = useReducedMotion();
+  const transition = { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const };
 
   const toggleService = (id: string) => {
     setExpandedService(expandedService === id ? null : id);
@@ -176,97 +152,111 @@ export default function Services({ onNavigate: _onNavigate }: ServicesProps) {
       <Section spacing="lg" background="none">
         <Container>
           <div className="text-center mb-16">
-            <SectionHeader 
-              title="Our Services"
-              subtitle="End-to-end interior solutions with expert execution"
-              align="center"
-            />
+            <motion.div
+              initial={prefersReducedMotion ? undefined : { opacity: 0, y: 20 }}
+              whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={prefersReducedMotion ? undefined : transition}
+            >
+              <SectionHeader 
+                title="Our Services"
+                subtitle="End-to-end interior solutions with expert execution"
+                align="center"
+              />
+            </motion.div>
           </div>
 
-          <div className="space-y-4" ref={servicesGridRef}>
-            {services.map((service) => {
+          <div className="space-y-4">
+            {services.map((service, index) => {
               const Icon = iconMap[service.icon as keyof typeof iconMap] || Wrench;
               const isExpanded = expandedService === service.id;
 
               return (
-                <GlassCard
+                <motion.div
                   key={service.id}
-                  hover={false}
-                  className={`transition-all duration-300 ${
-                    isExpanded ? 'border-brand-gold/50' : ''
-                  }`}
+                  initial={prefersReducedMotion ? undefined : { opacity: 0, y: 30 }}
+                  whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={prefersReducedMotion ? undefined : { ...transition, delay: index * 0.15 }}
                 >
-                  <button
-                    onClick={() => toggleService(service.id)}
-                    className="w-full flex items-center justify-between text-left py-1 min-h-[64px] transition-colors rounded-lg"
-                    aria-expanded={isExpanded}
-                    aria-controls={`service-content-${service.id}`}
+                  <GlassCard
+                    hover={false}
+                    className={`transition-all duration-500 hover:border-brand-gold/50 hover:shadow-luxury-gold ${
+                      isExpanded ? 'border-brand-gold/50' : ''
+                    }`}
                   >
-                    <div className="flex items-center flex-1">
-                      <div className="w-16 h-16 rounded-xl bg-brand-gold/10 flex items-center justify-center mr-4 flex-shrink-0">
-                        <Icon className="text-brand-gold" size={32} />
-                      </div>
-                      <div>
-                        <h3 className="text-2xl font-bold text-white mb-1">
-                          {service.title}
-                        </h3>
-                        <p className="text-text-secondary">{service.description}</p>
-                      </div>
-                    </div>
-                    {isExpanded ? (
-                      <ChevronUp className="text-brand-gold ml-4 flex-shrink-0" size={28} />
-                    ) : (
-                      <ChevronDown className="text-brand-gold ml-4 flex-shrink-0" size={28} />
-                    )}
-                  </button>
-
-                  {isExpanded && (
-                    <div className="mt-6 pt-6 border-t border-white/10 animate-fade-in">
-                      {/* Service Gallery */}
-                      {service.gallery && service.gallery.length > 0 && (
-                        <div className="mb-8">
-                          <h4 className="font-bold text-white mb-4">Project Gallery</h4>
-                          <div className="grid grid-cols-3 gap-4 mb-6">
-                            {service.gallery.map((image, idx) => (
-                              <div
-                                key={idx}
-                                className="relative h-24 rounded-lg overflow-hidden"
-                              >
-                                {image ? (
-                                  <img
-                                    src={image}
-                                    alt={`${service.title} example ${idx + 1}`}
-                                    className="absolute inset-0 w-full h-full object-cover hover:scale-110 transition-transform duration-300"
-                                    loading="lazy"
-                                  />
-                                ) : (
-                                  <div className="w-full h-full bg-neutral-900/30" />
-                                )}
-                              </div>
-                            ))}
-                          </div>
-                          <div className="border-b border-white/10 mb-6" />
+                    <button
+                      onClick={() => toggleService(service.id)}
+                      className="w-full flex items-center justify-between text-left py-1 min-h-[64px] transition-colors rounded-lg"
+                      aria-expanded={isExpanded}
+                      aria-controls={`service-content-${service.id}`}
+                    >
+                      <div className="flex items-center flex-1">
+                        <div className="w-16 h-16 rounded-xl bg-brand-gold/10 flex items-center justify-center mr-4 flex-shrink-0">
+                          <Icon className="text-brand-gold" size={32} />
                         </div>
+                        <div>
+                          <h3 className="text-2xl font-bold text-white mb-1">
+                            {service.title}
+                          </h3>
+                          <p className="text-text-secondary">{service.description}</p>
+                        </div>
+                      </div>
+                      {isExpanded ? (
+                        <ChevronUp className="text-brand-gold ml-4 flex-shrink-0" size={28} />
+                      ) : (
+                        <ChevronDown className="text-brand-gold ml-4 flex-shrink-0" size={28} />
                       )}
-                      
-                      <p className="text-text-secondary mb-6 leading-relaxed">
-                        {service.details}
-                      </p>
-                      <h4 className="font-bold text-white mb-4">Key Features:</h4>
-                      <ul className="space-y-3">
-                        {service.features.map((feature, index) => (
-                          <li key={index} className="flex items-start">
-                            <CheckCircle
-                              className="text-brand-gold mr-3 flex-shrink-0 mt-1"
-                              size={20}
-                            />
-                            <span className="text-text-secondary">{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                </GlassCard>
+                    </button>
+
+                    {isExpanded && (
+                      <div className="mt-6 pt-6 border-t border-white/10">
+                        {/* Service Gallery */}
+                        {service.gallery && service.gallery.length > 0 && (
+                          <div className="mb-8">
+                            <h4 className="font-bold text-white mb-4">Project Gallery</h4>
+                            <div className="grid grid-cols-3 gap-4 mb-6">
+                              {service.gallery.map((image, idx) => (
+                                <div
+                                  key={idx}
+                                  className="relative h-24 rounded-lg overflow-hidden"
+                                >
+                                  {image ? (
+                                    <img
+                                      src={image}
+                                      alt={`${service.title} example ${idx + 1}`}
+                                      className="absolute inset-0 w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                                      loading="lazy"
+                                    />
+                                  ) : (
+                                    <div className="w-full h-full bg-neutral-900/30" />
+                                  )}
+                                </div>
+                              ))}
+                            </div>
+                            <div className="border-b border-white/10 mb-6" />
+                          </div>
+                        )}
+                        
+                        <p className="text-text-secondary mb-6 leading-relaxed">
+                          {service.details}
+                        </p>
+                        <h4 className="font-bold text-white mb-4">Key Features:</h4>
+                        <ul className="space-y-3">
+                          {service.features.map((feature, featureIndex) => (
+                            <li key={featureIndex} className="flex items-start">
+                              <CheckCircle
+                                className="text-brand-gold mr-3 flex-shrink-0 mt-1"
+                                size={20}
+                              />
+                              <span className="text-text-secondary">{feature}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </GlassCard>
+                </motion.div>
               );
             })}
           </div>
@@ -276,29 +266,48 @@ export default function Services({ onNavigate: _onNavigate }: ServicesProps) {
       <Section spacing="lg" background="secondary">
         <Container>
           <div className="text-center mb-16">
-            <SectionHeader 
-              title="Our Process"
-              subtitle="A proven approach to perfection"
-              align="center"
-            />
+            <motion.div
+              initial={prefersReducedMotion ? undefined : { opacity: 0, y: 20 }}
+              whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={prefersReducedMotion ? undefined : transition}
+            >
+              <SectionHeader 
+                title="Our Process"
+                subtitle="A proven approach to perfection"
+                align="center"
+              />
+            </motion.div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8" ref={processGridRef}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {processSteps.map((step, index) => (
-              <div key={index} className="text-center">
+              <motion.div
+                key={index}
+                className="text-center"
+                initial={prefersReducedMotion ? undefined : { opacity: 0, y: 30 }}
+                whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={prefersReducedMotion ? undefined : { ...transition, delay: index * 0.15 }}
+              >
                 <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-brand-gold to-brand-gold/60 rounded-full flex items-center justify-center shadow-3d">
                   <span className="text-2xl font-bold text-background-primary">{step.number}</span>
                 </div>
                 <h3 className="text-xl font-bold text-white mb-3">{step.title}</h3>
                 <p className="text-sm text-text-secondary">{step.description}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </Container>
       </Section>
 
       <Section spacing="lg" background="none">
-        <div ref={formSectionRef}>
+        <motion.div
+          initial={prefersReducedMotion ? undefined : { opacity: 0, y: 30 }}
+          whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={prefersReducedMotion ? undefined : transition}
+        >
           <Container maxWidth="md">
           <div className="text-center mb-12">
             <SectionHeader 
@@ -451,7 +460,7 @@ export default function Services({ onNavigate: _onNavigate }: ServicesProps) {
             </form>
           </Card>
         </Container>
-        </div>
+        </motion.div>
       </Section>
     </div>
   );

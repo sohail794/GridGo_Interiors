@@ -50,13 +50,20 @@ export default function Portfolio({ onNavigate, onOpenModal }: PortfolioProps) {
   const hasMore = visibleCount < allFilteredProjects.length;
 
   const transition = { duration: 0.45, ease: [0.16, 1, 0.3, 1] as const };
-  const itemMotion = prefersReducedMotion
+  const cardVariants = prefersReducedMotion
     ? undefined
     : {
-        initial: { opacity: 0, y: 10 },
-        animate: { opacity: 1, y: 0 },
-        exit: { opacity: 0, y: -10 },
-        transition,
+        hidden: { opacity: 0, scale: 0.9 },
+        visible: (index: number) => ({
+          opacity: 1,
+          scale: 1,
+          transition: { ...transition, delay: index * 0.1 },
+        }),
+        exit: {
+          opacity: 0,
+          scale: 0.9,
+          transition,
+        },
       };
 
   const loadMore = () => {
@@ -94,19 +101,37 @@ export default function Portfolio({ onNavigate, onOpenModal }: PortfolioProps) {
 
         <div className="relative z-10 text-center">
           <Container maxWidth="lg">
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 leading-tight">
+            <motion.h1
+              className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 leading-tight"
+              initial={prefersReducedMotion ? undefined : { opacity: 0, y: 30 }}
+              animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+              transition={prefersReducedMotion ? undefined : { duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            >
               <span className="gradient-text">Timeless Creations</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-text-secondary">
+            </motion.h1>
+            <motion.p
+              className="text-xl md:text-2xl text-text-secondary"
+              initial={prefersReducedMotion ? undefined : { opacity: 0, y: 30 }}
+              animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+              transition={prefersReducedMotion ? undefined : { duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+            >
               Design excellence in action
-            </p>
+            </motion.p>
           </Container>
         </div>
       </section>
 
       <Section spacing="lg" background="none">
         <Container>
-          <div className="flex flex-wrap justify-center gap-3 mb-16" role="tablist" aria-label="Filter projects by category">
+          <motion.div
+            className="flex flex-wrap justify-center gap-3 mb-16"
+            role="tablist"
+            aria-label="Filter projects by category"
+            initial={prefersReducedMotion ? undefined : { opacity: 0, y: 20 }}
+            whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={prefersReducedMotion ? undefined : { duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          >
             {['all', 'residential', 'commercial', 'retail'].map((category) => (
               <button
                 key={category}
@@ -127,12 +152,20 @@ export default function Portfolio({ onNavigate, onOpenModal }: PortfolioProps) {
                 {category.charAt(0).toUpperCase() + category.slice(1)}
               </button>
             ))}
-          </div>
+          </motion.div>
 
           <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             <AnimatePresence mode="popLayout" initial={false}>
-              {filteredProjects.map((project) => (
-                <motion.div key={project.id} layout {...(itemMotion || {})}>
+              {filteredProjects.map((project, index) => (
+                <motion.div
+                  key={project.id}
+                  layout
+                  variants={cardVariants}
+                  initial={cardVariants ? 'hidden' : undefined}
+                  animate={cardVariants ? 'visible' : undefined}
+                  exit={cardVariants ? 'exit' : undefined}
+                  custom={index}
+                >
                   <PortfolioCard project={project} onSelect={setSelectedProject} />
                 </motion.div>
               ))}

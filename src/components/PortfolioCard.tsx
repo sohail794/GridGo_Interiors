@@ -65,7 +65,7 @@ export default function PortfolioCard({
             <img
               src={project.image}
               alt={`${project.title} - ${project.category} interior design project`}
-              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
             />
           ) : (
             <div className="w-full h-full bg-neutral-900/30 flex items-center justify-center">

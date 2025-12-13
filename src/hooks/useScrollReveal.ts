@@ -114,7 +114,6 @@ export const useScrollRevealStagger = (
     if (!ref.current) return;
 
     const element = ref.current;
-    const children = Array.from(element.children) as HTMLElement[];
 
     // If reduced motion, skip animation
     if (reducedMotion) {

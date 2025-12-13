@@ -1,5 +1,6 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { Mail, Phone, MapPin, Clock, CheckCircle } from 'lucide-react';
+import { motion, useReducedMotion } from 'framer-motion';
 import GlassCard from '../components/GlassCard';
 import Button from '../components/ui/Button';
 import { submitContactForm } from '../lib/supabase';
@@ -10,7 +11,6 @@ import Card from '../components/ui/Card';
 import FormLabel from '../components/ui/FormLabel';
 import FormInput from '../components/ui/FormInput';
 import FormTextarea from '../components/ui/FormTextarea';
-import { useScrollRevealItem } from '../hooks/useScrollReveal';
 import { useFormValidation } from '../hooks/useFormValidation';
 
 interface ContactProps {
@@ -30,22 +30,9 @@ export default function Contact({ onNavigate: _onNavigate }: ContactProps) {
   const [submitError, setSubmitError] = useState('');
   
   const { errors, validate, validateAll, clearError } = useFormValidation();
-  
-  // Scroll reveal refs for form fields
-  const formNameRef = useRef<HTMLDivElement>(null);
-  const formEmailRef = useRef<HTMLDivElement>(null);
-  const formPhoneRef = useRef<HTMLDivElement>(null);
-  const formSubjectRef = useRef<HTMLDivElement>(null);
-  const formMessageRef = useRef<HTMLDivElement>(null);
-  const formSubmitRef = useRef<HTMLDivElement>(null);
-  
-  // Use reveal item with stagger for each form field
-  useScrollRevealItem(formNameRef, 0, { threshold: 0.3, staggerDelay: 100, duration: 500 });
-  useScrollRevealItem(formEmailRef, 1, { threshold: 0.3, staggerDelay: 100, duration: 500 });
-  useScrollRevealItem(formPhoneRef, 2, { threshold: 0.3, staggerDelay: 100, duration: 500 });
-  useScrollRevealItem(formSubjectRef, 3, { threshold: 0.3, staggerDelay: 100, duration: 500 });
-  useScrollRevealItem(formMessageRef, 4, { threshold: 0.3, staggerDelay: 100, duration: 500 });
-  useScrollRevealItem(formSubmitRef, 5, { threshold: 0.3, staggerDelay: 100, duration: 500 });
+
+  const prefersReducedMotion = useReducedMotion();
+  const transition = { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -140,7 +127,13 @@ export default function Contact({ onNavigate: _onNavigate }: ContactProps) {
       <Section spacing="lg" background="none">
         <Container>
           <div className="grid md:grid-cols-2 gap-12">
-            <div className="space-y-8">
+            <motion.div
+              className="space-y-8"
+              initial={prefersReducedMotion ? undefined : { opacity: 0, x: -30 }}
+              whileInView={prefersReducedMotion ? undefined : { opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={prefersReducedMotion ? undefined : transition}
+            >
               <div>
                 <h2 className="text-4xl font-bold mb-4">
                   <span className="gradient-text">Get in Touch</span>
@@ -154,9 +147,9 @@ export default function Contact({ onNavigate: _onNavigate }: ContactProps) {
                 {contactInfo.map((info, index) => {
                   const Icon = info.icon;
                   return (
-                    <GlassCard key={index} hover={false} padding="sm">
+                    <GlassCard key={index} hover={false} padding="sm" className="group">
                       <div className="flex items-start gap-4">
-                        <div className="w-12 h-12 rounded-xl bg-brand-gold/10 flex items-center justify-center flex-shrink-0">
+                        <div className="w-12 h-12 rounded-xl bg-brand-gold/10 group-hover:bg-brand-gold/20 transition-colors duration-300 flex items-center justify-center flex-shrink-0">
                           <Icon size={24} className="text-brand-gold" />
                         </div>
                         <div>
@@ -189,9 +182,14 @@ export default function Contact({ onNavigate: _onNavigate }: ContactProps) {
                   title="GridGo Interiors Location"
                 />
               </div>
-            </div>
+            </motion.div>
 
-            <div>
+            <motion.div
+              initial={prefersReducedMotion ? undefined : { opacity: 0, x: 30 }}
+              whileInView={prefersReducedMotion ? undefined : { opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={prefersReducedMotion ? undefined : transition}
+            >
               <Card padding="lg" glass>
                 {submitSuccess && (
                   <div
@@ -218,7 +216,7 @@ export default function Contact({ onNavigate: _onNavigate }: ContactProps) {
                   </div>
                 )}
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  <div ref={formNameRef}>
+                  <div>
                     <FormLabel htmlFor="name" required>
                       Name
                     </FormLabel>
@@ -240,7 +238,7 @@ export default function Contact({ onNavigate: _onNavigate }: ContactProps) {
                     />
                   </div>
 
-                  <div ref={formEmailRef} className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <FormLabel htmlFor="email" required>
                         Email
@@ -262,7 +260,7 @@ export default function Contact({ onNavigate: _onNavigate }: ContactProps) {
                       />
                     </div>
 
-                    <div ref={formPhoneRef}>
+                    <div>
                       <FormLabel htmlFor="phone">
                         Phone (10-digit Indian mobile)
                       </FormLabel>
@@ -289,7 +287,7 @@ export default function Contact({ onNavigate: _onNavigate }: ContactProps) {
                     </div>
                   </div>
 
-                  <div ref={formSubjectRef}>
+                  <div>
                     <FormLabel htmlFor="subject">
                       Subject
                     </FormLabel>
@@ -309,7 +307,7 @@ export default function Contact({ onNavigate: _onNavigate }: ContactProps) {
                     />
                   </div>
 
-                  <div ref={formMessageRef}>
+                  <div>
                     <FormLabel htmlFor="message" required>
                       Message
                     </FormLabel>
@@ -332,14 +330,14 @@ export default function Contact({ onNavigate: _onNavigate }: ContactProps) {
                     />
                   </div>
 
-                  <div ref={formSubmitRef}>
+                  <div>
                     <Button variant="primary" size="lg" type="submit" className="w-full" loading={isSubmitting} disabled={isSubmitting}>
                       {isSubmitting ? 'Sending...' : 'Send Message'}
                     </Button>
                   </div>
                 </form>
               </Card>
-            </div>
+            </motion.div>
           </div>
         </Container>
       </Section>

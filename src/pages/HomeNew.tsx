@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { CheckCircle, Award, Clock, Shield, Wrench, Sparkles } from 'lucide-react';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import HeroSection from '../components/HeroSection';
 import GlassCard from '../components/GlassCard';
 import Button3D from '../components/Button3D';
@@ -19,6 +20,8 @@ interface HomeNewProps {
 
 export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
   const [filter, setFilter] = useState('all');
+  const prefersReducedMotion = useReducedMotion();
+  const transition = { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const };
 
   const filteredProjects = filter === 'all'
     ? featuredProjects.slice(0, 6)
@@ -122,14 +125,27 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
         </Container>
       </Section>
 
-      <Section spacing="lg" background="none" id="portfolio-section">
+      <Section spacing="lg" background="none" id="portfolio-section" animate={false}>
         <Container>
-          <SectionHeader 
-            title="Featured Projects"
-            subtitle="From concept to completion, explore our finest work"
-          />
+          <motion.div
+            initial={prefersReducedMotion ? undefined : { opacity: 0, y: 20 }}
+            whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={prefersReducedMotion ? undefined : transition}
+          >
+            <SectionHeader 
+              title="Featured Projects"
+              subtitle="From concept to completion, explore our finest work"
+            />
+          </motion.div>
 
-          <div className="flex flex-wrap justify-center gap-3 mb-12 mt-12">
+          <motion.div
+            className="flex flex-wrap justify-center gap-3 mb-12 mt-12"
+            initial={prefersReducedMotion ? undefined : { opacity: 0, y: 20 }}
+            whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={prefersReducedMotion ? undefined : { ...transition, delay: 0.05 }}
+          >
             {['all', 'residential', 'commercial', 'retail'].map((category) => (
               <button
                 key={category}
@@ -147,17 +163,26 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
                 {category.charAt(0).toUpperCase() + category.slice(1)}
               </button>
             ))}
-          </div>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProjects.map((project) => (
-              <GlassCard key={project.id} padding="sm" className="group cursor-pointer overflow-hidden hover:scale-[1.02] hover:shadow-lg transition-all duration-200 ease-out">
+          <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <AnimatePresence mode="popLayout" initial={false}>
+              {filteredProjects.map((project, index) => (
+                <motion.div
+                  key={project.id}
+                  layout
+                  initial={prefersReducedMotion ? undefined : { opacity: 0, scale: 0.9 }}
+                  animate={prefersReducedMotion ? undefined : { opacity: 1, scale: 1 }}
+                  exit={prefersReducedMotion ? undefined : { opacity: 0, scale: 0.9 }}
+                  transition={prefersReducedMotion ? undefined : { ...transition, delay: index * 0.1 }}
+                >
+                  <GlassCard padding="sm" className="group cursor-pointer overflow-hidden hover:scale-[1.02] hover:shadow-lg transition-all duration-200 ease-out">
                 <div className="relative overflow-hidden rounded-radius-lg mb-4 h-64">
                   {project.image ? (
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                     />
                   ) : (
                     <div className="w-full h-full bg-neutral-900/30 flex items-center justify-center">
@@ -178,9 +203,11 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
                   <h3 className="text-xl font-semibold text-text-primary">{project.title}</h3>
                   <p className="text-sm text-text-secondary">{project.location}</p>
                 </div>
-              </GlassCard>
-            ))}
-          </div>
+                  </GlassCard>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </motion.div>
 
           <div className="text-center mt-12">
             <Button variant="primary" size="lg" onClick={() => onNavigate('portfolio')}>
@@ -190,51 +217,80 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
         </Container>
       </Section>
 
-      <Section spacing="lg" background="gradient">
+      <Section spacing="lg" background="gradient" animate={false}>
         <Container>
-          <SectionHeader 
-            title="What We Do"
-            subtitle="End-to-end solutions for your space"
-          />
+          <motion.div
+            initial={prefersReducedMotion ? undefined : { opacity: 0, y: 20 }}
+            whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={prefersReducedMotion ? undefined : transition}
+          >
+            <SectionHeader 
+              title="What We Do"
+              subtitle="End-to-end solutions for your space"
+            />
+          </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
             {services.map((service, index) => (
-              <GlassCard key={index} className="text-center">
-                <div className="w-20 h-20 mx-auto mb-6 rounded-radius-lg bg-brand-gold/10 flex items-center justify-center text-5xl">
-                  {service.icon}
-                </div>
-                <h3 className="text-2xl font-semibold text-text-primary mb-4">{service.title}</h3>
-                <p className="text-text-secondary mb-6 leading-relaxed">{service.description}</p>
-                <ul className="space-y-3 text-left">
-                  {service.features.map((feature, i) => (
-                    <li key={i} className="flex items-center gap-3 text-text-secondary">
-                      <CheckCircle size={16} className="text-brand-gold flex-shrink-0" />
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Button3D size="sm" variant="ghost" className="mt-6 w-full" onClick={() => onNavigate('services')}>
-                  Learn More
-                </Button3D>
-              </GlassCard>
+              <motion.div
+                key={index}
+                initial={prefersReducedMotion ? undefined : { opacity: 0, y: 30 }}
+                whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={prefersReducedMotion ? undefined : { ...transition, delay: index * 0.15 }}
+              >
+                <GlassCard key={index} className="text-center">
+                  <div className="w-20 h-20 mx-auto mb-6 rounded-radius-lg bg-brand-gold/10 flex items-center justify-center text-5xl">
+                    {service.icon}
+                  </div>
+                  <h3 className="text-2xl font-semibold text-text-primary mb-4">{service.title}</h3>
+                  <p className="text-text-secondary mb-6 leading-relaxed">{service.description}</p>
+                  <ul className="space-y-3 text-left">
+                    {service.features.map((feature, i) => (
+                      <li key={i} className="flex items-center gap-3 text-text-secondary">
+                        <CheckCircle size={16} className="text-brand-gold flex-shrink-0" />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Button3D size="sm" variant="ghost" className="mt-6 w-full" onClick={() => onNavigate('services')}>
+                    Learn More
+                  </Button3D>
+                </GlassCard>
+              </motion.div>
             ))}
           </div>
         </Container>
       </Section>
 
-      <Section spacing="lg" background="none">
+      <Section spacing="lg" background="none" animate={false}>
         <Container>
-          <SectionHeader 
-            title="Our Process"
-            subtitle="From vision to reality in four stages"
-          />
+          <motion.div
+            initial={prefersReducedMotion ? undefined : { opacity: 0, y: 20 }}
+            whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={prefersReducedMotion ? undefined : transition}
+          >
+            <SectionHeader 
+              title="Our Process"
+              subtitle="From vision to reality in four stages"
+            />
+          </motion.div>
 
           <div className="relative mt-12">
             <div className="hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-brand-gold to-transparent" />
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
               {processSteps.map((step, index) => (
-                <div key={index} className="relative">
+                <motion.div
+                  key={index}
+                  className="relative"
+                  initial={prefersReducedMotion ? undefined : { opacity: 0, y: 30 }}
+                  whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={prefersReducedMotion ? undefined : { ...transition, delay: index * 0.15 }}
+                >
                   <div className="flex flex-col items-center text-center">
                     <div className="w-16 h-16 rounded-full border-2 border-brand-gold/60 bg-background-secondary flex items-center justify-center mb-6 z-10 relative">
                       <span className="text-2xl font-bold gradient-text">{step.number}</span>
@@ -244,53 +300,79 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
                       <p className="text-sm text-text-secondary leading-relaxed">{step.description}</p>
                     </GlassCard>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
         </Container>
       </Section>
 
-      <Section spacing="lg" background="secondary">
+      <Section spacing="lg" background="secondary" animate={false}>
         <Container>
-          <SectionHeader 
-            title="Why Choose GridGo"
-            subtitle="What sets us apart"
-          />
+          <motion.div
+            initial={prefersReducedMotion ? undefined : { opacity: 0, x: -30 }}
+            whileInView={prefersReducedMotion ? undefined : { opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={prefersReducedMotion ? undefined : transition}
+          >
+            <SectionHeader 
+              title="Why Choose GridGo"
+              subtitle="What sets us apart"
+            />
+          </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
             {whyChoose.map((item, index) => {
               const Icon = item.icon;
               return (
-                <div
+                <motion.div
                   key={index}
-                  className="flex gap-4 p-6 rounded-radius-lg bg-white/5 hover:bg-white/10 border border-white/5 hover:border-brand-gold/30 transition-all duration-300"
+                  className="group flex gap-4 p-6 rounded-radius-lg bg-white/5 hover:bg-white/10 border border-white/5 hover:border-brand-gold/30 transition-all duration-300"
+                  initial={prefersReducedMotion ? undefined : { opacity: 0, y: 20 }}
+                  whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={prefersReducedMotion ? undefined : { ...transition, delay: index * 0.1 }}
                 >
                   <div className="flex-shrink-0">
-                    <Icon size={32} className="text-brand-gold drop-shadow-sm" />
+                    <div className="w-12 h-12 rounded-xl bg-brand-gold/10 group-hover:bg-brand-gold/20 transition-colors duration-300 flex items-center justify-center">
+                      <Icon size={24} className="text-brand-gold drop-shadow-sm" />
+                    </div>
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold text-text-primary mb-2">{item.title}</h3>
                     <p className="text-text-secondary leading-relaxed">{item.description}</p>
                   </div>
-                </div>
+                </motion.div>
               );
             })}
           </div>
         </Container>
       </Section>
 
-      <Section spacing="lg" background="none">
+      <Section spacing="lg" background="none" animate={false}>
         <Container maxWidth="md">
           <div className="text-center">
-            <SectionHeader 
-              title="What Clients Say"
-              subtitle="Real experiences from real clients"
-            />
+            <motion.div
+              initial={prefersReducedMotion ? undefined : { opacity: 0, y: 20 }}
+              whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={prefersReducedMotion ? undefined : transition}
+            >
+              <SectionHeader 
+                title="What Clients Say"
+                subtitle="Real experiences from real clients"
+              />
+            </motion.div>
 
-            <div className="mt-12">
+            <motion.div
+              className="mt-12"
+              initial={prefersReducedMotion ? undefined : { opacity: 0, y: 30 }}
+              whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={prefersReducedMotion ? undefined : { ...transition, delay: 0.15 }}
+            >
               <TestimonialCarousel testimonials={testimonials} />
-            </div>
+            </motion.div>
           </div>
         </Container>
       </Section>

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { ChevronDown } from 'lucide-react';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import Button3D from './Button3D';
 import HamburgerMenu from './HamburgerMenu';
 import logo from '../assets/images/logo/gridgo-logo.svg';
@@ -15,6 +16,7 @@ interface HeaderProps {
 export default function HeaderNew({ currentPage, onNavigate, onOpenModal, mobileMenuOpen, onMobileMenuChange }: HeaderProps) {
   const [portfolioDropdown, setPortfolioDropdown] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
 
   // Handle scroll effects
   useEffect(() => {
@@ -42,7 +44,7 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal, mobile
   ];
 
   return (
-    <header
+    <motion.header
       className={`
         sticky top-0 w-full z-[9999]
         glass-nav
@@ -53,6 +55,9 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal, mobile
       `}
       role="banner"
       aria-label="Site navigation"
+      initial={prefersReducedMotion ? undefined : { y: -100 }}
+      animate={prefersReducedMotion ? undefined : { y: 0 }}
+      transition={prefersReducedMotion ? undefined : { duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
     >
       <div className="max-w-[1400px] mx-auto px-8 h-full">
         <div className="flex justify-between items-center h-full">
@@ -62,10 +67,12 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal, mobile
             onClick={() => onNavigate('home')}
             aria-label="Go to homepage"
           >
-            <img
+            <motion.img
               src={logo}
               alt="GridGo Interiors"
-              className="h-12 w-auto transition-all duration-200 group-hover:scale-105"
+              className="h-12 w-auto transition-all duration-200"
+              whileHover={prefersReducedMotion ? undefined : { scale: 1.02 }}
+              transition={prefersReducedMotion ? undefined : { duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
             />
           </button>
 
@@ -99,28 +106,36 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal, mobile
                   />
                 </a>
 
-                {item.hasDropdown && portfolioDropdown && (
-                  <div className="absolute top-full left-0 mt-2 w-48 glass-card p-2 animate-fade-in-down">
-                    {portfolioItems.map((subItem) => (
-                      <button
-                        key={subItem.category}
-                        onClick={() => {
-                          onNavigate('portfolio');
-                          setPortfolioDropdown(false);
-                        }}
-                        className="
-                          w-full text-left px-4 py-3 min-h-[44px] rounded-lg
-                          text-text-secondary hover:text-white
-                          hover:bg-white/5 active:bg-white/10 hover:translate-x-1
-                          transition-all duration-200
-                          focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/60
-                        "
-                      >
-                        {subItem.label}
-                      </button>
-                    ))}
-                  </div>
-                )}
+                <AnimatePresence>
+                  {item.hasDropdown && portfolioDropdown && (
+                    <motion.div
+                      className="absolute top-full left-0 mt-2 w-48 glass-card p-2"
+                      initial={prefersReducedMotion ? undefined : { opacity: 0, y: 10 }}
+                      animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+                      exit={prefersReducedMotion ? undefined : { opacity: 0, y: 10 }}
+                      transition={prefersReducedMotion ? undefined : { duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                    >
+                      {portfolioItems.map((subItem) => (
+                        <button
+                          key={subItem.category}
+                          onClick={() => {
+                            onNavigate('portfolio');
+                            setPortfolioDropdown(false);
+                          }}
+                          className="
+                            w-full text-left px-4 py-3 min-h-[44px] rounded-lg
+                            text-text-secondary hover:text-white
+                            hover:bg-white/5 active:bg-white/10 hover:translate-x-1
+                            transition-all duration-200
+                            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/60
+                          "
+                        >
+                          {subItem.label}
+                        </button>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             ))}
           </nav>
@@ -137,6 +152,6 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal, mobile
           />
         </div>
       </div>
-    </header>
+    </motion.header>
   );
 }

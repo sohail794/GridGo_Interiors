@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 
 import Button3D from './Button3D';
 import logo from '../assets/images/logo/gridgo-logo.svg';
@@ -13,6 +14,7 @@ export default function Header({ onNavigate, onOpenModal }: HeaderProps) {
   const [scrolled, setScrolled] = useState(false);
   const [portfolioDropdown, setPortfolioDropdown] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,8 +29,11 @@ export default function Header({ onNavigate, onOpenModal }: HeaderProps) {
   const portfolioItems = PORTFOLIO_ITEMS;
 
   return (
-    <header
+    <motion.header
       className={`fixed top-0 left-0 right-0 z-50 bg-white shadow-md transition-all ${scrolled ? 'shadow-lg' : ''}`}
+      initial={prefersReducedMotion ? undefined : { y: -100 }}
+      animate={prefersReducedMotion ? undefined : { y: 0 }}
+      transition={prefersReducedMotion ? undefined : { duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
@@ -36,10 +41,12 @@ export default function Header({ onNavigate, onOpenModal }: HeaderProps) {
             className="flex items-center cursor-pointer"
             onClick={() => onNavigate('home')}
           >
-            <img
+            <motion.img
               src={logo}
               alt="GridGo Interiors - Luxury Interior Design"
               className="h-12 w-auto sm:h-14 transition-all hover:opacity-80"
+              whileHover={prefersReducedMotion ? undefined : { scale: 1.02 }}
+              transition={prefersReducedMotion ? undefined : { duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
             />
           </div>
 
@@ -55,24 +62,32 @@ export default function Header({ onNavigate, onOpenModal }: HeaderProps) {
                 </button>
                 {item.hasDropdown && (
                   <div
-                    className="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md transition-opacity duration-200 ease-in-out"
+                    className="absolute left-0 mt-2 w-48"
                     onMouseEnter={() => setPortfolioDropdown(true)}
                     onMouseLeave={() => setPortfolioDropdown(false)}
                   >
-                    {portfolioDropdown && (
-                      <ul>
-                        {portfolioItems.map((subItem) => (
-                          <li
-                            key={subItem.category}
-                            className="px-4 py-2 hover:bg-gray-100 focus-visible:bg-gray-200 focus-visible:outline-none"
-                            tabIndex={0}
-                            role="menuitem"
-                          >
-                            {subItem.label}
-                          </li>
-                        ))}
-                      </ul>
-                    )}
+                    <AnimatePresence>
+                      {portfolioDropdown && (
+                        <motion.ul
+                          className="bg-white shadow-lg rounded-md overflow-hidden"
+                          initial={prefersReducedMotion ? undefined : { opacity: 0, y: 10 }}
+                          animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+                          exit={prefersReducedMotion ? undefined : { opacity: 0, y: 10 }}
+                          transition={prefersReducedMotion ? undefined : { duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                        >
+                          {portfolioItems.map((subItem) => (
+                            <li
+                              key={subItem.category}
+                              className="px-4 py-2 hover:bg-gray-100 focus-visible:bg-gray-200 focus-visible:outline-none"
+                              tabIndex={0}
+                              role="menuitem"
+                            >
+                              {subItem.label}
+                            </li>
+                          ))}
+                        </motion.ul>
+                      )}
+                    </AnimatePresence>
                   </div>
                 )}
               </div>
@@ -115,23 +130,31 @@ export default function Header({ onNavigate, onOpenModal }: HeaderProps) {
           )}
         </div>
 
-        {mobileMenuOpen && (
-          <div className="md:hidden bg-white shadow-lg rounded-md p-4 space-y-4">
-            {menuItems.map((item) => (
-              <button
-                key={item.page}
-                onClick={() => {
-                  onNavigate(item.page);
-                  setMobileMenuOpen(false);
-                }}
-                className="block w-full text-left text-gray-700 hover:text-gray-900"
-              >
-                {item.label}
-              </button>
-            ))}
-          </div>
-        )}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              className="md:hidden bg-white shadow-lg rounded-md p-4 space-y-4 overflow-hidden"
+              initial={prefersReducedMotion ? undefined : { opacity: 0, height: 0 }}
+              animate={prefersReducedMotion ? undefined : { opacity: 1, height: 'auto' }}
+              exit={prefersReducedMotion ? undefined : { opacity: 0, height: 0 }}
+              transition={prefersReducedMotion ? undefined : { duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            >
+              {menuItems.map((item) => (
+                <button
+                  key={item.page}
+                  onClick={() => {
+                    onNavigate(item.page);
+                    setMobileMenuOpen(false);
+                  }}
+                  className="block w-full text-left text-gray-700 hover:text-gray-900"
+                >
+                  {item.label}
+                </button>
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
-    </header>
+    </motion.header>
   );
 }

@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { Quote } from 'lucide-react';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import Card from './ui/Card';
 import { Testimonial } from '../types';
-import { useScrollRevealItem } from '../hooks/useScrollReveal';
 import { useGestureDetection } from '../hooks/useGestureDetection';
 
 interface TestimonialCarouselProps {
@@ -14,10 +14,10 @@ export default function TestimonialCarousel({ testimonials }: TestimonialCarouse
   const [isPaused, setIsPaused] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
   const indicatorsRef = useRef<HTMLDivElement>(null);
-  
-  // Use scroll reveal for testimonial card
-  useScrollRevealItem(cardRef, 0, { threshold: 0.4, duration: 600, distance: 30 });
 
+  const prefersReducedMotion = useReducedMotion();
+  const transition = { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const };
+  
   // Handle swipe gestures
   useGestureDetection(cardRef, {
     onSwipe: (direction) => {
@@ -69,37 +69,66 @@ export default function TestimonialCarousel({ testimonials }: TestimonialCarouse
         onFocus={() => setIsPaused(true)}
         onBlur={() => setIsPaused(false)}
       >
-        <Card padding="lg" glass hover className="animate-fade-in-up">
-          <Quote size={48} className="text-brand-gold mb-6 transition-transform duration-300" style={{ animation: 'fadeIn 600ms ease-out 200ms forwards' }} aria-hidden="true" />
-          <p className="text-xl md:text-2xl text-text-primary mb-8 italic leading-relaxed" style={{ animation: 'fadeInUp 600ms ease-out 300ms forwards' }}>
-            "{currentTestimonial.quote}"
-          </p>
-          <div className="flex items-center gap-4" style={{ animation: 'fadeInUp 600ms ease-out 400ms forwards' }}>
-            {currentTestimonial.image ? (
-              <img
-                src={currentTestimonial.image}
-                alt={currentTestimonial.name}
-                width={64}
-                height={64}
-                className="w-16 h-16 rounded-radius-xl object-cover flex-shrink-0 border-2 border-brand-gold/25 hover:scale-110 hover:border-brand-gold/50 transition-all duration-300"
-                loading="lazy"
-              />
-            ) : (
-              <div className="w-16 h-16 rounded-radius-xl flex-shrink-0 bg-gradient-to-br from-brand-gold to-brand-gold-deep flex items-center justify-center shadow-luxury-gold hover:scale-110 transition-transform duration-300">
-                <span className="text-xl font-bold text-background-primary">
-                  {currentTestimonial.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
-                </span>
-              </div>
-            )}
-            <div>
-              <p className="font-bold text-text-primary text-lg">{currentTestimonial.name}</p>
-              <p className="text-text-secondary text-sm">{currentTestimonial.location}</p>
-            </div>
-          </div>
-        </Card>
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.div
+            key={currentIndex}
+            initial={prefersReducedMotion ? undefined : { opacity: 0, y: 30 }}
+            animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+            exit={prefersReducedMotion ? undefined : { opacity: 0, y: 30 }}
+            transition={prefersReducedMotion ? undefined : transition}
+          >
+            <Card padding="lg" glass hover>
+              <motion.div
+                initial={prefersReducedMotion ? undefined : { opacity: 0, y: 10 }}
+                animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+                transition={prefersReducedMotion ? undefined : { ...transition, delay: 0.05 }}
+                aria-hidden="true"
+              >
+                <Quote size={48} className="text-brand-gold mb-6 transition-transform duration-300" />
+              </motion.div>
+
+              <motion.p
+                className="text-xl md:text-2xl text-text-primary mb-8 italic leading-relaxed"
+                initial={prefersReducedMotion ? undefined : { opacity: 0, y: 10 }}
+                animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+                transition={prefersReducedMotion ? undefined : { ...transition, delay: 0.1 }}
+              >
+                "{currentTestimonial.quote}"
+              </motion.p>
+
+              <motion.div
+                className="flex items-center gap-4"
+                initial={prefersReducedMotion ? undefined : { opacity: 0, y: 10 }}
+                animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+                transition={prefersReducedMotion ? undefined : { ...transition, delay: 0.15 }}
+              >
+                {currentTestimonial.image ? (
+                  <img
+                    src={currentTestimonial.image}
+                    alt={currentTestimonial.name}
+                    width={64}
+                    height={64}
+                    className="w-16 h-16 rounded-radius-xl object-cover flex-shrink-0 border-2 border-brand-gold/25 hover:scale-110 hover:border-brand-gold/50 transition-all duration-300"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div className="w-16 h-16 rounded-radius-xl flex-shrink-0 bg-gradient-to-br from-brand-gold to-brand-gold-deep flex items-center justify-center shadow-luxury-gold hover:scale-110 transition-transform duration-300">
+                    <span className="text-xl font-bold text-background-primary">
+                      {currentTestimonial.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
+                    </span>
+                  </div>
+                )}
+                <div>
+                  <p className="font-bold text-text-primary text-lg">{currentTestimonial.name}</p>
+                  <p className="text-text-secondary text-sm">{currentTestimonial.location}</p>
+                </div>
+              </motion.div>
+            </Card>
+          </motion.div>
+        </AnimatePresence>
       </div>
 
-      <div className="flex justify-center mt-8 gap-2" ref={indicatorsRef} role="tablist" aria-label="Testimonial slides" style={{ animation: 'fadeInUp 600ms ease-out 500ms forwards' }}>
+      <div className="flex justify-center mt-8 gap-2" ref={indicatorsRef} role="tablist" aria-label="Testimonial slides">
         {testimonials.map((_, index) => (
           <button
             key={index}
@@ -112,7 +141,6 @@ export default function TestimonialCarousel({ testimonials }: TestimonialCarouse
             aria-label={`Go to testimonial ${index + 1}`}
             role="tab"
             aria-selected={index === currentIndex}
-            style={{ animation: 'fadeInUp 600ms ease-out forwards', animationDelay: `${550 + index * 50}ms` }}
           >
             <span className={`block rounded-full transition-all duration-300 ${
               index === currentIndex 
