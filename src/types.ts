@@ -4,6 +4,7 @@ export interface Testimonial {
   location: string;
   quote: string;
   image?: string;
+  rating?: number; // 1-5 star rating
 }
 
 export interface Project {

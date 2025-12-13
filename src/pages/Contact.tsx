@@ -14,12 +14,20 @@ import FormTextarea from '../components/ui/FormTextarea';
 import { useFormValidation } from '../hooks/useFormValidation';
 import { useHoneypot } from '../hooks/useHoneypot';
 import { useRateLimit } from '../hooks/useRateLimit';
+import Breadcrumb from '../components/Breadcrumb';
+import FAQSection from '../components/FAQSection';
+import { faqs } from '../data/content';
 
 interface ContactProps {
   onNavigate: (page: string) => void;
 }
 
 export default function Contact({ onNavigate: _onNavigate }: ContactProps) {
+  const breadcrumbItems = [
+    { label: 'Home', page: 'home' },
+    { label: 'Contact', current: true },
+  ];
+  
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -156,6 +164,13 @@ export default function Contact({ onNavigate: _onNavigate }: ContactProps) {
           </Container>
         </div>
       </section>
+
+      {/* Breadcrumb Navigation */}
+      <Section spacing="sm" background="none">
+        <Container>
+          <Breadcrumb items={breadcrumbItems} onNavigate={_onNavigate} />
+        </Container>
+      </Section>
 
       <Section spacing="lg" background="none">
         <Container>
@@ -372,6 +387,17 @@ export default function Contact({ onNavigate: _onNavigate }: ContactProps) {
               </Card>
             </motion.div>
           </div>
+        </Container>
+      </Section>
+
+      {/* FAQ Section */}
+      <Section spacing="lg" background="secondary">
+        <Container>
+          <FAQSection 
+            faqs={faqs.filter(faq => ['faq-2', 'faq-3', 'faq-5', 'faq-6', 'faq-7'].includes(faq.id))} 
+            title="Have Questions?"
+            subtitle="Find answers to commonly asked questions"
+          />
         </Container>
       </Section>
     </div>

@@ -16,6 +16,9 @@ import FormSelect from '../components/ui/FormSelect';
 import FormTextarea from '../components/ui/FormTextarea';
 import { useFormValidation } from '../hooks/useFormValidation';
 import { useRateLimit } from '../hooks/useRateLimit';
+import Breadcrumb from '../components/Breadcrumb';
+import FAQSection from '../components/FAQSection';
+import { faqs } from '../data/content';
 
 const iconMap = {
   Wrench,
@@ -31,6 +34,11 @@ interface ServicesProps {
 }
 
 export default function Services({ onNavigate: _onNavigate }: ServicesProps) {
+  const breadcrumbItems = [
+    { label: 'Home', page: 'home' },
+    { label: 'Services', current: true },
+  ];
+  
   const [expandedService, setExpandedService] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     name: '',
@@ -170,6 +178,13 @@ export default function Services({ onNavigate: _onNavigate }: ServicesProps) {
           </Container>
         </div>
       </section>
+
+      {/* Breadcrumb Navigation */}
+      <Section spacing="sm" background="none">
+        <Container>
+          <Breadcrumb items={breadcrumbItems} onNavigate={_onNavigate} />
+        </Container>
+      </Section>
 
       <Section spacing="lg" background="none">
         <Container>
@@ -484,6 +499,17 @@ export default function Services({ onNavigate: _onNavigate }: ServicesProps) {
           </Card>
         </Container>
         </motion.div>
+      </Section>
+
+      {/* FAQ Section */}
+      <Section spacing="lg" background="secondary">
+        <Container>
+          <FAQSection 
+            faqs={faqs.filter(faq => ['faq-1', 'faq-3', 'faq-4', 'faq-5', 'faq-6'].includes(faq.id))} 
+            title="Service Related Questions"
+            subtitle="Common questions about our interior design services"
+          />
+        </Container>
       </Section>
     </div>
   );

@@ -16,6 +16,11 @@ interface BlogProps {
 }
 
 export default function Blog({ onNavigate }: BlogProps) {
+  const breadcrumbItems = [
+    { label: 'Home', page: 'home' },
+    { label: 'Insights', current: true },
+  ];
+  
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [isSubscribing, setIsSubscribing] = useState(false);
   const [subscribeSuccess, setSubscribeSuccess] = useState(false);
@@ -92,6 +97,13 @@ export default function Blog({ onNavigate }: BlogProps) {
           </div>
         </Container>
       </section>
+
+      {/* Breadcrumb Navigation */}
+      <Section spacing="sm" background="none">
+        <Container>
+          <Breadcrumb items={breadcrumbItems} onNavigate={onNavigate} />
+        </Container>
+      </Section>
 
       {/* Blog Posts Section */}
       <Section spacing="lg" background="none">

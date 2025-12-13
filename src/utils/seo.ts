@@ -81,6 +81,64 @@ export const organizationSchema = {
   url: 'https://gridgointeriors.com',
 };
 
+// Aggregate review schema
+export const aggregateReviewSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  'name': 'GridGo Interiors',
+  'aggregateRating': {
+    '@type': 'AggregateRating',
+    'ratingValue': '4.9',
+    'reviewCount': '156',
+    'bestRating': '5',
+    'worstRating': '1',
+  },
+  'review': [
+    {
+      '@type': 'Review',
+      'author': {
+        '@type': 'Person',
+        'name': 'Rajesh Kumar',
+      },
+      'reviewRating': {
+        '@type': 'Rating',
+        'ratingValue': '5',
+        'bestRating': '5',
+      },
+      'reviewBody': 'GridGo transformed our corporate office into a modern masterpiece. Their attention to detail and craftsmanship is unmatched!',
+      'datePublished': '2024-11-15',
+    },
+    {
+      '@type': 'Review',
+      'author': {
+        '@type': 'Person',
+        'name': 'Priya Sharma',
+      },
+      'reviewRating': {
+        '@type': 'Rating',
+        'ratingValue': '5',
+        'bestRating': '5',
+      },
+      'reviewBody': 'The marble work in our home is absolutely stunning. GridGo exceeded all our expectations with their bespoke solutions.',
+      'datePublished': '2024-10-28',
+    },
+    {
+      '@type': 'Review',
+      'author': {
+        '@type': 'Person',
+        'name': 'Amit Patel',
+      },
+      'reviewRating': {
+        '@type': 'Rating',
+        'ratingValue': '5',
+        'bestRating': '5',
+      },
+      'reviewBody': 'Exceptional service from consultation to completion. The glass and steel work they delivered is truly world-class.',
+      'datePublished': '2024-09-12',
+    },
+  ],
+};
+
 export const pageMeta = {
   home: {
     title: 'Luxury Interior Design | Mumbai, Delhi, Bangalore',

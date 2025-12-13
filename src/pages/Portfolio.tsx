@@ -11,6 +11,7 @@ import Button from '../components/ui/Button';
 import Container from '../components/ui/Container';
 import Section from '../components/ui/Section';
 import BeforeAfterSlider from '../components/BeforeAfterSlider';
+import Breadcrumb from '../components/Breadcrumb';
 
 interface PortfolioProps {
   onNavigate: (page: string) => void;
@@ -22,6 +23,11 @@ export default function Portfolio({ onNavigate, onOpenModal }: PortfolioProps) {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [visibleCount, setVisibleCount] = useState(6); // Load More pagination
   const prefersReducedMotion = useReducedMotion();
+
+  const breadcrumbItems = [
+    { label: 'Home', page: 'home' },
+    { label: 'Portfolio', current: true },
+  ];
 
   // Handle Escape key and body scroll lock for lightbox
   useEffect(() => {
@@ -122,6 +128,13 @@ export default function Portfolio({ onNavigate, onOpenModal }: PortfolioProps) {
           </Container>
         </div>
       </section>
+
+      {/* Breadcrumb Navigation */}
+      <Section spacing="sm" background="none">
+        <Container>
+          <Breadcrumb items={breadcrumbItems} onNavigate={onNavigate} />
+        </Container>
+      </Section>
 
       <Section spacing="lg" background="none">
         <Container>
