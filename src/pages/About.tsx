@@ -58,7 +58,7 @@ export default function About({ onNavigate }: AboutProps) {
         
         {/* Navy overlay for brand consistency */}
         <div 
-          className="absolute inset-0 z-0 bg-[#0A0E27]/50" 
+          className="absolute inset-0 z-0 bg-[#1a1a1a]/50" 
           style={{ mixBlendMode: 'multiply' }}
           aria-hidden="true"
         />

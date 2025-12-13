@@ -49,7 +49,7 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal, mobile
         border-b border-white/10
         transition-all duration-200 ease-out
         backdrop-blur-md 
-        ${isScrolled ? 'h-16 shadow-luxury bg-[#0a0e27]/95' : 'h-20 bg-[#0a0e27]/80'}
+        ${isScrolled ? 'h-16 shadow-luxury bg-[#1a1a1a]/95' : 'h-20 bg-[#1a1a1a]/80'}
       `}
       role="banner"
       aria-label="Site navigation"
@@ -58,7 +58,7 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal, mobile
         <div className="flex justify-between items-center h-full">
           <button
             type="button"
-            className="flex items-center cursor-pointer group transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0e27] rounded-lg"
+            className="flex items-center cursor-pointer group transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a1a1a] rounded-lg"
             onClick={() => onNavigate('home')}
             aria-label="Go to homepage"
           >

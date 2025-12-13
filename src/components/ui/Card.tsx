@@ -50,8 +50,8 @@ export default function Card({
   return (
     <motion.div
       className={`${baseClasses} ${glassClasses} ${hoverClasses} ${paddingMap[padding]} ${className}`}
-      whileHover={{ y: -2, scale: 1.01 }}
-      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+      whileHover={{ y: -8 }}
+      transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
     >
       {content}
     </motion.div>

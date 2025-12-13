@@ -19,7 +19,7 @@ export default function Button({
 }: ButtonProps) {
   const prefersReducedMotion = useReducedMotion();
 
-  const baseClasses = 'rounded-lg font-semibold transition-all duration-300 inline-flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0e27]';
+  const baseClasses = 'rounded-lg font-semibold transition-all duration-300 inline-flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a1a1a]';
 
   const sizeClasses = {
     sm: 'px-4 py-2 text-sm',
@@ -30,9 +30,9 @@ export default function Button({
   const variantClasses = {
     primary: `
       bg-gradient-to-br from-brand-gold to-brand-gold-deep
-      text-[#0A0E27]
+      text-[#1a1a1a]
       shadow-luxury-gold
-      hover:brightness-110
+      hover:from-brand-gold-soft hover:to-brand-gold
       disabled:opacity-50 disabled:cursor-not-allowed
       transition-all duration-200
     `,
@@ -40,7 +40,7 @@ export default function Button({
       bg-transparent
       border-2 border-brand-gold/70
       text-brand-gold
-      hover:bg-brand-gold/10
+      hover:bg-brand-gold hover:text-[#1a1a1a]
       disabled:opacity-50 disabled:cursor-not-allowed
       transition-all duration-200
     `,
@@ -64,9 +64,9 @@ export default function Button({
         ${className}
       `}
       disabled={disabled || loading}
-      whileHover={canAnimate ? { y: -1, scale: 1.01 } : undefined}
+      whileHover={canAnimate ? { y: -1, scale: 1.05 } : undefined}
       whileTap={canAnimate ? { y: 0, scale: 0.99 } : undefined}
-      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
       {...props}
     >
       {loading && (

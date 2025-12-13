@@ -4,8 +4,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['DM Sans', 'ui-sans-serif', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
-        serif: ['Playfair Display', 'ui-serif', 'Georgia', 'serif'],
+        sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
+        serif: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
       },
       colors: {
         'brand-emerald': '#00ff88',
@@ -13,7 +13,7 @@ export default {
         'brand-cyan': '#00d9ff',
         'brand-coral': '#ff6b35',
         'brand-gold': '#d4af37',
-        'brand-gold-soft': '#e3c76a',
+        'brand-gold-soft': '#e5c158',
         'brand-gold-deep': '#b8922b',
         emerald: {
           DEFAULT: '#50C878',
@@ -29,15 +29,17 @@ export default {
       },
       textColor: {
         'text-primary': '#ffffff',
-        'text-secondary': '#c4c4c4',
-        'text-tertiary': '#a3a3a3', // Improved contrast (was #8b8b8b)
+        'text-secondary': '#b0b0b0',
+        'text-tertiary': '#999999',
         'text-disabled': '#6b7280',
       },
       backgroundColor: {
-        'bg-primary': '#0a0e27',
-        'bg-secondary': '#141b2d',
-        'bg-elevated': '#1a1f3a',
-        'background-primary': '#0a0e27',
+        'bg-primary': '#1a1a1a',
+        'bg-secondary': '#252525',
+        'bg-elevated': '#2a2a2a',
+        'background-primary': '#1a1a1a',
+        'background-secondary': '#252525',
+        'background-elevated': '#2a2a2a',
       },
       // Spacing tokens for consistent section spacing
       spacing: {
@@ -85,7 +87,7 @@ export default {
       },
       boxShadow: {
         luxury: '0 4px 6px rgba(0, 0, 0, 0.1)',
-        'luxury-hover': '0 6px 8px rgba(0, 0, 0, 0.15)',
+        'luxury-hover': '0 12px 24px rgba(0, 0, 0, 0.3)',
         '3d': '0 10px 25px rgba(0, 0, 0, 0.3)',
         'text': '0 2px 4px rgba(0, 0, 0, 0.3)',
         'luxury-gold': '0 12px 30px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(212, 175, 55, 0.10)',

@@ -87,7 +87,7 @@ export default function Portfolio({ onNavigate, onOpenModal }: PortfolioProps) {
         
         {/* Navy overlay for brand consistency */}
         <div 
-          className="absolute inset-0 z-0 bg-[#0A0E27]/50" 
+          className="absolute inset-0 z-0 bg-[#1a1a1a]/50" 
           style={{ mixBlendMode: 'multiply' }}
           aria-hidden="true"
         />
@@ -116,7 +116,7 @@ export default function Portfolio({ onNavigate, onOpenModal }: PortfolioProps) {
                 className={`
                   px-6 md:px-8 py-3 min-h-[48px] min-w-[48px] rounded-full font-semibold uppercase tracking-wide text-sm
                   transition-all duration-200 active:scale-95
-                  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0e27]
+                  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a1a1a]
                   ${
                     filter === category
                       ? 'bg-gradient-to-br from-brand-gold to-brand-gold-deep text-background-primary shadow-luxury-gold'
@@ -144,7 +144,7 @@ export default function Portfolio({ onNavigate, onOpenModal }: PortfolioProps) {
             <div className="text-center mt-12">
               <button
                 onClick={loadMore}
-                className="bg-transparent border-2 border-brand-gold/70 text-brand-gold hover:bg-brand-gold hover:text-[#0A0E27] active:scale-95 px-8 py-3 min-h-[48px] rounded-lg font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-gold/60 focus:ring-offset-2 focus:ring-offset-[#0A0E27]"
+                className="bg-transparent border-2 border-brand-gold/70 text-brand-gold hover:bg-brand-gold hover:text-[#1a1a1a] active:scale-95 px-8 py-3 min-h-[48px] rounded-lg font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-gold/60 focus:ring-offset-2 focus:ring-offset-[#1a1a1a]"
               >
                 Load More Projects ({allFilteredProjects.length - visibleCount} remaining)
               </button>
@@ -183,7 +183,7 @@ export default function Portfolio({ onNavigate, onOpenModal }: PortfolioProps) {
                   e.stopPropagation();
                   setSelectedProject(null);
                 }}
-                className="absolute top-4 right-4 z-50 w-10 h-10 rounded-full border-2 border-white/20 bg-[#0a0e27] hover:border-brand-coral text-white hover:text-brand-coral transition-all flex items-center justify-center"
+                className="absolute top-4 right-4 z-50 w-10 h-10 rounded-full border-2 border-white/20 bg-[#1a1a1a] hover:border-brand-coral text-white hover:text-brand-coral transition-all flex items-center justify-center"
                 aria-label="Close project details"
                 type="button"
               >

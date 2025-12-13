@@ -157,7 +157,7 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
               e.stopPropagation();
               onClose();
             }}
-            className="absolute top-4 right-4 z-50 w-10 h-10 rounded-full border-2 border-white/10 bg-[#0a0e27]/80 hover:border-[#ff6b35] text-white hover:text-[#ff6b35] hover:scale-110 hover:shadow-lg active:scale-95 transition-all flex items-center justify-center duration-200"
+            className="absolute top-4 right-4 z-50 w-10 h-10 rounded-full border-2 border-white/10 bg-[#1a1a1a]/80 hover:border-[#ff6b35] text-white hover:text-[#ff6b35] hover:scale-110 hover:shadow-lg active:scale-95 transition-all flex items-center justify-center duration-200"
             aria-label="Close modal"
             type="button"
           >
@@ -175,7 +175,7 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
                 <div
                   className={`
                     w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold
-                    ${s === step ? 'bg-gradient-to-br from-brand-gold to-brand-gold-deep text-[#0a0e27]' : ''}
+                    ${s === step ? 'bg-gradient-to-br from-brand-gold to-brand-gold-deep text-[#1a1a1a]' : ''}
                     ${s < step ? 'bg-brand-gold/20 text-brand-gold' : ''}
                     ${s > step ? 'border-2 border-white/10 text-[#6b7280]' : ''}
                   `}

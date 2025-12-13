@@ -54,7 +54,7 @@ function App() {
       {/* Skip to main content link for accessibility */}
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-0 focus:left-0 focus:z-[10000] focus:px-4 focus:py-2 focus:bg-brand-gold focus:text-[#0a0e27] focus:font-semibold"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-0 focus:left-0 focus:z-[10000] focus:px-4 focus:py-2 focus:bg-brand-gold focus:text-[#1a1a1a] focus:font-semibold"
       >
         Skip to main content
       </a>

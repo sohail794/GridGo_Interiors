@@ -86,7 +86,7 @@ export default function MobileMenuOverlay({
     <div
       onClick={handleBackdropClick}
       className={`
-        fixed inset-0 w-full h-full z-[99999] bg-[#0a0e27] backdrop-blur-md lg:hidden flex flex-col
+        fixed inset-0 w-full h-full z-[99999] bg-background-primary backdrop-blur-md lg:hidden flex flex-col
         transition-all duration-300 ease-in-out
         ${open ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0 pointer-events-none'}
       `}
@@ -95,7 +95,7 @@ export default function MobileMenuOverlay({
       aria-hidden={!open}
     >
       {/* Header with logo and close button */}
-      <div className="fixed top-0 left-0 right-0 z-[100000] bg-[#0a0e27] border-b border-white/10">
+      <div className="fixed top-0 left-0 right-0 z-[100000] bg-background-primary border-b border-white/10">
         <div className="flex justify-between items-center px-6 py-4 max-w-[1400px] mx-auto w-full">
           <img
             src={logo}
@@ -105,7 +105,7 @@ export default function MobileMenuOverlay({
           <button
             onClick={onClose}
             aria-label="Close menu"
-            className="p-2 text-brand-gold hover:text-brand-gold-soft transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0e27] rounded-lg hover:bg-white/5"
+            className="p-2 text-brand-gold hover:text-brand-gold-soft transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a1a1a] rounded-lg hover:bg-white/5"
           >
             <X size={28} />
           </button>
@@ -126,7 +126,7 @@ export default function MobileMenuOverlay({
                   transition-all duration-200 ease-out
                   min-h-[56px] flex items-center touch-manipulation
                   active:scale-[0.98] active:bg-white/5
-                  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0e27]
+                  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a1a1a]
                   ${
                     isActive
                       ? 'bg-gradient-to-r from-brand-gold/18 to-brand-gold-soft/8 text-brand-gold border-l-4 border-brand-gold font-bold shadow-[0_0_22px_rgba(212,175,55,0.10)]'

@@ -1,8 +1,16 @@
 import { useEffect, useRef, useState, RefObject } from 'react';
+import {
+  applyRevealAnimation,
+  applyStaggerReveal,
+  createRevealObserver,
+  prefersReducedMotion,
+  type RevealAnimationName,
+} from '../utils/scrollAnimations';
 
 export interface ScrollRevealOptions {
   threshold?: number | number[];
   rootMargin?: string;
+  animationName?: RevealAnimationName;
   delay?: number;
   duration?: number;
   distance?: number;
@@ -28,55 +36,41 @@ export const useScrollReveal = (
   const observerRef = useRef<IntersectionObserver | null>(null);
 
   const {
-    threshold = 0.2,
-    rootMargin = '0px',
+    threshold = 0.15,
+    rootMargin = '0px 0px -100px 0px',
+    animationName = 'fadeInUp',
     delay = 0,
-    duration = 600,
-    distance = 30,
-    easing = 'ease-out',
+    duration = 700,
+    distance = 50,
+    easing = 'cubic-bezier(0.4, 0, 0.2, 1)',
     respectReducedMotion = true,
   } = options;
 
   useEffect(() => {
-    // Check for reduced motion preference
-    const prefersReducedMotion = respectReducedMotion && 
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const reducedMotion = respectReducedMotion && prefersReducedMotion();
 
     if (!ref.current) return;
 
     const element = ref.current;
 
     // If reduced motion, skip animation
-    if (prefersReducedMotion) {
+    if (reducedMotion) {
       setIsVisible(true);
       setHasAnimated(true);
       return;
     }
 
-    // Create intersection observer
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && !hasAnimated) {
-            // Apply animation styles
-            element.style.animation = `fadeInUp ${duration}ms ${easing} ${delay}ms forwards`;
-            element.style.setProperty('--reveal-distance', `${distance}px`);
-            
-            setIsVisible(true);
-            setHasAnimated(true);
-            
-            // Unobserve after animation
-            observer.unobserve(element);
-          }
-        });
+    const observer = createRevealObserver(
+      element,
+      () => {
+        if (hasAnimated) return;
+        applyRevealAnimation(element, { delay, duration, distance, easing, animationName });
+        setIsVisible(true);
+        setHasAnimated(true);
       },
-      {
-        threshold,
-        rootMargin,
-      }
+      { threshold, rootMargin, once: true }
     );
 
-    observer.observe(element);
     observerRef.current = observer;
 
     return () => {
@@ -84,7 +78,7 @@ export const useScrollReveal = (
         observerRef.current.disconnect();
       }
     };
-  }, [ref, threshold, rootMargin, delay, duration, distance, easing, respectReducedMotion, hasAnimated]);
+  }, [ref, threshold, rootMargin, animationName, delay, duration, distance, easing, respectReducedMotion, hasAnimated]);
 
   return { isVisible, hasAnimated };
 };
@@ -102,21 +96,20 @@ export const useScrollRevealStagger = (
   const observerRef = useRef<IntersectionObserver | null>(null);
 
   const {
-    threshold = 0.2,
-    rootMargin = '0px',
+    threshold = 0.15,
+    rootMargin = '0px 0px -100px 0px',
+    animationName = 'fadeInUp',
     delay = 0,
-    duration = 600,
-    distance = 30,
-    easing = 'ease-out',
+    duration = 700,
+    distance = 50,
+    easing = 'cubic-bezier(0.4, 0, 0.2, 1)',
     respectReducedMotion = true,
-    staggerDelay = 50,
+    staggerDelay = 120,
     staggerDirection = 'forward',
   } = options;
 
   useEffect(() => {
-    // Check for reduced motion preference
-    const prefersReducedMotion = respectReducedMotion && 
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const reducedMotion = respectReducedMotion && prefersReducedMotion();
 
     if (!ref.current) return;
 
@@ -124,44 +117,31 @@ export const useScrollRevealStagger = (
     const children = Array.from(element.children) as HTMLElement[];
 
     // If reduced motion, skip animation
-    if (prefersReducedMotion) {
+    if (reducedMotion) {
       setIsVisible(true);
       setHasAnimated(true);
       return;
     }
 
-    // Create intersection observer
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && !hasAnimated) {
-            // Apply staggered animations to children
-            children.forEach((child, index) => {
-              const staggerIndex = staggerDirection === 'backward' 
-                ? children.length - 1 - index 
-                : index;
-              
-              const childDelay = delay + (staggerIndex * staggerDelay);
-              
-              child.style.animation = `fadeInUp ${duration}ms ${easing} ${childDelay}ms forwards`;
-              child.style.setProperty('--reveal-distance', `${distance}px`);
-            });
-            
-            setIsVisible(true);
-            setHasAnimated(true);
-            
-            // Unobserve after animation
-            observer.unobserve(element);
-          }
+    const observer = createRevealObserver(
+      element,
+      () => {
+        if (hasAnimated) return;
+        applyStaggerReveal(element, {
+          delay,
+          duration,
+          distance,
+          easing,
+          staggerDelay,
+          staggerDirection,
+          animationName,
         });
+        setIsVisible(true);
+        setHasAnimated(true);
       },
-      {
-        threshold,
-        rootMargin,
-      }
+      { threshold, rootMargin, once: true }
     );
 
-    observer.observe(element);
     observerRef.current = observer;
 
     return () => {
@@ -173,6 +153,7 @@ export const useScrollRevealStagger = (
     ref,
     threshold,
     rootMargin,
+    animationName,
     delay,
     duration,
     distance,
@@ -199,20 +180,19 @@ export const useScrollRevealWave = (
   const observerRef = useRef<IntersectionObserver | null>(null);
 
   const {
-    threshold = 0.2,
-    rootMargin = '0px',
+    threshold = 0.15,
+    rootMargin = '0px 0px -100px 0px',
+    animationName = 'fadeInUp',
     delay = 0,
-    duration = 600,
-    distance = 30,
-    easing = 'ease-out',
+    duration = 700,
+    distance = 50,
+    easing = 'cubic-bezier(0.4, 0, 0.2, 1)',
     respectReducedMotion = true,
-    staggerDelay = 50,
+    staggerDelay = 120,
   } = options;
 
   useEffect(() => {
-    // Check for reduced motion preference
-    const prefersReducedMotion = respectReducedMotion && 
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const reducedMotion = respectReducedMotion && prefersReducedMotion();
 
     if (!ref.current) return;
 
@@ -220,53 +200,37 @@ export const useScrollRevealWave = (
     const children = Array.from(element.children) as HTMLElement[];
 
     // If reduced motion, skip animation
-    if (prefersReducedMotion) {
+    if (reducedMotion) {
       setIsVisible(true);
       setHasAnimated(true);
       return;
     }
 
-    // Create intersection observer
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && !hasAnimated) {
-            // Estimate grid columns (use CSS grid or fallback)
-            const computedStyle = window.getComputedStyle(element);
-            const gridTemplateColumns = computedStyle.gridTemplateColumns;
-            const columnCount = gridTemplateColumns 
-              ? gridTemplateColumns.split(' ').length 
-              : 3; // Fallback to 3-column grid
+    const observer = createRevealObserver(
+      element,
+      () => {
+        if (hasAnimated) return;
 
-            // Apply wave stagger animations to children
-            children.forEach((child, index) => {
-              // Calculate row and column
-              const row = Math.floor(index / columnCount);
-              const col = index % columnCount;
-              
-              // Calculate wave distance (diagonal distance from top-left)
-              const distance = row + col;
-              const childDelay = delay + (distance * staggerDelay);
-              
-              child.style.animation = `fadeInUp ${duration}ms ${easing} ${childDelay}ms forwards`;
-              child.style.setProperty('--reveal-distance', `${distance}px`);
-            });
-            
-            setIsVisible(true);
-            setHasAnimated(true);
-            
-            // Unobserve after animation
-            observer.unobserve(element);
-          }
+        // Estimate grid columns (use CSS grid or fallback)
+        const computedStyle = window.getComputedStyle(element);
+        const gridTemplateColumns = computedStyle.gridTemplateColumns;
+        const columnCount = gridTemplateColumns ? gridTemplateColumns.split(' ').length : 3;
+
+        children.forEach((child, index) => {
+          const row = Math.floor(index / columnCount);
+          const col = index % columnCount;
+          const waveIndex = row + col;
+          const childDelay = delay + waveIndex * staggerDelay;
+
+          applyRevealAnimation(child, { delay: childDelay, duration, distance, easing, animationName });
         });
+
+        setIsVisible(true);
+        setHasAnimated(true);
       },
-      {
-        threshold,
-        rootMargin,
-      }
+      { threshold, rootMargin, once: true }
     );
 
-    observer.observe(element);
     observerRef.current = observer;
 
     return () => {
@@ -278,6 +242,7 @@ export const useScrollRevealWave = (
     ref,
     threshold,
     rootMargin,
+    animationName,
     delay,
     duration,
     distance,
@@ -304,27 +269,26 @@ export const useScrollRevealItem = (
   const observerRef = useRef<IntersectionObserver | null>(null);
 
   const {
-    threshold = 0.2,
-    rootMargin = '0px',
+    threshold = 0.15,
+    rootMargin = '0px 0px -100px 0px',
+    animationName = 'fadeInUp',
     delay = 0,
-    duration = 600,
-    distance = 30,
-    easing = 'ease-out',
+    duration = 700,
+    distance = 50,
+    easing = 'cubic-bezier(0.4, 0, 0.2, 1)',
     respectReducedMotion = true,
-    staggerDelay = 50,
+    staggerDelay = 120,
   } = options;
 
   useEffect(() => {
-    // Check for reduced motion preference
-    const prefersReducedMotion = respectReducedMotion && 
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const reducedMotion = respectReducedMotion && prefersReducedMotion();
 
     if (!ref.current) return;
 
     const element = ref.current;
 
     // If reduced motion, skip animation
-    if (prefersReducedMotion) {
+    if (reducedMotion) {
       setIsVisible(true);
       setHasAnimated(true);
       return;
@@ -333,30 +297,23 @@ export const useScrollRevealItem = (
     // Calculate delay with stagger
     const totalDelay = delay + (itemIndex * staggerDelay);
 
-    // Create intersection observer
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && !hasAnimated) {
-            // Apply animation with staggered delay
-            element.style.animation = `fadeInUp ${duration}ms ${easing} ${totalDelay}ms forwards`;
-            element.style.setProperty('--reveal-distance', `${distance}px`);
-            
-            setIsVisible(true);
-            setHasAnimated(true);
-            
-            // Unobserve after animation
-            observer.unobserve(element);
-          }
+    const observer = createRevealObserver(
+      element,
+      () => {
+        if (hasAnimated) return;
+        applyRevealAnimation(element, {
+          delay: totalDelay,
+          duration,
+          distance,
+          easing,
+          animationName,
         });
+        setIsVisible(true);
+        setHasAnimated(true);
       },
-      {
-        threshold,
-        rootMargin,
-      }
+      { threshold, rootMargin, once: true }
     );
 
-    observer.observe(element);
     observerRef.current = observer;
 
     return () => {
@@ -369,6 +326,7 @@ export const useScrollRevealItem = (
     itemIndex,
     threshold,
     rootMargin,
+    animationName,
     delay,
     duration,
     distance,

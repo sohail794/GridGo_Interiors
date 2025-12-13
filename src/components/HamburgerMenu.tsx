@@ -16,7 +16,7 @@ export default function HamburgerMenu({ isOpen, onClick }: HamburgerMenuProps) {
         rounded-xl
         group
         transition-all duration-300
-        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0e27]
+        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a1a1a]
         border border-white/10
         ${isOpen 
           ? 'bg-brand-gold/10 border-brand-gold/40 shadow-luxury' 

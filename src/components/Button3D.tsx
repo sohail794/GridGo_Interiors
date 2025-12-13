@@ -18,7 +18,7 @@ export default function Button3D({
   loading = false,
   ...props
 }: Button3DProps) {
-  const baseClasses = 'font-semibold uppercase tracking-wide rounded-xl transition-all duration-200 ease-out inline-flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0e27] disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none';
+  const baseClasses = 'font-semibold uppercase tracking-wide rounded-xl transition-all duration-200 ease-out inline-flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a1a1a] disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none';
 
   const sizeClasses = {
     sm: 'px-4 py-2 text-sm',
@@ -29,7 +29,7 @@ export default function Button3D({
   const variantClasses = {
     primary: `
       bg-gradient-to-br from-brand-gold to-brand-gold-deep
-      text-[#0a0e27]
+      text-[#1a1a1a]
       shadow-luxury-gold
       hover:brightness-110 hover:-translate-y-1
       active:translate-y-0 active:scale-95 active:brightness-95

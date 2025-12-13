@@ -74,7 +74,7 @@ export default function Blog({ onNavigate }: BlogProps) {
         
         {/* Navy overlay for brand consistency */}
         <div 
-          className="absolute inset-0 z-0 bg-[#0A0E27]/50" 
+          className="absolute inset-0 z-0 bg-[#1a1a1a]/50" 
           style={{ mixBlendMode: 'multiply' }}
           aria-hidden="true"
         />
@@ -164,7 +164,7 @@ export default function Blog({ onNavigate }: BlogProps) {
                 <GlassCard className="relative animate-fade-in">
                   <button
                     onClick={() => setSelectedPost(null)}
-                    className="absolute top-4 right-4 z-50 w-10 h-10 rounded-full border-2 border-white/20 bg-[#0a0e27] hover:border-brand-coral text-white hover:text-brand-coral transition-all flex items-center justify-center"
+                    className="absolute top-4 right-4 z-50 w-10 h-10 rounded-full border-2 border-white/20 bg-[#1a1a1a] hover:border-brand-coral text-white hover:text-brand-coral transition-all flex items-center justify-center"
                     aria-label="Close article"
                     type="button"
                   >

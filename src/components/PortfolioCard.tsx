@@ -41,7 +41,7 @@ export default function PortfolioCard({
   return (
     <div
       ref={cardRef}
-      className="rounded-radius-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0e27]"
+      className="rounded-radius-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a1a1a]"
       onClick={() => onSelect(project)}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') {

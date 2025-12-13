@@ -103,7 +103,7 @@ export default function BeforeAfterSlider({
       onClick={handleContainerClick}
       onKeyDown={handleKeyDown}
       tabIndex={0}
-      className="relative w-full h-64 md:h-80 overflow-hidden rounded-xl select-none cursor-ew-resize group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0e27]"
+      className="relative w-full h-64 md:h-80 overflow-hidden rounded-xl select-none cursor-ew-resize group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a1a1a]"
       role="slider"
       aria-label="Before and after comparison slider. Use left and right arrow keys to adjust."
       aria-valuenow={Math.round(sliderPosition)}
@@ -200,7 +200,7 @@ export default function BeforeAfterSlider({
         className="absolute top-3 right-3 px-3 py-1.5 rounded-md text-xs font-semibold uppercase tracking-wide"
         style={{
           backgroundColor: 'var(--accent-gold)',
-          color: '#0A0E27',
+          color: '#1a1a1a',
         }}
       >
         {afterLabel}

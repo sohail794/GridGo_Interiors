@@ -48,7 +48,7 @@ export default function Footer({ onNavigate }: FooterProps) {
   };
 
   return (
-    <footer className="bg-[#0A0E27] text-ivory border-t border-white/5">
+    <footer className="bg-background-primary text-ivory border-t border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-12">
           {/* Brand & Social */}
@@ -69,7 +69,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                   href={CONTACT.socialLinks.twitter}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-11 h-11 rounded-full bg-white/5 hover:bg-brand-gold/15 active:bg-brand-gold/20 text-gray-300 hover:text-brand-gold transition-all duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-brand-gold/60 focus:ring-offset-2 focus:ring-offset-[#0A0E27]"
+                  className="w-11 h-11 rounded-full bg-white/5 hover:bg-brand-gold/15 active:bg-brand-gold/20 text-gray-300 hover:text-brand-gold transition-all duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-brand-gold/60 focus:ring-offset-2 focus:ring-offset-[#1a1a1a]"
                   aria-label="Follow us on X (Twitter)"
                 >
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
@@ -80,7 +80,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                   href={CONTACT.socialLinks.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-11 h-11 rounded-full bg-white/5 hover:bg-brand-gold/15 active:bg-brand-gold/20 text-gray-300 hover:text-brand-gold transition-all duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-brand-gold/60 focus:ring-offset-2 focus:ring-offset-[#0A0E27]"
+                  className="w-11 h-11 rounded-full bg-white/5 hover:bg-brand-gold/15 active:bg-brand-gold/20 text-gray-300 hover:text-brand-gold transition-all duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-brand-gold/60 focus:ring-offset-2 focus:ring-offset-[#1a1a1a]"
                   aria-label="Follow us on Instagram"
                 >
                   <Instagram size={18} />
@@ -89,7 +89,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                   href={CONTACT.socialLinks.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-11 h-11 rounded-full bg-white/5 hover:bg-brand-gold/15 active:bg-brand-gold/20 text-gray-300 hover:text-brand-gold transition-all duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-brand-gold/60 focus:ring-offset-2 focus:ring-offset-[#0A0E27]"
+                  className="w-11 h-11 rounded-full bg-white/5 hover:bg-brand-gold/15 active:bg-brand-gold/20 text-gray-300 hover:text-brand-gold transition-all duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-brand-gold/60 focus:ring-offset-2 focus:ring-offset-[#1a1a1a]"
                   aria-label="Follow us on LinkedIn"
                 >
                   <Linkedin size={18} />
@@ -98,7 +98,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                   href={CONTACT.socialLinks.pinterest}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-11 h-11 rounded-full bg-white/5 hover:bg-brand-gold/15 active:bg-brand-gold/20 text-gray-300 hover:text-brand-gold transition-all duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-brand-gold/60 focus:ring-offset-2 focus:ring-offset-[#0A0E27]"
+                  className="w-11 h-11 rounded-full bg-white/5 hover:bg-brand-gold/15 active:bg-brand-gold/20 text-gray-300 hover:text-brand-gold transition-all duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-brand-gold/60 focus:ring-offset-2 focus:ring-offset-[#1a1a1a]"
                   aria-label="Follow us on Pinterest"
                 >
                   <Share2 size={18} />
@@ -112,29 +112,29 @@ export default function Footer({ onNavigate }: FooterProps) {
             <h4 className="font-semibold text-white mb-4 uppercase tracking-wide text-sm">Our Services</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <button onClick={() => onNavigate('services')} className="text-gray-300 hover:text-brand-gold transition-colors focus:outline-none focus:ring-2 focus:ring-brand-gold/60 focus:ring-offset-2 focus:ring-offset-[#0A0E27] rounded">
+                <button onClick={() => onNavigate('services')} className="text-gray-300 hover:text-brand-gold transition-colors focus:outline-none focus:ring-2 focus:ring-brand-gold/60 focus:ring-offset-2 focus:ring-offset-[#1a1a1a] rounded">
                   Steel Fabrication
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('services')} className="text-gray-300 hover:text-brand-gold transition-colors focus:outline-none focus:ring-2 focus:ring-brand-gold/60 focus:ring-offset-2 focus:ring-offset-[#0A0E27] rounded">
+                <button onClick={() => onNavigate('services')} className="text-gray-300 hover:text-brand-gold transition-colors focus:outline-none focus:ring-2 focus:ring-brand-gold/60 focus:ring-offset-2 focus:ring-offset-[#1a1a1a] rounded">
                   Glass Applications
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('services')} className="text-gray-300 hover:text-brand-gold transition-colors focus:outline-none focus:ring-2 focus:ring-brand-gold/60 focus:ring-offset-2 focus:ring-offset-[#0A0E27] rounded">
+                <button onClick={() => onNavigate('services')} className="text-gray-300 hover:text-brand-gold transition-colors focus:outline-none focus:ring-2 focus:ring-brand-gold/60 focus:ring-offset-2 focus:ring-offset-[#1a1a1a] rounded">
                   Marble Craftsmanship
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('services')} className="text-gray-300 hover:text-brand-gold transition-colors focus:outline-none focus:ring-2 focus:ring-brand-gold/60 focus:ring-offset-2 focus:ring-offset-[#0A0E27] rounded">
+                <button onClick={() => onNavigate('services')} className="text-gray-300 hover:text-brand-gold transition-colors focus:outline-none focus:ring-2 focus:ring-brand-gold/60 focus:ring-offset-2 focus:ring-offset-[#1a1a1a] rounded">
                   Bespoke Furniture
                 </button>
               </li>
               <li className="pt-1">
                 <button 
                   onClick={() => onNavigate('services')} 
-                  className="text-brand-gold hover:text-brand-gold-soft font-medium inline-flex items-center gap-1 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-gold/60 focus:ring-offset-2 focus:ring-offset-[#0A0E27] rounded"
+                  className="text-brand-gold hover:text-brand-gold-soft font-medium inline-flex items-center gap-1 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-gold/60 focus:ring-offset-2 focus:ring-offset-[#1a1a1a] rounded"
                 >
                   View All Services <ArrowRight size={14} />
                 </button>
@@ -216,7 +216,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                     <button
                       type="submit"
                       disabled={isSubscribing}
-                      className="px-4 py-2 bg-gradient-to-br from-brand-gold to-brand-gold-deep text-[#0A0E27] font-semibold text-sm rounded-lg hover:brightness-110 transition-all disabled:opacity-50 disabled:cursor-not-allowed min-h-[40px] flex items-center justify-center"
+                      className="px-4 py-2 bg-gradient-to-br from-brand-gold to-brand-gold-deep text-[#1a1a1a] font-semibold text-sm rounded-lg hover:brightness-110 transition-all disabled:opacity-50 disabled:cursor-not-allowed min-h-[40px] flex items-center justify-center"
                     >
                       {isSubscribing ? <Loader2 size={16} className="animate-spin" /> : 'Subscribe'}
                     </button>
@@ -237,11 +237,11 @@ export default function Footer({ onNavigate }: FooterProps) {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-sm text-gray-300">&copy; {currentYear} GridGo Interiors. All rights reserved.</p>
             <div className="flex items-center gap-6 text-sm">
-              <button className="text-gray-300 hover:text-brand-gold transition-colors focus:outline-none focus:ring-2 focus:ring-brand-gold/60 focus:ring-offset-2 focus:ring-offset-[#0A0E27] rounded px-2 py-1">
+              <button className="text-gray-300 hover:text-brand-gold transition-colors focus:outline-none focus:ring-2 focus:ring-brand-gold/60 focus:ring-offset-2 focus:ring-offset-[#1a1a1a] rounded px-2 py-1">
                 Privacy Policy
               </button>
               <span className="text-gray-600">|</span>
-              <button className="text-gray-300 hover:text-brand-gold transition-colors focus:outline-none focus:ring-2 focus:ring-brand-gold/60 focus:ring-offset-2 focus:ring-offset-[#0A0E27] rounded px-2 py-1">
+              <button className="text-gray-300 hover:text-brand-gold transition-colors focus:outline-none focus:ring-2 focus:ring-brand-gold/60 focus:ring-offset-2 focus:ring-offset-[#1a1a1a] rounded px-2 py-1">
                 Terms of Service
               </button>
             </div>
