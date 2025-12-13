@@ -111,21 +111,21 @@ export default function MobileMenuOverlay({
     <AnimatePresence>
       {open && (
         <>
-          {/* Backdrop */}
+          {/* Full-screen backdrop - completely covers content */}
           <motion.div
-            className="fixed inset-0 z-[9998] bg-black/60 backdrop-blur-sm lg:hidden"
+            className="fixed inset-0 z-[9998] bg-[#1a1a1a] lg:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.25 }}
             onClick={onClose}
             aria-hidden="true"
           />
 
-          {/* Slide-in panel from right */}
+          {/* Full-screen panel */}
           <motion.div
             id="mobile-menu"
-            className="fixed top-0 right-0 bottom-0 w-full max-w-sm z-[10000] bg-background-primary lg:hidden flex flex-col shadow-2xl"
+            className="fixed inset-0 z-[10000] bg-background-primary lg:hidden flex flex-col"
             role="dialog"
             aria-modal="true"
             aria-label="Mobile navigation menu"
@@ -138,8 +138,19 @@ export default function MobileMenuOverlay({
               damping: 30 
             }}
           >
+            {/* Decorative top gradient line */}
+            <div className="h-1 w-full bg-gradient-to-r from-brand-gold via-brand-gold-soft to-brand-gold" aria-hidden="true" />
+            
             {/* Header with close button */}
-            <div className="flex justify-end items-center px-6 py-5 border-b border-white/10">
+            <div className="flex justify-between items-center px-6 py-5 border-b border-white/10">
+              {/* Brand mark */}
+              <div className="flex items-center gap-2">
+                <div className="w-10 h-10 flex items-center justify-center rounded-xl bg-gradient-to-br from-brand-gold to-brand-gold-deep shadow-luxury border border-brand-gold/20">
+                  <span className="text-background-primary font-bold font-display tracking-tight text-lg">G</span>
+                </div>
+                <span className="font-display font-bold text-white text-lg">GridGo</span>
+              </div>
+              
               <motion.button
                 onClick={onClose}
                 aria-label="Close menu"
@@ -153,13 +164,13 @@ export default function MobileMenuOverlay({
 
             {/* Menu content */}
             <motion.nav 
-              className="flex-1 flex flex-col justify-center px-6 py-8"
+              className="flex-1 flex flex-col justify-center px-6 sm:px-10 py-8 overflow-y-auto"
               variants={containerVariants}
               initial="hidden"
               animate="visible"
               exit="exit"
             >
-              <div className="space-y-2">
+              <div className="space-y-3 max-w-md mx-auto w-full">
                 {menuItems.map((item) => {
                   const isActive = currentPage === item.page;
                   return (
@@ -189,7 +200,7 @@ export default function MobileMenuOverlay({
               </div>
 
               <motion.div 
-                className="mt-10 pt-6 border-t border-white/10"
+                className="mt-10 pt-6 border-t border-white/10 max-w-md mx-auto w-full"
                 variants={itemVariants}
               >
                 <Button3D
@@ -215,6 +226,14 @@ export default function MobileMenuOverlay({
                 >
                   +91 859 500 7476
                 </a>
+              </motion.div>
+              
+              {/* Decorative bottom element */}
+              <motion.div 
+                className="mt-auto pt-6 text-center"
+                variants={itemVariants}
+              >
+                <p className="text-text-tertiary/50 text-xs tracking-widest uppercase">Premium Interiors</p>
               </motion.div>
             </motion.nav>
           </motion.div>
