@@ -15,6 +15,7 @@ import FormInput from '../components/ui/FormInput';
 import FormSelect from '../components/ui/FormSelect';
 import FormTextarea from '../components/ui/FormTextarea';
 import { useFormValidation } from '../hooks/useFormValidation';
+import { useRateLimit } from '../hooks/useRateLimit';
 
 const iconMap = {
   Wrench,
@@ -43,6 +44,11 @@ export default function Services({ onNavigate: _onNavigate }: ServicesProps) {
   const [submitError, setSubmitError] = useState('');
   
   const { errors, validate, validateAll, clearError } = useFormValidation();
+  const rateLimit = useRateLimit({ 
+    maxAttempts: 3, 
+    windowMs: 60000, // 1 minute
+    blockDurationMs: 300000 // 5 minutes block
+  });
 
   const prefersReducedMotion = useReducedMotion();
   const transition = { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const };
@@ -53,6 +59,17 @@ export default function Services({ onNavigate: _onNavigate }: ServicesProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Check rate limiting
+    if (!rateLimit.isAllowed) {
+      if (rateLimit.isBlocked && rateLimit.resetTime) {
+        const minutesLeft = Math.ceil((rateLimit.resetTime - Date.now()) / 60000);
+        setSubmitError(`Too many attempts. Please try again in ${minutesLeft} minute${minutesLeft > 1 ? 's' : ''}.`);
+      } else {
+        setSubmitError(`Please wait before submitting again. ${rateLimit.remainingAttempts} attempts remaining.`);
+      }
+      return;
+    }
     
     // Validate all fields before submission
     const validationRules = {
@@ -66,6 +83,9 @@ export default function Services({ onNavigate: _onNavigate }: ServicesProps) {
     if (Object.keys(validationErrors).length > 0) {
       return;
     }
+    
+    // Record the attempt
+    rateLimit.recordAttempt();
     
     setIsSubmitting(true);
     setSubmitError('');
@@ -123,6 +143,8 @@ export default function Services({ onNavigate: _onNavigate }: ServicesProps) {
           <img 
             src="/images/brass-fluted-glass-room-divider.webp" 
             alt="" 
+            width="1920"
+            height="1080"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-neutral-900/60" />

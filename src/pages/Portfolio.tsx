@@ -87,6 +87,8 @@ export default function Portfolio({ onNavigate, onOpenModal }: PortfolioProps) {
           <img 
             src="/images/portfolio-bedroom-led-design.webp" 
             alt="" 
+            width="1920"
+            height="1080"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-neutral-900/60" />

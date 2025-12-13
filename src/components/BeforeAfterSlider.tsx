@@ -115,6 +115,8 @@ export default function BeforeAfterSlider({
         <img
           src={afterImage}
           alt={`${alt} - ${afterLabel}`}
+          width="1200"
+          height="800"
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"
           style={{
@@ -136,6 +138,8 @@ export default function BeforeAfterSlider({
           <img
             src={beforeImage}
             alt={`${alt} - ${beforeLabel}`}
+            width="1200"
+            height="800"
             className="w-full h-full object-cover"
             loading="lazy"
             style={{

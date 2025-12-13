@@ -1,11 +1,13 @@
 import { Lightbulb, Leaf, Target } from 'lucide-react';
-import { teamMembers } from '../data/content';
+import { teamMembers, faqs } from '../data/content';
 import GlassCard from '../components/GlassCard';
 import Button from '../components/ui/Button';
 import Container from '../components/ui/Container';
 import Section from '../components/ui/Section';
 import SectionHeader from '../components/ui/SectionHeader';
 import StatCounter from '../components/StatCounter';
+import Breadcrumb from '../components/Breadcrumb';
+import FAQSection from '../components/FAQSection';
 import { COMPANY } from '../config/company';
 
 interface AboutProps {
@@ -39,6 +41,11 @@ export default function About({ onNavigate }: AboutProps) {
     { value: '98%', label: 'Client Satisfaction' },
   ];
 
+  const breadcrumbItems = [
+    { label: 'Home', page: 'home' },
+    { label: 'About Us', current: true },
+  ];
+
   return (
     <div className="min-h-screen">
       {/* Hero Banner */}
@@ -51,6 +58,8 @@ export default function About({ onNavigate }: AboutProps) {
           <img 
             src="/images/colonial-style-staircase-interior.webp" 
             alt="" 
+            width="1920"
+            height="1080"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-neutral-900/60" />
@@ -76,6 +85,13 @@ export default function About({ onNavigate }: AboutProps) {
           </div>
         </Container>
       </section>
+
+      {/* Breadcrumb Navigation */}
+      <Section spacing="sm" background="none">
+        <Container>
+          <Breadcrumb items={breadcrumbItems} onNavigate={onNavigate} />
+        </Container>
+      </Section>
 
       {/* Stats Section */}
       <Section spacing="lg" background="none">
@@ -141,6 +157,8 @@ export default function About({ onNavigate }: AboutProps) {
                       <img
                         src={member.image}
                         alt={`${member.name} - ${member.title}`}
+                        width="400"
+                        height="400"
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         loading="lazy"
                       />
@@ -161,6 +179,17 @@ export default function About({ onNavigate }: AboutProps) {
             );
             })}
           </div>
+        </Container>
+      </Section>
+
+      {/* FAQ Section */}
+      <Section spacing="lg" background="secondary">
+        <Container>
+          <FAQSection 
+            faqs={faqs} 
+            title="Frequently Asked Questions"
+            subtitle="Everything you need to know about working with GridGo Interiors"
+          />
         </Container>
       </Section>
 

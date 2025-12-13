@@ -67,6 +67,8 @@ export default function Blog({ onNavigate }: BlogProps) {
           <img 
             src="/images/portfolio-dining-area-modern.webp" 
             alt="" 
+            width="1920"
+            height="1080"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-neutral-900/60" />
@@ -107,6 +109,8 @@ export default function Blog({ onNavigate }: BlogProps) {
                     <img
                       src={post.image}
                       alt={`${post.title} - ${post.category} article on interior design`}
+                      width="800"
+                      height="600"
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       loading="lazy"
                     />

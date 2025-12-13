@@ -88,8 +88,47 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
   };
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(e.target.files || []).slice(0, 3 - formData.images.length);
-    handleInputChange('images', [...formData.images, ...files]);
+    const files = Array.from(e.target.files || []);
+    const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+    const ALLOWED_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+    const MAX_FILES = 3;
+    
+    const validFiles: File[] = [];
+    const errors: string[] = [];
+    
+    for (const file of files) {
+      // Check if we've reached max files
+      if (formData.images.length + validFiles.length >= MAX_FILES) {
+        errors.push(`Maximum ${MAX_FILES} files allowed`);
+        break;
+      }
+      
+      // Check file type
+      if (!ALLOWED_TYPES.includes(file.type)) {
+        errors.push(`${file.name}: Invalid file type. Only JPEG, PNG, and WebP are allowed`);
+        continue;
+      }
+      
+      // Check file size
+      if (file.size > MAX_FILE_SIZE) {
+        errors.push(`${file.name}: File too large. Maximum size is 5MB`);
+        continue;
+      }
+      
+      validFiles.push(file);
+    }
+    
+    if (errors.length > 0) {
+      setSubmitError(errors.join('. '));
+      setTimeout(() => setSubmitError(''), 5000);
+    }
+    
+    if (validFiles.length > 0) {
+      handleInputChange('images', [...formData.images, ...validFiles]);
+    }
+    
+    // Reset input value to allow re-uploading the same file
+    e.target.value = '';
   };
 
   const removeImage = (index: number) => {

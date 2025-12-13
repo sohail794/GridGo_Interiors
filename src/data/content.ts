@@ -292,3 +292,46 @@ export const timeline: TimelineEvent[] = [
     description: 'Established presence across major cities in India with 200+ successful projects',
   },
 ];
+
+export const faqs = [
+  {
+    id: 'faq-1',
+    question: 'What services does GridGo Interiors offer?',
+    answer: 'We offer comprehensive interior design services including steel fabrication, glass work, custom marble craftsmanship, bespoke furniture design, décor solutions, and premium painting services. We handle everything from initial consultation and 3D visualization to final installation.',
+  },
+  {
+    id: 'faq-2',
+    question: 'Which cities do you serve?',
+    answer: 'We serve major cities across India including Mumbai, Delhi NCR, Bangalore, Hyderabad, Chennai, Pune, and 9+ other cities. We have successfully completed projects across 15 cities nationwide with our in-house fabrication and installation teams.',
+  },
+  {
+    id: 'faq-3',
+    question: 'How long does a typical project take?',
+    answer: 'Project timelines vary based on scope and complexity. A typical residential project takes 2-4 months, while commercial projects may take 3-6 months. We provide detailed timelines during consultation and maintain transparent communication throughout the project.',
+  },
+  {
+    id: 'faq-4',
+    question: 'Do you provide 3D visualization before starting work?',
+    answer: 'Yes, we provide detailed 3D visualizations and renderings for all projects. This allows you to see and approve the design before we begin fabrication and installation, ensuring the final result matches your vision perfectly.',
+  },
+  {
+    id: 'faq-5',
+    question: 'What is your pricing structure?',
+    answer: 'Our pricing is customized based on project scope, materials, and complexity. We offer transparent pricing with detailed quotations after the initial consultation. We work with various budgets and provide options to suit your requirements without compromising on quality.',
+  },
+  {
+    id: 'faq-6',
+    question: 'Do you offer post-installation support?',
+    answer: 'Absolutely! We provide comprehensive post-installation support including warranty coverage, maintenance guidance, and prompt assistance for any issues. Our relationship with clients extends beyond project completion.',
+  },
+  {
+    id: 'faq-7',
+    question: 'Can you work with my existing furniture and décor?',
+    answer: 'Yes, we can incorporate your existing furniture and décor into the new design. During consultation, we assess your current items and create a cohesive design that blends old and new elements harmoniously.',
+  },
+  {
+    id: 'faq-8',
+    question: 'What makes GridGo different from other interior designers?',
+    answer: 'We have in-house fabrication facilities for steel, glass, and furniture, ensuring complete quality control and eliminating middlemen. With 20+ years of experience and 300+ completed projects, we offer end-to-end solutions from design to installation with transparent pricing and timely delivery.',
+  },
+];

@@ -204,6 +204,8 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
                         <img
                           src={project.image}
                           alt={project.title}
+                          width="800"
+                          height="600"
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                           loading="lazy"
                         />
