@@ -52,7 +52,6 @@ export default function HeaderNew({ currentPage, onNavigate, onOpenModal, mobile
         transition-all duration-200 ease-out
         backdrop-blur-md 
         ${isScrolled ? 'h-16 shadow-luxury bg-[#1a1a1a]/95' : 'h-20 bg-[#1a1a1a]/80'}
-        ${mobileMenuOpen ? 'max-lg:invisible' : ''}
       `}
       role="banner"
       aria-label="Site navigation"

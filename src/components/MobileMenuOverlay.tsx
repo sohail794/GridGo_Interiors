@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { X } from 'lucide-react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import Button3D from './Button3D';
-import Logo from './Logo';
 
 interface MobileMenuOverlayProps {
   open: boolean;
@@ -28,31 +27,27 @@ export default function MobileMenuOverlay({
     { label: 'Insights', page: 'blog' },
   ];
 
-  // Lock body scroll when menu is open and prevent scroll-up animations
+  // Lock body scroll when menu is open
   useEffect(() => {
     if (open) {
-      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+      const scrollY = window.scrollY;
       document.body.style.overflow = 'hidden';
-      document.body.style.paddingRight = `${scrollbarWidth}px`;
       document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
       document.body.style.width = '100%';
-      document.body.style.top = '0';
-      document.documentElement.style.overflow = 'hidden';
     } else {
+      const scrollY = document.body.style.top;
       document.body.style.overflow = '';
-      document.body.style.paddingRight = '';
       document.body.style.position = '';
-      document.body.style.width = '';
       document.body.style.top = '';
-      document.documentElement.style.overflow = '';
+      document.body.style.width = '';
+      window.scrollTo(0, parseInt(scrollY || '0') * -1);
     }
     return () => {
       document.body.style.overflow = '';
-      document.body.style.paddingRight = '';
       document.body.style.position = '';
-      document.body.style.width = '';
       document.body.style.top = '';
-      document.documentElement.style.overflow = '';
+      document.body.style.width = '';
     };
   }, [open]);
 
@@ -69,97 +64,161 @@ export default function MobileMenuOverlay({
     }
   }, [open, onClose]);
 
-  const handleBackdropClick = (e: React.MouseEvent) => {
-    if (e.target === e.currentTarget) {
-      onClose();
-    }
-  };
-
   const handleNavClick = (page: string) => {
     onNavigate(page);
     onClose();
   };
 
+  // Animation variants for staggered menu items
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.08,
+        delayChildren: 0.1,
+      },
+    },
+    exit: {
+      opacity: 0,
+      transition: {
+        staggerChildren: 0.05,
+        staggerDirection: -1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, x: 50, scale: 0.9 },
+    visible: { 
+      opacity: 1, 
+      x: 0, 
+      scale: 1,
+      transition: { 
+        type: 'spring', 
+        stiffness: 300, 
+        damping: 24 
+      } 
+    },
+    exit: { 
+      opacity: 0, 
+      x: 30,
+      transition: { duration: 0.15 }
+    },
+  };
+
   return (
     <AnimatePresence>
       {open && (
-        <motion.div
-          id="mobile-menu"
-          onClick={handleBackdropClick}
-          className="fixed top-0 left-0 right-0 bottom-0 w-full h-full min-h-screen z-[99999] bg-[#1a1a1a] lg:hidden flex flex-col overflow-hidden"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Mobile navigation menu"
-          aria-hidden={!open}
-          initial={prefersReducedMotion ? undefined : { opacity: 0 }}
-          animate={prefersReducedMotion ? undefined : { opacity: 1 }}
-          exit={prefersReducedMotion ? undefined : { opacity: 0 }}
-          transition={prefersReducedMotion ? undefined : { duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-        >
+        <>
+          {/* Backdrop */}
           <motion.div
-            className="flex flex-col w-full h-full"
-            initial={prefersReducedMotion ? undefined : { opacity: 0 }}
-            animate={prefersReducedMotion ? undefined : { opacity: 1 }}
-            exit={prefersReducedMotion ? undefined : { opacity: 0 }}
-            transition={prefersReducedMotion ? undefined : { duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed inset-0 z-[9998] bg-black/60 backdrop-blur-sm lg:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            onClick={onClose}
+            aria-hidden="true"
+          />
+
+          {/* Slide-in panel from right */}
+          <motion.div
+            id="mobile-menu"
+            className="fixed top-0 right-0 bottom-0 w-full max-w-sm z-[10000] bg-background-primary lg:hidden flex flex-col shadow-2xl"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Mobile navigation menu"
+            initial={prefersReducedMotion ? { opacity: 0 } : { x: '100%' }}
+            animate={prefersReducedMotion ? { opacity: 1 } : { x: 0 }}
+            exit={prefersReducedMotion ? { opacity: 0 } : { x: '100%' }}
+            transition={prefersReducedMotion ? { duration: 0.2 } : { 
+              type: 'spring', 
+              stiffness: 300, 
+              damping: 30 
+            }}
           >
-            {/* Header with logo and close button */}
-            <div className="fixed top-0 left-0 right-0 z-[100000] bg-background-primary border-b border-white/10">
-              <div className="flex justify-between items-center px-6 py-4 max-w-[1400px] mx-auto w-full">
-                <Logo size="sm" onClick={() => { onNavigate('home'); onClose(); }} />
-                <button
-                  onClick={onClose}
-                  aria-label="Close menu"
-                  className="p-2 text-brand-gold hover:text-brand-gold-soft transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a1a1a] rounded-lg hover:bg-white/5"
-                >
-                  <X size={28} />
-                </button>
-              </div>
+            {/* Header with close button */}
+            <div className="flex justify-end items-center px-6 py-5 border-b border-white/10">
+              <motion.button
+                onClick={onClose}
+                aria-label="Close menu"
+                className="w-12 h-12 flex items-center justify-center text-brand-gold hover:text-white bg-white/5 hover:bg-brand-gold/20 rounded-xl transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/60"
+                whileHover={{ scale: 1.05, rotate: 90 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <X size={24} />
+              </motion.button>
             </div>
 
-            {/* Centered menu content */}
-            <div className="flex flex-col items-center justify-center flex-1 px-6 pt-20 pb-6">
-              <nav className="flex flex-col items-center gap-3 w-full max-w-md">
+            {/* Menu content */}
+            <motion.nav 
+              className="flex-1 flex flex-col justify-center px-6 py-8"
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+            >
+              <div className="space-y-2">
                 {menuItems.map((item) => {
                   const isActive = currentPage === item.page;
                   return (
-                    <button
+                    <motion.button
                       key={item.page}
+                      variants={itemVariants}
                       onClick={() => handleNavClick(item.page)}
                       className={`
-                        w-full text-left px-6 py-4 rounded-xl text-lg font-semibold
-                        transition-all duration-200 ease-out
-                        min-h-[56px] flex items-center touch-manipulation
-                        active:scale-[0.98] active:bg-white/5
-                        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a1a1a]
+                        w-full text-left px-6 py-4 rounded-2xl text-xl font-semibold
+                        transition-all duration-300 ease-out
+                        min-h-[64px] flex items-center
+                        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold/60
                         ${
                           isActive
-                            ? 'bg-gradient-to-r from-brand-gold/18 to-brand-gold-soft/8 text-brand-gold border-l-4 border-brand-gold font-bold shadow-[0_0_22px_rgba(212,175,55,0.10)]'
-                            : 'text-gray-300 hover:text-brand-gold hover:bg-white/5 hover:translate-x-2 border-l-4 border-transparent hover:border-brand-gold/30'
+                            ? 'bg-gradient-to-r from-brand-gold/20 to-brand-gold-soft/10 text-brand-gold border-l-4 border-brand-gold'
+                            : 'text-gray-200 hover:text-white hover:bg-white/5 hover:pl-8 border-l-4 border-transparent hover:border-brand-gold/40'
                         }
                       `}
                       aria-current={isActive ? 'page' : undefined}
+                      whileHover={{ x: isActive ? 0 : 8 }}
+                      whileTap={{ scale: 0.98 }}
                     >
                       {item.label}
-                    </button>
+                    </motion.button>
                   );
                 })}
+              </div>
 
-                <div className="w-full mt-6">
-                  <Button3D
-                    className="w-full min-h-[56px] text-lg font-semibold"
-                    onClick={() => {
-                      onOpenModal();
-                      onClose();
-                    }}
-                  >
-                    Get a Quote
-                  </Button3D>
-                </div>
-              </nav>
-            </div>
+              <motion.div 
+                className="mt-10 pt-6 border-t border-white/10"
+                variants={itemVariants}
+              >
+                <Button3D
+                  className="w-full min-h-[60px] text-lg font-semibold"
+                  onClick={() => {
+                    onOpenModal();
+                    onClose();
+                  }}
+                >
+                  Get a Quote
+                </Button3D>
+              </motion.div>
+
+              {/* Contact info */}
+              <motion.div 
+                className="mt-8 text-center"
+                variants={itemVariants}
+              >
+                <p className="text-text-tertiary text-sm mb-2">Need help?</p>
+                <a 
+                  href="tel:+918595007476" 
+                  className="text-brand-gold hover:text-brand-gold-soft font-medium transition-colors"
+                >
+                  +91 859 500 7476
+                </a>
+              </motion.div>
+            </motion.nav>
           </motion.div>
-        </motion.div>
+        </>
       )}
     </AnimatePresence>
   );
