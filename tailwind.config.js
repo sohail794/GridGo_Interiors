@@ -31,7 +31,7 @@ export default {
       textColor: {
         'text-primary': '#ffffff',
         'text-secondary': '#b0b0b0',
-        'text-tertiary': '#999999',
+        'text-tertiary': '#a8a8a8',
         'text-disabled': '#6b7280',
       },
       backgroundColor: {

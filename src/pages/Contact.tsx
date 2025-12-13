@@ -12,6 +12,7 @@ import FormLabel from '../components/ui/FormLabel';
 import FormInput from '../components/ui/FormInput';
 import FormTextarea from '../components/ui/FormTextarea';
 import { useFormValidation } from '../hooks/useFormValidation';
+import { useHoneypot } from '../hooks/useHoneypot';
 
 interface ContactProps {
   onNavigate: (page: string) => void;
@@ -30,6 +31,7 @@ export default function Contact({ onNavigate: _onNavigate }: ContactProps) {
   const [submitError, setSubmitError] = useState('');
   
   const { errors, validate, validateAll, clearError } = useFormValidation();
+  const { isSpam, HoneypotField } = useHoneypot();
 
   const prefersReducedMotion = useReducedMotion();
   const transition = { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const };
@@ -48,6 +50,15 @@ export default function Contact({ onNavigate: _onNavigate }: ContactProps) {
     
     const validationErrors = validateAll(formData, validationRules);
     if (Object.keys(validationErrors).length > 0) {
+      return;
+    }
+    
+    // Check for spam (honeypot)
+    if (isSpam()) {
+      // Silently reject spam submissions
+      setSubmitSuccess(true);
+      setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+      setTimeout(() => setSubmitSuccess(false), 5000);
       return;
     }
     

@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, CSSProperties } from 'react';
 
 interface GlassCardProps {
   children: ReactNode;
@@ -6,6 +6,7 @@ interface GlassCardProps {
   hover?: boolean;
   padding?: 'sm' | 'md' | 'lg';
   border?: 'default' | 'gold' | 'subtle' | 'none';
+  style?: CSSProperties;
 }
 
 export default function GlassCard({
@@ -14,6 +15,7 @@ export default function GlassCard({
   hover = true,
   padding = 'md',
   border = 'default',
+  style,
 }: GlassCardProps) {
   const paddingClasses = {
     sm: 'p-4',
@@ -40,6 +42,7 @@ export default function GlassCard({
         ${paddingClasses[padding]}
         ${className}
       `}
+      style={style}
     >
       {children}
     </div>
