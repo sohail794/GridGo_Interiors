@@ -101,7 +101,7 @@ export default function Contact({ onNavigate: _onNavigate }: ContactProps) {
       setSubmitSuccess(true);
       setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
       setTimeout(() => setSubmitSuccess(false), 5000);
-    } catch (error) {
+    } catch {
       setSubmitError('Failed to submit form. Please try again or contact us directly.');
     } finally {
       setIsSubmitting(false);
@@ -377,6 +377,9 @@ export default function Contact({ onNavigate: _onNavigate }: ContactProps) {
                       charLimit={500}
                     />
                   </div>
+
+                  {/* Honeypot field for spam protection */}
+                  <HoneypotField />
 
                   <div>
                     <Button variant="primary" size="lg" type="submit" className="w-full" loading={isSubmitting} disabled={isSubmitting}>

@@ -76,7 +76,7 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
 
   if (!isOpen) return null;
 
-  const handleInputChange = (field: string, value: any) => {
+  const handleInputChange = (field: string, value: string | string[] | File[]) => {
     setFormData({ ...formData, [field]: value });
   };
 
@@ -150,7 +150,7 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
         service: formData.projectTypes.join(', '),
       });
       setSubmitted(true);
-    } catch (error) {
+    } catch {
       setSubmitError('Failed to submit. Please try again.');
     } finally {
       setIsSubmitting(false);

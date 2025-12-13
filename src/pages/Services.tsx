@@ -110,7 +110,7 @@ export default function Services({ onNavigate: _onNavigate }: ServicesProps) {
       setSubmitSuccess(true);
       setFormData({ name: '', email: '', phone: '', service: '', message: '' });
       setTimeout(() => setSubmitSuccess(false), 5000);
-    } catch (error) {
+    } catch {
       setSubmitError('Failed to send. Please try again.');
     } finally {
       setIsSubmitting(false);

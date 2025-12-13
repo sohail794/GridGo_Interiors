@@ -8,7 +8,7 @@ export interface ValidationRule {
   phone?: boolean;
   indianPhone?: boolean;
   pattern?: RegExp;
-  custom?: (value: any) => string | undefined;
+  custom?: (value: unknown) => string | undefined;
 }
 
 export interface FormErrors {
@@ -17,8 +17,8 @@ export interface FormErrors {
 
 export interface UseFormValidationReturn {
   errors: FormErrors;
-  validate: (fieldName: string, value: any, rules: ValidationRule) => string | undefined;
-  validateAll: (data: Record<string, any>, rules: Record<string, ValidationRule>) => FormErrors;
+  validate: (fieldName: string, value: unknown, rules: ValidationRule) => string | undefined;
+  validateAll: (data: Record<string, unknown>, rules: Record<string, ValidationRule>) => FormErrors;
   clearError: (fieldName: string) => void;
   clearAllErrors: () => void;
   hasErrors: boolean;
@@ -34,19 +34,19 @@ export function useFormValidation(): UseFormValidationReturn {
   };
 
   const validatePhone = (phone: string): boolean => {
-    const phoneRegex = /^[\d\s\-\+\(\)]{7,}$/;
+    const phoneRegex = /^[\d\s\-+()]{7,}$/;
     return phoneRegex.test(phone);
   };
 
   const validateIndianPhone = (phone: string): boolean => {
     // Indian 10-digit mobile number (with optional +91 or 0 prefix)
-    const cleanPhone = phone.replace(/[\s\-\(\)]/g, '');
+    const cleanPhone = phone.replace(/[\s\-()]/g, '');
     const indianPhoneRegex = /^(?:\+91|91|0)?[6-9]\d{9}$/;
     return indianPhoneRegex.test(cleanPhone);
   };
 
   const validate = useCallback(
-    (fieldName: string, value: any, rules: ValidationRule): string | undefined => {
+    (fieldName: string, value: unknown, rules: ValidationRule): string | undefined => {
       let error: string | undefined;
       const stringValue = value?.toString().trim() || '';
 
@@ -131,7 +131,7 @@ export function useFormValidation(): UseFormValidationReturn {
   );
 
   const validateAll = useCallback(
-    (data: Record<string, any>, rules: Record<string, ValidationRule>): FormErrors => {
+    (data: Record<string, unknown>, rules: Record<string, ValidationRule>): FormErrors => {
       const newErrors: FormErrors = {};
 
       Object.entries(rules).forEach(([fieldName, fieldRules]) => {

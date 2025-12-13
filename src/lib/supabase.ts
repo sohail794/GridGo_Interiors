@@ -1,10 +1,10 @@
-import { createClient } from '@supabase/supabase-js';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
 // Initialize Supabase only if environment variables are provided
-let supabase: any = null;
+let supabase: SupabaseClient | null = null;
 
 if (supabaseUrl && supabaseAnonKey) {
   supabase = createClient(supabaseUrl, supabaseAnonKey);

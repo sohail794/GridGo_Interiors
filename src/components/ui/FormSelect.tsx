@@ -6,7 +6,7 @@ interface FormSelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   options?: { value: string; label: string }[];
 }
 
-export default function FormSelect({ error, errorId, options, className = '', children, id, ...props }: FormSelectProps) {
+export default function FormSelect({ error, errorId, className = '', children, id, ...props }: FormSelectProps) {
   const errorMessageId = errorId || (id ? `${id}-error` : undefined);
 
   return (

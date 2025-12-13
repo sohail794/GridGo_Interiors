@@ -120,8 +120,9 @@ export const initWebVitals = async () => {
     let clsValue = 0;
     const clsObserver = new PerformanceObserver((list) => {
       for (const entry of list.getEntries()) {
-        if (!(entry as any).hadRecentInput) {
-          clsValue += (entry as any).value;
+        const layoutShift = entry as PerformanceEntry & { hadRecentInput?: boolean; value: number };
+        if (!layoutShift.hadRecentInput) {
+          clsValue += layoutShift.value;
         }
       }
     });

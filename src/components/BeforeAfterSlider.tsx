@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useCallback } from 'react';
 
 interface BeforeAfterSliderProps {
   beforeImage: string;
@@ -50,7 +50,7 @@ export default function BeforeAfterSlider({
     setIsDragging(false);
   };
 
-  const updateSliderPosition = (e: MouseEvent | TouchEvent) => {
+  const updateSliderPosition = useCallback((e: MouseEvent | TouchEvent) => {
     if (!isDragging || !containerRef.current) return;
 
     const container = containerRef.current;
@@ -60,7 +60,7 @@ export default function BeforeAfterSlider({
     const newPosition = ((clientX - rect.left) / rect.width) * 100;
     
     setSliderPosition(Math.max(0, Math.min(100, newPosition)));
-  };
+  }, [isDragging]);
 
   useEffect(() => {
     if (!isDragging) return;
@@ -76,7 +76,7 @@ export default function BeforeAfterSlider({
       window.removeEventListener('touchmove', updateSliderPosition);
       window.removeEventListener('touchend', handleTouchEnd);
     };
-  }, [isDragging]);
+  }, [isDragging, updateSliderPosition]);
 
   const handleContainerClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current) return;

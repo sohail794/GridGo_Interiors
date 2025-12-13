@@ -10,6 +10,7 @@ import Section from '../components/ui/Section';
 import Card from '../components/ui/Card';
 import FormInput from '../components/ui/FormInput';
 import { CONTACT } from '../config/contact';
+import Breadcrumb from '../components/Breadcrumb';
 
 interface BlogProps {
   onNavigate: (page: string) => void;

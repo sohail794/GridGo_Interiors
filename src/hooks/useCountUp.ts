@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, RefObject } from 'react';
+import { useEffect, useRef, useState, RefObject, useCallback } from 'react';
 
 export interface CountUpOptions {
   duration?: number;
@@ -47,7 +47,7 @@ export const useCountUp = (
     t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
   const easeOutCubic = (t: number) => 1 - (1 - t) ** 3;
 
-  const getEasingFunction = (easingName: string) => {
+  const getEasingFunction = useCallback((easingName: string) => {
     switch (easingName) {
       case 'ease-out':
         return easeOutQuad;
@@ -58,9 +58,9 @@ export const useCountUp = (
       default:
         return easeOutQuad;
     }
-  };
+  }, []);
 
-  const animate = () => {
+  const animate = useCallback(() => {
     if (!startTimeRef.current) return;
 
     const now = Date.now();
@@ -88,7 +88,7 @@ export const useCountUp = (
       );
       onComplete?.();
     }
-  };
+  }, [duration, easing, start, targetNumber, decimals, onComplete, getEasingFunction]);
 
   useEffect(() => {
     const prefersReducedMotion = respectReducedMotion && 
@@ -117,7 +117,7 @@ export const useCountUp = (
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [targetNumber, duration, delay, easing, start, decimals, respectReducedMotion, onComplete]);
+  }, [targetNumber, duration, delay, easing, start, decimals, respectReducedMotion, onComplete, animate]);
 
   return { displayValue, isAnimating };
 };
@@ -159,7 +159,7 @@ export const useCountUpInView = (
     t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
   const easeOutCubic = (t: number) => 1 - (1 - t) ** 3;
 
-  const getEasingFunction = (easingName: string) => {
+  const getEasingFunction = useCallback((easingName: string) => {
     switch (easingName) {
       case 'ease-out':
         return easeOutQuad;
@@ -170,9 +170,9 @@ export const useCountUpInView = (
       default:
         return easeOutQuad;
     }
-  };
+  }, []);
 
-  const animate = () => {
+  const animate = useCallback(() => {
     if (!startTimeRef.current) return;
 
     const now = Date.now();
@@ -200,7 +200,7 @@ export const useCountUpInView = (
       );
       onComplete?.();
     }
-  };
+  }, [duration, easing, start, targetNumber, decimals, onComplete, getEasingFunction]);
 
   // Setup scroll detection
   useEffect(() => {
@@ -253,7 +253,7 @@ export const useCountUpInView = (
         observerRef.current.disconnect();
       }
     };
-  }, [ref, threshold, rootMargin, respectReducedMotion, targetNumber, decimals, delay, duration, easing, start, hasAnimated, onComplete]);
+  }, [ref, threshold, rootMargin, respectReducedMotion, targetNumber, decimals, delay, duration, easing, start, hasAnimated, onComplete, animate]);
 
   return { displayValue, isVisible, isAnimating };
 };
@@ -298,7 +298,7 @@ export const useCountUpStagger = (
     t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
   const easeOutCubic = (t: number) => 1 - (1 - t) ** 3;
 
-  const getEasingFunction = (easingName: string) => {
+  const getEasingFunction = useCallback((easingName: string) => {
     switch (easingName) {
       case 'ease-out':
         return easeOutQuad;
@@ -309,9 +309,9 @@ export const useCountUpStagger = (
       default:
         return easeOutQuad;
     }
-  };
+  }, []);
 
-  const animate = () => {
+  const animate = useCallback(() => {
     if (!startTimeRef.current) return;
 
     const now = Date.now();
@@ -339,7 +339,7 @@ export const useCountUpStagger = (
       );
       onComplete?.();
     }
-  };
+  }, [duration, easing, start, targetNumber, decimals, onComplete, getEasingFunction]);
 
   // Setup scroll detection with stagger
   useEffect(() => {
@@ -393,7 +393,7 @@ export const useCountUpStagger = (
         observerRef.current.disconnect();
       }
     };
-  }, [ref, threshold, rootMargin, respectReducedMotion, targetNumber, decimals, delay, duration, easing, start, hasAnimated, onComplete, itemIndex, staggerDelay]);
+  }, [ref, threshold, rootMargin, respectReducedMotion, targetNumber, decimals, delay, duration, easing, start, hasAnimated, onComplete, itemIndex, staggerDelay, animate]);
 
   return { displayValue, isVisible, isAnimating };
 };
