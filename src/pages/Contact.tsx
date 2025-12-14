@@ -14,7 +14,6 @@ import FormTextarea from '../components/ui/FormTextarea';
 import { useFormValidation } from '../hooks/useFormValidation';
 import { useHoneypot } from '../hooks/useHoneypot';
 import { useRateLimit } from '../hooks/useRateLimit';
-import { announceFormErrors, announceFormStatus } from '../hooks/useAnnouncer';
 import Breadcrumb from '../components/Breadcrumb';
 import FAQSection from '../components/FAQSection';
 import { faqs } from '../data/content';
@@ -76,7 +75,6 @@ export default function Contact({ onNavigate: _onNavigate }: ContactProps) {
     
     const validationErrors = validateAll(formData, validationRules);
     if (Object.keys(validationErrors).length > 0) {
-      announceFormErrors(validationErrors);
       return;
     }
     
@@ -94,7 +92,6 @@ export default function Contact({ onNavigate: _onNavigate }: ContactProps) {
     
     setIsSubmitting(true);
     setSubmitError('');
-    announceFormStatus('submitting');
 
     try {
       await submitContactForm({
@@ -103,11 +100,9 @@ export default function Contact({ onNavigate: _onNavigate }: ContactProps) {
       });
       setSubmitSuccess(true);
       setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
-      announceFormStatus('success', 'Your message has been sent successfully. We will get back to you soon.');
       setTimeout(() => setSubmitSuccess(false), 5000);
     } catch {
       setSubmitError('Failed to submit form. Please try again or contact us directly.');
-      announceFormStatus('error', 'Failed to submit form. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
