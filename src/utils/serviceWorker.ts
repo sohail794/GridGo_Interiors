@@ -11,8 +11,6 @@ export function registerServiceWorker() {
           scope: '/',
         });
 
-        console.log('Service Worker registered:', registration.scope);
-
         // Check for updates periodically
         setInterval(() => {
           registration.update();
@@ -34,7 +32,7 @@ export function registerServiceWorker() {
           });
         });
       } catch (error) {
-        console.error('Service Worker registration failed:', error);
+        // Service Worker registration failed - silently ignore in production
       }
     });
 
@@ -51,8 +49,8 @@ export function unregisterServiceWorker() {
       .then((registration) => {
         registration.unregister();
       })
-      .catch((error) => {
-        console.error('Service Worker unregistration failed:', error);
+      .catch(() => {
+        // Service Worker unregistration failed - silently ignore
       });
   }
 }
@@ -91,7 +89,6 @@ export function initPWAInstallPrompt() {
   });
 
   window.addEventListener('appinstalled', () => {
-    console.log('PWA installed successfully');
     deferredPrompt = null;
   });
 }
@@ -103,7 +100,6 @@ export async function promptPWAInstall() {
 
   deferredPrompt.prompt();
   const { outcome } = await deferredPrompt.userChoice;
-  console.log(`User ${outcome === 'accepted' ? 'accepted' : 'dismissed'} the install prompt`);
   deferredPrompt = null;
   return outcome === 'accepted';
 }

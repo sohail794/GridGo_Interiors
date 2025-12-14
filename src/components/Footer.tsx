@@ -156,15 +156,15 @@ export default function Footer({ onNavigate }: FooterProps) {
           <div>
             <h4 className="font-semibold text-white mb-4 uppercase tracking-wide text-sm">Contact Us</h4>
             <ul className="space-y-3 text-sm">
-              {CONTACT.addressLabel && (
+              {CONTACT.location && (
                 <li className="flex items-start gap-3">
                   <MapPin size={16} className="mt-0.5 flex-shrink-0 text-brand-gold" />
                   {CONTACT.mapsUrl ? (
                     <a href={CONTACT.mapsUrl} target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-brand-gold transition-colors leading-relaxed">
-                      {CONTACT.addressLabel}
+                      {CONTACT.location}
                     </a>
                   ) : (
-                    <span className="text-gray-300 leading-relaxed">{CONTACT.addressLabel}</span>
+                    <span className="text-gray-300 leading-relaxed">{CONTACT.location}</span>
                   )}
                 </li>
               )}

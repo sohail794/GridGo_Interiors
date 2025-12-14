@@ -35,9 +35,6 @@ export default {
         'text-disabled': '#6b7280',
       },
       backgroundColor: {
-        'bg-primary': '#1a1a1a',
-        'bg-secondary': '#252525',
-        'bg-elevated': '#2a2a2a',
         'background-primary': '#1a1a1a',
         'background-secondary': '#252525',
         'background-elevated': '#2a2a2a',

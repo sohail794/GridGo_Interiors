@@ -40,13 +40,6 @@ const getRating = (name: string, value: number): 'good' | 'needs-improvement' | 
  * Report web vitals to console (can be extended to send to analytics)
  */
 const reportWebVital = (metric: WebVital) => {
-  // Log to console for development
-  console.log(`[Web Vitals] ${metric.name}:`, {
-    value: metric.value,
-    rating: metric.rating,
-    id: metric.id,
-  });
-
   // Send to analytics service (uncomment and configure as needed)
   /*
   if (typeof window !== 'undefined' && window.gtag) {
@@ -65,7 +58,7 @@ const reportWebVital = (metric: WebVital) => {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(metric),
-  }).catch(console.error);
+  }).catch(() => {});
   */
 };
 
@@ -178,7 +171,7 @@ export const initWebVitals = async () => {
     });
 
   } catch (error) {
-    console.error('Failed to initialize web vitals tracking:', error);
+    // Failed to initialize web vitals tracking - silently ignore in production
   }
 };
 

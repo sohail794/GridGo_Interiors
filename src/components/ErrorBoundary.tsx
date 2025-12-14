@@ -22,10 +22,7 @@ export default class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBo
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo): void {
-    // Log error to console in development
-    console.error('ErrorBoundary caught an error:', error, errorInfo);
-    
-    // In production, you would send this to an error tracking service
+    // In production, send this to an error tracking service
     // Example: Sentry.captureException(error, { extra: errorInfo });
   }
 

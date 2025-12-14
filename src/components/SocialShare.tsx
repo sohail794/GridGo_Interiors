@@ -23,7 +23,7 @@ export default function SocialShare({ url, title, description }: SocialShareProp
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
-      console.error('Failed to copy link:', err);
+      // Failed to copy link - silently ignore
     }
   };
 

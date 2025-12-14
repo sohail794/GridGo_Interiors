@@ -8,8 +8,6 @@ let supabase: SupabaseClient | null = null;
 
 if (supabaseUrl && supabaseAnonKey) {
   supabase = createClient(supabaseUrl, supabaseAnonKey);
-} else {
-  console.warn('Supabase environment variables not configured. Contact form submissions will be disabled.');
 }
 
 export { supabase };
@@ -27,7 +25,6 @@ export interface ContactSubmission {
 export const submitContactForm = async (data: ContactSubmission) => {
   if (!supabase) {
     // Graceful fallback when Supabase is not configured
-    console.warn('Supabase not configured. Contact form submission aborted.');
     throw new Error('Contact form service is temporarily unavailable. Please try again later.');
   }
 

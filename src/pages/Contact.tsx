@@ -121,10 +121,10 @@ export default function Contact({ onNavigate: _onNavigate }: ContactProps) {
       content: CONTACT.email,
       link: `mailto:${CONTACT.email}`,
     },
-    ...(CONTACT.addressLabel ? [{
+    ...(CONTACT.location ? [{
       icon: MapPin,
       title: 'Location',
-      content: CONTACT.addressLabel,
+      content: CONTACT.location,
       link: CONTACT.mapsUrl || null,
     }] : []),
     {
@@ -221,13 +221,13 @@ export default function Contact({ onNavigate: _onNavigate }: ContactProps) {
 
               <div className="relative h-64 rounded-2xl overflow-hidden shadow-card-hover">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d241317.11609823277!2d72.74109995709658!3d19.08219783958221!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c6306644edc1%3A0x5da4ed8f8d648c69!2sMumbai%2C%20Maharashtra%2C%20India!5e0!3m2!1sen!2sus!4v1234567890"
+                  src={`https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3503.8147848596767!2d${CONTACT.coordinates.lng}!3d${CONTACT.coordinates.lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1702578000000`}
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
                   allowFullScreen
                   loading="lazy"
-                  title="GridGo Interiors Location"
+                  title="GridGo Interiors Location - New Delhi"
                 />
               </div>
             </motion.div>

@@ -47,7 +47,7 @@ function App() {
   }, [currentPage]);
 
   return (
-    <div className="min-h-screen bg-bg-primary overflow-x-hidden">
+    <div className="min-h-screen bg-background-primary overflow-x-hidden">
       <ScrollProgressBar />
       <PageTransition isVisible={pageTransitionActive} />
 
