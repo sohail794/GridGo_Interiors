@@ -40,10 +40,6 @@ export default function ProjectDetail({ projectId, onBack }: ProjectDetailProps)
     );
   }
 
-  const relatedProjects = projects
-    .filter((p: Project) => p.category === project.category && p.id !== project.id)
-    .slice(0, 3);
-
   const breadcrumbItems = [
     { label: 'Home', href: '/' },
     { label: 'Portfolio', href: '/portfolio' },
@@ -158,18 +154,19 @@ export default function ProjectDetail({ projectId, onBack }: ProjectDetailProps)
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
+                className="bg-white rounded-xl p-6 shadow-sm"
               >
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">Project Overview</h2>
-                <p className="text-gray-700 text-lg leading-relaxed">
+                <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">Project Overview</h2>
+                <p className="text-gray-700 text-lg leading-relaxed mb-6">
                   {project.description}
                 </p>
                 {project.scope && (
-                  <div className="mt-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center">
-                      <Layers className="w-5 h-5 mr-2 text-amber-500" />
+                  <div className="mt-8 pt-6 border-t border-gray-200">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3 flex items-center">
+                      <Layers className="w-6 h-6 mr-2 text-amber-500" />
                       Scope of Work
                     </h3>
-                    <p className="text-gray-700">{project.scope}</p>
+                    <p className="text-gray-700 text-lg leading-relaxed">{project.scope}</p>
                   </div>
                 )}
               </motion.div>
@@ -180,17 +177,17 @@ export default function ProjectDetail({ projectId, onBack }: ProjectDetailProps)
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.4 }}
-                  className="bg-gray-50 rounded-xl p-6"
+                  className="bg-white rounded-xl p-6 shadow-sm border border-gray-100"
                 >
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">Materials & Finishes</h3>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Materials & Finishes</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {project.materials.map((material: string, index: number) => (
                       <div
                         key={index}
-                        className="flex items-center bg-white rounded-lg px-4 py-3 shadow-sm"
+                        className="flex items-center bg-gray-50 rounded-lg px-5 py-4 hover:bg-amber-50 transition-colors"
                       >
-                        <CheckCircle className="w-5 h-5 text-amber-500 mr-2 flex-shrink-0" />
-                        <span className="text-gray-700 text-sm">{material}</span>
+                        <CheckCircle className="w-6 h-6 text-amber-500 mr-3 flex-shrink-0" />
+                        <span className="text-gray-800 text-base font-medium">{material}</span>
                       </div>
                     ))}
                   </div>
@@ -203,8 +200,9 @@ export default function ProjectDetail({ projectId, onBack }: ProjectDetailProps)
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.5 }}
+                  className="bg-white rounded-xl p-6 shadow-sm"
                 >
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">Transformation</h3>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Transformation</h3>
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="relative rounded-xl overflow-hidden">
                       <img
@@ -309,52 +307,7 @@ export default function ProjectDetail({ projectId, onBack }: ProjectDetailProps)
         </Container>
       </Section>
 
-      {/* Related Projects */}
-      {relatedProjects.length > 0 && (
-        <Section className="py-16 bg-gray-50">
-          <Container>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8 text-center">
-                Similar Projects
-              </h2>
-              <div className="grid md:grid-cols-3 gap-8">
-                {relatedProjects.map((relatedProject: Project, index: number) => (
-                  <motion.div
-                    key={relatedProject.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                    className="group cursor-pointer"
-                    onClick={() => {
-                      window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }}
-                  >
-                    <div className="relative rounded-xl overflow-hidden shadow-lg">
-                      <img
-                        src={relatedProject.image}
-                        alt={relatedProject.title}
-                        width={400}
-                        height={300}
-                        className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
-                        loading="lazy"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-80 group-hover:opacity-100 transition-opacity" />
-                      <div className="absolute bottom-0 left-0 right-0 p-4">
-                        <h3 className="text-white font-bold text-lg">{relatedProject.title}</h3>
-                        <p className="text-white/80 text-sm capitalize">{relatedProject.category}</p>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          </Container>
-        </Section>
-      )}
+
     </>
   );
 }
