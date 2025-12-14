@@ -12,12 +12,26 @@ export const updatePageMeta = (title: string, description: string, url?: string,
     document.head.appendChild(metaDescription);
   }
 
+  // Update canonical URL
+  if (url) {
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) {
+      canonical.setAttribute('href', url);
+    } else {
+      canonical = document.createElement('link');
+      canonical.setAttribute('rel', 'canonical');
+      canonical.setAttribute('href', url);
+      document.head.appendChild(canonical);
+    }
+  }
+
   // Update Open Graph tags
+  const defaultImage = 'https://gridgointeriors.com/images/hero-luxury-modular-kitchen.webp';
   const ogTags = [
     { property: 'og:title', content: title },
     { property: 'og:description', content: description },
     { property: 'og:url', content: url || window.location.href },
-    { property: 'og:image', content: image || '' },
+    { property: 'og:image', content: image || defaultImage },
     { property: 'og:type', content: 'website' },
     { property: 'og:site_name', content: 'GridGo Interiors' },
   ];
@@ -139,29 +153,41 @@ export const aggregateReviewSchema = {
   ],
 };
 
-export const pageMeta = {
+export const pageMeta: Record<string, { title: string; description: string; image?: string; canonical?: string }> = {
   home: {
     title: 'Luxury Interior Design | Mumbai, Delhi, Bangalore',
     description: 'Premium interior design services in Mumbai, Delhi, Bangalore. Expert steel fabrication, glass work, marble craftsmanship. 20+ years of excellence.',
+    image: 'https://gridgointeriors.com/images/hero-luxury-modular-kitchen.webp',
+    canonical: 'https://gridgointeriors.com/',
   },
   portfolio: {
     title: 'Portfolio - Interior Design Projects',
     description: 'View our stunning portfolio of residential, commercial, and retail interior design projects across India. 300+ completed projects.',
+    image: 'https://gridgointeriors.com/images/portfolio-dining-area-modern.webp',
+    canonical: 'https://gridgointeriors.com/portfolio',
   },
   services: {
     title: 'Interior Design Services - Fabrication & Furniture',
     description: 'Complete interior services: steel fabrication, glass work, marble craftsmanship, bespoke furniture, décor & premium painting across India.',
+    image: 'https://gridgointeriors.com/images/service-3d-space-planning.webp',
+    canonical: 'https://gridgointeriors.com/services',
   },
   about: {
     title: 'About Us - 20+ Years of Interior Excellence',
     description: 'GridGo Interiors brings 20+ years of experience in luxury interior design. Learn about our team, process, and commitment to excellence.',
+    image: 'https://gridgointeriors.com/images/service-commercial-office-interiors.webp',
+    canonical: 'https://gridgointeriors.com/about',
   },
   blog: {
     title: 'Interior Design Insights & Tips',
     description: 'Expert interior design tips, trends, and insights from GridGo Interiors. Stay updated with the latest in luxury interiors.',
+    image: 'https://gridgointeriors.com/images/portfolio-bedroom-led-design.webp',
+    canonical: 'https://gridgointeriors.com/blog',
   },
   contact: {
     title: 'Contact Us - Get Your Free Consultation',
     description: 'Contact GridGo Interiors for premium interior design services in Mumbai, Delhi, Bangalore. Get a free consultation today.',
+    image: 'https://gridgointeriors.com/images/service-3d-space-planning.webp',
+    canonical: 'https://gridgointeriors.com/contact',
   },
 };

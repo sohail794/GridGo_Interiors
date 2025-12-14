@@ -42,7 +42,7 @@ function App() {
     window.scrollTo(0, 0);
     const meta = pageMeta[currentPage];
     if (meta) {
-      updatePageMeta(meta.title, meta.description);
+      updatePageMeta(meta.title, meta.description, meta.canonical, meta.image);
     }
   }, [currentPage]);
 
