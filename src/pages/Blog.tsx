@@ -126,7 +126,6 @@ export default function Blog({ onNavigate }: BlogProps) {
                       width="800"
                       height="600"
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                      loading="lazy"
                     />
                   ) : (
                     <div className="w-full h-full bg-neutral-900/30 flex items-center justify-center">
@@ -235,7 +234,7 @@ export default function Blog({ onNavigate }: BlogProps) {
                                 .replace(/^## (.+)$/gm, '<h2 class="text-2xl font-bold text-white mt-8 mb-4">$1</h2>')
                                 .replace(/^### (.+)$/gm, '<h3 class="text-xl font-semibold text-brand-gold mt-6 mb-3">$1</h3>')
                                 .replace(/^\*\*(.+)\*\*$/gm, '<p class="font-semibold text-white">$1</p>')
-                                .replace(/- (.+)/g, '<li class="ml-4">• $1</li>')
+                                .replace(/^- (.+)$/gm, '<li class="ml-4">• $1</li>')
                                 .replace(/\d\. \*\*(.+)\*\*: (.+)/g, '<p class="mb-2"><strong class="text-white">$1:</strong> $2</p>')
                             }}
                           />

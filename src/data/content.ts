@@ -356,7 +356,7 @@ Technology seamlessly blends into interior design with hidden speakers, motorize
 
 At GridGo Interiors, we stay ahead of design trends while maintaining our commitment to quality craftsmanship. Our design team carefully selects materials and techniques that ensure your space remains beautiful and relevant for years to come.
     `,
-    image: '/images/portfolio-dining-area-modern.webp',
+    image: '/images/blog-sustainable-interior.webp',
     date: '2025-09-15',
     category: 'Trends',
   },
@@ -403,7 +403,7 @@ The most prestigious Italian marble with distinctive gray veining. Ideal for hig
 
 Budget ₹150-500 per sq. ft. for Indian marble and ₹500-2000+ for imported varieties. Installation typically adds 30-50% to material costs.
     `,
-    image: '/images/colonial-style-staircase-interior.webp',
+    image: '/images/blog-marble-luxury.webp',
     date: '2025-09-10',
     category: 'Guide',
   },
@@ -453,7 +453,7 @@ Creates a social hub for entertaining while adding prep space and storage.
 
 For countertops, consider quartz for durability or granite for natural beauty. Backsplashes in ceramic, glass, or natural stone add personality to your space.
     `,
-    image: '/images/portfolio-wood-kitchen-island.webp',
+    image: '/images/blog-modern-kitchen.webp',
     date: '2025-09-05',
     category: 'Inspiration',
   },
@@ -510,7 +510,7 @@ Automatic lights help you find what you need quickly.
 - Evening: Warm, dim light to relax
 - Night: Minimal accent lighting only
     `,
-    image: '/images/portfolio-bedroom-led-design.webp',
+    image: '/images/blog-bedroom-lighting.webp',
     date: '2025-08-28',
     category: 'Tips',
   },
@@ -557,7 +557,7 @@ Our in-house fabrication workshop allows us to:
 - Apply protective wax coating annually
 - Address scratches promptly to prevent rust
     `,
-    image: '/images/luxury-staircase-metal-railing.webp',
+    image: '/images/blog-steel-interior.webp',
     date: '2025-08-20',
     category: 'Guide',
   },
@@ -621,7 +621,7 @@ Fewer, larger pieces create less visual clutter than many small items.
 - Recessed medicine cabinets
 - Over-toilet storage
     `,
-    image: '/images/service-custom-wardrobe-design.webp',
+    image: '/images/blog-small-space.webp',
     date: '2025-08-15',
     category: 'Tips',
   },
