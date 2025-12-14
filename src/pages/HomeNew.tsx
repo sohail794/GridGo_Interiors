@@ -1,6 +1,5 @@
-import { useState } from 'react';
 import { CheckCircle, Award, Clock, Shield, Wrench, Sparkles } from 'lucide-react';
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import HeroSection from '../components/HeroSection';
 import GlassCard from '../components/GlassCard';
 import Button3D from '../components/Button3D';
@@ -9,7 +8,7 @@ import TestimonialCarousel from '../components/TestimonialCarousel';
 import Container from '../components/ui/Container';
 import Section from '../components/ui/Section';
 import SectionHeader from '../components/ui/SectionHeader';
-import { featuredProjects, testimonials } from '../data/content';
+import { testimonials } from '../data/content';
 import { COMPANY } from '../config/company';
 import { CONTACT } from '../config/contact';
 
@@ -19,13 +18,8 @@ interface HomeNewProps {
 }
 
 export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
-  const [filter, setFilter] = useState('all');
   const prefersReducedMotion = useReducedMotion();
   const transition = { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const };
-
-  const filteredProjects = filter === 'all'
-    ? featuredProjects.slice(0, 6)
-    : featuredProjects.filter((p) => p.category === filter).slice(0, 6);
 
   const trustIndicators = [
     { icon: Award, text: COMPANY.yearsExperienceLabel },
@@ -130,114 +124,6 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
                 </motion.div>
               );
             })}
-          </div>
-        </Container>
-      </Section>
-
-      <Section spacing="lg" background="none" id="portfolio-section" animate={false}>
-        <Container>
-          <motion.div
-            initial={prefersReducedMotion ? undefined : { opacity: 0, y: 20 }}
-            whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={prefersReducedMotion ? undefined : transition}
-          >
-            <SectionHeader 
-              title="Featured Projects"
-              subtitle="From concept to completion, explore our finest work"
-              id="portfolio-heading"
-            />
-          </motion.div>
-
-          <motion.div
-            className="flex flex-wrap justify-center gap-3 mb-12 mt-12"
-            role="tablist"
-            aria-label="Filter projects by category"
-            initial={prefersReducedMotion ? undefined : { opacity: 0, y: 20 }}
-            whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={prefersReducedMotion ? undefined : { ...transition, delay: 0.05 }}
-          >
-            {['all', 'residential', 'commercial', 'retail'].map((category) => (
-              <button
-                key={category}
-                onClick={() => setFilter(category)}
-                role="tab"
-                aria-selected={filter === category}
-                aria-controls="projects-grid"
-                className={`
-                  px-6 py-3 min-h-[44px] rounded-xl font-semibold uppercase tracking-wide text-sm
-                  transition-all duration-300 focus-ring active:scale-[0.98]
-                  border
-                  ${
-                    filter === category
-                      ? 'bg-gradient-to-br from-brand-gold to-brand-gold-deep text-background-primary shadow-luxury-gold border-brand-gold/30'
-                      : 'bg-white/5 text-text-secondary hover:bg-white/10 hover:text-text-primary border-white/10 hover:border-brand-gold/30'
-                  }
-                `}
-              >
-                {category.charAt(0).toUpperCase() + category.slice(1)}
-              </button>
-            ))}
-          </motion.div>
-
-          <motion.div 
-            layout 
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-            id="projects-grid"
-            role="tabpanel"
-            aria-labelledby="portfolio-heading"
-          >
-            <AnimatePresence mode="popLayout" initial={false}>
-              {filteredProjects.map((project, index) => (
-                <motion.div
-                  key={project.id}
-                  layout
-                  initial={prefersReducedMotion ? undefined : { opacity: 0, scale: 0.9 }}
-                  animate={prefersReducedMotion ? undefined : { opacity: 1, scale: 1 }}
-                  exit={prefersReducedMotion ? undefined : { opacity: 0, scale: 0.9 }}
-                  transition={prefersReducedMotion ? undefined : { ...transition, delay: index * 0.1 }}
-                >
-                  <GlassCard padding="sm" className="group cursor-pointer overflow-hidden hover:scale-[1.02] hover:shadow-lg transition-all duration-300 ease-out">
-                    <div className="relative overflow-hidden rounded-radius-lg mb-4 h-64">
-                      {project.image ? (
-                        <img
-                          src={project.image}
-                          alt={project.title}
-                          width="800"
-                          height="600"
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                          loading="lazy"
-                        />
-                      ) : (
-                        <div className="w-full h-full bg-neutral-900/30 flex items-center justify-center">
-                          <span className="text-text-tertiary text-sm">Image placeholder</span>
-                        </div>
-                      )}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                        <Button3D size="sm" variant="ghost" onClick={() => onNavigate('portfolio')}>
-                          View Project
-                        </Button3D>
-                      </div>
-                    </div>
-
-                    <div className="space-y-2">
-                      <span className="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wide bg-brand-gold/10 text-brand-gold rounded-radius-md">
-                        {project.category}
-                      </span>
-                      <h3 className="text-xl font-semibold text-text-primary">{project.title}</h3>
-                      <p className="text-sm text-text-secondary">{project.location}</p>
-                    </div>
-                  </GlassCard>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </motion.div>
-
-          <div className="text-center mt-12">
-            <Button variant="primary" size="lg" onClick={() => onNavigate('portfolio')}>
-              View All Projects
-            </Button>
           </div>
         </Container>
       </Section>
