@@ -11,6 +11,7 @@ import Card from '../components/ui/Card';
 import FormInput from '../components/ui/FormInput';
 import { CONTACT } from '../config/contact';
 import Breadcrumb from '../components/Breadcrumb';
+import SocialShare from '../components/SocialShare';
 
 interface BlogProps {
   onNavigate: (page: string) => void;
@@ -226,22 +227,46 @@ export default function Blog({ onNavigate }: BlogProps) {
                       </h2>
 
                       <div className="prose prose-invert max-w-none">
-                        <p className="text-lg text-text-secondary leading-relaxed">
-                          {selectedPost.excerpt}
-                        </p>
-                        
-                        <div className="mt-8 p-6 bg-white/5 rounded-lg border border-white/10">
-                          <p className="text-text-secondary text-center">
-                            🚧 <strong className="text-brand-gold">Full article coming soon!</strong>
-                            <br />
-                            <span className="text-sm mt-2 block">
-                              Subscribe to our newsletter to get notified when new content is published.
-                            </span>
-                          </p>
-                        </div>
+                        {selectedPost.content ? (
+                          <div 
+                            className="text-text-secondary leading-relaxed whitespace-pre-wrap"
+                            dangerouslySetInnerHTML={{ 
+                              __html: selectedPost.content
+                                .replace(/^## (.+)$/gm, '<h2 class="text-2xl font-bold text-white mt-8 mb-4">$1</h2>')
+                                .replace(/^### (.+)$/gm, '<h3 class="text-xl font-semibold text-brand-gold mt-6 mb-3">$1</h3>')
+                                .replace(/^\*\*(.+)\*\*$/gm, '<p class="font-semibold text-white">$1</p>')
+                                .replace(/- (.+)/g, '<li class="ml-4">• $1</li>')
+                                .replace(/\d\. \*\*(.+)\*\*: (.+)/g, '<p class="mb-2"><strong class="text-white">$1:</strong> $2</p>')
+                            }}
+                          />
+                        ) : (
+                          <>
+                            <p className="text-lg text-text-secondary leading-relaxed">
+                              {selectedPost.excerpt}
+                            </p>
+                            
+                            <div className="mt-8 p-6 bg-white/5 rounded-lg border border-white/10">
+                              <p className="text-text-secondary text-center">
+                                🚧 <strong className="text-brand-gold">Full article coming soon!</strong>
+                                <br />
+                                <span className="text-sm mt-2 block">
+                                  Subscribe to our newsletter to get notified when new content is published.
+                                </span>
+                              </p>
+                            </div>
+                          </>
+                        )}
                       </div>
 
-                      <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t border-white/10">
+                      <div className="flex flex-col gap-4">
+                        <SocialShare 
+                          url={`https://gridgointeriors.com/blog/${selectedPost.id}`}
+                          title={selectedPost.title}
+                          description={selectedPost.excerpt}
+                        />
+                      </div>
+
+                      <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t border-white/10 mt-6">
                         <Button 
                           variant="primary" 
                           onClick={() => {

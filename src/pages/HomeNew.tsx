@@ -6,6 +6,7 @@ import GlassCard from '../components/GlassCard';
 import Button3D from '../components/Button3D';
 import Button from '../components/ui/Button';
 import TestimonialCarousel from '../components/TestimonialCarousel';
+import InstagramFeed from '../components/InstagramFeed';
 import Container from '../components/ui/Container';
 import Section from '../components/ui/Section';
 import SectionHeader from '../components/ui/SectionHeader';
@@ -450,6 +451,13 @@ export default function HomeNew({ onNavigate, onOpenModal }: HomeNewProps) {
               </div>
             </div>
           </div>
+        </Container>
+      </Section>
+
+      {/* Instagram Feed Section */}
+      <Section className="bg-neutral-900/30">
+        <Container>
+          <InstagramFeed username="gridgointeriors" limit={6} />
         </Container>
       </Section>
     </div>

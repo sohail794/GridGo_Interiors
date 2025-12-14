@@ -1,15 +1,18 @@
 import { useRef, useState } from 'react';
 import { Project } from '../types';
 import GlassCard from './GlassCard';
+import { Eye } from 'lucide-react';
 
 interface PortfolioCardProps {
   project: Project;
   onSelect: (project: Project) => void;
+  onViewDetails?: (projectId: string) => void;
 }
 
 export default function PortfolioCard({
   project,
   onSelect,
+  onViewDetails,
 }: PortfolioCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [tiltStyle, setTiltStyle] = useState({ transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg)' });
@@ -76,9 +79,24 @@ export default function PortfolioCard({
             </div>
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-            <span className="inline-flex items-center gap-1 text-brand-gold font-semibold text-sm">
-              View Project Details →
-            </span>
+            <div className="flex items-center justify-between">
+              <span className="inline-flex items-center gap-1 text-brand-gold font-semibold text-sm">
+                View Project Details →
+              </span>
+              {onViewDetails && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onViewDetails(project.id);
+                  }}
+                  className="flex items-center gap-2 bg-brand-gold text-black px-4 py-2 rounded-lg font-medium text-sm hover:bg-brand-gold-deep transition-colors"
+                  aria-label={`View full details for ${project.title}`}
+                >
+                  <Eye className="w-4 h-4" />
+                  Details
+                </button>
+              )}
+            </div>
           </div>
         </div>
 
@@ -90,6 +108,19 @@ export default function PortfolioCard({
           <p className="text-text-secondary flex items-center gap-2">
             📍 {project.location}
           </p>
+          {onViewDetails && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onViewDetails(project.id);
+              }}
+              className="mt-3 w-full flex items-center justify-center gap-2 bg-white/5 hover:bg-brand-gold/20 text-white border border-white/10 hover:border-brand-gold/30 px-4 py-2 rounded-lg font-medium text-sm transition-all"
+              aria-label={`View full details for ${project.title}`}
+            >
+              <Eye className="w-4 h-4" />
+              View Full Details
+            </button>
+          )}
         </div>
       </GlassCard>
     </div>

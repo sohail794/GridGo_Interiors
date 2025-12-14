@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import FocusTrap from 'focus-trap-react';
 import { X, MapPin, Calendar, Tag } from 'lucide-react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
@@ -12,6 +12,10 @@ import Container from '../components/ui/Container';
 import Section from '../components/ui/Section';
 import BeforeAfterSlider from '../components/BeforeAfterSlider';
 import Breadcrumb from '../components/Breadcrumb';
+import PageLoader from '../components/PageLoader';
+
+// Lazy load ProjectDetail component
+const ProjectDetail = lazy(() => import('./ProjectDetail'));
 
 interface PortfolioProps {
   onNavigate: (page: string) => void;
@@ -21,6 +25,7 @@ interface PortfolioProps {
 export default function Portfolio({ onNavigate, onOpenModal }: PortfolioProps) {
   const [filter, setFilter] = useState<'all' | 'residential' | 'commercial' | 'retail'>('all');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [viewingProjectId, setViewingProjectId] = useState<string | null>(null);
   const [visibleCount, setVisibleCount] = useState(6); // Load More pagination
   const prefersReducedMotion = useReducedMotion();
 
@@ -81,6 +86,24 @@ export default function Portfolio({ onNavigate, onOpenModal }: PortfolioProps) {
     setFilter(category);
     setVisibleCount(6);
   };
+
+  // Handle viewing project details
+  const handleViewDetails = (projectId: string) => {
+    setViewingProjectId(projectId);
+  };
+
+  const handleBackToPortfolio = () => {
+    setViewingProjectId(null);
+  };
+
+  // If viewing a project detail, show that instead
+  if (viewingProjectId) {
+    return (
+      <Suspense fallback={<PageLoader />}>
+        <ProjectDetail projectId={viewingProjectId} onBack={handleBackToPortfolio} />
+      </Suspense>
+    );
+  }
 
   return (
     <div className="min-h-screen">
@@ -182,7 +205,7 @@ export default function Portfolio({ onNavigate, onOpenModal }: PortfolioProps) {
                   exit={cardVariants ? 'exit' : undefined}
                   custom={index}
                 >
-                  <PortfolioCard project={project} onSelect={setSelectedProject} />
+                  <PortfolioCard project={project} onSelect={setSelectedProject} onViewDetails={handleViewDetails} />
                 </motion.div>
               ))}
             </AnimatePresence>

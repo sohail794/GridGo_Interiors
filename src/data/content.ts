@@ -210,6 +210,9 @@ export const featuredProjects: Project[] = [
   },
 ];
 
+// Alias for backward compatibility with project detail pages
+export const projects = featuredProjects;
+
 export const services: Service[] = [
   {
     id: '1',
@@ -322,6 +325,37 @@ export const blogPosts: BlogPost[] = [
     id: '1',
     title: '2025 Interior Design Trends to Watch',
     excerpt: 'Discover the latest trends shaping interior design this year, from sustainable materials to bold color choices.',
+    content: `
+## The Future of Interior Design in 2025
+
+Interior design continues to evolve, blending timeless elegance with modern innovation. This year, we're seeing exciting shifts in how homeowners approach their living spaces.
+
+### 1. Sustainable Materials Take Center Stage
+
+Eco-conscious design isn't just a trend—it's becoming the standard. From reclaimed wood flooring to recycled glass countertops, sustainable materials are making their way into luxury homes without compromising on aesthetics.
+
+**Key sustainable materials trending in 2025:**
+- Bamboo and cork flooring
+- Recycled metal fixtures
+- VOC-free paints and finishes
+- Locally sourced natural stone
+
+### 2. Bold Color Choices
+
+While neutrals remain popular, 2025 is seeing a resurgence of rich, saturated colors. Deep forest greens, warm terracotta, and sophisticated navy blues are making statements in accent walls and furniture pieces.
+
+### 3. Biophilic Design Elements
+
+Bringing nature indoors goes beyond houseplants. Designers are incorporating water features, living walls, and natural light optimization to create healthier, more harmonious living environments.
+
+### 4. Smart Home Integration
+
+Technology seamlessly blends into interior design with hidden speakers, motorized blinds, and lighting systems that adapt to your daily routines.
+
+### How GridGo Incorporates These Trends
+
+At GridGo Interiors, we stay ahead of design trends while maintaining our commitment to quality craftsmanship. Our design team carefully selects materials and techniques that ensure your space remains beautiful and relevant for years to come.
+    `,
     image: '/images/portfolio-dining-area-modern.webp',
     date: '2025-09-15',
     category: 'Trends',
@@ -330,6 +364,45 @@ export const blogPosts: BlogPost[] = [
     id: '2',
     title: 'Choosing the Right Marble for Your Home',
     excerpt: 'A comprehensive guide to selecting marble varieties, understanding quality grades, and maintenance tips.',
+    content: `
+## Your Complete Guide to Marble Selection
+
+Marble has been synonymous with luxury and elegance for centuries. At GridGo Interiors, we've helped hundreds of homeowners select the perfect marble for their spaces.
+
+### Understanding Marble Varieties
+
+**Carrara Marble**
+Classic Italian marble with soft gray veining on a white background. Perfect for bathrooms and kitchen countertops.
+
+**Calacatta Marble**
+More dramatic veining with bold gray and gold patterns. Often used as statement pieces in entryways and living areas.
+
+**Statuario Marble**
+The most prestigious Italian marble with distinctive gray veining. Ideal for high-end applications.
+
+**Indian Marble Options**
+- Makrana White: India's answer to Carrara
+- Green Marble: Unique forest tones
+- Pink Marble: Warm, inviting aesthetics
+
+### Quality Grades Explained
+
+1. **Grade A**: Minimal veining, consistent color
+2. **Grade B**: Moderate veining, slight variations
+3. **Grade C**: Heavy veining, more character
+
+### Maintenance Tips
+
+- Seal your marble annually
+- Clean spills immediately
+- Use pH-neutral cleaners only
+- Avoid acidic substances
+- Use coasters and cutting boards
+
+### Cost Considerations
+
+Budget ₹150-500 per sq. ft. for Indian marble and ₹500-2000+ for imported varieties. Installation typically adds 30-50% to material costs.
+    `,
     image: '/images/colonial-style-staircase-interior.webp',
     date: '2025-09-10',
     category: 'Guide',
@@ -338,6 +411,48 @@ export const blogPosts: BlogPost[] = [
     id: '3',
     title: 'Modern Kitchen Design Ideas',
     excerpt: 'Explore contemporary kitchen layouts, wood finishes, and island designs that maximize both style and function.',
+    content: `
+## Designing Your Dream Kitchen
+
+The kitchen is the heart of every home. Here's how to create a space that's both beautiful and functional.
+
+### Popular Layout Options
+
+**L-Shaped Kitchen**
+Ideal for open-plan living, offering plenty of counter space and a natural work triangle.
+
+**U-Shaped Kitchen**
+Maximum storage and counter space, perfect for serious home cooks.
+
+**Island Kitchen**
+Creates a social hub for entertaining while adding prep space and storage.
+
+### Wood Finish Trends
+
+- **Walnut**: Rich, warm tones that add sophistication
+- **Oak**: Timeless grain patterns for classic appeal
+- **Ash**: Light, contemporary feel
+- **Teak**: Durability with natural beauty
+
+### Kitchen Island Design Tips
+
+1. **Size**: Allow at least 90cm of clearance around all sides
+2. **Height**: Standard 90cm or bar height at 105cm
+3. **Seating**: Plan for 60cm per seat
+4. **Utilities**: Consider adding a sink or cooktop
+
+### Smart Kitchen Features
+
+- Soft-close drawers and cabinets
+- Pull-out pantry systems
+- Under-cabinet lighting
+- Integrated appliance garages
+- Motion-sensor faucets
+
+### Materials We Recommend
+
+For countertops, consider quartz for durability or granite for natural beauty. Backsplashes in ceramic, glass, or natural stone add personality to your space.
+    `,
     image: '/images/portfolio-wood-kitchen-island.webp',
     date: '2025-09-05',
     category: 'Inspiration',
@@ -346,8 +461,168 @@ export const blogPosts: BlogPost[] = [
     id: '4',
     title: 'Smart Bedroom Lighting Design',
     excerpt: 'Expert tips on LED integration, ambient lighting, and creating the perfect mood in your bedroom.',
+    content: `
+## Mastering Bedroom Lighting
+
+Proper lighting transforms a bedroom from a simple sleeping space into a sanctuary. Here's our expert guide to bedroom lighting design.
+
+### The Three Layers of Bedroom Lighting
+
+**Ambient Lighting**
+General illumination that fills the room. Consider:
+- Recessed ceiling lights
+- Pendant lights
+- Cove lighting
+
+**Task Lighting**
+Focused light for specific activities:
+- Reading lamps with adjustable arms
+- Vanity lighting for grooming
+- Closet lighting
+
+**Accent Lighting**
+Decorative elements that add depth:
+- LED strip lighting behind headboards
+- Picture lights for artwork
+- Shelf lighting
+
+### LED Integration Best Practices
+
+1. **Color Temperature**: 2700-3000K for warm, relaxing ambiance
+2. **Dimmability**: Always install dimmers for flexibility
+3. **Hidden Sources**: Cove and indirect lighting creates sophistication
+4. **Smart Controls**: Voice or app-controlled systems for convenience
+
+### Bedroom Lighting Ideas
+
+**Behind the Headboard**
+LED strips create a floating effect and gentle ambient glow perfect for winding down.
+
+**Under-Bed Lighting**
+Motion-sensor LEDs provide safe navigation at night without fully waking you.
+
+**Closet Illumination**
+Automatic lights help you find what you need quickly.
+
+### Creating the Perfect Mood
+
+- Morning: Bright, cool light to energize
+- Evening: Warm, dim light to relax
+- Night: Minimal accent lighting only
+    `,
     image: '/images/portfolio-bedroom-led-design.webp',
     date: '2025-08-28',
+    category: 'Tips',
+  },
+  {
+    id: '5',
+    title: 'The Art of Steel Fabrication in Modern Interiors',
+    excerpt: 'How custom steel work transforms spaces with elegant railings, partitions, and architectural features.',
+    content: `
+## Steel Fabrication: Where Art Meets Engineering
+
+Steel has become a cornerstone of contemporary interior design, offering both structural integrity and aesthetic appeal.
+
+### Applications in Modern Homes
+
+**Custom Railings**
+From minimalist designs to ornate patterns, steel railings add safety without sacrificing style.
+
+**Room Dividers**
+Perforated steel panels and geometric patterns create visual interest while maintaining openness.
+
+**Furniture Frames**
+Tables, chairs, and shelving with steel frames offer durability and modern appeal.
+
+### Types of Steel Finishes
+
+1. **Polished**: Reflective, contemporary look
+2. **Brushed**: Subtle texture, fingerprint-resistant
+3. **Powder-coated**: Any color, weather-resistant
+4. **Blackened**: Industrial, dramatic aesthetic
+5. **Brass-plated**: Warm, luxurious appeal
+
+### The GridGo Advantage
+
+Our in-house fabrication workshop allows us to:
+- Create custom designs to exact specifications
+- Ensure quality control at every stage
+- Deliver faster turnaround times
+- Offer competitive pricing
+
+### Maintenance Guide
+
+- Clean with mild soap and water
+- Dry immediately to prevent water spots
+- Apply protective wax coating annually
+- Address scratches promptly to prevent rust
+    `,
+    image: '/images/luxury-staircase-metal-railing.webp',
+    date: '2025-08-20',
+    category: 'Guide',
+  },
+  {
+    id: '6',
+    title: 'Small Space Design Solutions',
+    excerpt: 'Maximize your compact home with clever storage ideas, multi-functional furniture, and visual tricks.',
+    content: `
+## Making the Most of Limited Space
+
+Living in a compact home doesn't mean compromising on style or functionality. Here are our top strategies for small space design.
+
+### Storage Solutions
+
+**Vertical Space**
+- Floor-to-ceiling wardrobes
+- Tall bookshelves
+- Wall-mounted cabinets
+- Overhead storage
+
+**Hidden Storage**
+- Ottoman beds with storage
+- Built-in window seats
+- Under-stair drawers
+- Hollow coffee tables
+
+**Multi-Functional Furniture**
+- Sofa beds
+- Extendable dining tables
+- Nesting tables
+- Murphy beds
+
+### Visual Tricks
+
+**Mirrors**
+Strategically placed mirrors can double the perceived size of a room.
+
+**Light Colors**
+White and pale tones reflect light and create an airy feel.
+
+**Vertical Lines**
+Striped wallpaper and tall furniture draw the eye upward.
+
+**Minimal Furniture**
+Fewer, larger pieces create less visual clutter than many small items.
+
+### Room-Specific Tips
+
+**Small Bedrooms**
+- Platform beds with drawers
+- Wall-mounted nightstands
+- Sliding wardrobe doors
+
+**Compact Kitchens**
+- Pull-out pantry systems
+- Under-cabinet hooks
+- Magnetic knife strips
+
+**Tiny Bathrooms**
+- Wall-mounted vanities
+- Recessed medicine cabinets
+- Over-toilet storage
+    `,
+    image: '/images/service-custom-wardrobe-design.webp',
+    date: '2025-08-15',
     category: 'Tips',
   },
 ];
